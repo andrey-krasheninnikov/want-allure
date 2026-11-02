@@ -63,7 +63,16 @@ The example supports six platforms and demonstrates themes, RTL, accessibility s
 
 The reusable skill in [skills/want-design/SKILL.md](skills/want-design/SKILL.md) covers Want brand rules, typography, composition, UI/UX, motion, and a calm, concrete product voice. It includes React and Flutter integration guidance and English/Russian UI-copy examples. Product-specific instructions and approved themes take precedence over shared defaults.
 
-From the target project's root, install the skill with Node.js and npm:
+Inside this repository, build once and use the root script for a personal installation:
+
+```sh
+bun run build
+bun run skill:install --global
+```
+
+Use `bun run skill:install` for this checkout, or add `--dest /path/to/project/.agents/skills` to select another project. The script supports the same installer options. In this Bun workspace, npm can select the local foundation package without a root bin link, causing `npx` to report `want-design-install: command not found`.
+
+From a consumer project's root, install the published skill with Node.js and npm:
 
 ```sh
 npx --yes --package=@want-foundation/allure@1.0.0 want-design-install
@@ -82,13 +91,6 @@ This uses `~/.agents/skills/want-design`. Use `--dest PATH` instead of `--global
 Invoke `$want-design` when working on a Want interface. Discovery also uses the skill's Want-specific description. If the current session has already loaded its skill catalog, start a new session after installation.
 
 Matching installations are unchanged, including extra local files. Different installations and symlink destinations are never overwritten. To update, move the existing `want-design` directory to a backup outside the skills directory, run the version-pinned command again, and review any local changes before removing that backup.
-
-From this checkout, build once and use the same installer:
-
-```sh
-bun run build
-bun run skill:install --dest /path/to/project/.agents/skills
-```
 
 ## Upgrade
 

@@ -9,6 +9,7 @@ const root = resolve(import.meta.dirname, '..');
 const directory = await realpath(await mkdtemp(join(tmpdir(), 'want-allure-consumer-')));
 const run = (command: string, args: string[], cwd = directory) => execFileSync(command, args, { cwd, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], maxBuffer: 8 * 1024 * 1024 });
 try {
+  assert(run('bun', ['run', 'skill:install', '--global', '--help'], root).includes('Usage: want-design-install'));
   const tarballs: string[] = [];
   for (const name of ['foundation', 'react']) {
     const output: unknown = JSON.parse(run('npm', ['pack', '--json', '--ignore-scripts', '--pack-destination', directory], resolve(root, 'packages', name)));
@@ -77,9 +78,10 @@ try {
   run('node', ['node_modules/typescript/bin/tsc', '--noEmit', '--strict', '--skipLibCheck', '--jsx', 'react-jsx', '--module', 'ESNext', '--moduleResolution', 'Bundler', '--target', 'ES2022', '--resolveJsonModule', 'check.tsx']);
   const foundation = join(directory, 'node_modules/@want-foundation/allure');
   const skillDestination = join(directory, 'installed skills');
-  const installCommand = join(foundation, 'dist/install-skill.js');
-  assert(run('node', [installCommand, '--dest', skillDestination]).includes('Installed:'));
-  assert(run('node', [installCommand, '--dest', skillDestination]).includes('Already installed:'));
+  const installCommand = ['--offline', '--yes', '--package=@want-foundation/allure@1.0.0', 'want-design-install'];
+  assert(run('npx', [...installCommand, '--dest', skillDestination]).includes('Installed:'));
+  assert(run('npx', [...installCommand, '--dest', skillDestination]).includes('Already installed:'));
+  assert(run('npx', [...installCommand, '--global', '--help']).includes('Usage: want-design-install'));
   const installedSkill = join(skillDestination, 'want-design');
   assert((await readFile(join(installedSkill, 'SKILL.md'), 'utf8')).includes('name: want-design'));
   assert.deepEqual(JSON.parse(await readFile(join(installedSkill, 'references/tokens.json'), 'utf8')), JSON.parse(await readFile(join(foundation, 'tokens.json'), 'utf8')));
