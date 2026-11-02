@@ -1,0 +1,22 @@
+name: want_desyst_example
+description: Interactive catalogue of Want Flutter components.
+publish_to: none
+version: 0.4.0+1
+environment:
+  sdk: ^3.13.5
+  flutter: '>=3.47.7'
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  material_ui: ^1.9.0
+  forui: ^0.27.7
+  want_desyst:
+    path: ../
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+flutter:
+  uses-material-design: true

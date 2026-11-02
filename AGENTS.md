@@ -23,7 +23,7 @@ For Want interface, component, and UI-copy work, use the repository skill at `sk
 
 ## Implementation contracts
 
-Use Bun 1.3.14 and the root scripts. Work from the issue-specific persistent worktree. Read GLOSSARY.md, DESIGN.md and relevant docs/adr before changes.
+Use Bun 1.3.14 and the root scripts. Flutter uses the root FVM pin (3.47.7) and the Flutter scripts; use public ForUI primitives and derive Dart tokens from the canonical foundation JSON. Work from the issue-specific persistent worktree. Read GLOSSARY.md, DESIGN.md and relevant docs/adr before changes.
 
 Keep foundation code independent of React and product services. React components use public props, semantic tokens and the installed Radix primitives. Never import wallpapers catalogue data, APIs, telemetry, advertising or routes into public packages. Consumers own persistence and localized copy.
 

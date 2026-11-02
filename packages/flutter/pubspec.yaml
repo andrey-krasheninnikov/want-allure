@@ -1,0 +1,55 @@
+name: want_desyst
+description: Want design system for Flutter. ForUI-based components, themes, typography, motion and accessible product compositions.
+version: 0.4.0
+homepage: https://github.com/andrey-krasheninnikov/want-desyst
+repository: https://github.com/andrey-krasheninnikov/want-desyst/tree/main/packages/flutter
+issue_tracker: https://github.com/andrey-krasheninnikov/want-desyst/issues
+topics:
+  - design-system
+  - widgets
+  - user-interface
+  - forui
+platforms:
+  android:
+  ios:
+  web:
+  macos:
+  windows:
+  linux:
+environment:
+  sdk: ^3.13.5
+  flutter: '>=3.47.7'
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  forui: ^0.27.7
+  material_ui: ^1.9.0
+  file_selector: ^1.1.0
+  super_drag_and_drop: ^0.9.1
+  flutter_svg: ^2.3.2
+  cross_file: ^0.3.5
+  cupertino_icons: ^1.0.8
+  mime: ^2.0.0
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  file_selector_platform_interface: ^2.7.0
+flutter:
+  assets:
+    - assets/brand/
+  fonts:
+    - family: Days One
+      fonts:
+        - asset: assets/fonts/DaysOne-Regular.ttf
+    - family: Manrope
+      fonts:
+        - asset: assets/fonts/Manrope.ttf
+    - family: Noto Sans JP
+      fonts:
+        - asset: assets/fonts/NotoSansJP.ttf
+    - family: Noto Sans Arabic
+      fonts:
+        - asset: assets/fonts/NotoSansArabic.ttf

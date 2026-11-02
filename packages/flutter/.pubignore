@@ -1,0 +1,8 @@
+build/
+.dart_tool/
+.fvm/
+example/build/
+example/.dart_tool/
+example/ios/Pods/
+example/macos/Pods/
+test/

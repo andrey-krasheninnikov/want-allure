@@ -1,0 +1,325 @@
+[
+  {
+    "web": "ui/accordion",
+    "flutter": [
+      "WantAccordion",
+      "WantAccordionItem"
+    ],
+    "example": "disclosure"
+  },
+  {
+    "web": "ui/alert",
+    "flutter": [
+      "WantAlert"
+    ],
+    "example": "feedback"
+  },
+  {
+    "web": "ui/badge",
+    "flutter": [
+      "WantBadge"
+    ],
+    "example": "feedback"
+  },
+  {
+    "web": "ui/breadcrumb",
+    "flutter": [
+      "WantBreadcrumb",
+      "WantBreadcrumbItem"
+    ],
+    "example": "navigation"
+  },
+  {
+    "web": "ui/button",
+    "flutter": [
+      "WantButton"
+    ],
+    "example": "buttons"
+  },
+  {
+    "web": "ui/card",
+    "flutter": [
+      "WantCard"
+    ],
+    "example": "cards"
+  },
+  {
+    "web": "ui/dialog",
+    "flutter": [
+      "WantDialog"
+    ],
+    "example": "overlays"
+  },
+  {
+    "web": "ui/field",
+    "flutter": [
+      "WantField",
+      "WantFieldGroup"
+    ],
+    "example": "fields"
+  },
+  {
+    "web": "ui/input",
+    "flutter": [
+      "WantInput"
+    ],
+    "example": "fields"
+  },
+  {
+    "web": "ui/label",
+    "flutter": [
+      "WantLabel"
+    ],
+    "example": "fields"
+  },
+  {
+    "web": "ui/navigation-menu",
+    "flutter": [
+      "WantNavigationMenu",
+      "WantNavigationItem"
+    ],
+    "example": "navigation"
+  },
+  {
+    "web": "ui/radio-group",
+    "flutter": [
+      "WantRadioGroup"
+    ],
+    "example": "selection"
+  },
+  {
+    "web": "ui/select",
+    "flutter": [
+      "WantSelect",
+      "WantOption"
+    ],
+    "example": "selection"
+  },
+  {
+    "web": "ui/separator",
+    "flutter": [
+      "WantSeparator"
+    ],
+    "example": "feedback"
+  },
+  {
+    "web": "ui/sheet",
+    "flutter": [
+      "WantSheet"
+    ],
+    "example": "overlays"
+  },
+  {
+    "web": "ui/skeleton",
+    "flutter": [
+      "WantSkeleton"
+    ],
+    "example": "feedback"
+  },
+  {
+    "web": "ui/switch",
+    "flutter": [
+      "WantSwitch"
+    ],
+    "example": "selection"
+  },
+  {
+    "web": "ui/tabs",
+    "flutter": [
+      "WantTabs",
+      "WantTab"
+    ],
+    "example": "disclosure"
+  },
+  {
+    "web": "ui/textarea",
+    "flutter": [
+      "WantTextarea"
+    ],
+    "example": "fields"
+  },
+  {
+    "web": "brand",
+    "flutter": [
+      "WantBrandLogo",
+      "WantBrandLockup"
+    ],
+    "example": "palette"
+  },
+  {
+    "web": "media-card",
+    "flutter": [
+      "WantMediaCard"
+    ],
+    "example": "cards"
+  },
+  {
+    "web": "contact-card",
+    "flutter": [
+      "WantContactCard",
+      "WantContactAction"
+    ],
+    "example": "contact"
+  },
+  {
+    "web": "theme-toggle",
+    "flutter": [
+      "WantThemeToggle"
+    ],
+    "example": "palette"
+  },
+  {
+    "web": "comment-feed",
+    "flutter": [
+      "WantCommentFeed",
+      "WantComment",
+      "WantCommentAction"
+    ],
+    "example": "comments"
+  },
+  {
+    "web": "direction-provider",
+    "flutter": [
+      "WantDirectionProvider"
+    ],
+    "example": "navigation"
+  },
+  {
+    "web": "date-field",
+    "flutter": [
+      "WantDateField"
+    ],
+    "example": "date-url-window"
+  },
+  {
+    "web": "url-field",
+    "flutter": [
+      "WantUrlField",
+      "WantOpenUrl"
+    ],
+    "example": "date-url-window"
+  },
+  {
+    "web": "window",
+    "flutter": [
+      "WantWindow"
+    ],
+    "example": "date-url-window"
+  },
+  {
+    "web": "ui/checkbox",
+    "flutter": [
+      "WantCheckbox"
+    ],
+    "example": "selection"
+  },
+  {
+    "web": "ui/dropdown-menu",
+    "flutter": [
+      "WantDropdownMenu",
+      "WantMenuItem"
+    ],
+    "example": "overlays"
+  },
+  {
+    "web": "ui/tooltip",
+    "flutter": [
+      "WantTooltip"
+    ],
+    "example": "overlays"
+  },
+  {
+    "web": "ui/popover",
+    "flutter": [
+      "WantPopover"
+    ],
+    "example": "overlays"
+  },
+  {
+    "web": "ui/toast",
+    "flutter": [
+      "WantToast",
+      "WantToaster"
+    ],
+    "example": "notifications"
+  },
+  {
+    "web": "ui/progress",
+    "flutter": [
+      "WantProgress"
+    ],
+    "example": "feedback"
+  },
+  {
+    "web": "ui/table",
+    "flutter": [
+      "WantTable",
+      "WantTableColumn"
+    ],
+    "example": "table"
+  },
+  {
+    "web": "combobox",
+    "flutter": [
+      "WantCombobox"
+    ],
+    "example": "search"
+  },
+  {
+    "web": "pagination",
+    "flutter": [
+      "WantPagination"
+    ],
+    "example": "table"
+  },
+  {
+    "web": "file-upload",
+    "flutter": [
+      "WantFileUpload"
+    ],
+    "example": "files"
+  },
+  {
+    "web": "typography",
+    "flutter": [
+      "WantTypography",
+      "WantProse"
+    ],
+    "example": "typography"
+  },
+  {
+    "web": "loader",
+    "flutter": [
+      "WantLoader"
+    ],
+    "example": "loaders"
+  },
+  {
+    "web": "shimmer",
+    "flutter": [
+      "WantShimmer"
+    ],
+    "example": "shimmer"
+  },
+  {
+    "web": "animated-text",
+    "flutter": [
+      "WantAnimatedText"
+    ],
+    "example": "animated-text"
+  },
+  {
+    "web": "glow",
+    "flutter": [
+      "WantGlow"
+    ],
+    "example": "glow"
+  },
+  {
+    "web": "snackbar",
+    "flutter": [
+      "WantSnackbar"
+    ],
+    "example": "notifications"
+  }
+]
