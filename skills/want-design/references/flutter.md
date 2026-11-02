@@ -1,6 +1,6 @@
 # Flutter integration
 
-Install the matching `want_desyst` release from pub.dev. Import `package:want_desyst/want_desyst.dart`. Use the public `Want*` components and theme before adding wrappers or dependencies.
+Install the matching `want_allure` release from pub.dev. Import `package:want_allure/want_allure.dart`. Use the public `Want*` components and theme before adding wrappers or dependencies.
 
 Wrap application content with `WantTheme(data: WantThemeData.light() or WantThemeData.dark(), child: ...)`. The adapter styles ForUI from the same foundation tokens. Product overrides belong in `WantThemeData` or an intentional product composition. Keep the application router and saved theme preference outside the package.
 

@@ -1,7 +1,7 @@
 # Issue tracker: GitHub
 
 Issues and specs live in GitHub Issues for
-`andrey-krasheninnikov/want-desyst`. Use the `gh` CLI.
+`andrey-krasheninnikov/want-allure`. Use the `gh` CLI.
 
 ## Operations
 

@@ -1,10 +1,10 @@
 {
-  "version": "0.4.0",
+  "version": "1.0.0",
   "type": "module",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/andrey-krasheninnikov/want-desyst.git"
+    "url": "git+https://github.com/andrey-krasheninnikov/want-allure.git"
   },
   "publishConfig": {
     "access": "public"
@@ -18,8 +18,8 @@
   "sideEffects": [
     "**/*.css"
   ],
-  "name": "@want-foundation/desyst-react",
-  "description": "Accessible React components and shared Want product compositions.",
+  "name": "@want-foundation/allure-react",
+  "description": "Accessible React components and shared product compositions for Want Allure.",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -31,7 +31,7 @@
     "react-dom": "^19.0.0"
   },
   "dependencies": {
-    "@want-foundation/desyst-foundation": "0.4.0",
+    "@want-foundation/allure": "1.0.0",
     "class-variance-authority": "0.7.1",
     "clsx": "2.1.1",
     "tailwind-merge": "3.7.0",

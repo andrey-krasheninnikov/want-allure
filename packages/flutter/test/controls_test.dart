@@ -1,7 +1,7 @@
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:want_desyst/want_desyst.dart';
+import 'package:want_allure/want_allure.dart';
 
 import 'helpers.dart';
 

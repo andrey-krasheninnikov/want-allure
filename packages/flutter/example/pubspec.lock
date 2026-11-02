@@ -538,13 +538,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "15.4.0"
-  want_desyst:
+  want_allure:
     dependency: "direct main"
     description:
       path: ".."
       relative: true
     source: path
-    version: "0.4.0"
+    version: "1.0.0"
   web:
     dependency: transitive
     description:

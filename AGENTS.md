@@ -4,7 +4,7 @@
 
 ### Issue tracker
 
-Issues live in GitHub Issues for `andrey-krasheninnikov/want-desyst`.
+Issues live in GitHub Issues for `andrey-krasheninnikov/want-allure`.
 See `docs/agents/issue-tracker.md`.
 
 ### Triage labels

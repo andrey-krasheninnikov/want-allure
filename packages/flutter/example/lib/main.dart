@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:material_ui/material_ui.dart' show MaterialApp, Scaffold;
-import 'package:want_desyst/want_desyst.dart';
+import 'package:want_allure/want_allure.dart';
 
 void main() => runApp(const WantCatalogue());
 
@@ -19,7 +19,7 @@ class _WantCatalogueState extends State<WantCatalogue> {
         ? WantThemeData.dark()
         : WantThemeData.light();
     return MaterialApp(
-      title: 'Want Desyst · Flutter',
+      title: 'Want Allure · Flutter',
       debugShowCheckedModeBanner: false,
       localizationsDelegates: FLocalizations.localizationsDelegates,
       supportedLocales: FLocalizations.supportedLocales,
@@ -142,11 +142,11 @@ class _GalleryState extends State<_Gallery> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 WantBrandLockup(
-                  name: 'Want Desyst',
+                  name: 'Want Allure',
                   subtitle: 'Flutter · ForUI · 0.4.0',
                   logo: WantBrandLogo.asset(
                     'assets/brand/wallpapers.svg',
-                    package: 'want_desyst',
+                    package: 'want_allure',
                     label: 'Want Wallpapers',
                   ),
                   onPressed: () => _scroll.animateTo(

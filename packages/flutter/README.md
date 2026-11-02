@@ -1,4 +1,6 @@
-# Want Desyst for Flutter
+# Want Allure for Flutter
+
+For existing installations, follow the [1.0.0 migration guide](https://github.com/andrey-krasheninnikov/want-allure/blob/v1.0.0/docs/migration-1.0.0.md).
 
 ForUI-based Want components for Android, iOS, web, macOS, Windows and Linux. The package shares the web UI kit's colors, geometry, typography, motion and component families.
 
@@ -7,14 +9,14 @@ ForUI-based Want components for Android, iOS, web, macOS, Windows and Linux. The
 Requires Flutter 3.47.7 and Dart 3.13.5 or newer.
 
 ```sh
-flutter pub add want_desyst:^0.4.0
+flutter pub add want_allure:^1.0.0
 ```
 
 Use your existing application shell and localization setup. Apply WantTheme in the application builder so routes and overlays inherit the theme:
 
 ```dart
 import 'package:flutter/widgets.dart';
-import 'package:want_desyst/want_desyst.dart';
+import 'package:want_allure/want_allure.dart';
 
 Widget themedContent(BuildContext context, Widget child) {
   return WantTheme(
@@ -41,13 +43,13 @@ Add `FLocalizations.localizationsDelegates` and `FLocalizations.supportedLocales
 
 The public API covers all 44 web families: forms, navigation, cards, overlays, tables, pagination, file selection, date/time and URL fields, brand/media/contact/comment compositions, typography, loaders, shimmer, animated text, Glow and semantic snackbars. Native builders and slots replace React-only trigger and portal parts.
 
-See the [component parity table](https://github.com/andrey-krasheninnikov/want-desyst/blob/v0.4.0/docs/flutter-parity.md) and [interactive example source](https://github.com/andrey-krasheninnikov/want-desyst/tree/v0.4.0/packages/flutter/example).
+See the [component parity table](https://github.com/andrey-krasheninnikov/want-allure/blob/v1.0.0/docs/flutter-parity.md) and [interactive example source](https://github.com/andrey-krasheninnikov/want-allure/tree/v1.0.0/packages/flutter/example).
 
 Components receive values, labels and callbacks. A null button callback disables interaction. WantCheckbox supports a controlled mixed state through indeterminate. Applications own routes, URLs launched by `onOpen`, data, persistence, time-zone conversion and uploads. The package adds no state-management framework or product services.
 
 WantThemeData.light/dark provide the same primary #5962F0, success #7DF04A, info #28D7F5, warning #FFD43B and error #FF526D accents. Separate text roles preserve contrast. Override semantic values intentionally through the theme's overrides map. The source of truth remains the shared foundation JSON.
 
-WantTypography provides display, h1–h6, lead, body, small, caption, label, overline, mono, code, codeBlock and quote. TTF fonts and their licenses are bundled; no font download occurs at runtime. The Wallpapers SVG remains available at `assets/brand/wallpapers.svg` in package `want_desyst`; products supply their own logo when appropriate.
+WantTypography provides display, h1–h6, lead, body, small, caption, label, overline, mono, code, codeBlock and quote. TTF fonts and their licenses are bundled; no font download occurs at runtime. The Wallpapers SVG remains available at `assets/brand/wallpapers.svg` in package `want_allure`; products supply their own logo when appropriate.
 
 ## Feedback and motion
 

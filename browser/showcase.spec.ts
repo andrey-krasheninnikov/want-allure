@@ -61,7 +61,7 @@ test('keyboard focus retains a visible outline in both themes', async ({ page })
   for (const checked of [false, true]) {
     const theme = page.getByRole('switch', { name: 'Dark theme' });
     if (await theme.isChecked() !== checked) await theme.click();
-    await page.getByRole('link', { name: 'Want Desyst', exact: true }).focus();
+    await page.getByRole('link', { name: 'Want Allure', exact: true }).focus();
     await page.keyboard.press('Tab');
     const button = page.getByRole('button', { name: 'Toggle RTL' });
     await expect(button).toBeFocused();

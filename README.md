@@ -1,29 +1,31 @@
-# Want Desyst
+# Want Allure
 
 Shared design foundations and UI kits for Want products across web and mobile.
 
 ## Packages
 
-- @want-foundation/desyst-foundation: JSON tokens, compiled CSS, local fonts, brand assets and opt-in browser effects.
-- @want-foundation/desyst-react: React 19 primitives and generic product compositions built on Radix.
-- want_desyst: Flutter themes, controls, compositions and motion built on ForUI, for Android, iOS, web, macOS, Windows and Linux.
+- @want-foundation/allure: JSON tokens, compiled CSS, local fonts, brand assets and opt-in browser effects.
+- @want-foundation/allure-react: React 19 primitives and generic product compositions built on Radix.
+- want_allure: Flutter themes, controls, compositions and motion built on ForUI, for Android, iOS, web, macOS, Windows and Linux.
 
-All public packages use version 0.4.0. Keep matching releases aligned. The Flutter adapter is published as `want_desyst` on pub.dev and uses ForUI with the same Want tokens and component families.
+All public packages use version 1.0.0. Keep matching releases aligned. The Flutter adapter is published as `want_allure` on pub.dev and uses ForUI with the same Want tokens and component families.
+
+Upgrading from the previous package names? Follow the [1.0.0 migration guide](docs/migration-1.0.0.md).
 
 ## Install a release
 
 For a published release, install the matching versions:
 
 ```sh
-npm install @want-foundation/desyst-foundation@0.4.0 @want-foundation/desyst-react@0.4.0 react@^19 react-dom@^19
+npm install @want-foundation/allure@1.0.0 @want-foundation/allure-react@1.0.0 react@^19 react-dom@^19
 ```
 
 Import the stylesheet once in the application's entry point. The font stylesheet is optional and serves its font files locally.
 
 ```tsx
-import '@want-foundation/desyst-foundation/styles.css';
-import '@want-foundation/desyst-foundation/fonts.css';
-import { Button, Field, FieldLabel, Input } from '@want-foundation/desyst-react';
+import '@want-foundation/allure/styles.css';
+import '@want-foundation/allure/fonts.css';
+import { Button, Field, FieldLabel, Input } from '@want-foundation/allure-react';
 
 export function Example() {
   return <Field>
@@ -34,15 +36,15 @@ export function Example() {
 }
 ```
 
-No stylesheet copying, source aliases or scanning library sources with Tailwind is required. Consumers may bring their own layout styles through className and override semantic variables intentionally. React and React DOM are peers and are not bundled. A consumer that also uses Tailwind 4 can import @want-foundation/desyst-foundation/tailwind.css after Tailwind to register the same semantic utilities for its own source files. This integration is optional; library components already have compiled CSS.
+No stylesheet copying, source aliases or scanning library sources with Tailwind is required. Consumers may bring their own layout styles through className and override semantic variables intentionally. React and React DOM are peers and are not bundled. A consumer that also uses Tailwind 4 can import @want-foundation/allure/tailwind.css after Tailwind to register the same semantic utilities for its own source files. This integration is optional; library components already have compiled CSS.
 
 ## Flutter
 
 ```sh
-flutter pub add want_desyst:^0.4.0
+flutter pub add want_allure:^1.0.0
 ```
 
-Import `package:want_desyst/want_desyst.dart` and wrap the application content with `WantTheme`. The package includes local fonts, its SVG asset and all 44 web component families. See [Flutter documentation](packages/flutter/README.md) and [component parity](docs/flutter-parity.md).
+Import `package:want_allure/want_allure.dart` and wrap the application content with `WantTheme`. The package includes local fonts, its SVG asset and all 44 web component families. See [Flutter documentation](packages/flutter/README.md) and [component parity](docs/flutter-parity.md).
 
 From this checkout, use FVM with Flutter 3.47.7 and Dart 3.13.5:
 
@@ -64,7 +66,7 @@ The reusable skill in [skills/want-design/SKILL.md](skills/want-design/SKILL.md)
 From the target project's root, install the skill with Node.js and npm:
 
 ```sh
-npx --yes --package=@want-foundation/desyst-foundation@0.4.0 want-design-install
+npx --yes --package=@want-foundation/allure@1.0.0 want-design-install
 ```
 
 This creates `.agents/skills/want-design` in the current directory. The published skill includes its references and a token snapshot, so it does not need this repository afterward.
@@ -72,7 +74,7 @@ This creates `.agents/skills/want-design` in the current directory. The publishe
 For a personal installation shared across projects:
 
 ```sh
-npx --yes --package=@want-foundation/desyst-foundation@0.4.0 want-design-install --global
+npx --yes --package=@want-foundation/allure@1.0.0 want-design-install --global
 ```
 
 This uses `~/.agents/skills/want-design`. Use `--dest PATH` instead of `--global` to select another parent skills directory; `want-design` is appended to that path. Quote paths containing spaces. `--help` lists the options. The installer does not change project configuration or install UI dependencies.
@@ -94,7 +96,7 @@ Upgrade foundation and React together to the same released version. Read the cha
 
 ## Public contracts
 
-Foundation exports its tokens as JSON at @want-foundation/desyst-foundation/tokens.json and as the tokens JavaScript export. The assets export includes @want-foundation/desyst-foundation/assets/wallpapers.svg. Importing the JavaScript entry is safe during SSR.
+Foundation exports its tokens as JSON at @want-foundation/allure/tokens.json and as the tokens JavaScript export. The assets export includes @want-foundation/allure/assets/wallpapers.svg. Importing the JavaScript entry is safe during SSR.
 
 React exports the existing accordion, alert, badge, breadcrumb, button, card, dialog, field, input, label, navigation menu, radio group, select, separator, sheet, skeleton, switch, tabs and textarea families. Their public variants and native element props remain available.
 
@@ -109,7 +111,7 @@ Set data-theme="light" or data-theme="dark" on the document root for explicit se
 ## Optional effects
 
 ```ts
-import { initInteractionEffects, burstConfetti, initBackgroundMotion } from '@want-foundation/desyst-foundation';
+import { initInteractionEffects, burstConfetti, initBackgroundMotion } from '@want-foundation/allure';
 
 const disposeInteractions = initInteractionEffects();
 const disposeBackground = initBackgroundMotion({ background, control, shimmerDelayMs: [5000, 10000] });
@@ -144,7 +146,7 @@ The Astro showcase lives in apps/showcase and uses local fixtures. Browser check
 
 ## Release
 
-Build and verify the final candidate before publishing. Inspect both tarballs, keep only distribution files and license notices, and publish foundation before React with public access. Use the repository release tag v0.4.0 for this release. Never overwrite a published version; reconcile a registry response before retrying a timed-out publish.
+Build and verify the final candidate before publishing. Inspect both tarballs, keep only distribution files and license notices, and publish foundation before React with public access. Use the repository release tag v1.0.0 for this release. Never overwrite a published version; reconcile a registry response before retrying a timed-out publish.
 
 The npm organization is want-foundation. Publishing requires a signed-in owner with the required npm authentication. Credentials never belong in source files. Registry availability is confirmed as part of release, separately from the source merge.
 

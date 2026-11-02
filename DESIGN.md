@@ -1,4 +1,4 @@
-# Want Desyst visual contract
+# Want Allure visual contract
 
 The first product theme preserves the approved Want Wallpapers presentation. Shared primitives use semantic tokens, filled neutral surfaces and compact typography. The source of truth is packages/foundation/tokens.json.
 

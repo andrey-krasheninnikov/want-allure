@@ -2,7 +2,7 @@
 
 Status: accepted.
 
-`want_desyst` is the Flutter adapter in this monorepository. It implements the web component families using public ForUI primitives, Flutter composition and the shared Want theme. All packages use the same release version; the first Flutter release is 0.4.0.
+`want_allure` is the Flutter adapter in this monorepository. It implements the web component families using public ForUI primitives, Flutter composition and the shared Want theme. All packages use the same release version. The first Flutter release was 0.4.0 as `want_desyst`; current package names follow [0003: Want Allure naming and release](0003-want-allure.md).
 
 The canonical token JSON stays in foundation. A deterministic build step derives the Dart constants, and a check rejects drift. Flutter bundles TTF fonts and the original SVG with their licenses, without depending on npm or network font loading at runtime.
 

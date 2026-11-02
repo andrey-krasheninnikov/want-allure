@@ -1,4 +1,4 @@
-package design.want.want_desyst_example
+package design.want.want_allure_example
 
 import io.flutter.embedding.android.FlutterActivity
 

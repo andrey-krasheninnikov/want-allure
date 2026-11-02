@@ -19,7 +19,7 @@ Build interfaces that belong to the Want product family. Keep the approved ident
 - For appearance, hierarchy, layout, controls, and responsive behavior, read [Brand and UI](references/brand-ui.md).
 - For text, labels, errors, empty states, and notifications, read [Voice](references/voice.md).
 - For transitions, loading, Glow, and decorative effects, read [Motion](references/motion.md).
-- For Flutter implementations, read [Flutter integration](references/flutter.md) and use the public `want_desyst` API.
+- For Flutter implementations, read [Flutter integration](references/flutter.md) and use the public `want_allure` API.
 - For React implementations, read [React integration](references/react.md) and use public package exports.
 
 Exact values come from the foundation tokens for the product's installed version. The distributed skill includes `references/tokens.json`. In this repository, the canonical source is `packages/foundation/tokens.json`; the build copies it into the published skill. Written defaults describe the current Want theme and do not replace explicit product theme values.

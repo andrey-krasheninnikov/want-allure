@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { AnimatedText, Button, Glow, Loader, Prose, Shimmer, Snackbar, SnackbarProvider, SnackbarViewport, Typography, type SnackbarVariant } from '@want-foundation/desyst-react';
+import { AnimatedText, Button, Glow, Loader, Prose, Shimmer, Snackbar, SnackbarProvider, SnackbarViewport, Typography, type SnackbarVariant } from '@want-foundation/allure-react';
 import { Section } from './Section';
 
 const typeExamples = [

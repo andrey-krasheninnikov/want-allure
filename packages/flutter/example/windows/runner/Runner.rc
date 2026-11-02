@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "design.want" "\0"
-            VALUE "FileDescription", "want_desyst_example" "\0"
+            VALUE "FileDescription", "Want Allure" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "want_desyst_example" "\0"
+            VALUE "InternalName", "want_allure_example" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2026 design.want. All rights reserved." "\0"
-            VALUE "OriginalFilename", "want_desyst_example.exe" "\0"
-            VALUE "ProductName", "want_desyst_example" "\0"
+            VALUE "OriginalFilename", "want_allure_example.exe" "\0"
+            VALUE "ProductName", "Want Allure" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

@@ -1,10 +1,10 @@
 # React integration
 
-Install matching versions of `@want-foundation/desyst-foundation` and `@want-foundation/desyst-react`. React 19 and React DOM are peers. Import the compiled stylesheet once in the application entry; local fonts are optional:
+Install matching versions of `@want-foundation/allure` and `@want-foundation/allure-react`. React 19 and React DOM are peers. Import the compiled stylesheet once in the application entry; local fonts are optional:
 
 ```tsx
-import '@want-foundation/desyst-foundation/styles.css';
-import '@want-foundation/desyst-foundation/fonts.css';
+import '@want-foundation/allure/styles.css';
+import '@want-foundation/allure/fonts.css';
 ```
 
 No library-source scan or copied CSS is needed. Tailwind consumers may import the foundation's `tailwind.css` after Tailwind to register the same semantic utilities for their own code. That integration is optional.
@@ -23,7 +23,7 @@ Use the exported Radix-based primitives for native keyboard behavior, focus, lab
 
 ```tsx
 import { useState } from 'react';
-import { Button, Glow, Typography } from '@want-foundation/desyst-react';
+import { Button, Glow, Typography } from '@want-foundation/allure-react';
 
 export function PreviewAction({ title, label, pauseLabel, resumeLabel, onPreview }: {
   title: string;
