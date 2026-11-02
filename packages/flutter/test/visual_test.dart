@@ -97,6 +97,7 @@ void main() {
   testWidgets('rapid text replacement keeps only the current value', (
     tester,
   ) async {
+    final semantics = tester.ensureSemantics();
     await tester.pumpWidget(
       harness(const WantAnimatedText('First'), reduced: false),
     );
@@ -110,6 +111,9 @@ void main() {
     expect(find.text('First'), findsNothing);
     expect(find.text('Second'), findsNothing);
     expect(find.text('Current'), findsOneWidget);
+    expect(find.bySemanticsLabel('Current'), findsOneWidget);
+    expect(find.bySemanticsLabel('First'), findsNothing);
+    semantics.dispose();
     await tester.pumpAndSettle();
   });
 

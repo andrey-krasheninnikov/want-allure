@@ -208,6 +208,8 @@ class WantAnimatedText extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) => Semantics(
+    label: text,
+    excludeSemantics: true,
     liveRegion: liveRegion,
     child: WantTheme.reducedMotionOf(context)
         ? Text(text, style: style)
