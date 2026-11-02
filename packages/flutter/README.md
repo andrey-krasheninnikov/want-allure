@@ -63,6 +63,8 @@ WantBackgroundMotion requires a caller-owned WantBackgroundController and locali
 
 WantFileUpload uses system file dialogs and native drop handling, including virtual file streams. It accepts controlled XFile lists, consumer labels, extension/MIME filters and optional size/count limits. Validation rejects the whole incoming batch on an error. Cancelling the dialog keeps existing files. Dropped streams enforce the configured size limit while reading. Image previews above 10 MiB use an icon. Applications perform uploads.
 
+Android currently requires Gradle 8 because the native drop dependency still uses Project.exec, removed in Gradle 9. Match the example: Gradle 8.14.3, Android Gradle Plugin 8.11.1 and Kotlin 2.2.20, with org.jetbrains.kotlin.android applied before the Flutter plugin.
+
 The native drop dependency uses precompiled binaries or its documented Rust build integration. Android builds need an NDK. macOS sandboxed consumers need `com.apple.security.files.user-selected.read-only` for file selection; the example includes this entitlement. No drag-out or clipboard UI is added.
 
 WantDateField accepts DateTime values in years 0001–9999. Date/time editing preserves calendar fields without implicit local/UTC conversion. onChanged reports edits; onCommit reports a changed confirmed value. Supply localized labels and the application-chosen today value when needed. The application owns conversion to server timestamps.

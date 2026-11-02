@@ -3,9 +3,18 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:want_desyst/want_desyst.dart';
 
 import 'helpers.dart';
+import 'golden_comparator.dart';
 
 void main() {
-  setUpAll(loadWantFonts);
+  final originalComparator = goldenFileComparator;
+  setUpAll(() async {
+    final local = originalComparator as LocalFileComparator;
+    goldenFileComparator = WantGoldenComparator(
+      local.basedir.resolve('visual_test.dart'),
+    );
+    await loadWantFonts();
+  });
+  tearDownAll(() => goldenFileComparator = originalComparator);
 
   testWidgets(
     'reduced motion keeps Glow visible without scheduled animation frames',
