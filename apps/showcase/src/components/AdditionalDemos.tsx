@@ -4,7 +4,7 @@ import { Button, Checkbox, Combobox, DropdownMenu, DropdownMenuTrigger, Dropdown
   FileUpload, Pagination, Popover, PopoverTrigger, PopoverContent, PopoverClose, Progress,
   Table, TableCaption, TableHeader, TableBody, TableRow, TableHead, TableCell, Skeleton,
   ToastProvider, Toast, ToastTitle, ToastDescription, ToastAction, ToastClose, ToastViewport,
-  TooltipProvider, Tooltip, TooltipTrigger, TooltipContent, Input } from '@want-foundation/desyst-react';
+  TooltipProvider, Tooltip, TooltipTrigger, TooltipContent, Input } from '@want-foundation/allure-react';
 import { Section } from './Section';
 
 function DemoCheckbox() {

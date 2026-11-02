@@ -1,5 +1,5 @@
 import { createElement, type HTMLAttributes } from 'react';
-import type tokens from '@want-foundation/desyst-foundation/tokens.json';
+import type tokens from '@want-foundation/allure/tokens.json';
 import { cn } from './utils.js';
 
 export type TypographyVariant = keyof typeof tokens.typography.styles;

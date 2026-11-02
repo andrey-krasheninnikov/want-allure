@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.0
+
+- Rename the project to Want Allure and the repository to `want-allure`.
+- Publish foundation as `@want-foundation/allure`, React as `@want-foundation/allure-react`, and Flutter as `want_allure`.
+- Update imports, package resources, documentation, skill references and six-platform example identifiers.
+- Preserve the component APIs, design tokens, fonts, motion and accessibility behavior.
+- Document dependency and import changes in the [migration guide](docs/migration-1.0.0.md). Previous releases remain available.
+
 ## 0.4.0
 
 ### Added

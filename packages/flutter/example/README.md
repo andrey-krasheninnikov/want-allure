@@ -1,4 +1,4 @@
-# Want Flutter catalogue
+# Want Allure Flutter catalogue
 
 Run from the repository root with `bun run flutter:example`, or select a device using `fvm flutter run -d <device>` from this directory. The SDK is pinned in the root FVM configuration.
 

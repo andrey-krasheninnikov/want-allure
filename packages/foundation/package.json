@@ -1,10 +1,10 @@
 {
-  "version": "0.4.0",
+  "version": "1.0.0",
   "type": "module",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/andrey-krasheninnikov/want-desyst.git"
+    "url": "git+https://github.com/andrey-krasheninnikov/want-allure.git"
   },
   "publishConfig": {
     "access": "public"
@@ -19,8 +19,8 @@
   "sideEffects": [
     "**/*.css"
   ],
-  "name": "@want-foundation/desyst-foundation",
-  "description": "Shared design tokens, styles, fonts, brand assets and browser effects.",
+  "name": "@want-foundation/allure",
+  "description": "Want Allure design tokens, styles, fonts, brand assets and browser effects.",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",

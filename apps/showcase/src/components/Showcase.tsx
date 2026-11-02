@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-import { BrandLockup, Button, DirectionProvider, ThemeToggle } from '@want-foundation/desyst-react';
-import { burstConfetti, initInteractionEffects, initBackgroundMotion } from '@want-foundation/desyst-foundation';
+import { BrandLockup, Button, DirectionProvider, ThemeToggle } from '@want-foundation/allure-react';
+import { burstConfetti, initInteractionEffects, initBackgroundMotion } from '@want-foundation/allure';
 import UiKit from './UiKit';
 
 export default function Showcase({ logo }: { logo: string }) {
@@ -29,14 +29,14 @@ export default function Showcase({ logo }: { logo: string }) {
   }
   return <DirectionProvider dir={direction}>
     <header className="showcase-header glass-surface">
-      <BrandLockup name="Want Desyst" subtitle="Foundations & React" logoSrc={logo} href="#main" />
+      <BrandLockup name="Want Allure" subtitle="Foundations & React" logoSrc={logo} href="#main" />
       <div className="showcase-controls">
         <Button variant="secondary" onClick={() => { const next = direction === 'ltr' ? 'rtl' : 'ltr'; setDirection(next); document.documentElement.dir = next; }}>Toggle RTL</Button>
         <ThemeToggle theme={theme} onThemeChange={chooseTheme} label="Dark theme" />
       </div>
     </header>
     <main id="main" className="showcase-main" tabIndex={-1}>
-      <div className="showcase-intro"><p className="showcase-index">WANT / DESIGN SYSTEM / 0.1</p><h1>Shared by design.</h1><p>Tokens, accessible controls and product compositions. Local examples, ready for independent consumers.</p></div>
+      <div className="showcase-intro"><p className="showcase-index">WANT / ALLURE / 1.0.0</p><h1>Shared by design.</h1><p>Tokens, accessible controls and product compositions. Local examples, ready for independent consumers.</p></div>
       <section className="kit-section showcase-motion"><h2>Optional motion</h2><p>The background and interaction effects have explicit ownership and cleanup. System accessibility preferences take priority.</p>
         <div className="showcase-controls"><Button variant="secondary" data-background-toggle data-pause-label="Pause background glow" data-play-label="Resume background glow" hidden>Pause background glow</Button>
         <Button variant="secondary" onClick={() => document.querySelector('.page-background')?.dispatchEvent(new Event('want:background-shimmer'))}>Preview background wave</Button>

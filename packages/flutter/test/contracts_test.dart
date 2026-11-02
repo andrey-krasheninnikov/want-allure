@@ -2,7 +2,7 @@ import 'dart:typed_data';
 
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:want_desyst/want_desyst.dart';
+import 'package:want_allure/want_allure.dart';
 
 const labels = WantFileUploadLabels(
   choose: 'Choose',

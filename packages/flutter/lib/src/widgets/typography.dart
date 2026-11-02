@@ -55,10 +55,10 @@ class WantTypography extends StatelessWidget {
     final style = TextStyle(
       fontFamily: technical
           ? 'monospace'
-          : 'packages/want_desyst/${token.font == 'display' ? 'Days One' : 'Manrope'}',
+          : 'packages/want_allure/${token.font == 'display' ? 'Days One' : 'Manrope'}',
       fontFamilyFallback: const [
-        'packages/want_desyst/Noto Sans JP',
-        'packages/want_desyst/Noto Sans Arabic',
+        'packages/want_allure/Noto Sans JP',
+        'packages/want_allure/Noto Sans Arabic',
       ],
       fontSize: size,
       fontVariations: [FontVariation('wght', token.weight)],

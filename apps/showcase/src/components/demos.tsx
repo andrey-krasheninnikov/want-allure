@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Mail, CodeXml, Flag } from 'lucide-react';
-import { Button, ContactCard, CommentFeed, DateField, UrlField, Window, type CommentItem, type DateFieldLabels } from '@want-foundation/desyst-react';
+import { Button, ContactCard, CommentFeed, DateField, UrlField, Window, type CommentItem, type DateFieldLabels } from '@want-foundation/allure-react';
 
 const dateLabels: DateFieldLabels = {
   date: 'Choose date', datetime: 'Choose date and time', calendar: 'Calendar', year: 'Year',
@@ -32,7 +32,7 @@ export function DemoBriefElements() {
 export function DemoContact() {
   return <ContactCard name="Example Owner" subtitle="Demo product" actions={[
     { title: 'Email', detail: 'hello@example.com', href: 'mailto:hello@example.com', icon: Mail },
-    { title: 'Source', detail: 'Want Desyst', href: 'https://github.com/andrey-krasheninnikov/want-desyst', icon: CodeXml }
+    { title: 'Source', detail: 'Want Allure', href: 'https://github.com/andrey-krasheninnikov/want-allure', icon: CodeXml }
   ]} />;
 }
 export function DemoComments() {

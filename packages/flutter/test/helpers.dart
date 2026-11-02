@@ -1,7 +1,7 @@
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:material_ui/material_ui.dart' show MaterialApp, Scaffold;
-import 'package:want_desyst/want_desyst.dart';
+import 'package:want_allure/want_allure.dart';
 
 Widget harness(
   Widget child, {
@@ -46,9 +46,9 @@ Future<void> loadWantFonts() async {
     'Noto Sans JP': 'NotoSansJP.ttf',
     'Noto Sans Arabic': 'NotoSansArabic.ttf',
   }.entries) {
-    final loader = FontLoader('packages/want_desyst/${entry.key}')
+    final loader = FontLoader('packages/want_allure/${entry.key}')
       ..addFont(
-        rootBundle.load('packages/want_desyst/assets/fonts/${entry.value}'),
+        rootBundle.load('packages/want_allure/assets/fonts/${entry.value}'),
       );
     await loader.load();
   }

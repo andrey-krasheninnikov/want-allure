@@ -48,20 +48,20 @@ class WantThemeData {
       border: values['border'],
     );
     const fallbacks = [
-      'packages/want_desyst/Noto Sans JP',
-      'packages/want_desyst/Noto Sans Arabic',
+      'packages/want_allure/Noto Sans JP',
+      'packages/want_allure/Noto Sans Arabic',
     ];
     final typography = FTypography(
       display: FTypeface.inherit(
         colors: colors,
         touch: true,
-        fontFamily: 'packages/want_desyst/Days One',
+        fontFamily: 'packages/want_allure/Days One',
         fontFamilyFallback: fallbacks,
       ),
       body: FTypeface.inherit(
         colors: colors,
         touch: true,
-        fontFamily: 'packages/want_desyst/Manrope',
+        fontFamily: 'packages/want_allure/Manrope',
         fontFamilyFallback: fallbacks,
       ),
     );

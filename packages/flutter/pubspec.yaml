@@ -1,9 +1,9 @@
-name: want_desyst
-description: Want design system for Flutter. ForUI-based components, themes, typography, motion and accessible product compositions.
-version: 0.4.0
-homepage: https://github.com/andrey-krasheninnikov/want-desyst
-repository: https://github.com/andrey-krasheninnikov/want-desyst/tree/main/packages/flutter
-issue_tracker: https://github.com/andrey-krasheninnikov/want-desyst/issues
+name: want_allure
+description: Want Allure design system for Flutter. ForUI-based components, themes, typography, motion and accessible product compositions.
+version: 1.0.0
+homepage: https://github.com/andrey-krasheninnikov/want-allure
+repository: https://github.com/andrey-krasheninnikov/want-allure/tree/main/packages/flutter
+issue_tracker: https://github.com/andrey-krasheninnikov/want-allure/issues
 topics:
   - design-system
   - widgets

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { DateField, type DateFieldLabels } from '@want-foundation/desyst-react';
+import { DateField, type DateFieldLabels } from '@want-foundation/allure-react';
 
 const labels: DateFieldLabels = {
   date: 'Date', datetime: 'Date and time', calendar: 'Calendar', year: 'Year',

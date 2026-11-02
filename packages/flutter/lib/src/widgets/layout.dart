@@ -222,7 +222,7 @@ class WantBadge extends StatelessWidget {
             ),
             labelTextStyle: TextStyleDelta.value(
               TextStyle(
-                fontFamily: 'packages/want_desyst/Manrope',
+                fontFamily: 'packages/want_allure/Manrope',
                 fontSize: 14,
                 color: theme.color('$role-foreground'),
                 fontWeight: FontWeight.w600,
