@@ -36,7 +36,7 @@ export default function Showcase({ logo }: { logo: string }) {
       </div>
     </header>
     <main id="main" className="showcase-main" tabIndex={-1}>
-      <div className="showcase-intro"><p className="showcase-index">WANT / DESIGN SYSTEM / 0.1</p><h1>Shared by design.</h1><p>Tokens, accessible controls and product compositions. Local examples, ready for independent consumers.</p></div>
+      <div className="showcase-intro"><p className="showcase-index">WANT / ALLURE / 1.0.0</p><h1>Shared by design.</h1><p>Tokens, accessible controls and product compositions. Local examples, ready for independent consumers.</p></div>
       <section className="kit-section showcase-motion"><h2>Optional motion</h2><p>The background and interaction effects have explicit ownership and cleanup. System accessibility preferences take priority.</p>
         <div className="showcase-controls"><Button variant="secondary" data-background-toggle data-pause-label="Pause background glow" data-play-label="Resume background glow" hidden>Pause background glow</Button>
         <Button variant="secondary" onClick={() => document.querySelector('.page-background')?.dispatchEvent(new Event('want:background-shimmer'))}>Preview background wave</Button>
