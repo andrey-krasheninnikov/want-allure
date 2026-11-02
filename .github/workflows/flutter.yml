@@ -1,0 +1,76 @@
+name: Flutter package
+on:
+  pull_request:
+    paths:
+      - 'packages/flutter/**'
+      - 'packages/foundation/tokens.json'
+      - 'scripts/*flutter*'
+      - 'docs/flutter-parity.json'
+      - '.fvmrc'
+      - '.github/workflows/flutter.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: dart-lang/setup-dart@6afc89df92d6eb3834022f73cd65adc8cdfcb92d
+        with:
+          sdk: '3.13.5'
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6
+        with:
+          bun-version: '1.3.14'
+      - run: dart pub global activate fvm 3.2.1
+      - run: fvm install
+      - run: bun install --frozen-lockfile
+      - run: bun run build && bun run check && bun test tests && bun run test:consumer
+      - run: fvm flutter pub get --directory packages/flutter
+      - run: bun run flutter:check
+      - run: fvm dart format --output=none --set-exit-if-changed packages/flutter/lib packages/flutter/test packages/flutter/example/lib
+      - run: fvm flutter test --exclude-tags golden
+        working-directory: packages/flutter
+  platforms:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-15, windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: dart-lang/setup-dart@6afc89df92d6eb3834022f73cd65adc8cdfcb92d
+        with:
+          sdk: '3.13.5'
+      - run: dart pub global activate fvm 3.2.1
+      - run: fvm install
+      - run: fvm flutter pub get
+        working-directory: packages/flutter/example
+      - if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y ninja-build libgtk-3-dev liblzma-dev
+      - if: runner.os == 'Linux'
+        run: fvm flutter build linux --release && fvm flutter build web --release && fvm flutter build apk --release --target-platform android-arm64
+        working-directory: packages/flutter/example
+      - if: runner.os == 'macOS'
+        run: fvm flutter build macos --release && fvm flutter build ios --simulator
+        working-directory: packages/flutter/example
+      - if: runner.os == 'macOS'
+        run: fvm flutter test test/visual_test.dart --tags golden
+        working-directory: packages/flutter
+      - if: runner.os == 'Windows'
+        run: fvm flutter build windows --release
+        working-directory: packages/flutter/example
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        if: failure()
+        with:
+          name: flutter-diagnostics-${{ runner.os }}
+          path: |
+            packages/flutter/test/failures/
+            packages/flutter/example/build/**/*.log
+          if-no-files-found: ignore

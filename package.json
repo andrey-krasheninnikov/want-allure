@@ -14,7 +14,12 @@
     "test:ui": "playwright test",
     "test:consumer": "bun scripts/check-consumer.ts",
     "dev": "bun run --cwd apps/showcase dev",
-    "skill:install": "node packages/foundation/dist/install-skill.js"
+    "skill:install": "node packages/foundation/dist/install-skill.js",
+    "flutter:tokens": "bun scripts/generate-flutter-tokens.ts",
+    "flutter:check": "bun scripts/generate-flutter-tokens.ts --check && bun scripts/check-flutter-parity.ts && fvm flutter analyze packages/flutter",
+    "flutter:test": "cd packages/flutter && fvm flutter test",
+    "flutter:example": "cd packages/flutter/example && fvm flutter run",
+    "flutter:consumer": "bun scripts/check-flutter-consumer.ts"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.5",

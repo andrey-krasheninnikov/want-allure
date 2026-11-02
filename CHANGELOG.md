@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.4.0
+
+### Added
+
+- The `want_desyst` Flutter package, based on ForUI, with the same 44 component families as the web UI kit.
+- Shared Dart tokens, bundled fonts and SVG, 17 typography presets, accessible controls and product compositions.
+- Native file selection and drop support, animated status feedback, loaders, shimmer, Glow, text transitions and optional background effects.
+- A six-platform example, parity checks, package consumer verification, widget tests and visual reference boards.
+- Flutter integration guidance in the Want design skill.
+
+### Migration
+
+Flutter consumers can install `want_desyst: ^0.4.0` with Flutter 3.47.7 or newer. Wrap content in `WantTheme` and supply labels, values and callbacks. Web consumers upgrade foundation and React together to 0.4.0; existing exports remain compatible.
+
 ## 0.3.0
 
 ### Added

@@ -29,3 +29,5 @@ Loaders, shimmer and Glow expose pause controls through their props. Glow combin
 The reusable Want interface skill lives in [skills/want-design/SKILL.md](skills/want-design/SKILL.md). Its references cover brand and UI, voice, motion, and React integration. Exact numeric values remain in the foundation tokens.
 
 Consumers may set background wave-delay bounds and request a wave through want:background-shimmer on the background container. Manual requests restart only the light wave, preserve the other animation phases and respect the same pause and accessibility state.
+
+Flutter uses logical pixels for the same geometry, ForUI for native control behavior, and `WantTheme` for semantic styling. Dart values derive from the canonical JSON. Fonts use TTF assets and package-qualified family names. Text, routes, uploads and persistence remain consumer-owned. See the Flutter parity document for native composition equivalents.

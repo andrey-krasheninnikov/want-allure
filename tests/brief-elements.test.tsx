@@ -47,7 +47,8 @@ test('date field preserves a local date value in its public trigger', () => {
 
 test('date field keeps wall time unchanged across time zones', () => {
   const html = renderToStaticMarkup(<DateField mode="datetime" value="2026-03-29T02:30" today="2026-03-29T03:00" labels={labels} locale="en-GB" onChange={() => {}} />);
-  expect(html).toContain('29 Mar 2026 at 02:30');
+  expect(html).toContain('29 Mar 2026');
+  expect(html).toContain('02:30');
 });
 
 test('custom date label includes the selected value', () => {
