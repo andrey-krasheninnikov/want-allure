@@ -23,3 +23,5 @@ Use `WantIcons` and `WantIcon` for the shared Phosphor set. Notifications use to
 Shimmer and the background sphere use bundled Canvas fragment shaders with static loading/error fallbacks. Preserve their pause and accessibility behavior. Animated text uses a 360 ms transition and keeps only the latest value. Keep animation, selection and find controllers in presentation; they do not create a business domain or application layer.
 
 Continuous loaders, shimmer, Glow and indeterminate progress pause their tickers outside the visible viewport. Visibility changes are coalesced by visibility_detector; the package does not change its global update interval. Hidden-document, reduced-motion and explicit pause controls still apply.
+
+Flutter consumers may set `showPauseControl: false` when the product omits that control. Reduced-motion and inactive-view suspension still apply. `WantDialog` supports consumer constraints and `showTitle: false`; its required title remains the accessible name.

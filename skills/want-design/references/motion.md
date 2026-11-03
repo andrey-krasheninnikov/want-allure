@@ -27,3 +27,5 @@ Loaders and shimmers stop looping when paused or when reduced motion is requeste
 The background sphere is opt-in and has an explicit pause/resume control. It stops for hidden documents and reduced motion. The card glow follows its 2.6-second wave without tilting or moving the card. Confetti lasts 800 ms and does not control downloads. The wand preserves selection, editable fields, media, and native pointers; it emits at most three 12 px sparks with .45 peak opacity.
 
 Keep these effects outside administration and reading surfaces. Dispose timers, listeners, observers, and temporary object URLs when the owning view unmounts. Never make decoration a prerequisite for a native link, download, selection, or form action.
+
+Flutter consumers may set `showPauseControl: false` when the product omits that control. Reduced-motion and inactive-view suspension still apply. `WantDialog` supports consumer constraints and `showTitle: false`; its required title remains the accessible name.

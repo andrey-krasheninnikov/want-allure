@@ -38,6 +38,7 @@ class WantBackgroundMotion extends StatefulWidget {
   final WantBackgroundController controller;
   final Widget child;
   final String pauseLabel, resumeLabel;
+  final bool showPauseControl;
   final Duration minimumWaveDelay, maximumWaveDelay;
   const WantBackgroundMotion({
     super.key,
@@ -45,6 +46,7 @@ class WantBackgroundMotion extends StatefulWidget {
     required this.child,
     required this.pauseLabel,
     required this.resumeLabel,
+    this.showPauseControl = true,
     this.minimumWaveDelay = const Duration(seconds: 8),
     this.maximumWaveDelay = const Duration(seconds: 18),
   });
@@ -226,7 +228,7 @@ class _WantBackgroundMotionState extends State<WantBackgroundMotion>
               ),
             ),
           widget.child,
-          if (available)
+          if (available && widget.showPauseControl)
             PositionedDirectional(
               end: 16,
               bottom: 16,

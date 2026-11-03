@@ -1,6 +1,6 @@
 name: want_allure
 description: Want Allure design system for Flutter. ForUI-based components, themes, typography, motion and accessible product compositions.
-version: 1.1.0
+version: 1.1.1
 homepage: https://github.com/andrey-krasheninnikov/want-allure
 repository: https://github.com/andrey-krasheninnikov/want-allure/tree/main/packages/flutter
 issue_tracker: https://github.com/andrey-krasheninnikov/want-allure/issues

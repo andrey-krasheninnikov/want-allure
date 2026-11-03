@@ -154,7 +154,7 @@ class _GalleryState extends State<_Gallery> {
               children: [
                 WantBrandLockup(
                   name: 'Want Allure',
-                  subtitle: 'Flutter · ForUI · 1.1.0',
+                  subtitle: 'Flutter · ForUI · 1.1.1',
                   logo: WantBrandLogo.asset(
                     'assets/brand/wallpapers.svg',
                     package: 'want_allure',
