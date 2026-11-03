@@ -38,6 +38,11 @@ dependencies:
   find_in_page: ^2.4.0
   visibility_detector: ^0.4.0+2
   sprung: ^3.0.1
+  ditredi: ^2.0.2
+  dart_earcut: ^1.2.0
+  path_parsing: ^1.1.0
+  xml: ^7.0.1
+  vector_math: ^2.1.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -66,3 +71,12 @@ flutter:
     - family: Noto Sans Arabic
       fonts:
         - asset: assets/fonts/NotoSansArabic.ttf
+    - family: Noto Sans SC
+      fonts:
+        - asset: assets/fonts/NotoSansSC.ttf
+    - family: Noto Sans Devanagari
+      fonts:
+        - asset: assets/fonts/NotoSansDevanagari.ttf
+    - family: Noto Sans Hebrew
+      fonts:
+        - asset: assets/fonts/NotoSansHebrew.ttf

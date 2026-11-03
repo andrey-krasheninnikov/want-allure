@@ -49,10 +49,10 @@ class CatalogueLocalizationsRu extends CatalogueLocalizations {
   String get findCtrlF => 'Поиск · ⌘/Ctrl F';
 
   @override
-  String get useLightTheme => 'Включить светлую тему';
+  String get useLightTheme => 'Светлая тема';
 
   @override
-  String get useDarkTheme => 'Включить тёмную тему';
+  String get useDarkTheme => 'Тёмная тема';
 
   @override
   String get reduceMotion => 'Уменьшить движение';
@@ -576,7 +576,7 @@ class CatalogueLocalizationsRu extends CatalogueLocalizations {
   String get triggerBackgroundWave => 'Запустить волну фона';
 
   @override
-  String get switchToRussian => 'Переключить на русский';
+  String get switchToRussian => 'Switch to English';
 
   @override
   String get switchToEnglish => 'Переключить на английский';
@@ -637,4 +637,14 @@ class CatalogueLocalizationsRu extends CatalogueLocalizations {
 
   @override
   String get lightAndSpace => 'Свет и пространство';
+
+  @override
+  String get svg3D => '3D модель SVG';
+
+  @override
+  String get rotateLogo =>
+      'Перетащите или используйте клавиши со стрелками, чтобы повернуть логотип.';
+
+  @override
+  String get changeLanguage => 'Язык';
 }

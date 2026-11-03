@@ -1,26 +1,12 @@
 ---
-import { copy, version, type Locale } from '../site';
-import { HeroExperience, ExploreLinks, CopyCommand, LandingFaq } from './LandingInteractive';
-import { FrameworkLogo } from './FrameworkLogo';
+import { copy, type Locale } from '../site';
+import { HeroExperience, FrameworkJourney, BackToTop } from './LandingInteractive';
 interface Props { locale: Locale; }
 const { locale } = Astro.props;
 const c = copy[locale];
 ---
 <div class="landing">
   <HeroExperience locale={locale} client:load />
-  <section class="landing-section install-section" id="install">
-    <div class="section-heading"><p class="eyebrow">01 / {locale==='ru'?'УСТАНОВКА':'INSTALL'}</p><h2>{c.install}</h2><p>{c.installText}</p></div>
-    <div class="install-grid">
-      <article><h3><FrameworkLogo framework="react" size={24}/> React</h3><p class="install-note">{locale==='ru'?'Для приложения на React 19. Готовые стили и шрифты подключаются один раз.':'For a React 19 application. Import compiled styles and fonts once.'}</p><CopyCommand locale={locale} command={`npm install @want-foundation/allure@${version} @want-foundation/allure-react@${version}`} client:load/><pre class="install-code" tabindex="0"><code>{`import '@want-foundation/allure/styles.css';
-import '@want-foundation/allure/fonts.css';
-import { Button } from '@want-foundation/allure-react';`}</code></pre></article>
-      <article><h3><FrameworkLogo framework="flutter" size={24}/> Flutter</h3><p class="install-note">{locale==='ru'?'Нативные компоненты на ForUI. Те же токены, типографика и анимации.':'Native ForUI components. The same tokens, typography and motion.'}</p><CopyCommand locale={locale} command={`flutter pub add want_allure:^${version}`} client:load/><pre class="install-code" tabindex="0"><code>{`import 'package:want_allure/want_allure.dart';`}</code></pre></article>
-      <article class="skill-install"><div><p class="eyebrow">WANT DESIGN SKILL</p><h3>{locale==='ru'?'Правила дизайна рядом с кодом':'Design rules beside your code'}</h3><p class="install-note">{locale==='ru'?'Бренд, композиция, UI/UX и анимация. Установка в текущий проект; добавьте --global для всех проектов.':'Brand, composition, UI/UX and motion. Install in this project; add --global to use across projects.'}</p></div><div><CopyCommand locale={locale} command={`npx --yes --package=@want-foundation/allure@${version} want-design-install`} client:load/><p class="install-note">{locale==='ru'?'Использование:':'Use:'} <code>$want-design</code></p></div></article>
-    </div>
-  </section>
-  <section class="landing-section" id="frameworks"><div class="section-heading"><p class="eyebrow">02 / UI KITS</p><h2>{c.choose}</h2><p>{c.overviewText}</p></div>
-    <div class="framework-grid">{(['react','flutter'] as const).map(framework=><article class={`framework-${framework}`}><div class="framework-art"><FrameworkLogo framework={framework} size={144}/><span aria-hidden="true">{framework==='react'?'WEB':'NATIVE'}</span></div><div><h3>{framework==='react'?'React':'Flutter'}</h3><p>{framework==='react'?c.reactText:c.flutterText}</p><ExploreLinks locale={locale} only={framework} client:load/></div></article>)}</div>
-  </section>
-  <section class="landing-section faq-section"><div class="section-heading"><p class="eyebrow">03 / FAQ</p><h2>{c.faq}</h2></div><LandingFaq locale={locale} client:load/></section>
-  <section class="landing-final"><p class="eyebrow">{locale==='ru'?'ОТ ДЕТАЛИ К ИНТЕРФЕЙСУ':'FROM DETAIL TO INTERFACE'}</p><h2>{c.final}</h2><p>{c.finalText}</p><ExploreLinks locale={locale} client:load/></section>
+  <FrameworkJourney locale={locale} client:load />
+  <section class="landing-final"><h2>{c.final}</h2><p>{c.finalText}</p><BackToTop locale={locale} client:load /></section>
 </div>

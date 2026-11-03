@@ -33,42 +33,48 @@ class WantCard extends StatelessWidget {
           spacing: 16,
           children: [
             if (title != null || description != null || actions != null)
-              Wrap(
-                alignment: WrapAlignment.spaceBetween,
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 spacing: 16,
-                runSpacing: 12,
                 children: [
                   if (title != null || description != null)
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      spacing: 8,
-                      children: [
-                        if (title != null)
-                          DefaultTextStyle(
-                            style: WantTheme.of(context)
-                                .forui
-                                .typography
-                                .display
-                                .lg,
-                            child: title!,
-                          ),
-                        if (description != null)
-                          DefaultTextStyle.merge(
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: WantTheme.of(context)
-                                  .color('muted-foreground'),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        spacing: 8,
+                        children: [
+                          if (title != null)
+                            DefaultTextStyle(
+                              style: WantTheme.of(context)
+                                  .forui
+                                  .typography
+                                  .display
+                                  .lg,
+                              child: title!,
                             ),
-                            child: description!,
-                          ),
-                      ],
+                          if (description != null)
+                            DefaultTextStyle.merge(
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: WantTheme.of(context)
+                                    .color('muted-foreground'),
+                              ),
+                              child: description!,
+                            ),
+                        ],
+                      ),
                     ),
-                  ?actions,
+                  if (actions != null)
+                    Align(
+                      alignment: AlignmentDirectional.topEnd,
+                      child: actions!,
+                    ),
                 ],
               ),
             child,
-            ?footer,
+            if (footer != null)
+              Align(alignment: AlignmentDirectional.centerEnd, child: footer!),
           ],
         ),
       ),

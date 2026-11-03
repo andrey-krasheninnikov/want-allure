@@ -2,6 +2,11 @@
 
 ## 1.2.0
 
+- Add a guided framework and installation flow, an orbital selector, automatic logo rotation, letter flames and twelve interface languages.
+- Add Flutter SVG extrusion with asset, string and asynchronous builder sources, cached meshes and reduced-motion support.
+- Align toast content and table cells, animate page rows, and refine card actions in both adapters.
+- Bundle Chinese, Devanagari and Hebrew fonts and add an opaque favicon background.
+
 - Refine the landing page with a floating preference header, a rotatable pixel logo, glowing framework actions, installation instructions and animated FAQ.
 - Organize bilingual catalogues into seven categories with shared RTL, direct links, history and retained form values.
 - Add controlled Slider/RangeSlider and primary/warning lightning to both adapters; Flutter lightning uses a bundled fragment shader.

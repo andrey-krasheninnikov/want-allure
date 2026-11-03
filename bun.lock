@@ -44,7 +44,10 @@
       "devDependencies": {
         "@fontsource-variable/manrope": "5.2.8",
         "@fontsource-variable/noto-sans-arabic": "5.3.0",
+        "@fontsource-variable/noto-sans-devanagari": "5.3.0",
+        "@fontsource-variable/noto-sans-hebrew": "5.3.0",
         "@fontsource-variable/noto-sans-jp": "5.3.1",
+        "@fontsource-variable/noto-sans-sc": "5.3.1",
         "@fontsource/days-one": "5.3.0",
       },
     },
@@ -214,7 +217,13 @@
 
     "@fontsource-variable/noto-sans-arabic": ["@fontsource-variable/noto-sans-arabic@5.3.0", "", {}, "sha512-Rz8+DBzza3//cmN+DBQajJhx3x+Dx12eUgnQsTOgPWbOT0+In6APmE8z4I/QQnUWfAx+s8l93+60qDT5vJH1sA=="],
 
+    "@fontsource-variable/noto-sans-devanagari": ["@fontsource-variable/noto-sans-devanagari@5.3.0", "", {}, "sha512-52XBcJS3jRvZ5ugFXJvdKgffXPYnN08LeodXkgCbepOdMKVRVTQu1yj071cq8S3zmUwT6w6XKKXRSQlQkwwNNg=="],
+
+    "@fontsource-variable/noto-sans-hebrew": ["@fontsource-variable/noto-sans-hebrew@5.3.0", "", {}, "sha512-jGIZ2EOCTtT1ZhLthz6nEpPXGMniSPI/0tv5CDFDZ7MPYyoj6FskW7WJ0YTyesFADdzjx7F2Pg5W1PWD6y9UFw=="],
+
     "@fontsource-variable/noto-sans-jp": ["@fontsource-variable/noto-sans-jp@5.3.1", "", {}, "sha512-/anGvJFc5y36f8DJ+3TSh2+KAvaRLA9PaLUMvneeY5s4j8m+8X4F3lE/sjTuG9YI5BX4sykvCk4TuJMG7ecMRQ=="],
+
+    "@fontsource-variable/noto-sans-sc": ["@fontsource-variable/noto-sans-sc@5.3.1", "", {}, "sha512-UB96JJ17HyD5ehEU7Em0hDdh7fvTMB4B4Hzmq5c4QaNwwSLqTrdM2S+coySeBqCkXwh0DxqXT0b0wMrmzorFpQ=="],
 
     "@fontsource/days-one": ["@fontsource/days-one@5.3.0", "", {}, "sha512-rxw3xOvjQqEOAq8Yoqr5UJwjCK5ScJuAL1fgcHmdxoBrvIlS09GkeMEmSvPFtTEEV5xfVOgN5vOYDTUomCXQHQ=="],
 

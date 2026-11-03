@@ -74,6 +74,7 @@ export 'src/feature/allure/presentation/_barrel.dart'
         WantSnackbar,
         WantSnackbarVariant,
         WantSwitch,
+        WantSvg3D,
         WantTab,
         WantTable,
         WantTableColumn,

@@ -1,0 +1,9 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import Showcase from '../../components/Showcase';
+import {locales,type Locale} from '../../site';
+import { catalogueMessages } from '../../i18n/load-catalogue';
+export function getStaticPaths() { return locales.filter(locale=>locale!=='en'&&locale!=='ru').map(locale=>({params:{locale},props:{locale}})); }
+const {locale}=Astro.props as {locale:Locale};
+---
+<SiteLayout locale={locale} section="react"><Showcase locale={locale} messages={await catalogueMessages(locale)} client:load /></SiteLayout>

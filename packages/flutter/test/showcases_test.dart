@@ -110,4 +110,39 @@ void main() {
     await tester.pumpWidget(const SizedBox.shrink());
     await tester.pump(const Duration(seconds: 1));
   });
+  testWidgets('table page transitions stagger rows and keep header alignment', (
+    tester,
+  ) async {
+    Widget table(int page) => harness(
+      WantTable<int>(
+        caption: 'Records',
+        emptyLabel: 'Empty',
+        transitionKey: page,
+        rowKey: (row) => row,
+        rows: [page * 10 + 1, page * 10 + 2],
+        columns: [
+          WantTableColumn(
+            label: 'Record',
+            onSort: () {},
+            cellBuilder: (row) => Text('Row $row'),
+          ),
+        ],
+      ),
+      reduced: false,
+    );
+    await tester.pumpWidget(table(0));
+    await tester.pump(const Duration(milliseconds: 500));
+    expect(
+      tester.getTopLeft(find.text('Record')).dx,
+      closeTo(tester.getTopLeft(find.text('Row 1')).dx, .1),
+    );
+    await tester.pumpWidget(table(1));
+    await tester.pump();
+    expect(find.text('Row 1'), findsNothing);
+    expect(find.text('Row 11'), findsOneWidget);
+    await tester.pump(const Duration(milliseconds: 500));
+    expect(tester.takeException(), isNull);
+    await tester.pumpWidget(const SizedBox.shrink());
+    await tester.pump(const Duration(seconds: 1));
+  });
 }

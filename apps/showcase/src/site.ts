@@ -1,12 +1,16 @@
 import packageInfo from '../../../packages/react/package.json';
 export const version = packageInfo.version;
 export const siteUrl = new URL(import.meta.env.SITE_URL || 'https://allure.want.foundation');
-export type Locale = 'en' | 'ru';
+export const locales = ['en','zh-Hans','hi','es','ar','fr','pt-BR','ru','de','ja','tr','he'] as const;
+export type Locale = typeof locales[number];
+export const localeNames: Record<Locale,string> = {en:'English','zh-Hans':'简体中文',hi:'हिन्दी',es:'Español',ar:'العربية',fr:'Français','pt-BR':'Português (Brasil)',ru:'Русский',de:'Deutsch',ja:'日本語',tr:'Türkçe',he:'עברית'};
+export function isLocale(value: string): value is Locale { return locales.includes(value as Locale); }
+export function localeDirection(locale: string) { return locale === 'ar' || locale === 'he' ? 'rtl' : 'ltr'; }
 export type Section = 'home' | 'react' | 'flutter';
 export function route(locale: Locale, section: Section = 'home') {
-  return (locale === 'ru' ? '/ru/' : '/') + (section === 'home' ? '' : section + '/');
+  return (locale === 'en' ? '/' : `/${locale}/`) + (section === 'home' ? '' : section + '/');
 }
-export const copy = {
+const originalCopy = {
   en: {
     home: 'Overview', skip: 'Skip to content', navigation: 'Main navigation', theme: 'Dark theme', language: 'Switch to Russian',
     title: 'Want Allure: React and Flutter UI kits, one design system',
@@ -62,3 +66,8 @@ export const copy = {
     notFound: 'Страница не найдена', notFoundText: 'Выберите обзор или каталог компонентов в навигации.',
   },
 } as const;
+
+import siteMessages from './i18n/site-messages.json';
+export function siteText(locale: Locale, text: string): string { return (siteMessages as Record<string,Record<string,string>>)[locale]?.[text] ?? text; }
+function localize(value: unknown, locale: Locale): unknown { if(typeof value==='string')return siteText(locale,value); if(Array.isArray(value))return value.map(item=>localize(item,locale)); return Object.fromEntries(Object.entries(value as Record<string,unknown>).map(([key,item])=>[key,localize(item,locale)])); }
+export const copy = Object.fromEntries(locales.map(locale=>[locale,locale==='ru'?originalCopy.ru:localize(originalCopy.en,locale)])) as unknown as Record<Locale,{[K in keyof typeof originalCopy.en]: K extends 'questions' ? readonly (readonly string[])[] : string}>;

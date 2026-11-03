@@ -14,14 +14,25 @@ void main() {
     await tester.pumpWidget(const WantCatalogue());
     await tester.pump(const Duration(milliseconds: 600));
     expect(find.text('Components in action'), findsOneWidget);
-    expect(find.byType(EditableText), findsNothing);
-    await tester.tap(find.text('Switch to Russian'));
+    expect(
+      find.byWidgetPredicate(
+        (widget) => widget is EditableText && !widget.readOnly,
+      ),
+      findsNothing,
+    );
+    tester
+        .widget<WantSelect<String>>(find.byType(WantSelect<String>).first)
+        .onChanged!('ru');
     await tester.pump(const Duration(milliseconds: 600));
     expect(find.text('Компоненты в действии'), findsOneWidget);
     await tester.tap(find.text('Ввод'));
     await tester.pump(const Duration(milliseconds: 600));
     expect(find.byType(WantRangeSlider), findsOneWidget);
-    final field = find.byType(EditableText).first;
+    final field = find
+        .byWidgetPredicate(
+          (widget) => widget is EditableText && !widget.readOnly,
+        )
+        .first;
     await tester.ensureVisible(field);
     expect(
       tester.widget<EditableText>(field).controller.text,
@@ -34,15 +45,22 @@ void main() {
     await tester.pump(const Duration(milliseconds: 600));
     expect(find.text('Бренд и тема'), findsOneWidget);
     expect(inputFocus.hasFocus, isFalse);
-    await tester.ensureVisible(find.text('Переключить на английский'));
-    await tester.tap(find.text('Переключить на английский'));
+    tester
+        .widget<WantSelect<String>>(find.byType(WantSelect<String>).first)
+        .onChanged!('en');
     await tester.pump(const Duration(milliseconds: 600));
     await tester.ensureVisible(find.text('Inputs'));
     await tester.tap(find.text('Inputs'));
     await tester.pump(const Duration(milliseconds: 600));
     expect(
       tester
-          .widget<EditableText>(find.byType(EditableText).first)
+          .widget<EditableText>(
+            find
+                .byWidgetPredicate(
+                  (widget) => widget is EditableText && !widget.readOnly,
+                )
+                .first,
+          )
           .controller
           .text,
       'Custom title',

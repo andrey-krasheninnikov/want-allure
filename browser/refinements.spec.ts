@@ -17,44 +17,44 @@ test('category navigation keeps form edits, slider values and history',async({pa
   await expect(page.getByRole('switch',{name:'Right to left',exact:true})).toHaveCount(1);
 });
 
-test('home exposes installation first, animated FAQ and a rotatable logo',async({page})=>{
+test('home guides framework selection, installation and advice',async({page})=>{
   const errors:string[]=[];page.on('pageerror',error=>errors.push(error.message));
   await page.goto('/');
-  await expect(page.locator('.logo-stage')).toHaveAttribute('data-ready','true');
-  await expect(page.locator('.install-section .eyebrow').first()).toContainText('01');
-  await expect(page.locator('.hero-note')).not.toContainText('Start building');
-  await expect(page.locator('.skill-install')).toContainText('want-design-install');
-  const logo=page.locator('.logo-stage-canvas canvas');
-  const before=await logo.screenshot();
-  await page.locator('.logo-stage').focus();await page.keyboard.press('ArrowRight');
-  await expect.poll(async()=>Buffer.compare(before,await logo.screenshot())).not.toBe(0);
-  await page.getByRole('button',{name:'Reset rotation',exact:true}).click();
-  await page.getByRole('button',{name:'Can I use both kits in one product?',exact:true}).click();
-  await expect(page.locator('.faq-list [data-state=open][data-slot=accordion-content]')).toBeVisible();
-  await expect(page.locator('.faq-list')).toContainText('The adapters share');
-  await page.getByRole('button',{name:'Can I use both kits in one product?',exact:true}).click();
-  await expect(page.locator('.faq-list [data-slot=accordion-content]').first()).toBeHidden();
+  await expect(page.locator('.landing-hero .logo-stage')).toHaveAttribute('data-ready','true');
+  await expect(page.locator('.hero-note .icon-actions a')).toHaveCount(2);
+  await expect(page.getByRole('button',{name:'Reset rotation',exact:true})).toHaveCount(0);
+  await expect(page.getByRole('button',{name:'Pause effects',exact:true})).toHaveCount(0);
+  await expect(page.locator('.journey')).toHaveAttribute('data-step','choose');
+  await page.getByRole('button',{name:'Choose your framework: React',exact:true}).click();
+  await expect(page.locator('.journey')).toHaveAttribute('data-step','install');
+  await expect(page.locator('.journey-install')).toContainText('want-design-install');
+  await expect(page.locator('.journey-install')).toContainText('npm install @want-foundation/allure@1.2.0');
+  await page.getByRole('button',{name:'I have installed it',exact:true}).click();
+  await expect(page.locator('.journey')).toHaveAttribute('data-step','learn');
+  await expect(page.locator('.tips-track')).toBeVisible();
+  await page.getByRole('button',{name:'Next tip',exact:true}).click();
+  await expect(page.locator('.tip-count')).toHaveText('2 / 7');
+  await expect(page.locator('.landing-final a')).toHaveCount(1);
+  await expect(page.locator('.footer-credit')).toHaveAttribute('href','https://t.me/andrey_krasheninnikov');
   expect(errors).toEqual([]);
 });
 
-test('lightning pauses on request and remains isolated from content',async({page})=>{
-  await page.emulateMedia({reducedMotion:'no-preference'});
-  await page.goto('/');
+test('lightning follows system motion and viewport visibility',async({page})=>{
+  await page.emulateMedia({reducedMotion:'no-preference'});await page.goto('/');
   const effect=page.locator('.landing-hero [data-slot=lightning-background]');
   await expect(effect).toHaveAttribute('data-paused','false');
   await expect(effect).toHaveCSS('pointer-events','none');
-  await page.getByRole('button',{name:'Pause effects',exact:true}).click();
-  await expect(effect).toHaveAttribute('data-paused','true');
-  await page.getByRole('button',{name:'Resume effects',exact:true}).click();
-  await expect(effect).toHaveAttribute('data-paused','false');
+  await expect(effect.locator('.lightning-primary')).toHaveCSS('animation-duration','3s');
+  await page.emulateMedia({reducedMotion:'reduce'});await expect(effect).toHaveAttribute('data-paused','true');
+  await page.emulateMedia({reducedMotion:'no-preference'});await expect(effect).toHaveAttribute('data-paused','false');
   await page.locator('.site-footer').scrollIntoViewIfNeeded();await expect(effect).toHaveAttribute('data-paused','true');
 });
 
 test('logo asset failure preserves the supplied SVG fallback',async({page})=>{
   await page.route('**/brand/logos/dark/transparent.svg',route=>route.request().resourceType()==='fetch'?route.abort():route.continue());
   await page.goto('/');
-  await expect(page.locator('.logo-stage-fallback')).toBeVisible();
-  await expect(page.locator('.logo-stage')).toHaveAttribute('data-ready','false');
+  await expect(page.locator('.landing-hero .logo-stage-fallback')).toBeVisible();
+  await expect(page.locator('.landing-hero .logo-stage')).toHaveAttribute('data-ready','false');
 });
 
 test('Flutter shares category and RTL without replacing its engine',async({page})=>{

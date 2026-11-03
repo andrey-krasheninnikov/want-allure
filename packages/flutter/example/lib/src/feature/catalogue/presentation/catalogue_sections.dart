@@ -11,6 +11,7 @@ String catalogueCategory(String? value) =>
     catalogueCategories.contains(value) ? value! : 'foundation';
 const catalogueSectionCategories = {
   'brand': 'foundation',
+  'svg3d': 'effects',
   'palette': 'foundation',
   'typography': 'foundation',
   'buttons': 'inputs',

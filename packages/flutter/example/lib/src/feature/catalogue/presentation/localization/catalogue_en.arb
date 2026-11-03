@@ -324,5 +324,8 @@
   "intensity": "Intensity",
   "range": "Range",
   "backgroundLightning": "Background lightning",
-  "lightAndSpace": "Light and space"
+  "lightAndSpace": "Light and space",
+  "svg3D": "3D SVG",
+  "rotateLogo": "Drag or use arrow keys to rotate the logo.",
+  "changeLanguage": "Language"
 }

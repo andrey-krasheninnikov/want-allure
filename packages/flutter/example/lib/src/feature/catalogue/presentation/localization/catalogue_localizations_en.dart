@@ -637,4 +637,13 @@ class CatalogueLocalizationsEn extends CatalogueLocalizations {
 
   @override
   String get lightAndSpace => 'Light and space';
+
+  @override
+  String get svg3D => '3D SVG';
+
+  @override
+  String get rotateLogo => 'Drag or use arrow keys to rotate the logo.';
+
+  @override
+  String get changeLanguage => 'Language';
 }

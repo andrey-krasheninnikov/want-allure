@@ -1,0 +1,331 @@
+{
+  "@@locale": "ja",
+  "findInCatalogue": "カタログで探す",
+  "previousMatch": "前回の試合",
+  "nextMatch": "次の試合",
+  "closeFind": "検索を閉じる",
+  "noMatches": "一致しません",
+  "matchActiveOfCount": "{active} または {count} と一致",
+  "@matchActiveOfCount": {
+    "placeholders": {
+      "active": {
+        "type": "Object"
+      },
+      "count": {
+        "type": "Object"
+      }
+    }
+  },
+  "dismissMessage": "メッセージを閉じる",
+  "pauseBackground": "背景を一時停止する",
+  "resumeBackground": "履歴書の背景",
+  "oneWantEveryPlatform": "Want 1 つ。すべてのプラットフォーム。",
+  "theSameWantColorsControlsAndMotionAcrossWeb": "ウェブと Flutter で同じ Want カラー、コントロール、モーション。キーボード、タッチ、ポインター入力を使用してコンポーネントを探索します。",
+  "findCtrlF": "検索 · ⌘/Ctrl F",
+  "useLightTheme": "ライトテーマを使う",
+  "useDarkTheme": "ダークテーマを使う",
+  "reduceMotion": "動きを減らす",
+  "opaqueSurfaces": "不透明な表面",
+  "resumeEffects": "効果を再開する",
+  "pauseEffects": "エフェクトを一時停止する",
+  "palette": "パレット",
+  "typography": "タイポグラフィー",
+  "variantNameWantMakesRoomForYourContent": "{variantName} · Want はコンテンツ用のスペースを確保します。",
+  "@variantNameWantMakesRoomForYourContent": {
+    "placeholders": {
+      "variantName": {
+        "type": "Object"
+      }
+    }
+  },
+  "buttons": "ボタン",
+  "variantNamePressed": "{variantName}が押されました",
+  "@variantNamePressed": {
+    "placeholders": {
+      "variantName": {
+        "type": "Object"
+      }
+    }
+  },
+  "disabled": "障害者",
+  "downloadSelected": "選択したダウンロード",
+  "downloadExample": "ダウンロード例",
+  "fieldsInputAndTextarea": "フィールド、入力エリア、テキストエリア",
+  "localExample": "地元の例",
+  "title": "タイトル",
+  "editableLocalValue": "編集可能なローカル値。",
+  "invalidExample": "無効な例",
+  "enterATitle": "タイトルを入力します。",
+  "disabledExample": "無効な例",
+  "contoursOfSilence": "静寂の輪郭",
+  "description": "説明",
+  "describeThePreview": "プレビューの説明",
+  "fieldAndLabel": "フィールドとラベル",
+  "consumerOwnedHelperText": "消費者所有のヘルパー テキスト。",
+  "selectRadioCheckboxAndSwitch": "選択、ラジオ、チェックボックス、スイッチ",
+  "format": "フォーマット",
+  "desktop": "デスクトップ",
+  "mobile": "モバイル",
+  "unavailable": "利用不可",
+  "wallpaperOrientation": "壁紙の向き",
+  "includePreview": "プレビューを含める",
+  "aControlledCheckbox": "制御されたチェックボックス。",
+  "mixedSelection": "混合選択",
+  "enableExampleSetting": "設定例を有効にする",
+  "disabledCheckbox": "無効なチェックボックス",
+  "tabsAndAccordion": "タブ譜とアコーディオン",
+  "landscapePreview": "風景のプレビュー。",
+  "portraitPreview": "ポートレートプレビュー。",
+  "howAreComponentsShared": "コンポーネントはどのように共有されますか?",
+  "bothAdaptersUseTheSameFoundationTokens": "どちらのアダプターも同じ基盤トークンを使用します。",
+  "whoOwnsApplicationData": "アプリケーションデータの所有者は誰ですか?",
+  "theConsumingApplicationOwnsDataAndPersistence": "使用側アプリケーションはデータと永続性を所有します。",
+  "dialogSheetMenuTooltipAndPopover": "ダイアログ、シート、メニュー、ツールチップ、ポップオーバー",
+  "previewSettings": "プレビュー設定",
+  "done": "完了",
+  "previewName": "プレビュー名",
+  "openDialog": "ダイアログを開く",
+  "panelSideName": "パネル {sideName}",
+  "@panelSideName": {
+    "placeholders": {
+      "sideName": {
+        "type": "Object"
+      }
+    }
+  },
+  "closePanel": "パネルを閉じる",
+  "theSheetEntersFromItsSelectedSide": "シートは選択した側から入ります。",
+  "sideNameSheet": "{sideName}シート",
+  "@sideNameSheet": {
+    "placeholders": {
+      "sideName": {
+        "type": "Object"
+      }
+    }
+  },
+  "actions": "アクション",
+  "copyLink": "リンクをコピー",
+  "copyActionSelected": "コピーアクションが選択されました",
+  "aKeyboardAndPointerHint": "キーボードとポインタのヒント",
+  "hintSelected": "ヒントが選択されました",
+  "tooltip": "ツールチップ",
+  "settings": "設定",
+  "note": "注記",
+  "closeSettings": "設定を閉じる",
+  "navigationAndBreadcrumbs": "ナビゲーションとブレッドクラム",
+  "exampleNavigation": "ナビゲーションの例",
+  "collections": "コレクション",
+  "collectionsSelected": "選択されたコレクション",
+  "search": "検索",
+  "searchSelected": "選択された検索",
+  "breadcrumbs": "ブレッドクラム",
+  "home": "ホーム",
+  "homeSelected": "ホームが選択されました",
+  "uiKit": "UI kit",
+  "badgesAlertsAndProgress": "バッジ、アラート、進捗状況",
+  "primary": "プライマリー",
+  "previewAvailable": "プレビューが利用可能",
+  "chooseAnExampleActionToContinue": "続行するにはアクション例を選択してください。",
+  "couldNotLoadPreview": "プレビューを読み込めませんでした",
+  "tryAgain": "もう一度試してください。",
+  "exampleProgress": "進捗状況の例",
+  "loadingPreview": "プレビューを読み込んでいます",
+  "toastAndSemanticSnackbars": "トーストおよびセマンティック スナックバー",
+  "localPreviewReady": "ローカルプレビューの準備ができました",
+  "showToast": "トーストを表示",
+  "variantNameExampleStatus": "{variantName}: ステータスの例",
+  "@variantNameExampleStatus": {
+    "placeholders": {
+      "variantName": {
+        "type": "Object"
+      }
+    }
+  },
+  "themeAwareFeedbackWithOneUsefulAction": "1 つの便利なアクションを含むテーマに応じたフィードバック。",
+  "dismissStatus": "ステータスを却下",
+  "viewDetails": "詳細を見る",
+  "detailsSelected": "選択された詳細",
+  "searchableCombobox": "検索可能なコンボボックス",
+  "collection": "コレクション",
+  "searchCollections": "コレクションを検索する",
+  "violetHorizon": "バイオレットホライゾン",
+  "wovenSpectrum": "織られたスペクトル",
+  "tableAndPagination": "表とページネーション",
+  "localCollection": "地元のコレクション",
+  "noRecords": "記録がありません",
+  "name": "名前",
+  "previewValue": "{value}のプレビュー",
+  "@previewValue": {
+    "placeholders": {
+      "value": {
+        "type": "Object"
+      }
+    }
+  },
+  "pages": "ページ",
+  "previousPage": "前のページへ",
+  "nextPage": "次のページ",
+  "rowsPerPage": "ページあたりの行数",
+  "pagePage": "ページ {page}",
+  "@pagePage": {
+    "placeholders": {
+      "page": {
+        "type": "Object"
+      }
+    }
+  },
+  "fromToOfTotal": "{from}～{to}/{total}",
+  "@fromToOfTotal": {
+    "placeholders": {
+      "from": {
+        "type": "Object"
+      },
+      "to": {
+        "type": "Object"
+      },
+      "total": {
+        "type": "Object"
+      }
+    }
+  },
+  "fileSelection": "ファイルの選択",
+  "images": "画像",
+  "chooseImages": "画像を選択してください",
+  "dropImagesHereOrChooseAFile": "ここに画像をドロップするか、ファイルを選択します。",
+  "couldNotReadTheSelectedFile": "選択したファイルを読み取れませんでした。",
+  "removeName": "{name}を削除",
+  "@removeName": {
+    "placeholders": {
+      "name": {
+        "type": "Object"
+      }
+    }
+  },
+  "nameIsNotASupportedImage": "{name} はサポートされているイメージではありません。",
+  "@nameIsNotASupportedImage": {
+    "placeholders": {
+      "name": {
+        "type": "Object"
+      }
+    }
+  },
+  "nameExceedsLimitBytes": "{name} が {limit} バイトを超えています。",
+  "@nameExceedsLimitBytes": {
+    "placeholders": {
+      "name": {
+        "type": "Object"
+      },
+      "limit": {
+        "type": "Object"
+      }
+    }
+  },
+  "chooseUpToCountFiles": "最大 {count} ファイルを選択します。",
+  "@chooseUpToCountFiles": {
+    "placeholders": {
+      "count": {
+        "type": "Object"
+      }
+    }
+  },
+  "dateURLAndPageLayout": "日付、URL、ページレイアウト",
+  "createAPreview": "プレビューを作成する",
+  "localComposition": "地域構成",
+  "previewActionSelected": "プレビューアクションが選択されました",
+  "preview": "プレビュー",
+  "date": "日付",
+  "time": "時間",
+  "useToday": "今日使用してください",
+  "sourceURL": "ソースURL",
+  "openSource": "オープンソース",
+  "openUriHost": "{uriHost}を開く",
+  "@openUriHost": {
+    "placeholders": {
+      "uriHost": {
+        "type": "Object"
+      }
+    }
+  },
+  "cardsMediaAndLiquidGlass": "カード、メディア、液体ガラス",
+  "localDemonstrationArtwork": "現地デモンストレーション作品",
+  "violetGradient": "紫のグラデーション",
+  "previewSelected": "プレビューが選択されました",
+  "downloadPanel": "ダウンロードパネル",
+  "aComposedCard": "構成されたカード",
+  "publicSlotsKeepContentInTheConsumingApplication": "パブリック スロットは、消費側アプリケーションにコンテンツを保持します。",
+  "liquidGlassOpaqueWhenTransparencyIsReduced": "液体ガラス・透明度が下がると不透明になります。",
+  "contactCard": "連絡先カード",
+  "productDesign": "プロダクトデザイン",
+  "website": "ウェブサイト",
+  "websiteSelected": "選択されたウェブサイト",
+  "commentCarousel": "コメントカルーセル",
+  "comments": "コメント",
+  "noComments": "コメントはありません",
+  "previousComments": "以前のコメント",
+  "nextComments": "次のコメント",
+  "readMore": "続きを読む",
+  "collapse": "崩壊する",
+  "reviewerIndex": "レビュアー {index}",
+  "@reviewerIndex": {
+    "placeholders": {
+      "index": {
+        "type": "Object"
+      }
+    }
+  },
+  "today": "今日",
+  "readableCopyFollowsTheSameWantTypography": "読みやすいコピーは、同じ Want タイポグラフィに従っています。",
+  "thePreviewIsReadyToExplore": "プレビューを探索する準備ができました。",
+  "reply": "返信",
+  "actionSelected": "{action}が選択されました",
+  "@actionSelected": {
+    "placeholders": {
+      "action": {
+        "type": "Object"
+      }
+    }
+  },
+  "customLoaders": "カスタムローダー",
+  "loadingVariantName": "{variantName}をロード中",
+  "@loadingVariantName": {
+    "placeholders": {
+      "variantName": {
+        "type": "Object"
+      }
+    }
+  },
+  "shimmerPlaceholders": "シマープレースホルダー",
+  "animatedText": "アニメーションテキスト",
+  "yourNextIdea": "次のアイデア。",
+  "madeWithWant": "Wantで作られています。",
+  "readyToExplore": "探検する準備ができました。",
+  "changeText": "テキストを変更する",
+  "reusableGlowAndConfetti": "再利用可能なグローと紙吹雪",
+  "aVisibleHaloWithTwoExpandingWaves": "2 つの拡大する波を持つ目に見えるハロー。",
+  "exploreWant": "Want を探索する",
+  "triggerBackgroundWave": "トリガーバックグラウンドウェーブ",
+  "switchToRussian": "ロシア語に切り替える",
+  "switchToEnglish": "英語に切り替える",
+  "error": "エラー",
+  "warning": "警告",
+  "info": "情報",
+  "success": "成功",
+  "brandAndTheme": "ブランドとテーマ",
+  "componentPreview": "コンポーネントのプレビュー",
+  "categoryFoundation": "財団",
+  "categoryInputs": "入力",
+  "categoryNavigation": "ナビゲーション",
+  "categoryData": "データ",
+  "categoryFeedback": "フィードバック",
+  "categoryEffects": "効果",
+  "categoryCompositions": "組成物",
+  "componentsInAction": "動作中のコンポーネント",
+  "sliders": "スライダー",
+  "intensity": "強度",
+  "range": "範囲",
+  "backgroundLightning": "背景の稲妻",
+  "lightAndSpace": "光と空間",
+  "svg3D": "3D SVG",
+  "rotateLogo": "ロゴを回転するには、ドラッグするか矢印キーを使用します。",
+  "changeLanguage": "言語"
+}

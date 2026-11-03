@@ -1,0 +1,9 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import Landing from '../../components/Landing.astro';
+import {locales,type Locale} from '../../site';
+
+export function getStaticPaths() { return locales.filter(locale=>locale!=='en'&&locale!=='ru').map(locale=>({params:{locale},props:{locale}})); }
+const {locale}=Astro.props as {locale:Locale};
+---
+<SiteLayout locale={locale}><Landing locale={locale} /></SiteLayout>

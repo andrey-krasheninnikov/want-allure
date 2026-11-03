@@ -145,7 +145,9 @@ Effects do not subscribe to application download events or start downloads. Call
 
 ## Unified web application
 
-The Astro application includes an English landing page at `/` and a Russian version at `/ru/`. React catalogues live at `/react/` and `/ru/react/`; Flutter catalogues at `/flutter/` and `/ru/flutter/`. Navigation shares the selected theme and language. Flutter initializes only on its catalogue route.
+The Astro application serves English at `/` and localized pages under `/zh-Hans/`, `/hi/`, `/es/`, `/ar/`, `/fr/`, `/pt-BR/`, `/ru/`, `/de/`, `/ja/`, `/tr/` and `/he/`. Each locale has `/react/` and `/flutter/` catalogues. Language choices follow total first- and second-language speakers; Mandarin represents `zh-Hans` and Portuguese represents `pt-BR`. Navigation preserves the selected category and theme. Arabic and Hebrew default to RTL, with a direction override stored per locale. Flutter initializes only on its catalogue route.
+
+The landing guides framework selection, package and skill installation, then a horizontal FAQ and tips carousel. Logo rotation and the orbital selector follow system reduced-motion settings. Hidden effects pause automatically. The supplied SVG remains visible if 3D rendering is unavailable.
 
 Use Bun 1.3.14 and the pinned FVM SDK:
 

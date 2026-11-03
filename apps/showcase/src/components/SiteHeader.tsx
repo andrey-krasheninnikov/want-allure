@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Menu } from 'lucide-react';
 import { Button, ThemeToggle, Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue,
   Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetTrigger, Switch, DirectionProvider } from '@want-foundation/allure-react';
-import { copy, route, type Locale, type Section } from '../site';
+import { copy, route, siteText, locales, localeNames, type Locale, type Section } from '../site';
 import { categoryOf } from '../catalogue';
 export default function SiteHeader({locale, section, notFound=false}:{locale:Locale;section:Section;notFound?:boolean}): React.JSX.Element {
-  const c=copy[locale];
+  const c=copy[locale],t=(text:string)=>siteText(locale,text);
   const [theme,setTheme]=useState<'light'|'dark'>('dark');
   const [rtl,setRtl]=useState(false);
   const [category,setCategory]=useState('foundation');
@@ -21,10 +21,10 @@ export default function SiteHeader({locale, section, notFound=false}:{locale:Loc
     <a className="site-brand" href={href('home')} aria-label="Want Allure"><img className="logo-light" src="/brand/logos/light/transparent.svg" alt="" width="32" height="32"/><img className="logo-dark" src="/brand/logos/dark/transparent.svg" alt="" width="32" height="32"/><span>Want <span className="brand-product">Allure</span></span></a>
     <div className="desktop-navigation">{links}</div>
     <div className="site-preferences">
-      <label className="header-rtl" title={locale==='ru'?'Справа налево':'Right to left'}><Switch checked={rtl} onCheckedChange={value=>dispatchEvent(new CustomEvent('want:choose-direction',{detail:value?'rtl':'ltr'}))} aria-label={locale==='ru'?'Справа налево':'Right to left'} size="sm"/><span>RTL</span></label>
-      <ThemeToggle theme={theme} label={c.theme} title={locale==='ru'?(theme==='dark'?'Светлая тема':'Тёмная тема'):(theme==='dark'?'Light theme':'Dark theme')} onThemeChange={value=>dispatchEvent(new CustomEvent('want:choose-theme',{detail:value}))}/>
-      <Select value={locale} onValueChange={value=>{location.href=href(section,value as Locale);}}><SelectTrigger aria-label={locale==='ru'?'Язык':'Language'} className="language-trigger"><span aria-hidden="true">{locale==='ru'?'🇷🇺':'🇬🇧'}</span><SelectValue>{locale.toUpperCase()}</SelectValue></SelectTrigger><SelectContent><SelectGroup><SelectItem value="en"><span aria-hidden="true">🇬🇧</span> English</SelectItem><SelectItem value="ru"><span aria-hidden="true">🇷🇺</span> Русский</SelectItem></SelectGroup></SelectContent></Select>
-      <Sheet open={open} onOpenChange={setOpen}><SheetTrigger asChild><Button variant="ghost" size="icon" className="mobile-menu" aria-label={c.navigation}><Menu size={20}/></Button></SheetTrigger><SheetContent closeLabel={locale==='ru'?'Закрыть':'Close'} side={rtl?'left':'right'}><SheetHeader><SheetTitle>{c.navigation}</SheetTitle><SheetDescription>{c.catalogue}</SheetDescription></SheetHeader>{links}</SheetContent></Sheet>
+      <label className="header-rtl" title={t('Right to left')}><Switch checked={rtl} onCheckedChange={value=>dispatchEvent(new CustomEvent('want:choose-direction',{detail:value?'rtl':'ltr'}))} aria-label={t('Right to left')} size="sm"/><span>RTL</span></label>
+      <ThemeToggle theme={theme} label={c.theme} title={t(theme==='dark'?'Light theme':'Dark theme')} onThemeChange={value=>dispatchEvent(new CustomEvent('want:choose-theme',{detail:value}))}/>
+      <Select value={locale} onValueChange={value=>{location.href=href(section,value as Locale);}}><SelectTrigger aria-label={t('Language')} className="language-trigger"><SelectValue>{locale === 'zh-Hans' ? '中文' : locale === 'pt-BR' ? 'PT' : locale.toUpperCase()}</SelectValue></SelectTrigger><SelectContent><SelectGroup>{locales.map(language=><SelectItem key={language} value={language}><span lang={language} dir="auto">{localeNames[language]}</span></SelectItem>)}</SelectGroup></SelectContent></Select>
+      <Sheet open={open} onOpenChange={setOpen}><SheetTrigger asChild><Button variant="ghost" size="icon" className="mobile-menu" aria-label={c.navigation}><Menu size={20}/></Button></SheetTrigger><SheetContent closeLabel={t('Close')} side={rtl?'left':'right'}><SheetHeader><SheetTitle>{c.navigation}</SheetTitle><SheetDescription>{c.catalogue}</SheetDescription></SheetHeader>{links}</SheetContent></Sheet>
     </div>
   </div></header></DirectionProvider>;
 }

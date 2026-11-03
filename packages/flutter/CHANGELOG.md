@@ -2,6 +2,11 @@
 
 ## 1.2.0
 
+- Add a guided framework and installation flow, an orbital selector, automatic logo rotation, letter flames and twelve interface languages.
+- Add Flutter SVG extrusion with asset, string and asynchronous builder sources, cached meshes and reduced-motion support.
+- Align toast content and table cells, animate page rows, and refine card actions in both adapters.
+- Bundle Chinese, Devanagari and Hebrew fonts and add an opaque favicon background.
+
 - Add controlled sliders and shader lightning, with public exports and packaged shader resources.
 - Refine card highlights, responsive tables, comment paging and spring feedback.
 - Group the bilingual catalogue into seven categories and synchronize RTL/category with its host without replacing the engine.

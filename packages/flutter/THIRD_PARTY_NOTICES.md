@@ -9,3 +9,7 @@ Phosphor Icons v2.1 and phosphoricons_flutter retain their MIT licenses. toastif
 visibility_detector retains its BSD-3-Clause license and is resolved as a dependency.
 
 Sprung 3.0.1 is resolved as a dependency under its MIT license. The complete upstream notice is included in `licenses/sprung-MIT.txt`.
+
+Noto Sans SC, Noto Sans Devanagari and Noto Sans Hebrew retain the SIL Open Font License 1.1. Their complete notices are in `licenses/`. These additional font files come from Google Fonts commit `2fe1e8c6b137fb13041a7cfca6fdcd8a910ea4dc`.
+
+DiTreDi and path_parsing retain their MIT licenses. dart_earcut retains its ISC and MIT notices. These dependencies are resolved through pub.

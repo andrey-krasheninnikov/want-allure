@@ -5,8 +5,18 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
+import 'catalogue_localizations_ar.dart';
+import 'catalogue_localizations_de.dart';
 import 'catalogue_localizations_en.dart';
+import 'catalogue_localizations_es.dart';
+import 'catalogue_localizations_fr.dart';
+import 'catalogue_localizations_he.dart';
+import 'catalogue_localizations_hi.dart';
+import 'catalogue_localizations_ja.dart';
+import 'catalogue_localizations_pt.dart';
 import 'catalogue_localizations_ru.dart';
+import 'catalogue_localizations_tr.dart';
+import 'catalogue_localizations_zh.dart';
 
 // ignore_for_file: type=lint
 
@@ -97,8 +107,20 @@ abstract class CatalogueLocalizations {
 
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
+    Locale('ar'),
+    Locale('de'),
     Locale('en'),
+    Locale('es'),
+    Locale('fr'),
+    Locale('he'),
+    Locale('hi'),
+    Locale('ja'),
+    Locale('pt'),
+    Locale('pt', 'BR'),
     Locale('ru'),
+    Locale('tr'),
+    Locale('zh'),
+    Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hans'),
   ];
 
   /// No description provided for @findInCatalogue.
@@ -1264,6 +1286,24 @@ abstract class CatalogueLocalizations {
   /// In en, this message translates to:
   /// **'Light and space'**
   String get lightAndSpace;
+
+  /// No description provided for @svg3D.
+  ///
+  /// In en, this message translates to:
+  /// **'3D SVG'**
+  String get svg3D;
+
+  /// No description provided for @rotateLogo.
+  ///
+  /// In en, this message translates to:
+  /// **'Drag or use arrow keys to rotate the logo.'**
+  String get rotateLogo;
+
+  /// No description provided for @changeLanguage.
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get changeLanguage;
 }
 
 class _CatalogueLocalizationsDelegate
@@ -1278,20 +1318,76 @@ class _CatalogueLocalizationsDelegate
   }
 
   @override
-  bool isSupported(Locale locale) =>
-      <String>['en', 'ru'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>[
+    'ar',
+    'de',
+    'en',
+    'es',
+    'fr',
+    'he',
+    'hi',
+    'ja',
+    'pt',
+    'ru',
+    'tr',
+    'zh',
+  ].contains(locale.languageCode);
 
   @override
   bool shouldReload(_CatalogueLocalizationsDelegate old) => false;
 }
 
 CatalogueLocalizations lookupCatalogueLocalizations(Locale locale) {
+  // Lookup logic when language+script codes are specified.
+  switch (locale.languageCode) {
+    case 'zh':
+      {
+        switch (locale.scriptCode) {
+          case 'Hans':
+            return CatalogueLocalizationsZhHans();
+        }
+        break;
+      }
+  }
+
+  // Lookup logic when language+country codes are specified.
+  switch (locale.languageCode) {
+    case 'pt':
+      {
+        switch (locale.countryCode) {
+          case 'BR':
+            return CatalogueLocalizationsPtBr();
+        }
+        break;
+      }
+  }
+
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
+    case 'ar':
+      return CatalogueLocalizationsAr();
+    case 'de':
+      return CatalogueLocalizationsDe();
     case 'en':
       return CatalogueLocalizationsEn();
+    case 'es':
+      return CatalogueLocalizationsEs();
+    case 'fr':
+      return CatalogueLocalizationsFr();
+    case 'he':
+      return CatalogueLocalizationsHe();
+    case 'hi':
+      return CatalogueLocalizationsHi();
+    case 'ja':
+      return CatalogueLocalizationsJa();
+    case 'pt':
+      return CatalogueLocalizationsPt();
     case 'ru':
       return CatalogueLocalizationsRu();
+    case 'tr':
+      return CatalogueLocalizationsTr();
+    case 'zh':
+      return CatalogueLocalizationsZh();
   }
 
   throw FlutterError(

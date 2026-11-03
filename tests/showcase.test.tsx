@@ -1,11 +1,12 @@
 import { expect, test } from 'bun:test';
 import { renderToStaticMarkup } from 'react-dom/server';
 import Showcase from '../apps/showcase/src/components/Showcase';
+import ruMessages from '../apps/showcase/src/i18n/catalogue-ru.json';
 import { translate } from '../apps/showcase/src/i18n/catalogue';
 
 test('catalogue server rendering localizes controls and accessible names', () => {
-  const en = renderToStaticMarkup(<Showcase locale="en" />);
-  const ru = renderToStaticMarkup(<Showcase locale="ru" />);
+  const en = renderToStaticMarkup(<Showcase locale="en" messages={{}} />);
+  const ru = renderToStaticMarkup(<Showcase locale="ru" messages={ruMessages} />);
   expect(en).toContain('Components in action');
   expect(ru).toContain('Компоненты в действии');
   expect(ru).toContain('Бренд и тема');
@@ -17,8 +18,8 @@ test('catalogue server rendering localizes controls and accessible names', () =>
 });
 
 test('translation preserves spacing, placeholders and technical text', () => {
-  expect(translate('ru', ' Guest ')).toBe(' Гость ');
-  expect(translate('ru', 'Notifications ({hotkey})')).toBe('Уведомления ({hotkey})');
-  expect(translate('en', 'Guest')).toBe('Guest');
-  expect(translate('ru', 'const theme = "dark";')).toBe('const theme = "dark";');
+  expect(translate(ruMessages, ' Guest ')).toBe(' Гость ');
+  expect(translate(ruMessages, 'Notifications ({hotkey})')).toBe('Уведомления ({hotkey})');
+  expect(translate({}, 'Guest')).toBe('Guest');
+  expect(translate(ruMessages, 'const theme = "dark";')).toBe('const theme = "dark";');
 });

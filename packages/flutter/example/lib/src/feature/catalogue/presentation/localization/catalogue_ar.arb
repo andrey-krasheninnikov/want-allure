@@ -1,0 +1,331 @@
+{
+  "@@locale": "ar",
+  "findInCatalogue": "البحث في الكتالوج",
+  "previousMatch": "المباراة السابقة",
+  "nextMatch": "المباراة القادمة",
+  "closeFind": "إغلاق البحث",
+  "noMatches": "لا توجد مباريات",
+  "matchActiveOfCount": "تطابق {active} من {count}",
+  "@matchActiveOfCount": {
+    "placeholders": {
+      "active": {
+        "type": "Object"
+      },
+      "count": {
+        "type": "Object"
+      }
+    }
+  },
+  "dismissMessage": "تجاهل الرسالة",
+  "pauseBackground": "وقفة الخلفية",
+  "resumeBackground": "استئناف الخلفية",
+  "oneWantEveryPlatform": "واحد Want. كل منصة.",
+  "theSameWantColorsControlsAndMotionAcrossWeb": "نفس الألوان وعناصر التحكم والحركة Want عبر الويب وFlutter. استكشف المكونات باستخدام لوحة المفاتيح واللمس وإدخال المؤشر.",
+  "findCtrlF": "البحث عن · ⌘/Ctrl F",
+  "useLightTheme": "استخدام السمة الفاتحة",
+  "useDarkTheme": "استخدام السمة الداكنة",
+  "reduceMotion": "تقليل الحركة",
+  "opaqueSurfaces": "الأسطح غير الشفافة",
+  "resumeEffects": "استئناف التأثيرات",
+  "pauseEffects": "تأثيرات الإيقاف المؤقت",
+  "palette": "لوحة",
+  "typography": "الطباعة",
+  "variantNameWantMakesRoomForYourContent": "{variantName} · يوفر Want مساحة للمحتوى الخاص بك.",
+  "@variantNameWantMakesRoomForYourContent": {
+    "placeholders": {
+      "variantName": {
+        "type": "Object"
+      }
+    }
+  },
+  "buttons": "الأزرار",
+  "variantNamePressed": "تم الضغط على {variantName}",
+  "@variantNamePressed": {
+    "placeholders": {
+      "variantName": {
+        "type": "Object"
+      }
+    }
+  },
+  "disabled": "معطل",
+  "downloadSelected": "تحميل المحدد",
+  "downloadExample": "تنزيل المثال",
+  "fieldsInputAndTextarea": "الحقول والمدخلات ومنطقة النص",
+  "localExample": "مثال محلي",
+  "title": "العنوان",
+  "editableLocalValue": "قيمة محلية قابلة للتحرير.",
+  "invalidExample": "مثال غير صالح",
+  "enterATitle": "أدخل عنوانا.",
+  "disabledExample": "مثال معطل",
+  "contoursOfSilence": "ملامح الصمت",
+  "description": "الوصف",
+  "describeThePreview": "وصف المعاينة",
+  "fieldAndLabel": "الحقل والتسمية",
+  "consumerOwnedHelperText": "نص مساعد مملوك للمستهلك.",
+  "selectRadioCheckboxAndSwitch": "حدد، الراديو، خانة الاختيار والتبديل",
+  "format": "التنسيق",
+  "desktop": "سطح المكتب",
+  "mobile": "الجوال",
+  "unavailable": "غير متاح",
+  "wallpaperOrientation": "اتجاه ورق الجدران",
+  "includePreview": "تضمين المعاينة",
+  "aControlledCheckbox": "خانة الاختيار التي تسيطر عليها.",
+  "mixedSelection": "اختيار مختلط",
+  "enableExampleSetting": "تمكين إعداد المثال",
+  "disabledCheckbox": "خانة الاختيار معطلة",
+  "tabsAndAccordion": "علامات التبويب والأكورديون",
+  "landscapePreview": "معاينة المناظر الطبيعية.",
+  "portraitPreview": "معاينة الصورة.",
+  "howAreComponentsShared": "كيف يتم مشاركة المكونات؟",
+  "bothAdaptersUseTheSameFoundationTokens": "يستخدم كلا المحولين نفس الرموز الأساسية.",
+  "whoOwnsApplicationData": "من يملك بيانات التطبيق؟",
+  "theConsumingApplicationOwnsDataAndPersistence": "يمتلك التطبيق المستهلك البيانات والثبات.",
+  "dialogSheetMenuTooltipAndPopover": "الحوار، الورقة، القائمة، تلميح الأدوات والنوافذ المنبثقة",
+  "previewSettings": "إعدادات المعاينة",
+  "done": "تم",
+  "previewName": "اسم المعاينة",
+  "openDialog": "فتح الحوار",
+  "panelSideName": "لوحة {sideName}",
+  "@panelSideName": {
+    "placeholders": {
+      "sideName": {
+        "type": "Object"
+      }
+    }
+  },
+  "closePanel": "إغلاق اللوحة",
+  "theSheetEntersFromItsSelectedSide": "تدخل الورقة من الجانب المحدد.",
+  "sideNameSheet": "ورقة {sideName}",
+  "@sideNameSheet": {
+    "placeholders": {
+      "sideName": {
+        "type": "Object"
+      }
+    }
+  },
+  "actions": "الإجراءات",
+  "copyLink": "انسخ الرابط",
+  "copyActionSelected": "تم تحديد إجراء النسخ",
+  "aKeyboardAndPointerHint": "تلميح لوحة المفاتيح والمؤشر",
+  "hintSelected": "تم تحديد التلميح",
+  "tooltip": "تلميح الأداة",
+  "settings": "الإعدادات",
+  "note": "ملاحظة",
+  "closeSettings": "إغلاق الإعدادات",
+  "navigationAndBreadcrumbs": "الملاحة وفتات الخبز",
+  "exampleNavigation": "مثال للملاحة",
+  "collections": "المجموعات",
+  "collectionsSelected": "المجموعات المختارة",
+  "search": "بحث",
+  "searchSelected": "تم تحديد البحث",
+  "breadcrumbs": "فتات الخبز",
+  "home": "الصفحة الرئيسية",
+  "homeSelected": "تم اختيار المنزل",
+  "uiKit": "UI kit",
+  "badgesAlertsAndProgress": "الشارات والتنبيهات والتقدم",
+  "primary": "الابتدائية",
+  "previewAvailable": "المعاينة متاحة",
+  "chooseAnExampleActionToContinue": "اختر إجراءً نموذجيًا للمتابعة.",
+  "couldNotLoadPreview": "تعذر تحميل المعاينة",
+  "tryAgain": "حاول مرة أخرى.",
+  "exampleProgress": "تقدم المثال",
+  "loadingPreview": "جارٍ تحميل المعاينة",
+  "toastAndSemanticSnackbars": "الخبز المحمص والوجبات الخفيفة الدلالية",
+  "localPreviewReady": "المعاينة المحلية جاهزة",
+  "showToast": "عرض الخبز المحمص",
+  "variantNameExampleStatus": "{variantName}: حالة المثال",
+  "@variantNameExampleStatus": {
+    "placeholders": {
+      "variantName": {
+        "type": "Object"
+      }
+    }
+  },
+  "themeAwareFeedbackWithOneUsefulAction": "ردود فعل مدركة للموضوع من خلال إجراء واحد مفيد.",
+  "dismissStatus": "تجاهل الحالة",
+  "viewDetails": "عرض التفاصيل",
+  "detailsSelected": "التفاصيل مختارة",
+  "searchableCombobox": "مربع تحرير وسرد قابل للبحث",
+  "collection": "المجموعة",
+  "searchCollections": "مجموعات البحث",
+  "violetHorizon": "الأفق البنفسجي",
+  "wovenSpectrum": "الطيف المنسوج",
+  "tableAndPagination": "الجدول وترقيم الصفحات",
+  "localCollection": "جمع محلي",
+  "noRecords": "لا توجد سجلات",
+  "name": "الاسم",
+  "previewValue": "معاينة {value}",
+  "@previewValue": {
+    "placeholders": {
+      "value": {
+        "type": "Object"
+      }
+    }
+  },
+  "pages": "الصفحات",
+  "previousPage": "الصفحة السابقة",
+  "nextPage": "الصفحة التالية",
+  "rowsPerPage": "صفوف لكل صفحة",
+  "pagePage": "صفحة {page}",
+  "@pagePage": {
+    "placeholders": {
+      "page": {
+        "type": "Object"
+      }
+    }
+  },
+  "fromToOfTotal": "{from} – {to} من {total}",
+  "@fromToOfTotal": {
+    "placeholders": {
+      "from": {
+        "type": "Object"
+      },
+      "to": {
+        "type": "Object"
+      },
+      "total": {
+        "type": "Object"
+      }
+    }
+  },
+  "fileSelection": "اختيار الملف",
+  "images": "الصور",
+  "chooseImages": "اختر الصور",
+  "dropImagesHereOrChooseAFile": "قم بإسقاط الصور هنا أو اختر ملفًا.",
+  "couldNotReadTheSelectedFile": "لا يمكن قراءة الملف المحدد.",
+  "removeName": "إزالة {name}",
+  "@removeName": {
+    "placeholders": {
+      "name": {
+        "type": "Object"
+      }
+    }
+  },
+  "nameIsNotASupportedImage": "{name} ليست صورة مدعومة.",
+  "@nameIsNotASupportedImage": {
+    "placeholders": {
+      "name": {
+        "type": "Object"
+      }
+    }
+  },
+  "nameExceedsLimitBytes": "يتجاوز {name} بايت {limit}.",
+  "@nameExceedsLimitBytes": {
+    "placeholders": {
+      "name": {
+        "type": "Object"
+      },
+      "limit": {
+        "type": "Object"
+      }
+    }
+  },
+  "chooseUpToCountFiles": "اختر ما يصل إلى ملفات {count}.",
+  "@chooseUpToCountFiles": {
+    "placeholders": {
+      "count": {
+        "type": "Object"
+      }
+    }
+  },
+  "dateURLAndPageLayout": "التاريخ وعنوان URL وتخطيط الصفحة",
+  "createAPreview": "قم بإنشاء معاينة",
+  "localComposition": "التكوين المحلي",
+  "previewActionSelected": "تم تحديد إجراء المعاينة",
+  "preview": "معاينة",
+  "date": "التاريخ",
+  "time": "الوقت",
+  "useToday": "استخدم اليوم",
+  "sourceURL": "عنوان URL المصدر",
+  "openSource": "مفتوح المصدر",
+  "openUriHost": "افتح {uriHost}",
+  "@openUriHost": {
+    "placeholders": {
+      "uriHost": {
+        "type": "Object"
+      }
+    }
+  },
+  "cardsMediaAndLiquidGlass": "البطاقات والوسائط والزجاج السائل",
+  "localDemonstrationArtwork": "عرض فني محلي",
+  "violetGradient": "التدرج البنفسجي",
+  "previewSelected": "تم تحديد المعاينة",
+  "downloadPanel": "لوحة التحميل",
+  "aComposedCard": "بطاقة مكونة",
+  "publicSlotsKeepContentInTheConsumingApplication": "تحتفظ الفتحات العامة بالمحتوى في التطبيق المستهلك.",
+  "liquidGlassOpaqueWhenTransparencyIsReduced": "الزجاج السائل · معتم عندما تنخفض الشفافية.",
+  "contactCard": "بطاقة الاتصال",
+  "productDesign": "تصميم المنتج",
+  "website": "موقع الكتروني",
+  "websiteSelected": "تم اختيار موقع الويب",
+  "commentCarousel": "دائري التعليق",
+  "comments": "التعليقات",
+  "noComments": "لا تعليقات",
+  "previousComments": "التعليقات السابقة",
+  "nextComments": "التعليقات التالية",
+  "readMore": "اقرأ المزيد",
+  "collapse": "طي",
+  "reviewerIndex": "المراجع {index}",
+  "@reviewerIndex": {
+    "placeholders": {
+      "index": {
+        "type": "Object"
+      }
+    }
+  },
+  "today": "اليوم",
+  "readableCopyFollowsTheSameWantTypography": "تتبع النسخة المقروءة نفس أسلوب الطباعة Want.",
+  "thePreviewIsReadyToExplore": "المعاينة جاهزة للاستكشاف.",
+  "reply": "رد",
+  "actionSelected": "تم تحديد {action}",
+  "@actionSelected": {
+    "placeholders": {
+      "action": {
+        "type": "Object"
+      }
+    }
+  },
+  "customLoaders": "لوادر مخصصة",
+  "loadingVariantName": "جاري التحميل {variantName}",
+  "@loadingVariantName": {
+    "placeholders": {
+      "variantName": {
+        "type": "Object"
+      }
+    }
+  },
+  "shimmerPlaceholders": "العناصر النائبة اللامعة",
+  "animatedText": "نص متحرك",
+  "yourNextIdea": "فكرتك القادمة.",
+  "madeWithWant": "مصنوعة من Want.",
+  "readyToExplore": "جاهز للاستكشاف.",
+  "changeText": "تغيير النص",
+  "reusableGlowAndConfetti": "توهج وقصاصات قابلة لإعادة الاستخدام",
+  "aVisibleHaloWithTwoExpandingWaves": "هالة مرئية ذات موجتين متوسعتين.",
+  "exploreWant": "اكتشف Want",
+  "triggerBackgroundWave": "إثارة موجة الخلفية",
+  "switchToRussian": "التبديل إلى الروسية",
+  "switchToEnglish": "التبديل إلى اللغة الإنجليزية",
+  "error": "خطأ",
+  "warning": "تحذير",
+  "info": "معلومات",
+  "success": "النجاح",
+  "brandAndTheme": "العلامة التجارية والموضوع",
+  "componentPreview": "معاينة المكون",
+  "categoryFoundation": "مؤسسة",
+  "categoryInputs": "المدخلات",
+  "categoryNavigation": "الملاحة",
+  "categoryData": "البيانات",
+  "categoryFeedback": "ردود الفعل",
+  "categoryEffects": "التأثيرات",
+  "categoryCompositions": "التراكيب",
+  "componentsInAction": "المكونات في العمل",
+  "sliders": "المتزلجون",
+  "intensity": "الشدة",
+  "range": "النطاق",
+  "backgroundLightning": "البرق الخلفية",
+  "lightAndSpace": "الضوء والفضاء",
+  "svg3D": "3D SVG",
+  "rotateLogo": "اسحب أو استخدم مفاتيح الأسهم لتدوير الشعار.",
+  "changeLanguage": "اللغة"
+}

@@ -24,14 +24,14 @@ class _WantCatalogueState extends State<WantCatalogue> {
         if (!mounted) return;
         setState(() {
           _brightness = theme == 'light' ? Brightness.light : Brightness.dark;
-          _locale = Locale(locale);
+          _locale = catalogueLocale(locale);
           _rtl = direction == 'rtl';
           _category = catalogueCategory(section);
         });
       },
     );
     _brightness = _host.theme == 'light' ? Brightness.light : Brightness.dark;
-    _locale = Locale(_host.locale);
+    _locale = catalogueLocale(_host.locale);
     _rtl = _host.direction == 'rtl';
     _category = _host.section;
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -50,8 +50,8 @@ class _WantCatalogueState extends State<WantCatalogue> {
   @override
   Widget build(BuildContext context) {
     final theme = _brightness == Brightness.dark
-        ? WantThemeData.dark()
-        : WantThemeData.light();
+        ? WantThemeData.dark(locale: _locale)
+        : WantThemeData.light(locale: _locale);
     return MaterialApp(
       title: 'Want Allure · Flutter',
       debugShowCheckedModeBanner: false,
@@ -60,7 +60,7 @@ class _WantCatalogueState extends State<WantCatalogue> {
         CatalogueLocalizations.delegate,
         ...FLocalizations.localizationsDelegates,
       ],
-      supportedLocales: CatalogueLocalizations.supportedLocales,
+      supportedLocales: catalogueLocaleTags.map(catalogueLocale).toList(),
       builder: (context, child) => WantTheme(
         data: theme,
         reduceMotion: _reduced ? true : null,
@@ -92,13 +92,13 @@ class _WantCatalogueState extends State<WantCatalogue> {
                 child: _Gallery(
                   brightness: _brightness,
                   embedded: _host.embedded,
-                  onLocale: () {
-                    setState(
-                      () => _locale = Locale(
-                        _locale.languageCode == 'en' ? 'ru' : 'en',
-                      ),
-                    );
-                    _host.chooseLocale(_locale.languageCode);
+                  localeTag: _locale.toLanguageTag(),
+                  onLocale: (tag) {
+                    setState(() {
+                      _locale = catalogueLocale(tag);
+                      _rtl = catalogueDirection(tag) == 'rtl';
+                    });
+                    _host.chooseLocale(tag);
                   },
                   category: _category,
                   onCategory: (value) {
@@ -136,7 +136,8 @@ class _Gallery extends StatefulWidget {
   final Brightness brightness;
   final bool rtl, reduced, opaque;
   final bool embedded;
-  final VoidCallback onLocale;
+  final ValueChanged<String> onLocale;
+  final String localeTag;
   final ValueChanged<Brightness> onBrightness;
   final ValueChanged<bool> onRtl, onReduced, onOpaque;
   const _Gallery({
@@ -145,6 +146,7 @@ class _Gallery extends StatefulWidget {
     required this.brightness,
     required this.embedded,
     required this.onLocale,
+    required this.localeTag,
     required this.rtl,
     required this.reduced,
     required this.opaque,
@@ -306,13 +308,21 @@ class _GalleryState extends State<_Gallery> {
                     ),
                   ),
                 if (!widget.embedded)
-                  WantButton(
-                    variant: WantButtonVariant.secondary,
-                    onPressed: widget.onLocale,
-                    child: Text(
-                      Localizations.localeOf(context).languageCode == 'en'
-                          ? l.switchToRussian
-                          : l.switchToEnglish,
+                  SizedBox(
+                    width: 200,
+                    child: WantSelect<String>(
+                      label: Text(l.changeLanguage),
+                      value: widget.localeTag,
+                      options: [
+                        for (final tag in catalogueLocaleTags)
+                          WantOption(
+                            value: tag,
+                            label: catalogueLocaleNames[tag]!,
+                          ),
+                      ],
+                      onChanged: (tag) {
+                        if (tag != null) widget.onLocale(tag);
+                      },
                     ),
                   ),
                 if (!widget.embedded)
@@ -429,6 +439,19 @@ class _GalleryState extends State<_Gallery> {
                       child: Text(_paused ? l.resumeEffects : l.pauseEffects),
                     ),
                   ],
+                ),
+              ),
+              _section(
+                'svg3d',
+                l.svg3D,
+                SizedBox(
+                  height: 320,
+                  child: WantSvg3D.asset(
+                    'assets/brand/allure/logos/dark/transparent.svg',
+                    package: 'want_allure',
+                    semanticsLabel: l.rotateLogo,
+                    paused: _paused,
+                  ),
                 ),
               ),
               _section(
@@ -893,6 +916,8 @@ class _GalleryState extends State<_Gallery> {
                 'table',
                 l.tableAndPagination,
                 WantTable<int>(
+                  rowKey: (row) => row,
+                  transitionKey: (_page, _pageSize, _ascending),
                   caption: l.localCollection,
                   emptyLabel: l.noRecords,
                   rows:

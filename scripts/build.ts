@@ -22,7 +22,7 @@ await copyFile(foundation + '/tokens.json', foundation + '/dist/skill/references
 await copyFile(resolve(root, 'scripts/install-skill.mjs'), foundation + '/dist/install-skill.js');
 await chmod(foundation + '/dist/install-skill.js', 0o755);
 let fontCss = '';
-for (const name of ['@fontsource-variable/manrope', '@fontsource/days-one', '@fontsource-variable/noto-sans-jp', '@fontsource-variable/noto-sans-arabic']) {
+for (const name of ['@fontsource-variable/manrope', '@fontsource/days-one', '@fontsource-variable/noto-sans-jp', '@fontsource-variable/noto-sans-arabic', '@fontsource-variable/noto-sans-sc', '@fontsource-variable/noto-sans-devanagari', '@fontsource-variable/noto-sans-hebrew']) {
   const entry = Bun.resolveSync(name, foundation);
   const directory = dirname(entry);
   const family = name.split('/').at(-1)!;

@@ -15,10 +15,13 @@ class CatalogueHost {
   String theme = Uri.base.queryParameters['theme'] == 'light'
       ? 'light'
       : 'dark';
-  String locale = Uri.base.queryParameters['locale'] == 'ru' ? 'ru' : 'en';
-  String direction = Uri.base.queryParameters['direction'] == 'rtl'
-      ? 'rtl'
-      : 'ltr';
+  String locale = catalogueLocaleTag(Uri.base.queryParameters['locale']);
+  String direction =
+      ['ltr', 'rtl'].contains(Uri.base.queryParameters['direction'])
+      ? Uri.base.queryParameters['direction']!
+      : catalogueDirection(
+          catalogueLocaleTag(Uri.base.queryParameters['locale']),
+        );
   String section = catalogueCategory(Uri.base.queryParameters['section']);
   final bool embedded = Uri.base.queryParameters['embedded'] == '1';
   CatalogueHost({required this.onSettings}) {
@@ -35,7 +38,7 @@ class CatalogueHost {
       final nextDirection = data['direction'] ?? direction,
           nextSection = data['section'] ?? section;
       if ((nextTheme != 'light' && nextTheme != 'dark') ||
-          (nextLocale != 'en' && nextLocale != 'ru') ||
+          !catalogueLocaleTags.contains(nextLocale) ||
           (nextDirection != 'ltr' && nextDirection != 'rtl') ||
           !catalogueCategories.contains(nextSection)) {
         return;

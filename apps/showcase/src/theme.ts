@@ -28,11 +28,11 @@ apply(explicit ?? (media.matches ? 'dark' : 'light'));
 
 function direction(value: 'ltr'|'rtl') { document.documentElement.dir=value; dispatchEvent(new CustomEvent('want:direction',{detail:value})); }
 function section() { dispatchEvent(new CustomEvent('want:section',{detail:categoryOf(new URLSearchParams(location.search).get('section'))})); }
-addEventListener('want:choose-direction',event=>{const value=(event as CustomEvent).detail; if(value!=='ltr'&&value!=='rtl')return;direction(value);try{localStorage.setItem('want-direction',value);}catch{}});
+addEventListener('want:choose-direction',event=>{const value=(event as CustomEvent).detail; if(value!=='ltr'&&value!=='rtl')return;direction(value);try{localStorage.setItem('want-direction:'+document.documentElement.lang,value);}catch{}});
 addEventListener('want:choose-section',event=>{
   const value=categoryOf((event as CustomEvent).detail);const url=new URL(location.href);
   if(value==='foundation')url.searchParams.delete('section');else url.searchParams.set('section',value);
   if(url.href!==location.href)history.pushState(null,'',url); section();
 });
 addEventListener('popstate',section);
-addEventListener('pageshow',()=>{try{direction(localStorage.getItem('want-direction')==='rtl'?'rtl':'ltr');}catch{} section();});
+addEventListener('pageshow',()=>{try{const saved=localStorage.getItem('want-direction:'+document.documentElement.lang);direction(saved==='rtl'||saved==='ltr'?saved:(['ar','he'].includes(document.documentElement.lang)?'rtl':'ltr'));}catch{} section();});

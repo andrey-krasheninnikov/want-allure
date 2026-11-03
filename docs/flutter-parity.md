@@ -66,3 +66,5 @@ The 1.1.0 release adds a presentation barrel tree, Phosphor icons, toastificatio
 The 1.2.0 example adds English/Russian catalogues and Allure branding. Its web build participates in the unified Astro application; translations and host-page settings remain example-owned.
 
 Both catalogues organize their 46 families into the same seven categories. Slider adapters accept controlled numeric values and callbacks; Flutter maps those values to ForUI internally. The Flutter range uses a `(start: double, end: double)` record. Lightning is a decorative background surface in both adapters; Flutter renders it through `lightning.frag`.
+
+Flutter also exposes `WantSvg3D` for filled SVG extrusion. Its example is in the Effects category. This native addition does not add a React export or change the count of shared component families. See the Flutter README for supported SVG features and builders.
