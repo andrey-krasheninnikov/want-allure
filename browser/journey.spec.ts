@@ -28,7 +28,8 @@ test('Arabic catalogue localizes slider names and dates',async({page})=>{
   await expect(page.getByRole('slider',{name:'بداية النطاق',exact:true})).toBeVisible();
   await expect(page.getByRole('slider',{name:'منزلق معطّل',exact:true})).toBeDisabled();
   await page.getByRole('tab').last().click();
-  await expect(page.locator('.demo-fields .ui-date-trigger').first()).toContainText('أكتوبر');
+  await page.locator('.demo-fields .ui-date-trigger').first().click();
+  await expect(page.getByRole('dialog')).toContainText('أكتوبر');
 });
 test('standalone Arabic Flutter starts with native document direction',async({page})=>{
   await page.goto('/_flutter/?locale=ar&section=data');
