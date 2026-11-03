@@ -1,17 +1,19 @@
 # Want Allure
 
-Пиксельный павлин и набор графики Want Allure. Квадратные фирменные фоны используют индиговое свечение и расходящиеся контуры перьев.
+Пиксельное перо с диагональным стержнем и повторяющимися сегментами. Цвет знака `#5962F0` сохранён во всех темах. Фирменный фон использует нейтральные поверхности Want и мягкую фиолетовую сферу. Баннеры используют Days One и Manrope 400.
 
 ![Обзор вариантов](preview.png)
+
+[HTML-превью](banners.html) работает локально без сети. В нём доступны логотипы, баннеры и favicon.
 
 ## Основные файлы
 
 | Вариант | SVG | PNG 2048×2048 |
 | --- | --- | --- |
-| Светлая тема | [Вектор](want-allure-brand-light.svg) | [Растр](want-allure-brand-light.png) |
-| Тёмная тема | [Вектор](want-allure-brand-dark.svg) | [Растр](want-allure-brand-dark.png) |
+| Светлый фирменный фон | [Вектор](want-allure-brand-light.svg) | [Растр](want-allure-brand-light.png) |
+| Тёмный фирменный фон | [Вектор](want-allure-brand-dark.svg) | [Растр](want-allure-brand-dark.png) |
 
-Исходные `want-allure-peacock.svg` и `want-allure-peacock.png` сохранены. Геометрия полного знака во всех новых вариантах соответствует исходнику. Надписи в баннерах переведены в контуры; устанавливать шрифты не требуется.
+Исходные [SVG](want-allure-feather.svg) и [PNG](want-allure-feather.png) с белым фоном сохранены отдельно. Полный знак в остальных вариантах сохраняет геометрию исходного SVG. Просветы между сегментами пера вырезаны из знака: в прозрачных версиях они имеют настоящую прозрачность.
 
 ## Темы и фоны
 
@@ -20,13 +22,13 @@
 | Имя | Фон |
 | --- | --- |
 | `transparent` | Прозрачный |
-| `light` | Светлый |
-| `dark` | Тёмный |
-| `brand` | Фирменный фон с градиентом и контурами |
+| `light` | Светлый `#F6F5F3` |
+| `dark` | Тёмный `#141414` |
+| `brand` | Фирменная сфера на фоне выбранной темы |
 
-Для непрозрачных фонов цвет знака подобран с учётом контраста. На прозрачном фоне светлая тема использует `#5962F0`, а тёмная использует `#B8BFFF`. На тёмном фирменном фоне знак имеет цвет `#F6F7FF`.
+Цвет знака одинаков в обеих темах. Варианты с явно заданными прозрачным, светлым и тёмным фонами совпадают между темами; фирменный фон зависит от темы.
 
-Отдельные фирменные фоны без знака: [светлый SVG](backgrounds/brand-light.svg), [светлый PNG](backgrounds/brand-light.png), [тёмный SVG](backgrounds/brand-dark.svg), [тёмный PNG](backgrounds/brand-dark.png).
+Фирменные фоны без знака: [светлый SVG](backgrounds/brand-light.svg), [светлый PNG](backgrounds/brand-light.png), [тёмный SVG](backgrounds/brand-dark.svg), [тёмный PNG](backgrounds/brand-dark.png).
 
 ## Telegram
 
@@ -37,9 +39,9 @@
 - `avatar-brand-1024.jpg`: фирменный аватар в JPEG.
 - `avatar-brand-circle-preview.svg` и `.png`: предварительный просмотр круглой обрезки.
 
-Для загрузки аватара используйте непрозрачный PNG или JPEG. Прозрачные версии предназначены для компоновки. Размер и положение павлина оставляют запас под круглую обрезку.
+Знак расположен с запасом под круглую обрезку. Для загрузки аватара используйте непрозрачный PNG или JPEG. Прозрачные версии предназначены для компоновки.
 
-Основные варианты: [светлый PNG 1024](telegram/light/avatar-brand-1024.png), [тёмный PNG 1024](telegram/dark/avatar-brand-1024.png).
+Основные аватары: [светлый PNG 1024](telegram/light/avatar-brand-1024.png), [тёмный PNG 1024](telegram/dark/avatar-brand-1024.png).
 
 Баннеры для описания или приветственного сообщения, 640×360: [светлый PNG](telegram/description-light.png), [тёмный PNG](telegram/description-dark.png), [светлый SVG](telegram/description-light.svg), [тёмный SVG](telegram/description-dark.svg).
 
@@ -47,15 +49,14 @@
 
 В `github/light/` и `github/dark/` находятся аватары со всеми четырьмя фонами: SVG 512×512 и PNG 256×256, 512×512.
 
-Социальные карточки: [светлая PNG](github/social-preview-light.png), [тёмная PNG](github/social-preview-dark.png), [светлая SVG](github/social-preview-light.svg), [тёмная SVG](github/social-preview-dark.svg). Размер PNG составляет 1280×640, каждый файл меньше 1 MB, как указано в [требованиях GitHub](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/customizing-your-repositorys-social-media-preview).
+Социальные карточки 1280×640: [светлый PNG](github/social-preview-light.png), [тёмный PNG](github/social-preview-dark.png), [светлый SVG](github/social-preview-light.svg), [тёмный SVG](github/social-preview-dark.svg). Каждый PNG меньше 1 MB.
 
 ## Баннер README
 
-В `readme/` находятся `banner-light.svg`, `banner-dark.svg` и соответствующие PNG 1600×640.
+В `readme/` находятся светлая и тёмная версии 1600×640 в SVG и PNG:
 
-Баннеры README, GitHub и Telegram используют стилистику [Want Wallpapers](https://wallpapers.want.foundation/) и [Want design](https://github.com/andrey-krasheninnikov/want-allure/blob/main/skills/want-design/SKILL.md): Days One для названия, Manrope 400 для подписей, нейтральные фоны `#F6F5F3` и `#141414`, заполненные капсулы и мягкую фиолетовую сферу. Павлин сохраняет исходный цвет `#5962F0` в обеих темах. Фон статичен.
-
-[HTML-превью всех шести баннеров](banners.html) работает локально без сети. Шрифты встроены в страницу; лицензии находятся в `font-licenses/`. В SVG надписи переведены в контуры, а PNG отрендерены из тех же SVG в HTML. Дизайн сверен с foundation из ревизии `51444a2d37ad25f0b9f03723716ce7d5d439b0ff`.
+- [Светлый SVG](readme/banner-light.svg), [светлый PNG](readme/banner-light.png).
+- [Тёмный SVG](readme/banner-dark.svg), [тёмный PNG](readme/banner-dark.png).
 
 Для README, рядом с которым расположен каталог `assets`:
 
@@ -63,13 +64,17 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/readme/banner-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="assets/readme/banner-light.svg">
-  <img src="assets/readme/banner-light.svg" alt="Want Allure: Design system &amp; brand identity" width="1600" height="640">
+  <img src="assets/readme/banner-light.svg" alt="Want Allure: design system and brand identity" width="1600" height="640">
 </picture>
 ```
 
+Надписи в SVG переведены в контуры; устанавливать шрифты не требуется. HTML-превью содержит встроенные шрифты. Их лицензии находятся в `font-licenses/`.
+
 ## Favicon
 
-Для favicon используется отдельная микроверсия павлина. В ней сохранены птица и пять перьев веера, а мелкие детали упрощены для размера 16 px. Полный знак находится в остальных наборах.
+Для favicon подготовлена микроверсия пера на сетке 16 px. Сохранены наклон силуэта и ступенчатая геометрия, мелкие просветы упрощены. Полный знак используется во всех остальных наборах.
+
+![Favicon в разных размерах](favicon/preview.png)
 
 В `favicon/light/` и `favicon/dark/`:
 
@@ -77,12 +82,10 @@
 - `favicon-512.svg`: векторная микроверсия.
 - `favicon.ico`: размеры 16, 32, 48, 64 и 256 px внутри одного файла.
 - `apple-touch-icon.png`: 180×180 на непрозрачном фоне.
-- `maskable-512.svg` и `.png`: знак с дополнительными полями для обрезки системной маской.
+- `maskable-512.svg` и `.png`: знак с дополнительными полями под системную маску.
 - `site.webmanifest`: ссылки на иконки 192, 512 и maskable 512 px.
 
-В корне `favicon/` находятся адаптивный `favicon.svg`, стандартный светлый `favicon.ico` и монохромный `safari-pinned-tab.svg`. Адаптивный SVG выбирает цвет по `prefers-color-scheme`.
-
-![Favicon в разных размерах](favicon/preview.png)
+В корне `favicon/` находятся адаптивный `favicon.svg`, стандартный светлый `favicon.ico` и монохромный `safari-pinned-tab.svg`. Адаптивный SVG выбирает фон по `prefers-color-scheme`.
 
 После копирования `favicon/` в публичный каталог сайта:
 
@@ -94,10 +97,10 @@
 <link rel="manifest" href="/favicon/light/site.webmanifest">
 ```
 
-Пути в манифесте относительны его каталогу. Перед включением манифеста в приложение проверьте нужную тему и добавьте параметры запуска приложения.
+Пути в манифесте относительны его каталогу. При подключении к приложению выберите тему и добавьте нужные параметры запуска приложения.
 
 ## Использование
 
-Для загрузки в сервисы используйте PNG или JPEG. Для вёрстки и масштабирования используйте SVG. Сохраняйте пропорции знака и поля аватаров. Не растягивайте пиксельный знак по одной оси.
+Для загрузки в сервисы используйте PNG или JPEG. Для вёрстки и масштабирования используйте SVG. Сохраняйте пропорции знака и поля аватаров. Фон статичен.
 
-SVG содержат векторные контуры и градиенты без внешних изображений, шрифтов и скриптов. В прозрачных PNG все просветы между перьями, внутри перьев и вокруг птицы также прозрачны.
+SVG содержат векторные контуры и градиенты без внешних изображений, шрифтов и скриптов. Набор не меняет исходный код приложения и не подключает графику к сервисам автоматически.

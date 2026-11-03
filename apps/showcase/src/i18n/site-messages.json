@@ -40,7 +40,6 @@
     "Explore Flutter": "探索Flutter",
     "Explore React": "探索React",
     "Explore Want Allure: shared design tokens, React and Flutter components, typography, motion and brand resources. Try both UI kits and install the matching packages.": "探索 Want Allure：共享设计令牌、React 和 Flutter 组件、排版、动作和品牌资源。尝试两个 UI kit 并安装匹配的软件包。",
-    "Explore every component in light and dark themes.": "探索浅色和深色主题中的每个组件。",
     "Explore records, sorting, pagination and file selection.": "探索记录、排序、分页和文件选择。",
     "Feedback": "反馈意见",
     "ForUI-based Flutter components with native controls, Phosphor icons and shader effects.": "基于 ForUI 的 Flutter 组件，具有本机控件、Phosphor 图标和着色器效果。",
@@ -77,7 +76,6 @@
     "React components, local state and public package imports. Try the controls and their keyboard behavior.": "React 组件、本地状态和公共包导入。尝试控件及其键盘行为。",
     "Resume": "简历",
     "Right to left": "从右到左",
-    "See the details in action.": "查看实际操作的详细信息。",
     "Select and copy the command": "选择并复制命令",
     "Semantic colors, a complete type scale, local fonts and consistent geometry.": "语义颜色、完整的字体比例、本地字体和一致的几何形状。",
     "Shared colors, expressive type and considered motion. Build Want interfaces with components made for each framework.": "共享的颜色、富有表现力的类型和深思熟虑的动作。使用为每个框架制作的组件构建 Want 接口。",
@@ -95,7 +93,8 @@
     "Want Allure: React and Flutter UI kits, one design system": "Want Allure：React 和 Flutter UI kit，一套设计系统",
     "Who owns data and translations?": "谁拥有数据和翻译？",
     "Yes. The adapters share Want foundation tokens, typography and component families. Each uses the conventions of its own framework.": "是的。这些适配器共享 Want 基础令牌、排版和组件系列。每个都使用自己框架的约定。",
-    "Your application owns its data": "您的应用程序拥有其数据"
+    "Your application owns its data": "您的应用程序拥有其数据",
+    "See the details in action": "查看实际操作的详细信息"
   },
   "hi": {
     "3D logo. Drag or use arrow keys to rotate.": "3डी लोगो. घुमाने के लिए तीर कुंजियों को खींचें या उपयोग करें।",
@@ -138,7 +137,6 @@
     "Explore Flutter": "Flutter का अन्वेषण करें",
     "Explore React": "React का अन्वेषण करें",
     "Explore Want Allure: shared design tokens, React and Flutter components, typography, motion and brand resources. Try both UI kits and install the matching packages.": "Want Allure का अन्वेषण करें: साझा डिज़ाइन टोकन, React और Flutter घटक, टाइपोग्राफी, गति और ब्रांड संसाधन। दोनों UI kit आज़माएं और मिलान पैकेज स्थापित करें।",
-    "Explore every component in light and dark themes.": "प्रकाश और अंधेरे विषयों में प्रत्येक घटक का अन्वेषण करें।",
     "Explore records, sorting, pagination and file selection.": "रिकॉर्ड, सॉर्टिंग, पेजिनेशन और फ़ाइल चयन का अन्वेषण करें।",
     "Feedback": "प्रतिक्रिया",
     "ForUI-based Flutter components with native controls, Phosphor icons and shader effects.": "देशी नियंत्रण, Phosphor आइकन और शेडर प्रभाव के साथ ForUI-आधारित Flutter घटक।",
@@ -175,7 +173,6 @@
     "React components, local state and public package imports. Try the controls and their keyboard behavior.": "React घटक, स्थानीय राज्य और सार्वजनिक पैकेज आयात। नियंत्रणों और उनके कीबोर्ड व्यवहार को आज़माएँ।",
     "Resume": "बायोडाटा",
     "Right to left": "दाएं से बाएं",
-    "See the details in action.": "कार्रवाई में विवरण देखें.",
     "Select and copy the command": "कमांड को चुनें और कॉपी करें",
     "Semantic colors, a complete type scale, local fonts and consistent geometry.": "सिमेंटिक रंग, एक पूर्ण प्रकार का पैमाना, स्थानीय फ़ॉन्ट और सुसंगत ज्यामिति।",
     "Shared colors, expressive type and considered motion. Build Want interfaces with components made for each framework.": "साझा रंग, अभिव्यंजक प्रकार और सुविचारित गति। प्रत्येक ढांचे के लिए बनाए गए घटकों के साथ Want इंटरफेस बनाएं।",
@@ -193,7 +190,8 @@
     "Want Allure: React and Flutter UI kits, one design system": "Want Allure: React और Flutter UI kits, एक डिज़ाइन प्रणाली",
     "Who owns data and translations?": "डेटा और अनुवाद का स्वामी कौन है?",
     "Yes. The adapters share Want foundation tokens, typography and component families. Each uses the conventions of its own framework.": "हाँ. एडेप्टर Want फाउंडेशन टोकन, टाइपोग्राफी और घटक परिवारों को साझा करते हैं। प्रत्येक अपने स्वयं के ढाँचे की परंपराओं का उपयोग करता है।",
-    "Your application owns its data": "आपका एप्लिकेशन अपने डेटा का स्वामी है"
+    "Your application owns its data": "आपका एप्लिकेशन अपने डेटा का स्वामी है",
+    "See the details in action": "कार्रवाई में विवरण देखें"
   },
   "es": {
     "3D logo. Drag or use arrow keys to rotate.": "Logotipo 3D. Arrastre o use las teclas de flecha para rotar.",
@@ -236,7 +234,6 @@
     "Explore Flutter": "Explorar Flutter",
     "Explore React": "Explorar React",
     "Explore Want Allure: shared design tokens, React and Flutter components, typography, motion and brand resources. Try both UI kits and install the matching packages.": "Explore Want Allure: tokens de diseño compartidos, componentes React y Flutter, tipografía, movimiento y recursos de marca. Pruebe ambos UI kit e instale los paquetes correspondientes.",
-    "Explore every component in light and dark themes.": "Explora cada componente en temas claros y oscuros.",
     "Explore records, sorting, pagination and file selection.": "Explore registros, clasificación, paginación y selección de archivos.",
     "Feedback": "Comentarios",
     "ForUI-based Flutter components with native controls, Phosphor icons and shader effects.": "Componentes Flutter basados en ForUI con controles nativos, íconos Phosphor y efectos de sombreado.",
@@ -273,7 +270,6 @@
     "React components, local state and public package imports. Try the controls and their keyboard behavior.": "Componentes React, importaciones de paquetes locales, estatales y públicos. Pruebe los controles y el comportamiento del teclado.",
     "Resume": "Currículum",
     "Right to left": "De derecha a izquierda",
-    "See the details in action.": "Vea los detalles en acción.",
     "Select and copy the command": "Seleccione y copie el comando",
     "Semantic colors, a complete type scale, local fonts and consistent geometry.": "Colores semánticos, una escala tipográfica completa, fuentes locales y geometría consistente.",
     "Shared colors, expressive type and considered motion. Build Want interfaces with components made for each framework.": "Colores compartidos, tipo expresivo y movimiento considerado. Cree interfaces Want con componentes creados para cada marco.",
@@ -291,7 +287,8 @@
     "Want Allure: React and Flutter UI kits, one design system": "Want Allure: React y Flutter UI kit, un solo sistema de diseño",
     "Who owns data and translations?": "¿A quién pertenecen los datos y las traducciones?",
     "Yes. The adapters share Want foundation tokens, typography and component families. Each uses the conventions of its own framework.": "Sí. Los adaptadores comparten tokens básicos, tipografía y familias de componentes Want. Cada uno utiliza las convenciones de su propio marco.",
-    "Your application owns its data": "Tu aplicación es propietaria de sus datos."
+    "Your application owns its data": "Tu aplicación es propietaria de sus datos.",
+    "See the details in action": "Vea los detalles en acción"
   },
   "ar": {
     "3D logo. Drag or use arrow keys to rotate.": "شعار ثلاثي الأبعاد. اسحب أو استخدم مفاتيح الأسهم للتدوير.",
@@ -334,7 +331,6 @@
     "Explore Flutter": "اكتشف Flutter",
     "Explore React": "اكتشف React",
     "Explore Want Allure: shared design tokens, React and Flutter components, typography, motion and brand resources. Try both UI kits and install the matching packages.": "استكشف Want Allure: رموز التصميم المشتركة ومكونات React وFlutter والطباعة والحركة وموارد العلامة التجارية. جرب كلا الإصدارين UI kit وقم بتثبيت الحزم المطابقة.",
-    "Explore every component in light and dark themes.": "استكشف كل مكون في السمات الفاتحة والداكنة.",
     "Explore records, sorting, pagination and file selection.": "استكشاف السجلات والفرز وترقيم الصفحات واختيار الملفات.",
     "Feedback": "ردود الفعل",
     "ForUI-based Flutter components with native controls, Phosphor icons and shader effects.": "مكونات Flutter المستندة إلى ForUI مع عناصر تحكم أصلية وأيقونات Phosphor وتأثيرات التظليل.",
@@ -371,7 +367,6 @@
     "React components, local state and public package imports. Try the controls and their keyboard behavior.": "مكونات React والحالة المحلية وواردات الحزمة العامة. جرب عناصر التحكم وسلوك لوحة المفاتيح الخاصة بها.",
     "Resume": "استئناف",
     "Right to left": "من اليمين إلى اليسار",
-    "See the details in action.": "انظر التفاصيل في العمل.",
     "Select and copy the command": "حدد ونسخ الأمر",
     "Semantic colors, a complete type scale, local fonts and consistent geometry.": "الألوان الدلالية، ومقياس الكتابة الكامل، والخطوط المحلية والهندسة المتسقة.",
     "Shared colors, expressive type and considered motion. Build Want interfaces with components made for each framework.": "الألوان المشتركة والنوع المعبر والحركة المدروسة. قم ببناء واجهات Want بمكونات مصممة لكل إطار عمل.",
@@ -389,7 +384,8 @@
     "Want Allure: React and Flutter UI kits, one design system": "Want Allure: React وFlutter UI kits، نظام تصميم واحد",
     "Who owns data and translations?": "من يملك البيانات والترجمات؟",
     "Yes. The adapters share Want foundation tokens, typography and component families. Each uses the conventions of its own framework.": "نعم. تشترك المحولات في الرموز الأساسية Want والطباعة وعائلات المكونات. يستخدم كل منها اتفاقيات إطاره الخاص.",
-    "Your application owns its data": "يمتلك تطبيقك بياناته"
+    "Your application owns its data": "يمتلك تطبيقك بياناته",
+    "See the details in action": "انظر التفاصيل في العمل"
   },
   "fr": {
     "3D logo. Drag or use arrow keys to rotate.": "Logo 3D. Faites glisser ou utilisez les touches fléchées pour faire pivoter.",
@@ -432,7 +428,6 @@
     "Explore Flutter": "Explorer Flutter",
     "Explore React": "Explorer React",
     "Explore Want Allure: shared design tokens, React and Flutter components, typography, motion and brand resources. Try both UI kits and install the matching packages.": "Explorez Want Allure : jetons de conception partagés, composants React et Flutter, typographie, ressources de mouvement et de marque. Essayez les deux UI kit et installez les packages correspondants.",
-    "Explore every component in light and dark themes.": "Explorez chaque composant des thèmes clairs et sombres.",
     "Explore records, sorting, pagination and file selection.": "Explorez les enregistrements, le tri, la pagination et la sélection de fichiers.",
     "Feedback": "Commentaires",
     "ForUI-based Flutter components with native controls, Phosphor icons and shader effects.": "Composants Flutter basés sur ForUI avec commandes natives, icônes Phosphor et effets de shader.",
@@ -469,7 +464,6 @@
     "React components, local state and public package imports. Try the controls and their keyboard behavior.": "Composants React, importations d'état local et de packages publics. Essayez les commandes et leur comportement au clavier.",
     "Resume": "CV",
     "Right to left": "De droite à gauche",
-    "See the details in action.": "Voir les détails en action.",
     "Select and copy the command": "Sélectionnez et copiez la commande",
     "Semantic colors, a complete type scale, local fonts and consistent geometry.": "Des couleurs sémantiques, une échelle de caractères complète, des polices locales et une géométrie cohérente.",
     "Shared colors, expressive type and considered motion. Build Want interfaces with components made for each framework.": "Couleurs partagées, typographie expressive et mouvement réfléchi. Créez des interfaces Want avec des composants conçus pour chaque framework.",
@@ -487,7 +481,8 @@
     "Want Allure: React and Flutter UI kits, one design system": "Want Allure : React et Flutter UI kit, un système de conception",
     "Who owns data and translations?": "À qui appartiennent les données et les traductions ?",
     "Yes. The adapters share Want foundation tokens, typography and component families. Each uses the conventions of its own framework.": "Oui. Les adaptateurs partagent les jetons de base, la typographie et les familles de composants Want. Chacun utilise les conventions de son propre framework.",
-    "Your application owns its data": "Votre application est propriétaire de ses données"
+    "Your application owns its data": "Votre application est propriétaire de ses données",
+    "See the details in action": "Voir les détails en action"
   },
   "pt-BR": {
     "3D logo. Drag or use arrow keys to rotate.": "Logotipo 3D. Arraste ou use as teclas de seta para girar.",
@@ -530,7 +525,6 @@
     "Explore Flutter": "Explorar Flutter",
     "Explore React": "Explorar React",
     "Explore Want Allure: shared design tokens, React and Flutter components, typography, motion and brand resources. Try both UI kits and install the matching packages.": "Explore Want Allure: tokens de design compartilhados, componentes React e Flutter, tipografia, movimento e recursos de marca. Experimente os dois UI kits e instale os pacotes correspondentes.",
-    "Explore every component in light and dark themes.": "Explore todos os componentes em temas claros e escuros.",
     "Explore records, sorting, pagination and file selection.": "Explore registros, classificação, paginação e seleção de arquivos.",
     "Feedback": "Comentários",
     "ForUI-based Flutter components with native controls, Phosphor icons and shader effects.": "Componentes Flutter baseados em ForUI com controles nativos, ícones Phosphor e efeitos de shader.",
@@ -567,7 +561,6 @@
     "React components, local state and public package imports. Try the controls and their keyboard behavior.": "Componentes React, importações de pacotes públicos e estaduais locais. Experimente os controles e o comportamento do teclado.",
     "Resume": "Currículo",
     "Right to left": "Da direita para a esquerda",
-    "See the details in action.": "Veja os detalhes em ação.",
     "Select and copy the command": "Selecione e copie o comando",
     "Semantic colors, a complete type scale, local fonts and consistent geometry.": "Cores semânticas, escala de tipo completa, fontes locais e geometria consistente.",
     "Shared colors, expressive type and considered motion. Build Want interfaces with components made for each framework.": "Cores compartilhadas, tipo expressivo e movimento considerado. Construa interfaces Want com componentes feitos para cada estrutura.",
@@ -585,7 +578,8 @@
     "Want Allure: React and Flutter UI kits, one design system": "Want Allure: React e Flutter UI kits, um sistema de design",
     "Who owns data and translations?": "Quem possui dados e traduções?",
     "Yes. The adapters share Want foundation tokens, typography and component families. Each uses the conventions of its own framework.": "Sim. Os adaptadores compartilham tokens básicos Want, tipografia e famílias de componentes. Cada um usa as convenções de sua própria estrutura.",
-    "Your application owns its data": "Seu aplicativo possui seus dados"
+    "Your application owns its data": "Seu aplicativo possui seus dados",
+    "See the details in action": "Veja os detalhes em ação"
   },
   "de": {
     "3D logo. Drag or use arrow keys to rotate.": "3D-Logo. Ziehen Sie zum Drehen oder verwenden Sie die Pfeiltasten.",
@@ -628,7 +622,6 @@
     "Explore Flutter": "Entdecken Sie Flutter",
     "Explore React": "Entdecken Sie React",
     "Explore Want Allure: shared design tokens, React and Flutter components, typography, motion and brand resources. Try both UI kits and install the matching packages.": "Entdecken Sie Want Allure: gemeinsame Design-Tokens, React- und Flutter-Komponenten, Typografie, Bewegung und Markenressourcen. Probieren Sie beide UI kits aus und installieren Sie die passenden Pakete.",
-    "Explore every component in light and dark themes.": "Entdecken Sie jede Komponente in hellen und dunklen Themen.",
     "Explore records, sorting, pagination and file selection.": "Entdecken Sie Datensätze, Sortierung, Paginierung und Dateiauswahl.",
     "Feedback": "Rückmeldung",
     "ForUI-based Flutter components with native controls, Phosphor icons and shader effects.": "ForUI-basierte Flutter-Komponenten mit nativen Steuerelementen, Phosphor-Symbolen und Shader-Effekten.",
@@ -665,7 +658,6 @@
     "React components, local state and public package imports. Try the controls and their keyboard behavior.": "React-Komponenten, lokaler Status und öffentliche Paketimporte. Probieren Sie die Steuerelemente und ihr Tastaturverhalten aus.",
     "Resume": "Lebenslauf",
     "Right to left": "Von rechts nach links",
-    "See the details in action.": "Sehen Sie die Details in Aktion.",
     "Select and copy the command": "Wählen Sie den Befehl aus und kopieren Sie ihn",
     "Semantic colors, a complete type scale, local fonts and consistent geometry.": "Semantische Farben, eine vollständige Schriftskala, lokale Schriftarten und konsistente Geometrie.",
     "Shared colors, expressive type and considered motion. Build Want interfaces with components made for each framework.": "Gemeinsame Farben, ausdrucksstarker Typ und durchdachte Bewegung. Erstellen Sie Want-Schnittstellen mit Komponenten, die für jedes Framework erstellt wurden.",
@@ -683,7 +675,8 @@
     "Want Allure: React and Flutter UI kits, one design system": "Want Allure: React und Flutter UI kits, ein Designsystem",
     "Who owns data and translations?": "Wem gehören Daten und Übersetzungen?",
     "Yes. The adapters share Want foundation tokens, typography and component families. Each uses the conventions of its own framework.": "Ja. Die Adapter teilen sich Want-Grundlagentoken, Typografie und Komponentenfamilien. Jeder nutzt die Konventionen seines eigenen Frameworks.",
-    "Your application owns its data": "Ihre Anwendung ist Eigentümer ihrer Daten"
+    "Your application owns its data": "Ihre Anwendung ist Eigentümer ihrer Daten",
+    "See the details in action": "Sehen Sie die Details in Aktion"
   },
   "ja": {
     "3D logo. Drag or use arrow keys to rotate.": "3Dロゴ。ドラッグするか、矢印キーを使用して回転します。",
@@ -726,7 +719,6 @@
     "Explore Flutter": "Flutter を探索する",
     "Explore React": "React を探索する",
     "Explore Want Allure: shared design tokens, React and Flutter components, typography, motion and brand resources. Try both UI kits and install the matching packages.": "Want Allure を探索してください: 共有デザイン トークン、React および Flutter コンポーネント、タイポグラフィ、モーション、およびブランド リソース。両方の UI kit を試し、一致するパッケージをインストールします。",
-    "Explore every component in light and dark themes.": "明るいテーマと暗いテーマのすべてのコンポーネントを探索します。",
     "Explore records, sorting, pagination and file selection.": "レコードの探索、並べ替え、ページネーション、ファイルの選択。",
     "Feedback": "フィードバック",
     "ForUI-based Flutter components with native controls, Phosphor icons and shader effects.": "ネイティブ コントロール、Phosphor アイコン、シェーダー エフェクトを備えた ForUI ベースの Flutter コンポーネント。",
@@ -763,7 +755,6 @@
     "React components, local state and public package imports. Try the controls and their keyboard behavior.": "React コンポーネント、ローカル状態およびパブリック パッケージのインポート。コントロールとそのキーボードの動作を試してください。",
     "Resume": "再開",
     "Right to left": "右から左へ",
-    "See the details in action.": "実際の動作の詳細をご覧ください。",
     "Select and copy the command": "コマンドを選択してコピーします",
     "Semantic colors, a complete type scale, local fonts and consistent geometry.": "セマンティックカラー、完全なタイプスケール、ローカルフォント、一貫したジオメトリ。",
     "Shared colors, expressive type and considered motion. Build Want interfaces with components made for each framework.": "共通の色、表現力豊かなタイプ、考慮された動き。各フレームワーク用に作成されたコンポーネントを使用して Want インターフェイスを構築します。",
@@ -781,7 +772,8 @@
     "Want Allure: React and Flutter UI kits, one design system": "Want Allure: React および Flutter UI kit、1 つの設計システム",
     "Who owns data and translations?": "データと翻訳の所有者は誰ですか?",
     "Yes. The adapters share Want foundation tokens, typography and component families. Each uses the conventions of its own framework.": "はい。アダプターは、Want 基盤トークン、タイポグラフィー、およびコンポーネント ファミリを共有します。それぞれが独自のフレームワークの規則を使用します。",
-    "Your application owns its data": "アプリケーションはそのデータを所有します"
+    "Your application owns its data": "アプリケーションはそのデータを所有します",
+    "See the details in action": "実際の動作の詳細をご覧ください"
   },
   "tr": {
     "3D logo. Drag or use arrow keys to rotate.": "3 boyutlu logo. Döndürmek için sürükleyin veya ok tuşlarını kullanın.",
@@ -824,7 +816,6 @@
     "Explore Flutter": "Flutter'yi keşfedin",
     "Explore React": "React'yi keşfedin",
     "Explore Want Allure: shared design tokens, React and Flutter components, typography, motion and brand resources. Try both UI kits and install the matching packages.": "Want Allure'yi keşfedin: paylaşılan tasarım belirteçleri, React ve Flutter bileşenleri, tipografi, hareket ve marka kaynakları. Her iki UI kit'yi de deneyin ve eşleşen paketleri yükleyin.",
-    "Explore every component in light and dark themes.": "Açık ve koyu temalardaki her bileşeni keşfedin.",
     "Explore records, sorting, pagination and file selection.": "Kayıtları, sıralamayı, sayfalandırmayı ve dosya seçimini keşfedin.",
     "Feedback": "Geribildirim",
     "ForUI-based Flutter components with native controls, Phosphor icons and shader effects.": "Yerel kontrollere, Phosphor simgelerine ve gölgelendirici efektlerine sahip ForUI tabanlı Flutter bileşenleri.",
@@ -861,7 +852,6 @@
     "React components, local state and public package imports. Try the controls and their keyboard behavior.": "React bileşenleri, yerel eyalet ve genel paket ithalatları. Denetimleri ve klavye davranışlarını deneyin.",
     "Resume": "Devam et",
     "Right to left": "Sağdan sola",
-    "See the details in action.": "Ayrıntıları çalışırken görün.",
     "Select and copy the command": "Komutu seçip kopyalayın",
     "Semantic colors, a complete type scale, local fonts and consistent geometry.": "Anlamsal renkler, eksiksiz bir yazı ölçeği, yerel yazı tipleri ve tutarlı geometri.",
     "Shared colors, expressive type and considered motion. Build Want interfaces with components made for each framework.": "Paylaşılan renkler, etkileyici yazı ve düşünülmüş hareket. Her çerçeve için oluşturulmuş bileşenlerle Want arayüzleri oluşturun.",
@@ -879,7 +869,8 @@
     "Want Allure: React and Flutter UI kits, one design system": "Want Allure: React ve Flutter UI kit'ler, tek tasarım sistemi",
     "Who owns data and translations?": "Verilerin ve çevirilerin sahibi kim?",
     "Yes. The adapters share Want foundation tokens, typography and component families. Each uses the conventions of its own framework.": "Evet. Bağdaştırıcılar Want temel belirteçlerini, tipografiyi ve bileşen ailelerini paylaşır. Her biri kendi çerçevesinin kurallarını kullanır.",
-    "Your application owns its data": "Uygulamanız kendi verilerine sahiptir"
+    "Your application owns its data": "Uygulamanız kendi verilerine sahiptir",
+    "See the details in action": "Ayrıntıları çalışırken görün"
   },
   "he": {
     "3D logo. Drag or use arrow keys to rotate.": "לוגו תלת מימד. גרור או השתמש במקשי החצים כדי לסובב.",
@@ -922,7 +913,6 @@
     "Explore Flutter": "חקור את Flutter",
     "Explore React": "חקור את React",
     "Explore Want Allure: shared design tokens, React and Flutter components, typography, motion and brand resources. Try both UI kits and install the matching packages.": "חקור את Want Allure: אסימוני עיצוב משותפים, רכיבי React ו-Flutter, טיפוגרפיה, משאבי תנועה ומותג. נסה את שני ה-UI kits והתקן את החבילות התואמות.",
-    "Explore every component in light and dark themes.": "חקור כל רכיב בנושאים בהירים וחשוכים.",
     "Explore records, sorting, pagination and file selection.": "חקור רשומות, מיון, עימוד ובחירת קבצים.",
     "Feedback": "משוב",
     "ForUI-based Flutter components with native controls, Phosphor icons and shader effects.": "רכיבי Flutter מבוססי ForUI עם פקדים מקוריים, סמלי Phosphor ואפקטי הצללה.",
@@ -959,7 +949,6 @@
     "React components, local state and public package imports. Try the controls and their keyboard behavior.": "רכיבי React, יבוא חבילות מקומיות וציבוריות. נסה את הפקדים ואת התנהגות המקלדת שלהם.",
     "Resume": "קורות חיים",
     "Right to left": "מימין לשמאל",
-    "See the details in action.": "ראה את הפרטים בפעולה.",
     "Select and copy the command": "בחר והעתק את הפקודה",
     "Semantic colors, a complete type scale, local fonts and consistent geometry.": "צבעים סמנטיים, סולם סוג שלם, גופנים מקומיים וגיאומטריה עקבית.",
     "Shared colors, expressive type and considered motion. Build Want interfaces with components made for each framework.": "צבעים משותפים, סוג אקספרסיבי ותנועה שקולה. בנו ממשקי Want עם רכיבים שנעשו עבור כל מסגרת.",
@@ -977,7 +966,8 @@
     "Want Allure: React and Flutter UI kits, one design system": "Want Allure: React ו-Flutter UI kit, מערכת עיצוב אחת",
     "Who owns data and translations?": "למי יש נתונים ותרגומים?",
     "Yes. The adapters share Want foundation tokens, typography and component families. Each uses the conventions of its own framework.": "כן. המתאמים חולקים אסימוני יסוד של Want, טיפוגרפיה ומשפחות רכיבים. כל אחד משתמש במוסכמות של המסגרת שלו.",
-    "Your application owns its data": "האפליקציה שלך היא הבעלים של הנתונים שלה"
+    "Your application owns its data": "האפליקציה שלך היא הבעלים של הנתונים שלה",
+    "See the details in action": "ראה את הפרטים בפעולה"
   },
   "ru": {
     "3D logo. Drag or use arrow keys to rotate.": "3D логотип. Перетащите или используйте клавиши со стрелками для вращения.",
@@ -1020,7 +1010,6 @@
     "Explore Flutter": "Смотреть Flutter",
     "Explore React": "Смотреть React",
     "Explore Want Allure: shared design tokens, React and Flutter components, typography, motion and brand resources. Try both UI kits and install the matching packages.": "Want Allure объединяет дизайн-токены, компоненты React и Flutter, типографику, анимации и фирменную графику. Изучите оба UI-кита и установите совместимые пакеты.",
-    "Explore every component in light and dark themes.": "Изучите каждый компонент в светлой и тёмной темах.",
     "Explore records, sorting, pagination and file selection.": "Исследуйте записи, сортируйте их, разбивайте на страницы и выбирайте файлы.",
     "Feedback": "Обратная связь",
     "ForUI-based Flutter components with native controls, Phosphor icons and shader effects.": "Компоненты Flutter на ForUI с нативным поведением, иконками Phosphor и шейдерами.",
@@ -1057,7 +1046,6 @@
     "React components, local state and public package imports. Try the controls and their keyboard behavior.": "Компоненты React, локальное состояние и публичные импорты пакетов. Проверьте элементы и работу с клавиатурой.",
     "Resume": "Резюме",
     "Right to left": "Справа налево",
-    "See the details in action.": "Посмотрите, как это работает.",
     "Select and copy the command": "Выделите и скопируйте команду",
     "Semantic colors, a complete type scale, local fonts and consistent geometry.": "Семантические цвета, полная шкала типографики, локальные шрифты и единая геометрия.",
     "Shared colors, expressive type and considered motion. Build Want interfaces with components made for each framework.": "Общие цвета, выразительная типографика и продуманная анимация. Создавайте интерфейсы Want с компонентами для своего фреймворка.",
@@ -1075,6 +1063,7 @@
     "Want Allure: React and Flutter UI kits, one design system": "Want Allure: UI-киты React и Flutter, единая дизайн-система",
     "Who owns data and translations?": "Кто управляет данными и переводами?",
     "Yes. The adapters share Want foundation tokens, typography and component families. Each uses the conventions of its own framework.": "Да. Адаптеры используют общие токены Want, типографику и семейства компонентов. Каждый следует соглашениям своего фреймворка.",
-    "Your application owns its data": "Ваше приложение владеет своими данными"
+    "Your application owns its data": "Ваше приложение владеет своими данными",
+    "See the details in action": "Посмотрите, как это работает"
   }
 }

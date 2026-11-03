@@ -40,7 +40,7 @@ const schema = [{ '@context': 'https://schema.org', '@type': 'WebSite', name: 'W
     <SiteHeader locale={locale} section={section} notFound={notFound} client:load />
     <noscript><nav class="site-noscript" aria-label={c.language}>{locales.map(language=><a href={route(language,section)}>{localeNames[language]}</a>)}</nav></noscript>
     <main id="main" class:list={{ 'flutter-main': frame }} tabindex="-1"><slot /></main>
-    {!frame && <footer class="site-footer"><a class="footer-credit" href="https://t.me/andrey_krasheninnikov" target="_blank" rel="noopener noreferrer">2026 (C) Want Foundation by Andrey Krasheninnikov</a><a href="mailto:allure@want.foundation">allure@want.foundation</a><a href="https://github.com/andrey-krasheninnikov/want-allure">{c.source}</a><a href="https://github.com/andrey-krasheninnikov/want-allure/blob/main/LICENSE">{c.license}</a><a href="https://www.npmjs.com/package/@want-foundation/allure-react">npm</a><a href="https://pub.dev/packages/want_allure">pub.dev</a></footer>}
+    {!frame && <footer class="site-footer"><a class="footer-credit" href="https://t.me/andrey_krasheninnikov" target="_blank" rel="noopener noreferrer">2026 © Want Foundation by Andrey Krasheninnikov</a><a href="mailto:allure@want.foundation">allure@want.foundation</a><a href="https://github.com/andrey-krasheninnikov/want-allure">{c.source}</a><a href="https://github.com/andrey-krasheninnikov/want-allure/blob/main/LICENSE">{c.license}</a><a href="https://www.npmjs.com/package/@want-foundation/allure-react">npm</a><a href="https://pub.dev/packages/want_allure">pub.dev</a></footer>}
     <script>
       import '../theme';
     </script>

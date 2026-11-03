@@ -1,18 +1,16 @@
 {
   "name": "Want Allure",
-  "short_name": "Allure",
+  "short_name": "Want Allure",
   "icons": [
     {
       "src": "favicon-192.png",
       "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any"
+      "type": "image/png"
     },
     {
       "src": "favicon-512.png",
       "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any"
+      "type": "image/png"
     },
     {
       "src": "maskable-512.png",
@@ -21,6 +19,6 @@
       "purpose": "maskable"
     }
   ],
-  "theme_color": "#5962F0",
-  "background_color": "#FFFFFF"
+  "theme_color": "#F6F5F3",
+  "background_color": "#F6F5F3"
 }

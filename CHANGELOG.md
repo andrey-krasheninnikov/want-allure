@@ -2,7 +2,7 @@
 
 ## 1.2.0
 
-- Add a guided framework and installation flow, an orbital selector, automatic logo rotation, letter flames and twelve interface languages.
+- Add a guided framework and installation flow, an orbital selector, automatic logo rotation, letter halos and twelve interface languages.
 - Add Flutter SVG extrusion with asset, string and asynchronous builder sources, cached meshes and reduced-motion support.
 - Align toast content and table cells, animate page rows, and refine card actions in both adapters.
 - Bundle Chinese, Devanagari and Hebrew fonts and add an opaque favicon background.
@@ -16,7 +16,7 @@
 
 - Fix the default multiline field limit so the textarea can grow from its minimum height.
 
-- Add Want Allure peacock logos and backgrounds while preserving existing resource paths.
+- Add Want Allure pixel feather logos and backgrounds while preserving existing resource paths.
 - Combine the Astro landing page and React/Flutter catalogues in one bilingual web application.
 - Share theme and language navigation, and prepare localized search and social metadata.
 

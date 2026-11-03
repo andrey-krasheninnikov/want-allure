@@ -185,52 +185,60 @@ void main() {
     await tester.pumpWidget(const SizedBox.shrink());
     await tester.pump(const Duration(seconds: 1));
   });
-  testWidgets('brand SVG preserves every touching pixel rectangle', (
-    tester,
-  ) async {
-    final source = await rootBundle.loadString(
-      'packages/want_allure/assets/brand/allure/logos/dark/transparent.svg',
-    );
-    final rectangles = RegExp(r'M([0-9]+) ([0-9]+)H([0-9]+)V([0-9]+)H')
-        .allMatches(source);
-    var expected = 0.0;
-    for (final rect in rectangles) {
-      expected +=
-          (double.parse(rect[3]!) - double.parse(rect[1]!)) *
-          (double.parse(rect[4]!) - double.parse(rect[2]!)) *
-          .0009;
-    }
-    expect(rectangles.length, greaterThan(50));
-    await tester.pumpWidget(
-      harness(
-        SizedBox(
-          width: 300,
-          height: 300,
-          child: WantSvg3D.string(
-            source,
-            semanticsLabel: 'Brand',
-            paused: true,
+  testWidgets(
+    'brand feather preserves every pixel segment at its viewBox scale',
+    (tester) async {
+      final source = await rootBundle.loadString(
+        'packages/want_allure/assets/brand/allure/logos/dark/transparent.svg',
+      );
+      final rectangles = RegExp(
+        r'M([0-9]+) ([0-9]+)\s*H([0-9]+)\s*V([0-9]+)\s*H',
+      ).allMatches(source);
+      final box = RegExp(r'viewBox="0 0 ([0-9]+) ([0-9]+)"')
+          .firstMatch(source)!;
+      final width = double.parse(box[1]!), height = double.parse(box[2]!);
+      final scale = 2 / (width > height ? width : height);
+      var expected = 0.0;
+      for (final rect in rectangles) {
+        expected +=
+            (double.parse(rect[3]!) - double.parse(rect[1]!)) *
+            (double.parse(rect[4]!) - double.parse(rect[2]!)) *
+            scale *
+            scale;
+      }
+      expect(rectangles.length, 39);
+      expect(expected, closeTo(.82421875, .0001));
+      await tester.pumpWidget(
+        harness(
+          SizedBox(
+            width: 300,
+            height: 300,
+            child: WantSvg3D.string(
+              source,
+              semanticsLabel: 'Brand',
+              paused: true,
+            ),
           ),
         ),
-      ),
-    );
-    await tester.pump();
-    var actual = 0.0;
-    for (final face
-        in tester
-            .widget<DiTreDi>(find.byType(DiTreDi))
-            .figures
-            .whereType<Face3D>()) {
-      final a = face.triangle.point0,
-          b = face.triangle.point1,
-          c = face.triangle.point2;
-      if ([a, b, c].every((point) => (point.z - .12).abs() < .0001)) {
-        actual +=
-            ((b.x - a.x) * (c.y - a.y) - (b.y - a.y) * (c.x - a.x)).abs() / 2;
+      );
+      await tester.pump();
+      var actual = 0.0;
+      for (final face
+          in tester
+              .widget<DiTreDi>(find.byType(DiTreDi))
+              .figures
+              .whereType<Face3D>()) {
+        final a = face.triangle.point0,
+            b = face.triangle.point1,
+            c = face.triangle.point2;
+        if ([a, b, c].every((point) => (point.z - .12).abs() < .0001)) {
+          actual +=
+              ((b.x - a.x) * (c.y - a.y) - (b.y - a.y) * (c.x - a.x)).abs() / 2;
+        }
       }
-    }
-    expect(actual, closeTo(expected, .001));
-    await tester.pumpWidget(const SizedBox.shrink());
-    await tester.pump(const Duration(seconds: 1));
-  });
+      expect(actual, closeTo(expected, .001));
+      await tester.pumpWidget(const SizedBox.shrink());
+      await tester.pump(const Duration(seconds: 1));
+    },
+  );
 }

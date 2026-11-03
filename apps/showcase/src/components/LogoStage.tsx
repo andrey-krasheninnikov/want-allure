@@ -15,6 +15,9 @@ export default function LogoStage({locale,framework}:{locale:Locale;framework?:'
         const [THREE,{SVGLoader},response]=await Promise.all([import('./logo-three'),import('three/addons/loaders/SVGLoader.js'),fetch(framework?`/brand/frameworks/${framework}.svg`:'/brand/logos/dark/transparent.svg',{signal:abort.signal})]);
         if(!response.ok)throw new Error('Logo asset unavailable');
         const source=await response.text();if(disposed)return;
+        const svg=new DOMParser().parseFromString(source,'image/svg+xml').documentElement;
+        const viewBox=(svg.getAttribute('viewBox')??'0 0 100 100').trim().split(/[\s,]+/).map(Number);
+        const depth=framework?2:Math.max(viewBox[2],viewBox[3])*.054;
         const renderer=new THREE.WebGLRenderer({alpha:true,antialias:true,powerPreference:'low-power'});
         renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.setClearColor(0x000000,0);renderer.domElement.setAttribute('aria-hidden','true');
         const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(34,1,.1,100);camera.position.z=5.8;
@@ -23,7 +26,7 @@ export default function LogoStage({locale,framework}:{locale:Locale;framework?:'
         const side=new THREE.MeshStandardMaterial({color:0x5962f0,roughness:.3,metalness:.4});
         const model=new THREE.Group(),pivot=new THREE.Group(),geometries:InstanceType<typeof THREE.ExtrudeGeometry>[]=[],materials:InstanceType<typeof THREE.MeshStandardMaterial>[]=[side];
         for(const path of new SVGLoader().parse(source).paths)for(const shape of path.toShapes()){
-          const geometry=new THREE.ExtrudeGeometry(shape,{depth:framework?2:110,bevelEnabled:false,steps:1,curveSegments:framework?32:1});
+          const geometry=new THREE.ExtrudeGeometry(shape,{depth,bevelEnabled:false,steps:1,curveSegments:framework?32:1});
           const face=new THREE.MeshStandardMaterial({color:path.color,roughness:.3,metalness:.3,emissive:path.color,emissiveIntensity:.12});
           materials.push(face);geometries.push(geometry);model.add(new THREE.Mesh(geometry,[face,side]));
         }
