@@ -1,0 +1,20 @@
+http:
+  routers:
+    allure:
+      rule: 'Host(`allure.want.foundation`)'
+      entryPoints: [websecure]
+      middlewares: [allure-headers]
+      service: allure
+      tls:
+        certResolver: letsencrypt
+  services:
+    allure:
+      loadBalancer:
+        servers:
+          - url: http://allure:8080
+  middlewares:
+    allure-headers:
+      headers:
+        stsSeconds: 86400
+        stsIncludeSubdomains: false
+        stsPreload: false
