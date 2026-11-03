@@ -13,7 +13,7 @@ for (const width of [320, 768, 1024, 1440]) test('visual system works at ' + wid
   await page.emulateMedia({ colorScheme: dark ? 'dark' : 'light', reducedMotion: reduced ? 'reduce' : 'no-preference' });
   const media = await page.context().newCDPSession(page);
   const features = [{ name: 'prefers-color-scheme', value: dark ? 'dark' : 'light' }, { name: 'prefers-reduced-motion', value: reduced ? 'reduce' : 'no-preference' }];
-  await page.goto('/');
+  await page.goto('/react/');
   await expect(page.locator('astro-island[ssr]')).toHaveCount(0, { timeout: 15000 });
   await page.evaluate(() => document.fonts.ready);
   if (dark) await page.getByRole('button', { name: 'Toggle RTL' }).click();

@@ -78,6 +78,12 @@ try {
   ].join('\n'));
   run('node', ['node_modules/typescript/bin/tsc', '--noEmit', '--strict', '--skipLibCheck', '--jsx', 'react-jsx', '--module', 'ESNext', '--moduleResolution', 'Bundler', '--target', 'ES2022', '--resolveJsonModule', 'check.tsx']);
   const foundation = join(directory, 'node_modules/@want-foundation/allure');
+  for (const theme of ['light', 'dark']) {
+    const asset = join(foundation, `dist/assets/allure/logos/${theme}/transparent.svg`);
+    assert((await stat(asset)).size > 0);
+    const resolved = run('node', ['--input-type=module', '-e', `console.log(import.meta.resolve('@want-foundation/allure/assets/allure/logos/${theme}/transparent.svg'))`]);
+    assert(resolved.includes(`/dist/assets/allure/logos/${theme}/transparent.svg`));
+  }
   const skillDestination = join(directory, 'installed skills');
   const installCommand = ['--offline', '--yes', `--package=@want-foundation/allure@${version}`, 'want-design-install'];
   assert(run('npx', [...installCommand, '--dest', skillDestination]).includes('Installed:'));
@@ -99,10 +105,11 @@ try {
   await writeFile(join(directory, 'index.html'), '<!doctype html><html lang="en"><head><title>Package consumer</title></head><body><div id="root"></div><script type="module" src="/main.tsx"></script></body></html>');
   await writeFile(join(directory, 'main.tsx'), [
     "import React from 'react'; import { createRoot } from 'react-dom/client';",
+    "import logo from '@want-foundation/allure/assets/allure/logos/light/transparent.svg?url';",
     "import { Button, DateField, UrlField, Window } from '@want-foundation/allure-react';",
     "import '@want-foundation/allure/styles.css'; import '@want-foundation/allure/fonts.css';",
     "const labels = { date: 'Date', datetime: 'Date and time', calendar: 'Calendar', year: 'Year', previousYear: 'Previous year', previousMonth: 'Previous month', nextMonth: 'Next month', nextYear: 'Next year', hours: 'Hours', minutes: 'Minutes', today: 'Today', clear: 'Clear', apply: 'Apply' };",
-    "createRoot(document.getElementById('root')!).render(<Window title='Consumer window'><DateField mode='date' value='2026-10-28' onChange={() => {}} locale='en-GB' labels={labels} /><UrlField label='URL' value='https://example.com' onChange={() => {}} openLabel='Open URL' /><Button>Independent consumer</Button></Window>);"
+    "createRoot(document.getElementById('root')!).render(<Window title='Consumer window'><img src={logo} alt='Allure' /><DateField mode='date' value='2026-10-28' onChange={() => {}} locale='en-GB' labels={labels} /><UrlField label='URL' value='https://example.com' onChange={() => {}} openLabel='Open URL' /><Button>Independent consumer</Button></Window>);"
   ].join('\n'));
   await build({ root: directory, configFile: false, logLevel: 'error' });
   console.log('Packed consumer passed: SSR, types, styles, local fonts/assets, standalone skill installation, one React instance and production web build.');

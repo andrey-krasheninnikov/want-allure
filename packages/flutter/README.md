@@ -9,7 +9,7 @@ ForUI-based Want components for Android, iOS, web, macOS, Windows and Linux. The
 Requires Flutter 3.47.7 and Dart 3.13.5 or newer.
 
 ```sh
-flutter pub add want_allure:^1.1.0
+flutter pub add want_allure:^1.2.0
 ```
 
 Use your existing application shell and localization setup. Apply WantTheme in the application builder so routes and overlays inherit the theme:
@@ -121,3 +121,19 @@ The example contains every component family with theme, RTL and motion controls.
 ## License
 
 MIT for the package source. Bundled fonts use the SIL Open Font License; complete texts are in licenses/. Dependencies and brand assets retain their own notices.
+
+## Allure artwork
+
+The package includes light/dark Allure logos and backgrounds alongside the existing Wallpapers asset:
+
+```dart
+WantBrandLogo.asset(
+  'assets/brand/allure/logos/light/transparent.svg',
+  package: 'want_allure',
+  label: 'Want Allure',
+)
+```
+
+Choose `logos/dark/transparent.svg` for a dark surface. Other supplied logo backgrounds and PNG variants retain their filenames. The background artwork is under `assets/brand/allure/backgrounds/brand-light.svg` and `brand-dark.svg`. Consumers choose the asset for their current theme; the public widget constructors are unchanged.
+
+The repository's bilingual web catalogue is served by Astro at `/flutter/` and `/ru/flutter/`. Its browser integration and translations belong to the example application. Installing the UI package does not add a router, stored preference or host-page integration to a consumer.

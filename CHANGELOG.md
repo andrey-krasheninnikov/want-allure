@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.2.0
+
+- Disable reduced-motion transitions completely so theme colors update together.
+
+- Fix the default multiline field limit so the textarea can grow from its minimum height.
+
+- Add Want Allure peacock logos and backgrounds while preserving existing resource paths.
+- Combine the Astro landing page and React/Flutter catalogues in one bilingual web application.
+- Share theme and language navigation, and prepare localized search and social metadata.
+
 ## 1.1.0
 
 - Refactor Flutter UI ownership into presentation libraries and strict barrel imports while preserving the public Want API.

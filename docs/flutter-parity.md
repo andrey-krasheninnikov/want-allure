@@ -1,6 +1,6 @@
 # Flutter component parity
 
-The 1.1.0 Flutter adapter covers every family exported by the React adapter. Flutter uses native widget composition and callbacks. React-only trigger, portal and content parts map to builders, slots and the framework overlay system.
+The 1.2.0 Flutter adapter covers every family exported by the React adapter. Flutter uses native widget composition and callbacks. React-only trigger, portal and content parts map to builders, slots and the framework overlay system.
 
 | Web family | Flutter API | Example section |
 | --- | --- | --- |
@@ -60,3 +60,5 @@ File selection uses the platform dialog. Native and web drop data passes through
 Optional effects never own product actions. The background controller has pause/resume/toggle and triggerWave. The widget owns and cancels animation resources and timers; consumers dispose controllers they create. Waves default to 8–18 second delays, preserving the separate background phase when restarted.
 
 The 1.1.0 release adds a presentation barrel tree, Phosphor icons, toastification delivery, smooth_sheets bottom sheets, web selection/find and bundled fragment shaders. Top/left/right sheets preserve their ForUI behavior. New APIs are additive; existing Want constructors, callback contracts and notification handles remain available.
+
+The 1.2.0 example adds English/Russian catalogues and Allure branding. Its web build participates in the unified Astro application; translations and host-page settings remain example-owned.

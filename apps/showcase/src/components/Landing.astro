@@ -1,0 +1,24 @@
+---
+import { copy, route, version, type Locale } from '../site';
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+const c = copy[locale];
+---
+<div class="landing">
+  <section class="landing-hero">
+    <div class="hero-copy"><p class="eyebrow">WANT FOUNDATION / ALLURE / {version}</p><h1>{c.headline}<br /><span>{c.headlineEnd}</span></h1><p class="hero-intro">{c.intro}</p>
+      <div class="landing-actions"><a class="site-button primary" href={route(locale, 'react')}>{c.react}<span aria-hidden="true">↗</span></a><a class="site-button" href={route(locale, 'flutter')}>{c.flutter}<span aria-hidden="true">↗</span></a></div>
+      <a class="text-link" href="#install">{c.install}</a>
+    </div>
+    <div class="hero-visual" aria-hidden="true"><img class="logo-light" src="/brand/logos/light/transparent.svg" alt="" width="480" height="480" fetchpriority="high" /><img class="logo-dark" src="/brand/logos/dark/transparent.svg" alt="" width="480" height="480" fetchpriority="high" /></div>
+  </section>
+  <section class="landing-section"><div class="section-heading"><p class="eyebrow">01 / {locale === 'ru' ? 'ОСНОВА' : 'FOUNDATION'}</p><h2>{c.overview}</h2><p>{c.overviewText}</p></div>
+    <div class="feature-grid">{[[c.foundation, c.foundationText, '01'], [c.components, c.componentsText, '02'], [c.motion, c.motionText, '03']].map(([title, text, number]) => <article><span class="feature-number" aria-hidden="true">{number}</span><h3>{title}</h3><p>{text}</p></article>)}</div>
+  </section>
+  <section class="landing-section" id="frameworks"><div class="section-heading"><p class="eyebrow">02 / {locale === 'ru' ? 'UI-КИТЫ' : 'UI KITS'}</p><h2>{c.choose}</h2></div>
+    <div class="framework-grid"><article><span class="framework-index" aria-hidden="true">R.</span><h3>React</h3><p>{c.reactText}</p><a class="site-button primary" href={route(locale, 'react')}>{c.react}<span aria-hidden="true">↗</span></a></article><article><span class="framework-index" aria-hidden="true">F.</span><h3>Flutter</h3><p>{c.flutterText}</p><a class="site-button primary" href={route(locale, 'flutter')}>{c.flutter}<span aria-hidden="true">↗</span></a></article></div>
+  </section>
+  <section class="landing-section install-section" id="install"><div class="section-heading"><p class="eyebrow">03 / {locale === 'ru' ? 'УСТАНОВКА' : 'INSTALL'}</p><h2>{c.install}</h2><p>{c.installText}</p></div><div class="install-grid"><div><h3>React</h3><pre><code>{`npm install @want-foundation/allure@${version} @want-foundation/allure-react@${version} react@^19 react-dom@^19`}</code></pre></div><div><h3>Flutter</h3><pre><code>{`flutter pub add want_allure:^${version}`}</code></pre></div></div></section>
+  <section class="landing-section faq-section"><div class="section-heading"><p class="eyebrow">04 / {locale === 'ru' ? 'ВОПРОСЫ' : 'FAQ'}</p><h2>{c.faq}</h2></div><div class="faq-list">{c.questions.map(([question, answer]) => <details><summary>{question}<span aria-hidden="true">+</span></summary><p>{answer}</p></details>)}</div></section>
+  <section class="landing-final"><h2>{c.final}</h2><p>{c.finalText}</p><div class="landing-actions"><a class="site-button primary" href={route(locale, 'react')}>{c.react}</a><a class="site-button" href={route(locale, 'flutter')}>{c.flutter}</a></div></section>
+</div>

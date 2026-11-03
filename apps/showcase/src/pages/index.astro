@@ -1,19 +1,5 @@
 ---
-import '@want-foundation/allure/styles.css';
-import '@want-foundation/allure/fonts.css';
-import '../styles.css';
-import logo from '@want-foundation/allure/assets/wallpapers.svg?url';
-import Showcase from '../components/Showcase';
+import SiteLayout from '../layouts/SiteLayout.astro';
+import Landing from '../components/Landing.astro';
 ---
-<!doctype html>
-<html lang="en" dir="ltr">
-<head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>Want Allure | UI kit</title><meta name="robots" content="noindex, nofollow" />
-<script is:inline>
-  let theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-  try { const saved = localStorage.getItem('want-theme'); if (saved === 'light' || saved === 'dark') theme = saved; } catch {}
-  document.documentElement.dataset.theme = theme;
-  document.documentElement.classList.toggle('dark', theme === 'dark');
-</script>
-</head>
-<body><div class="page-background" inert><div></div></div><a href="#main" class="skip-link">Skip to content</a><Showcase logo={logo} client:load /></body>
-</html>
+<SiteLayout locale="en"><Landing locale="en" /></SiteLayout>

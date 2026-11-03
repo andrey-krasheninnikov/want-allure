@@ -7,7 +7,7 @@ for (const width of [320, 1440]) {
     page.on('pageerror', error => errors.push(error.message));
     await page.setViewportSize({ width, height: 1000 });
     await page.emulateMedia({ colorScheme: width === 320 ? 'dark' : 'light', reducedMotion: width === 320 ? 'reduce' : 'no-preference' });
-    await page.goto('/');
+    await page.goto('/react/');
     await expect(page.locator('astro-island[ssr]')).toHaveCount(0, { timeout: 15000 });
     if (width === 320) await page.getByRole('button', { name: 'Toggle RTL' }).click();
 
@@ -108,7 +108,7 @@ for (const width of [320, 1440]) {
       URL.revokeObjectURL = url => { (window as unknown as { revoked: string[] }).revoked.push(url); original(url); };
     });
     await page.setViewportSize({ width, height: 900 });
-    await page.goto('/');
+    await page.goto('/react/');
     await expect(page.locator('astro-island[ssr]')).toHaveCount(0, { timeout: 15000 });
     if (width === 320) await page.getByRole('button', { name: 'Toggle RTL' }).click();
     const input = page.getByLabel('Attachments', { exact: true });

@@ -288,7 +288,7 @@ html[data-background-motion="running"] .page-background > div::after{ animation-
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
 }
 
 @layer components {

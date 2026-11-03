@@ -158,6 +158,27 @@ void main() {
     expect(find.text('Required'), findsOneWidget);
   });
 
+  testWidgets('textarea accepts multiline input and grows beyond its minimum', (
+    tester,
+  ) async {
+    var value = '';
+    await tester.pumpWidget(
+      harness(WantTextarea(onChanged: (next) => value = next)),
+    );
+    expect(tester.takeException(), isNull);
+    final before = tester.getSize(find.byType(WantTextarea));
+    await tester.enterText(
+      find.byType(EditableText),
+      'One\nTwo\nThree\nFour\nFive\nSix',
+    );
+    await tester.pump();
+    expect(value, 'One\nTwo\nThree\nFour\nFive\nSix');
+    expect(
+      tester.getSize(find.byType(WantTextarea)).height,
+      greaterThan(before.height),
+    );
+  });
+
   testWidgets(
     'select preserves disabled choices and returns the selected value',
     (tester) async {

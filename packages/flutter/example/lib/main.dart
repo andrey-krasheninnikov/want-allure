@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:material_ui/material_ui.dart' show MaterialApp, Scaffold;
 import 'package:want_allure/want_allure.dart';
+import 'package:want_allure_example/src/feature/catalogue/presentation/_barrel.dart';
 
 void main() => runApp(const WantCatalogue());
 
@@ -11,6 +12,34 @@ class WantCatalogue extends StatefulWidget {
 }
 
 class _WantCatalogueState extends State<WantCatalogue> {
+  late final CatalogueHost _host;
+  Locale _locale = const Locale('en');
+  CatalogueLocalizations get l => lookupCatalogueLocalizations(_locale);
+  @override
+  void initState() {
+    super.initState();
+    _host = CatalogueHost(
+      onSettings: (theme, locale) {
+        if (!mounted) return;
+        setState(() {
+          _brightness = theme == 'light' ? Brightness.light : Brightness.dark;
+          _locale = Locale(locale);
+        });
+      },
+    );
+    _brightness = _host.theme == 'light' ? Brightness.light : Brightness.dark;
+    _locale = Locale(_host.locale);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) _host.ready();
+    });
+  }
+
+  @override
+  void dispose() {
+    _host.dispose();
+    super.dispose();
+  }
+
   Brightness _brightness = Brightness.dark;
   bool _rtl = false, _reduced = false, _opaque = false;
   @override
@@ -21,8 +50,12 @@ class _WantCatalogueState extends State<WantCatalogue> {
     return MaterialApp(
       title: 'Want Allure · Flutter',
       debugShowCheckedModeBanner: false,
-      localizationsDelegates: FLocalizations.localizationsDelegates,
-      supportedLocales: FLocalizations.supportedLocales,
+      locale: _locale,
+      localizationsDelegates: [
+        CatalogueLocalizations.delegate,
+        ...FLocalizations.localizationsDelegates,
+      ],
+      supportedLocales: CatalogueLocalizations.supportedLocales,
       builder: (context, child) => WantTheme(
         data: theme,
         reduceMotion: _reduced ? true : null,
@@ -32,12 +65,13 @@ class _WantCatalogueState extends State<WantCatalogue> {
           child: WantWebScope(
             enableFind: const bool.fromEnvironment('WANT_ENABLE_FIND'),
             labels: WantFindLabels(
-              search: 'Find in catalogue',
-              previous: 'Previous match',
-              next: 'Next match',
-              close: 'Close find',
-              matchStatus: (active, count) =>
-                  count == 0 ? 'No matches' : 'Match ${active + 1} of $count',
+              search: l.findInCatalogue,
+              previous: l.previousMatch,
+              next: l.nextMatch,
+              close: l.closeFind,
+              matchStatus: (active, count) => count == 0
+                  ? l.noMatches
+                  : l.matchActiveOfCount(active + 1, count),
             ),
             child: WantToaster(child: child!),
           ),
@@ -52,6 +86,12 @@ class _WantCatalogueState extends State<WantCatalogue> {
               body: SafeArea(
                 child: _Gallery(
                   brightness: _brightness,
+                  embedded: _host.embedded,
+                  onLocale: () => setState(
+                    () => _locale = Locale(
+                      _locale.languageCode == 'en' ? 'ru' : 'en',
+                    ),
+                  ),
                   rtl: _rtl,
                   reduced: _reduced,
                   opaque: _opaque,
@@ -72,10 +112,14 @@ class _WantCatalogueState extends State<WantCatalogue> {
 class _Gallery extends StatefulWidget {
   final Brightness brightness;
   final bool rtl, reduced, opaque;
+  final bool embedded;
+  final VoidCallback onLocale;
   final ValueChanged<Brightness> onBrightness;
   final ValueChanged<bool> onRtl, onReduced, onOpaque;
   const _Gallery({
     required this.brightness,
+    required this.embedded,
+    required this.onLocale,
     required this.rtl,
     required this.reduced,
     required this.opaque,
@@ -89,6 +133,14 @@ class _Gallery extends StatefulWidget {
 }
 
 class _GalleryState extends State<_Gallery> {
+  CatalogueLocalizations get l => CatalogueLocalizations.of(context);
+  String _statusLabel(WantSnackbarVariant variant) => switch (variant) {
+    WantSnackbarVariant.error => l.error,
+    WantSnackbarVariant.warning => l.warning,
+    WantSnackbarVariant.info => l.info,
+    WantSnackbarVariant.success => l.success,
+  };
+
   final _background = WantBackgroundController();
   final _name = TextEditingController(text: 'Violet Horizon');
   final _url = TextEditingController(text: 'https://want.design');
@@ -114,7 +166,7 @@ class _GalleryState extends State<_Gallery> {
   void _message(String text) => showWantToast(
     context: context,
     title: Text(text),
-    closeLabel: 'Dismiss message',
+    closeLabel: l.dismissMessage,
   );
   Widget _section(String id, String title, Widget child) => Padding(
     key: ValueKey(id),
@@ -138,8 +190,8 @@ class _GalleryState extends State<_Gallery> {
   @override
   Widget build(BuildContext context) => WantBackgroundMotion(
     controller: _background,
-    pauseLabel: 'Pause background',
-    resumeLabel: 'Resume background',
+    pauseLabel: l.pauseBackground,
+    resumeLabel: l.resumeBackground,
     child: RawScrollbar(
       controller: _scroll,
       child: SingleChildScrollView(
@@ -152,30 +204,31 @@ class _GalleryState extends State<_Gallery> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               mainAxisSize: MainAxisSize.min,
               children: [
-                WantBrandLockup(
-                  name: 'Want Allure',
-                  subtitle: 'Flutter · ForUI · 1.1.0',
-                  logo: WantBrandLogo.asset(
-                    'assets/brand/wallpapers.svg',
-                    package: 'want_allure',
-                    label: 'Want Wallpapers',
+                if (!widget.embedded)
+                  WantBrandLockup(
+                    name: 'Want Allure',
+                    subtitle: 'Flutter · ForUI · 1.2.0',
+                    logo: WantBrandLogo.asset(
+                      widget.brightness == Brightness.dark
+                          ? 'assets/brand/allure/logos/dark/transparent.svg'
+                          : 'assets/brand/allure/logos/light/transparent.svg',
+                      package: 'want_allure',
+                      label: 'Want Allure',
+                    ),
+                    onPressed: () => _scroll.animateTo(
+                      0,
+                      duration: const Duration(milliseconds: 180),
+                      curve: Curves.easeOut,
+                    ),
                   ),
-                  onPressed: () => _scroll.animateTo(
-                    0,
-                    duration: const Duration(milliseconds: 180),
-                    curve: Curves.easeOut,
-                  ),
-                ),
                 const SizedBox(height: 32),
-                const WantTypography(
-                  'One Want. Every platform.',
+                WantTypography(
+                  l.oneWantEveryPlatform,
                   variant: WantTypographyVariant.display,
                 ),
                 const SizedBox(height: 16),
-                const WantProse(
-                  child: Text(
-                    'The same Want colors, controls and motion across web and Flutter. Explore components with keyboard, touch and pointer input.',
-                  ),
+                WantProse(
+                  child: Text(l.theSameWantColorsControlsAndMotionAcrossWeb),
                 ),
                 const SizedBox(height: 24),
                 _buttons([
@@ -183,21 +236,32 @@ class _GalleryState extends State<_Gallery> {
                     WantButton(
                       variant: WantButtonVariant.secondary,
                       onPressed: () => WantWebScope.openFind(context),
-                      child: const Row(
+                      child: Row(
                         mainAxisSize: MainAxisSize.min,
                         spacing: 8,
                         children: [
                           WantIcon(WantIcons.search),
-                          Text('Find · ⌘/Ctrl F'),
+                          Text(l.findCtrlF),
                         ],
                       ),
                     ),
-                  WantThemeToggle(
-                    brightness: widget.brightness,
-                    onChanged: widget.onBrightness,
-                    lightLabel: 'Use light theme',
-                    darkLabel: 'Use dark theme',
-                  ),
+                  if (!widget.embedded)
+                    WantButton(
+                      variant: WantButtonVariant.secondary,
+                      onPressed: widget.onLocale,
+                      child: Text(
+                        Localizations.localeOf(context).languageCode == 'en'
+                            ? l.switchToRussian
+                            : l.switchToEnglish,
+                      ),
+                    ),
+                  if (!widget.embedded)
+                    WantThemeToggle(
+                      brightness: widget.brightness,
+                      onChanged: widget.onBrightness,
+                      lightLabel: l.useLightTheme,
+                      darkLabel: l.useDarkTheme,
+                    ),
                   WantSwitch(
                     value: widget.rtl,
                     onChanged: widget.onRtl,
@@ -206,23 +270,23 @@ class _GalleryState extends State<_Gallery> {
                   WantSwitch(
                     value: widget.reduced,
                     onChanged: widget.onReduced,
-                    label: const Text('Reduce motion'),
+                    label: Text(l.reduceMotion),
                   ),
                   WantSwitch(
                     value: widget.opaque,
                     onChanged: widget.onOpaque,
-                    label: const Text('Opaque surfaces'),
+                    label: Text(l.opaqueSurfaces),
                   ),
                   WantButton(
                     variant: WantButtonVariant.secondary,
                     onPressed: () => setState(() => _paused = !_paused),
-                    child: Text(_paused ? 'Resume effects' : 'Pause effects'),
+                    child: Text(_paused ? l.resumeEffects : l.pauseEffects),
                   ),
                 ]),
                 const WantSeparator(space: 40),
                 _section(
                   'palette',
-                  'Palette',
+                  l.palette,
                   Wrap(
                     spacing: 12,
                     runSpacing: 12,
@@ -278,7 +342,7 @@ class _GalleryState extends State<_Gallery> {
                 ),
                 _section(
                   'typography',
-                  'Typography',
+                  l.typography,
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.min,
@@ -286,7 +350,9 @@ class _GalleryState extends State<_Gallery> {
                     children: [
                       for (final variant in WantTypographyVariant.values)
                         WantTypography(
-                          '${variant.name} · Want makes room for your content.',
+                          l.variantNameWantMakesRoomForYourContent(
+                            variant.name,
+                          ),
                           variant: variant,
                         ),
                       const WantTypography('日本語のインターフェース · واجهة واضحة'),
@@ -295,14 +361,15 @@ class _GalleryState extends State<_Gallery> {
                 ),
                 _section(
                   'buttons',
-                  'Buttons',
+                  l.buttons,
                   _buttons([
                     for (final variant in WantButtonVariant.values)
                       WantWand(
                         enabled: !_paused,
                         child: WantButton(
                           variant: variant,
-                          onPressed: () => _message('${variant.name} pressed'),
+                          onPressed: () =>
+                              _message(l.variantNamePressed(variant.name)),
                           child: Text(variant.name),
                         ),
                       ),
@@ -315,10 +382,10 @@ class _GalleryState extends State<_Gallery> {
                             ? const Icon(WantIcons.download)
                             : Text(size.name),
                       ),
-                    const WantButton(onPressed: null, child: Text('Disabled')),
+                    WantButton(onPressed: null, child: Text(l.disabled)),
                     WantButton(
-                      onPressed: () => _message('Download selected'),
-                      semanticsLabel: 'Download example',
+                      onPressed: () => _message(l.downloadSelected),
+                      semanticsLabel: l.downloadExample,
                       size: WantButtonSize.icon,
                       child: const Icon(WantIcons.download),
                     ),
@@ -326,32 +393,32 @@ class _GalleryState extends State<_Gallery> {
                 ),
                 _section(
                   'fields',
-                  'Fields, input and textarea',
+                  l.fieldsInputAndTextarea,
                   WantFieldGroup(
-                    legend: const Text('Local example'),
+                    legend: Text(l.localExample),
                     children: [
                       WantInput(
                         controller: _name,
-                        label: const Text('Title'),
-                        description: const Text('Editable local value.'),
+                        label: Text(l.title),
+                        description: Text(l.editableLocalValue),
                       ),
-                      const WantInput(
-                        label: Text('Invalid example'),
-                        error: Text('Enter a title.'),
+                      WantInput(
+                        label: Text(l.invalidExample),
+                        error: Text(l.enterATitle),
                         initialValue: '',
                       ),
-                      const WantInput(
-                        label: Text('Disabled example'),
+                      WantInput(
+                        label: Text(l.disabledExample),
                         enabled: false,
-                        initialValue: 'Contours of Silence',
+                        initialValue: l.contoursOfSilence,
                       ),
-                      const WantTextarea(
-                        label: Text('Description'),
-                        hint: 'Describe the preview',
+                      WantTextarea(
+                        label: Text(l.description),
+                        hint: l.describeThePreview,
                       ),
                       WantField(
-                        label: const Text('Field and label'),
-                        description: const Text('Consumer-owned helper text.'),
+                        label: Text(l.fieldAndLabel),
+                        description: Text(l.consumerOwnedHelperText),
                         child: WantInput(onChanged: (_) {}),
                       ),
                     ],
@@ -359,18 +426,18 @@ class _GalleryState extends State<_Gallery> {
                 ),
                 _section(
                   'selection',
-                  'Select, radio, checkbox and switch',
+                  l.selectRadioCheckboxAndSwitch,
                   WantFieldGroup(
                     children: [
                       WantSelect<String>(
                         value: _select,
-                        label: const Text('Format'),
-                        options: const [
-                          WantOption(value: 'desktop', label: 'Desktop'),
-                          WantOption(value: 'mobile', label: 'Mobile'),
+                        label: Text(l.format),
+                        options: [
+                          WantOption(value: 'desktop', label: l.desktop),
+                          WantOption(value: 'mobile', label: l.mobile),
                           WantOption(
                             value: 'disabled',
-                            label: 'Unavailable',
+                            label: l.unavailable,
                             disabled: true,
                           ),
                         ],
@@ -378,23 +445,23 @@ class _GalleryState extends State<_Gallery> {
                       ),
                       WantRadioGroup<String>(
                         value: _radio,
-                        semanticsLabel: 'Wallpaper orientation',
-                        options: const [
-                          WantOption(value: 'desktop', label: 'Desktop'),
-                          WantOption(value: 'mobile', label: 'Mobile'),
+                        semanticsLabel: l.wallpaperOrientation,
+                        options: [
+                          WantOption(value: 'desktop', label: l.desktop),
+                          WantOption(value: 'mobile', label: l.mobile),
                         ],
                         onChanged: (value) => setState(() => _radio = value),
                       ),
                       WantCheckbox(
                         value: _checkbox,
                         onChanged: (value) => setState(() => _checkbox = value),
-                        label: const Text('Include preview'),
-                        description: const Text('A controlled checkbox.'),
+                        label: Text(l.includePreview),
+                        description: Text(l.aControlledCheckbox),
                       ),
                       WantCheckbox(
                         value: _mixedValue,
                         indeterminate: _mixed,
-                        label: const Text('Mixed selection'),
+                        label: Text(l.mixedSelection),
                         onChanged: (value) => setState(() {
                           _mixed = false;
                           _mixedValue = value;
@@ -403,19 +470,19 @@ class _GalleryState extends State<_Gallery> {
                       WantSwitch(
                         value: _switch,
                         onChanged: (value) => setState(() => _switch = value),
-                        label: const Text('Enable example setting'),
+                        label: Text(l.enableExampleSetting),
                       ),
-                      const WantCheckbox(
+                      WantCheckbox(
                         value: false,
                         onChanged: null,
-                        label: Text('Disabled checkbox'),
+                        label: Text(l.disabledCheckbox),
                       ),
                     ],
                   ),
                 ),
                 _section(
                   'disclosure',
-                  'Tabs and accordion',
+                  l.tabsAndAccordion,
                   Column(
                     mainAxisSize: MainAxisSize.min,
                     spacing: 24,
@@ -423,29 +490,29 @@ class _GalleryState extends State<_Gallery> {
                       WantTabs(
                         value: _tab,
                         onChanged: (value) => setState(() => _tab = value),
-                        tabs: const [
+                        tabs: [
                           WantTab(
-                            label: Text('Desktop'),
-                            child: Text('Landscape preview.'),
+                            label: Text(l.desktop),
+                            child: Text(l.landscapePreview),
                           ),
                           WantTab(
-                            label: Text('Mobile'),
-                            child: Text('Portrait preview.'),
+                            label: Text(l.mobile),
+                            child: Text(l.portraitPreview),
                           ),
                         ],
                       ),
-                      const WantAccordion(
+                      WantAccordion(
                         items: [
                           WantAccordionItem(
-                            title: Text('How are components shared?'),
+                            title: Text(l.howAreComponentsShared),
                             child: Text(
-                              'Both adapters use the same foundation tokens.',
+                              l.bothAdaptersUseTheSameFoundationTokens,
                             ),
                           ),
                           WantAccordionItem(
-                            title: Text('Who owns application data?'),
+                            title: Text(l.whoOwnsApplicationData),
                             child: Text(
-                              'The consuming application owns data and persistence.',
+                              l.theConsumingApplicationOwnsDataAndPersistence,
                             ),
                           ),
                         ],
@@ -455,21 +522,21 @@ class _GalleryState extends State<_Gallery> {
                 ),
                 _section(
                   'overlays',
-                  'Dialog, sheet, menu, tooltip and popover',
+                  l.dialogSheetMenuTooltipAndPopover,
                   _buttons([
                     WantButton(
                       onPressed: () => showWantDialog(
                         context: context,
                         builder: (context) => WantDialog(
-                          title: 'Preview settings',
+                          title: l.previewSettings,
                           actions: WantButton(
                             onPressed: () => Navigator.pop(context),
-                            child: const Text('Done'),
+                            child: Text(l.done),
                           ),
-                          child: const WantInput(label: Text('Preview name')),
+                          child: WantInput(label: Text(l.previewName)),
                         ),
                       ),
-                      child: const Text('Open dialog'),
+                      child: Text(l.openDialog),
                     ),
                     for (final side in WantSheetSide.values)
                       WantButton(
@@ -478,41 +545,39 @@ class _GalleryState extends State<_Gallery> {
                           context: context,
                           side: side,
                           builder: (context) => WantSheet(
-                            title: 'Panel ${side.name}',
+                            title: l.panelSideName(side.name),
                             actions: WantButton(
                               onPressed: () => Navigator.pop(context),
-                              child: const Text('Close panel'),
+                              child: Text(l.closePanel),
                             ),
-                            child: const Text(
-                              'The sheet enters from its selected side.',
-                            ),
+                            child: Text(l.theSheetEntersFromItsSelectedSide),
                           ),
                         ),
-                        child: Text('${side.name} sheet'),
+                        child: Text(l.sideNameSheet(side.name)),
                       ),
                     WantDropdownMenu(
-                      label: const Text('Actions'),
+                      label: Text(l.actions),
                       items: [
                         WantMenuItem(
-                          label: const Text('Copy link'),
-                          onPressed: () => _message('Copy action selected'),
+                          label: Text(l.copyLink),
+                          onPressed: () => _message(l.copyActionSelected),
                         ),
-                        const WantMenuItem(
-                          label: Text('Unavailable'),
+                        WantMenuItem(
+                          label: Text(l.unavailable),
                           disabled: true,
                         ),
                       ],
                     ),
                     WantTooltip(
-                      message: 'A keyboard and pointer hint',
+                      message: l.aKeyboardAndPointerHint,
                       child: WantButton(
                         variant: WantButtonVariant.secondary,
-                        onPressed: () => _message('Hint selected'),
-                        child: const Text('Tooltip'),
+                        onPressed: () => _message(l.hintSelected),
+                        child: Text(l.tooltip),
                       ),
                     ),
                     WantPopover(
-                      child: const Text('Settings'),
+                      child: Text(l.settings),
                       triggerBuilder: (context, toggle, child) => WantButton(
                         onPressed: toggle,
                         variant: WantButtonVariant.secondary,
@@ -522,10 +587,10 @@ class _GalleryState extends State<_Gallery> {
                         width: 220,
                         child: WantFieldGroup(
                           children: [
-                            const WantInput(label: Text('Note')),
+                            WantInput(label: Text(l.note)),
                             WantButton(
                               onPressed: close,
-                              child: const Text('Close settings'),
+                              child: Text(l.closeSettings),
                             ),
                           ],
                         ),
@@ -535,34 +600,34 @@ class _GalleryState extends State<_Gallery> {
                 ),
                 _section(
                   'navigation',
-                  'Navigation and breadcrumbs',
+                  l.navigationAndBreadcrumbs,
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.min,
                     spacing: 20,
                     children: [
                       WantNavigationMenu(
-                        semanticsLabel: 'Example navigation',
+                        semanticsLabel: l.exampleNavigation,
                         items: [
                           WantNavigationItem(
-                            label: const Text('Collections'),
+                            label: Text(l.collections),
                             current: true,
-                            onPressed: () => _message('Collections selected'),
+                            onPressed: () => _message(l.collectionsSelected),
                           ),
                           WantNavigationItem(
-                            label: const Text('Search'),
-                            onPressed: () => _message('Search selected'),
+                            label: Text(l.search),
+                            onPressed: () => _message(l.searchSelected),
                           ),
                         ],
                       ),
                       WantBreadcrumb(
-                        semanticsLabel: 'Breadcrumbs',
+                        semanticsLabel: l.breadcrumbs,
                         items: [
                           WantBreadcrumbItem(
-                            label: const Text('Home'),
-                            onPressed: () => _message('Home selected'),
+                            label: Text(l.home),
+                            onPressed: () => _message(l.homeSelected),
                           ),
-                          const WantBreadcrumbItem(label: Text('UI kit')),
+                          WantBreadcrumbItem(label: Text(l.uiKit)),
                         ],
                       ),
                     ],
@@ -570,47 +635,45 @@ class _GalleryState extends State<_Gallery> {
                 ),
                 _section(
                   'feedback',
-                  'Badges, alerts and progress',
+                  l.badgesAlertsAndProgress,
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     mainAxisSize: MainAxisSize.min,
                     spacing: 16,
                     children: [
                       _buttons([
-                        const WantBadge(child: Text('Primary')),
-                        const WantBadge(
+                        WantBadge(child: Text(l.primary)),
+                        WantBadge(
                           variant: WantButtonVariant.secondary,
-                          child: Text('Desktop'),
+                          child: Text(l.desktop),
                         ),
-                        const WantBadge(
+                        WantBadge(
                           variant: WantButtonVariant.destructive,
-                          child: Text('Unavailable'),
+                          child: Text(l.unavailable),
                         ),
                       ]),
-                      const WantAlert(
-                        title: Text('Preview available'),
-                        description: Text(
-                          'Choose an example action to continue.',
-                        ),
+                      WantAlert(
+                        title: Text(l.previewAvailable),
+                        description: Text(l.chooseAnExampleActionToContinue),
                       ),
-                      const WantAlert(
-                        title: Text('Could not load preview'),
-                        description: Text('Try again.'),
+                      WantAlert(
+                        title: Text(l.couldNotLoadPreview),
+                        description: Text(l.tryAgain),
                         destructive: true,
                       ),
-                      const WantProgress(label: 'Example progress', value: 64),
-                      const WantProgress(label: 'Loading preview'),
+                      WantProgress(label: l.exampleProgress, value: 64),
+                      WantProgress(label: l.loadingPreview),
                       const WantSkeleton(height: 80),
                     ],
                   ),
                 ),
                 _section(
                   'notifications',
-                  'Toast and semantic snackbars',
+                  l.toastAndSemanticSnackbars,
                   _buttons([
                     WantButton(
-                      onPressed: () => _message('Local preview ready'),
-                      child: const Text('Show toast'),
+                      onPressed: () => _message(l.localPreviewReady),
+                      child: Text(l.showToast),
                     ),
                     for (final variant in WantSnackbarVariant.values)
                       WantButton(
@@ -618,33 +681,35 @@ class _GalleryState extends State<_Gallery> {
                         onPressed: () => showWantSnackbar(
                           context: context,
                           variant: variant,
-                          variantLabel: variant.name,
-                          title: Text('${variant.name}: example status'),
-                          description: const Text(
-                            'Theme-aware feedback with one useful action.',
+                          variantLabel: _statusLabel(variant),
+                          title: Text(
+                            l.variantNameExampleStatus(_statusLabel(variant)),
                           ),
-                          closeLabel: 'Dismiss status',
-                          actionLabel: 'View details',
-                          onAction: () => _message('Details selected'),
+                          description: Text(
+                            l.themeAwareFeedbackWithOneUsefulAction,
+                          ),
+                          closeLabel: l.dismissStatus,
+                          actionLabel: l.viewDetails,
+                          onAction: () => _message(l.detailsSelected),
                         ),
-                        child: Text(variant.name),
+                        child: Text(_statusLabel(variant)),
                       ),
                   ]),
                 ),
                 _section(
                   'search',
-                  'Searchable combobox',
+                  l.searchableCombobox,
                   WantCombobox<String>(
                     value: _combo,
-                    label: const Text('Collection'),
-                    emptyLabel: 'No matches',
-                    searchHint: 'Search collections',
-                    options: const [
-                      WantOption(value: 'violet', label: 'Violet Horizon'),
-                      WantOption(value: 'woven', label: 'Woven Spectrum'),
+                    label: Text(l.collection),
+                    emptyLabel: l.noMatches,
+                    searchHint: l.searchCollections,
+                    options: [
+                      WantOption(value: 'violet', label: l.violetHorizon),
+                      WantOption(value: 'woven', label: l.wovenSpectrum),
                       WantOption(
                         value: 'locked',
-                        label: 'Unavailable',
+                        label: l.unavailable,
                         disabled: true,
                       ),
                     ],
@@ -653,19 +718,19 @@ class _GalleryState extends State<_Gallery> {
                 ),
                 _section(
                   'table',
-                  'Table and pagination',
+                  l.tableAndPagination,
                   WantTable<int>(
-                    caption: 'Local collection',
-                    emptyLabel: 'No records',
+                    caption: l.localCollection,
+                    emptyLabel: l.noRecords,
                     rows: List.generate(4, (index) => index + 1),
                     columns: [
                       WantTableColumn(
-                        label: 'Name',
+                        label: l.name,
                         width: 220,
-                        cellBuilder: (value) => Text('Preview $value'),
+                        cellBuilder: (value) => Text(l.previewValue(value)),
                       ),
                       WantTableColumn(
-                        label: 'Format',
+                        label: l.format,
                         cellBuilder: (_) => const Text('PNG'),
                       ),
                     ],
@@ -678,62 +743,64 @@ class _GalleryState extends State<_Gallery> {
                         _pageSize = size;
                       }),
                       labels: WantPaginationLabels(
-                        navigation: 'Pages',
-                        previous: 'Previous page',
-                        next: 'Next page',
-                        pageSize: 'Rows per page',
-                        page: (page) => 'Page $page',
-                        results: (from, to, total) => '$from–$to of $total',
+                        navigation: l.pages,
+                        previous: l.previousPage,
+                        next: l.nextPage,
+                        pageSize: l.rowsPerPage,
+                        page: (page) => l.pagePage(page),
+                        results: (from, to, total) =>
+                            l.fromToOfTotal(from, to, total),
                       ),
                     ),
                   ),
                 ),
                 _section(
                   'files',
-                  'File selection',
+                  l.fileSelection,
                   WantFileUpload(
                     files: _files,
                     onChanged: (files) => setState(() => _files = files),
-                    label: const Text('Images'),
+                    label: Text(l.images),
                     extensions: const ['png', 'jpg', 'jpeg', 'webp'],
                     maxSize: 8 * 1024 * 1024,
                     maxFiles: 4,
                     labels: WantFileUploadLabels(
-                      choose: 'Choose images',
-                      drop: 'Drop images here or choose a file.',
-                      readFailed: 'Could not read the selected file.',
-                      remove: (name) => 'Remove $name',
-                      invalidType: (name) => '$name is not a supported image.',
-                      tooLarge: (name, limit) => '$name exceeds $limit bytes.',
-                      tooMany: (count) => 'Choose up to $count files.',
+                      choose: l.chooseImages,
+                      drop: l.dropImagesHereOrChooseAFile,
+                      readFailed: l.couldNotReadTheSelectedFile,
+                      remove: (name) => l.removeName(name),
+                      invalidType: (name) => l.nameIsNotASupportedImage(name),
+                      tooLarge: (name, limit) =>
+                          l.nameExceedsLimitBytes(name, limit),
+                      tooMany: (count) => l.chooseUpToCountFiles(count),
                     ),
                   ),
                 ),
                 _section(
                   'date-url-window',
-                  'Date, URL and page layout',
+                  l.dateURLAndPageLayout,
                   WantWindow(
-                    title: 'Create a preview',
-                    kicker: 'Local composition',
+                    title: l.createAPreview,
+                    kicker: l.localComposition,
                     actions: WantButton(
-                      onPressed: () => _message('Preview action selected'),
-                      child: const Text('Preview'),
+                      onPressed: () => _message(l.previewActionSelected),
+                      child: Text(l.preview),
                     ),
                     child: WantFieldGroup(
                       children: [
                         WantDateField(
                           value: _date,
                           onChanged: (value) => setState(() => _date = value),
-                          label: const Text('Date'),
+                          label: Text(l.date),
                           mode: WantDateFieldMode.dateTime,
-                          timeLabel: const Text('Time'),
-                          todayLabel: 'Use today',
+                          timeLabel: Text(l.time),
+                          todayLabel: l.useToday,
                         ),
                         WantUrlField(
                           controller: _url,
-                          label: const Text('Source URL'),
-                          openLabel: 'Open source',
-                          onOpen: (uri) => _message('Open ${uri.host}'),
+                          label: Text(l.sourceURL),
+                          openLabel: l.openSource,
+                          onOpen: (uri) => _message(l.openUriHost(uri.host)),
                         ),
                       ],
                     ),
@@ -741,17 +808,17 @@ class _GalleryState extends State<_Gallery> {
                 ),
                 _section(
                   'cards',
-                  'Cards, media and liquid glass',
+                  l.cardsMediaAndLiquidGlass,
                   Column(
                     mainAxisSize: MainAxisSize.min,
                     spacing: 24,
                     children: [
                       WantMediaCard(
-                        title: 'Violet Horizon',
-                        caption: 'Local demonstration artwork',
-                        imageLabel: 'Violet gradient',
+                        title: l.violetHorizon,
+                        caption: l.localDemonstrationArtwork,
+                        imageLabel: l.violetGradient,
                         index: 1,
-                        onPressed: () => _message('Preview selected'),
+                        onPressed: () => _message(l.previewSelected),
                         image: const DecoratedBox(
                           decoration: BoxDecoration(
                             gradient: LinearGradient(
@@ -760,18 +827,18 @@ class _GalleryState extends State<_Gallery> {
                           ),
                         ),
                       ),
-                      const WantCard(
-                        title: Text('Download panel'),
-                        description: Text('A composed card'),
+                      WantCard(
+                        title: Text(l.downloadPanel),
+                        description: Text(l.aComposedCard),
                         child: Text(
-                          'Public slots keep content in the consuming application.',
+                          l.publicSlotsKeepContentInTheConsumingApplication,
                         ),
                       ),
-                      const WantGlass(
+                      WantGlass(
                         child: Padding(
                           padding: EdgeInsets.all(24),
                           child: Text(
-                            'Liquid glass · opaque when transparency is reduced.',
+                            l.liquidGlassOpaqueWhenTransparencyIsReduced,
                           ),
                         ),
                       ),
@@ -780,55 +847,56 @@ class _GalleryState extends State<_Gallery> {
                 ),
                 _section(
                   'contact',
-                  'Contact card',
+                  l.contactCard,
                   WantContactCard(
                     name: 'Want Studio',
-                    subtitle: 'Product design',
+                    subtitle: l.productDesign,
                     actions: [
                       WantContactAction(
-                        title: 'Website',
+                        title: l.website,
                         detail: 'want.design',
-                        onPressed: () => _message('Website selected'),
+                        onPressed: () => _message(l.websiteSelected),
                       ),
                     ],
                   ),
                 ),
                 _section(
                   'comments',
-                  'Comment carousel',
+                  l.commentCarousel,
                   WantCommentFeed(
-                    labels: const WantCommentFeedLabels(
-                      title: 'Comments',
-                      empty: 'No comments',
-                      previous: 'Previous comments',
-                      next: 'Next comments',
-                      readMore: 'Read more',
-                      collapse: 'Collapse',
+                    labels: WantCommentFeedLabels(
+                      title: l.comments,
+                      empty: l.noComments,
+                      previous: l.previousComments,
+                      next: l.nextComments,
+                      readMore: l.readMore,
+                      collapse: l.collapse,
                     ),
                     comments: [
                       for (var index = 0; index < 4; index++)
                         WantComment(
                           id: '$index',
-                          author: 'Reviewer ${index + 1}',
+                          author: l.reviewerIndex(index + 1),
                           own: index == 0,
-                          dateLabel: 'Today',
+                          dateLabel: l.today,
                           text: index == 1
                               ? List.filled(
                                   8,
-                                  'Readable copy follows the same Want typography.',
+                                  l.readableCopyFollowsTheSameWantTypography,
                                 ).join('\n')
-                              : 'The preview is ready to explore.',
-                          actions: const [
-                            WantCommentAction(id: 'reply', label: 'Reply'),
+                              : l.thePreviewIsReadyToExplore,
+                          actions: [
+                            WantCommentAction(id: 'reply', label: l.reply),
                           ],
                         ),
                     ],
-                    onAction: (id, action) => _message('$action selected'),
+                    onAction: (id, action) =>
+                        _message(l.actionSelected(action)),
                   ),
                 ),
                 _section(
                   'loaders',
-                  'Custom loaders',
+                  l.customLoaders,
                   _buttons([
                     for (final variant in WantLoaderVariant.values)
                       Column(
@@ -836,7 +904,7 @@ class _GalleryState extends State<_Gallery> {
                         spacing: 12,
                         children: [
                           WantLoader(
-                            label: 'Loading ${variant.name}',
+                            label: l.loadingVariantName(variant.name),
                             variant: variant,
                             paused: _paused,
                           ),
@@ -847,14 +915,14 @@ class _GalleryState extends State<_Gallery> {
                 ),
                 _section(
                   'shimmer',
-                  'Shimmer placeholders',
+                  l.shimmerPlaceholders,
                   Column(
                     mainAxisSize: MainAxisSize.min,
                     spacing: 24,
                     children: [
                       for (final variant in WantShimmerVariant.values)
                         WantShimmer(
-                          label: 'Loading ${variant.name}',
+                          label: l.loadingVariantName(variant.name),
                           variant: variant,
                           paused: _paused,
                         ),
@@ -863,7 +931,7 @@ class _GalleryState extends State<_Gallery> {
                 ),
                 _section(
                   'animated-text',
-                  'Animated text',
+                  l.animatedText,
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.min,
@@ -872,22 +940,22 @@ class _GalleryState extends State<_Gallery> {
                       for (final effect in WantTextEffect.values)
                         WantAnimatedText(
                           [
-                            'Your next idea.',
-                            'Made with Want.',
-                            'Ready to explore.',
+                            l.yourNextIdea,
+                            l.madeWithWant,
+                            l.readyToExplore,
                           ][_text % 3],
                           effect: effect,
                         ),
                       WantButton(
                         onPressed: () => setState(() => _text++),
-                        child: const Text('Change text'),
+                        child: Text(l.changeText),
                       ),
                     ],
                   ),
                 ),
                 _section(
                   'glow',
-                  'Reusable glow and confetti',
+                  l.reusableGlowAndConfetti,
                   Column(
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -895,10 +963,8 @@ class _GalleryState extends State<_Gallery> {
                     children: [
                       WantGlow(
                         paused: _paused,
-                        child: const WantCard(
-                          child: Text(
-                            'A visible halo with two expanding waves.',
-                          ),
+                        child: WantCard(
+                          child: Text(l.aVisibleHaloWithTwoExpandingWaves),
                         ),
                       ),
                       Align(
@@ -911,7 +977,7 @@ class _GalleryState extends State<_Gallery> {
                             child: WantButton(
                               pill: true,
                               onPressed: () => setState(() => _confetti++),
-                              child: const Text('Explore Want'),
+                              child: Text(l.exploreWant),
                             ),
                           ),
                         ),
@@ -919,7 +985,7 @@ class _GalleryState extends State<_Gallery> {
                       WantButton(
                         variant: WantButtonVariant.secondary,
                         onPressed: _background.triggerWave,
-                        child: const Text('Trigger background wave'),
+                        child: Text(l.triggerBackgroundWave),
                       ),
                     ],
                   ),

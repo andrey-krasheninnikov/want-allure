@@ -3,7 +3,7 @@ import AxeBuilder from '@axe-core/playwright';
 
 for (const width of [320, 1440]) test('shared kit works independently at ' + width + 'px', async ({ page }, testInfo) => {
   const errors: string[] = []; page.on('pageerror', error => errors.push(error.message));
-  await page.setViewportSize({ width, height: 1000 }); await page.emulateMedia({ colorScheme: 'dark' }); await page.goto('/');
+  await page.setViewportSize({ width, height: 1000 }); await page.emulateMedia({ colorScheme: 'dark' }); await page.goto('/react/');
   await expect(page.getByRole('heading', { name: 'Shared by design.' })).toBeVisible();
   await expect(page.locator('astro-island[ssr]')).toHaveCount(0, { timeout: 15000 });
   await page.evaluate(() => document.fonts.ready);
@@ -33,7 +33,7 @@ for (const width of [320, 1440]) test('shared kit works independently at ' + wid
 
 test('effects respect preferences and dispose their particles', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'no-preference' });
-  await page.goto('/'); await expect(page.locator('astro-island[ssr]')).toHaveCount(0);
+  await page.goto('/react/'); await expect(page.locator('astro-island[ssr]')).toHaveCount(0);
   await page.getByRole('button', { name: 'Preview confetti' }).click();
   await expect(page.locator('.download-confetti')).toHaveCount(18);
   await expect(page.locator('.download-confetti')).toHaveCount(0);
@@ -46,7 +46,7 @@ test('effects respect preferences and dispose their particles', async ({ page })
 });
 
 test('system theme follows preferences until a visitor makes a choice', async ({ page }) => {
-  await page.emulateMedia({ colorScheme: 'light' }); await page.goto('/');
+  await page.emulateMedia({ colorScheme: 'light' }); await page.goto('/react/');
   await expect(page.locator('astro-island[ssr]')).toHaveCount(0);
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
   await page.emulateMedia({ colorScheme: 'dark' });
@@ -57,20 +57,20 @@ test('system theme follows preferences until a visitor makes a choice', async ({
 });
 
 test('keyboard focus retains a visible outline in both themes', async ({ page }) => {
-  await page.goto('/'); await expect(page.locator('astro-island[ssr]')).toHaveCount(0);
+  await page.goto('/react/'); await expect(page.locator('astro-island[ssr]')).toHaveCount(0);
   for (const checked of [false, true]) {
     const theme = page.getByRole('switch', { name: 'Dark theme' });
     if (await theme.isChecked() !== checked) await theme.click();
     await page.getByRole('link', { name: 'Want Allure', exact: true }).focus();
     await page.keyboard.press('Tab');
-    const button = page.getByRole('button', { name: 'Toggle RTL' });
-    await expect(button).toBeFocused();
-    await expect(button).toHaveCSS('outline-style', 'solid');
-    await expect(button).toHaveCSS('outline-width', '2px');
-    await expect(button).toHaveCSS('outline-offset', '3px');
-    await page.keyboard.press('Tab');
-    await expect(theme).toBeFocused();
-    await expect(theme).toHaveCSS('outline-width', '2px');
+    const overview = page.getByRole('navigation', { name: 'Main navigation' }).getByRole('link', { name: 'Overview' });
+    await expect(overview).toBeFocused();
+    await expect(overview).toHaveCSS('outline-width', '2px');
+    await expect(overview).toHaveCSS('outline-offset', '3px');
+    await theme.focus();
+    await expect(page.locator('.site-theme')).toHaveCSS('outline-width', '2px');
+    await page.getByRole('button', { name: 'Toggle RTL' }).focus();
+    await expect(page.getByRole('button', { name: 'Toggle RTL' })).toHaveCSS('outline-width', '2px');
   }
 });
 
@@ -101,7 +101,7 @@ for (const width of [320, 1440]) test('date, URL and window controls work at ' +
   const errors: string[] = []; page.on('pageerror', error => errors.push(error.message));
   await page.setViewportSize({ width, height: 900 });
   await page.emulateMedia({ colorScheme: width === 320 ? 'dark' : 'light', reducedMotion: 'reduce' });
-  await page.goto('/');
+  await page.goto('/react/');
   await expect(page.locator('astro-island[ssr]')).toHaveCount(0, { timeout: 15000 });
   const window = page.getByRole('region', { name: 'Project planning' });
   await expect(window.getByRole('heading', { name: 'Project planning' })).toBeVisible();

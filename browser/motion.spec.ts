@@ -6,7 +6,7 @@ for (const width of [320, 1440]) for (const reduced of [false, true]) {
     page.on('pageerror', error => errors.push(error.message));
     await page.setViewportSize({ width, height: 900 });
     await page.emulateMedia({ reducedMotion: reduced ? 'reduce' : 'no-preference', colorScheme: width === 320 ? 'dark' : 'light' });
-    await page.goto('/');
+    await page.goto('/react/');
     await expect(page.locator('astro-island[ssr]')).toHaveCount(0, { timeout: 15000 });
     if (width === 320) await page.getByRole('button', { name: 'Toggle RTL' }).click();
 
@@ -71,7 +71,7 @@ for (const width of [320, 1440]) for (const reduced of [false, true]) {
     const setting = page.getByRole('switch', { name: 'Enable example setting', exact: true });
     await setting.click();
     await expect(setting).toBeChecked();
-    if (reduced) await expect(setting.locator('[data-slot="switch-thumb"]')).toHaveCSS('transition-duration', '1e-05s');
+    if (reduced) await expect(setting.locator('[data-slot="switch-thumb"]')).toHaveCSS('transition-duration', '0s');
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     expect(errors).toEqual([]);
   });

@@ -1,0 +1,39 @@
+---
+import { copy, type Locale } from '../site';
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+const c = copy[locale];
+---
+<div class="flutter-intro"><h1>Flutter · {c.catalogue}</h1><p>{c.flutterIntro}</p></div>
+<div class="flutter-stage" data-flutter-stage data-state="loading" data-locale={locale}>
+  <iframe data-flutter-frame title={`Flutter · ${c.catalogue}`} referrerpolicy="same-origin"></iframe>
+  <div class="flutter-loading" role="status"><span class="flutter-loader" aria-hidden="true"></span><p>{c.loading}</p></div>
+  <div class="flutter-error"><p role="alert">{c.failed}</p><button class="site-button primary" data-flutter-retry>{c.retry}</button><a class="text-link" href={`/_flutter/?locale=${locale}`} target="_blank" rel="noopener">{c.standalone}</a></div>
+</div>
+<script>
+  const stage = document.querySelector<HTMLElement>('[data-flutter-stage]')!;
+  const frame = stage.querySelector<HTMLIFrameElement>('iframe')!;
+  let timeout: ReturnType<typeof setTimeout>;
+  function settings() {
+    frame.contentWindow?.postMessage({ type: 'want-allure:settings', theme: document.documentElement.dataset.theme, locale: stage.dataset.locale }, location.origin);
+  }
+  function load() {
+    clearTimeout(timeout); stage.dataset.state = 'loading';
+    const url = new URL('/_flutter/', location.origin);
+    url.searchParams.set('locale', stage.dataset.locale!);
+    url.searchParams.set('theme', document.documentElement.dataset.theme ?? 'dark');
+    url.searchParams.set('embedded', '1');
+    frame.src = url.href;
+    timeout = setTimeout(() => { stage.dataset.state = 'error'; }, 45000);
+  }
+  function message(event: MessageEvent) {
+    if (event.origin !== location.origin || event.source !== frame.contentWindow) return;
+    if (event.data?.type === 'want-allure:ready') { clearTimeout(timeout); settings(); stage.dataset.state = 'ready'; }
+    if (event.data?.type === 'want-allure:error') { clearTimeout(timeout); stage.dataset.state = 'error'; }
+  }
+  addEventListener('message', message);
+  addEventListener('want:theme', settings);
+  stage.querySelector('[data-flutter-retry]')!.addEventListener('click', load);
+  addEventListener('pagehide', () => { clearTimeout(timeout); removeEventListener('message', message); removeEventListener('want:theme', settings); }, { once: true });
+  load();
+</script>

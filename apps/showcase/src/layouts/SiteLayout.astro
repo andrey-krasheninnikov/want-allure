@@ -1,0 +1,57 @@
+---
+import '@want-foundation/allure/styles.css';
+import '@want-foundation/allure/fonts.css';
+import '../styles.css';
+import '../site.css';
+import { copy, route, siteUrl, type Locale, type Section } from '../site';
+interface Props { locale: Locale; section?: Section; title?: string; description?: string; frame?: boolean; notFound?: boolean; }
+const { locale, section = 'home', frame = false, notFound = false } = Astro.props;
+const c = copy[locale];
+const title = Astro.props.title ?? (section === 'home' ? c.title : `${section === 'react' ? 'React' : 'Flutter'} · ${c.catalogue} | Want Allure`);
+const description = Astro.props.description ?? (section === 'home' ? c.description : section === 'react' ? c.reactIntro : c.flutterIntro);
+const canonical = new URL(route(locale, section), siteUrl).href;
+const image = new URL('/brand/github/social-preview-light.png', siteUrl).href;
+const schema = [{ '@context': 'https://schema.org', '@type': 'WebSite', name: 'Want Allure', url: siteUrl.href, inLanguage: ['en', 'ru'] },
+  { '@context': 'https://schema.org', '@type': 'SoftwareSourceCode', name: 'Want Allure', codeRepository: 'https://github.com/andrey-krasheninnikov/want-allure', programmingLanguage: ['TypeScript', 'Dart'], description: c.description }];
+---
+<!doctype html>
+<html lang={locale} dir="ltr">
+  <head>
+    <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title><meta name="description" content={description} />
+    <meta name="robots" content={section === 'home' && !notFound ? 'index,follow' : 'noindex,follow'} />
+    {!notFound && <link rel="canonical" href={canonical} />}
+    {section === 'home' && !notFound && <><link rel="alternate" hreflang="en" href={new URL('/', siteUrl).href} /><link rel="alternate" hreflang="ru" href={new URL('/ru/', siteUrl).href} /><link rel="alternate" hreflang="x-default" href={new URL('/', siteUrl).href} /></>}
+    <meta property="og:type" content="website" /><meta property="og:site_name" content="Want Allure" /><meta property="og:title" content={title} /><meta property="og:description" content={description} /><meta property="og:url" content={canonical} /><meta property="og:image" content={image} /><meta property="og:image:width" content="1280" /><meta property="og:image:height" content="640" /><meta property="og:image:alt" content="Want Allure" /><meta property="og:locale" content={locale === 'ru' ? 'ru_RU' : 'en_US'} />
+    <meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content={title} /><meta name="twitter:description" content={description} /><meta name="twitter:image" content={image} />
+    <link rel="icon" href="/favicon/favicon.ico" sizes="16x16 32x32 48x48 64x64 256x256" /><link rel="icon" href="/favicon/favicon.svg" type="image/svg+xml" sizes="any" /><link rel="apple-touch-icon" href="/favicon/light/apple-touch-icon.png" sizes="180x180" /><link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#5962F0" /><link rel="manifest" href="/site.webmanifest" />
+    {section === 'home' && !notFound && <script type="application/ld+json" set:html={JSON.stringify(schema).replace(/</g, '\u003c')} />}
+    <script is:inline>
+      let theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      try { const saved = localStorage.getItem('want-theme'); if (saved === 'light' || saved === 'dark') theme = saved; } catch {}
+      document.documentElement.dataset.theme = theme;
+      document.documentElement.classList.toggle('dark', theme === 'dark');
+    </script>
+  </head>
+  <body class:list={['site-shell', { 'flutter-page': frame }]}>
+    <a href="#main" class="skip-link">{c.skip}</a>
+    <header class="site-header">
+      <a class="site-brand" href={route(locale)} aria-label="Want Allure">
+        <img class="logo-light" src="/brand/logos/light/transparent.svg" alt="" width="36" height="36" /><img class="logo-dark" src="/brand/logos/dark/transparent.svg" alt="" width="36" height="36" /><span>Want Allure</span>
+      </a>
+      <nav class="site-nav" aria-label={c.navigation}>
+        {(['home', 'react', 'flutter'] as const).map(item => <a href={route(locale, item)} aria-current={section === item && !notFound ? 'page' : undefined}>{item === 'home' ? c.home : item === 'react' ? 'React' : 'Flutter'}</a>)}
+        <a href="https://github.com/andrey-krasheninnikov/want-allure">GitHub</a>
+      </nav>
+      <div class="site-preferences">
+        <a class="site-language" href={route(locale === 'en' ? 'ru' : 'en', section)} lang={locale === 'en' ? 'ru' : 'en'} aria-label={c.language}>{locale === 'en' ? 'RU' : 'EN'}</a>
+        <label class="site-theme"><input data-theme-toggle type="checkbox" role="switch" aria-label={c.theme} /><span aria-hidden="true">◐</span></label>
+      </div>
+    </header>
+    <main id="main" class:list={{ 'flutter-main': frame }} tabindex="-1"><slot /></main>
+    {!frame && <footer class="site-footer"><span>Want Allure</span><a href="https://github.com/andrey-krasheninnikov/want-allure">{c.source}</a><a href="https://github.com/andrey-krasheninnikov/want-allure/blob/main/LICENSE">{c.license}</a><a href="https://www.npmjs.com/package/@want-foundation/allure-react">npm</a><a href="https://pub.dev/packages/want_allure">pub.dev</a></footer>}
+    <script>
+      import '../theme';
+    </script>
+  </body>
+</html>
