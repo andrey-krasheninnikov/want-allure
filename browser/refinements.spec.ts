@@ -28,7 +28,7 @@ test('home guides framework selection, installation and advice',async({page})=>{
   await page.getByRole('button',{name:'Choose your framework: React',exact:true}).click();
   await expect(page.locator('.journey')).toHaveAttribute('data-step','install');
   await expect(page.locator('.journey-install')).toContainText('want-design-install');
-  await expect(page.locator('.journey-install')).toContainText('npm install @want-foundation/allure@1.2.1');
+  await expect(page.locator('.journey-install')).toContainText('npm install @want-foundation/allure@1.3.0');
   await page.getByRole('button',{name:'I have installed it',exact:true}).click();
   await expect(page.locator('.journey')).toHaveAttribute('data-step','learn');
   await expect(page.locator('.tips-track')).toBeVisible();
@@ -86,6 +86,7 @@ for(const locale of ['ru','ar'])test(`headline glow stays inside the viewport in
     await page.setViewportSize({width,height:1000});
     await page.evaluate(theme=>{document.documentElement.dataset.theme=theme;},theme);
     await page.evaluate(()=>scrollTo({top:0,behavior:'instant'}));
+    await page.evaluate(()=>new Promise<void>(resolve=>requestAnimationFrame(()=>requestAnimationFrame(()=>resolve()))));
     const letters=await page.locator('.fire-headline').evaluate(element=>{
       const walker=document.createTreeWalker(element,NodeFilter.SHOW_TEXT),rects:{x:number;y:number}[]=[];
       while(walker.nextNode()){

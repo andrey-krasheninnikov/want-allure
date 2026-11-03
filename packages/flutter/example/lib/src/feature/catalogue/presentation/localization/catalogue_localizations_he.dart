@@ -98,6 +98,15 @@ class CatalogueLocalizationsHe extends CatalogueLocalizations {
   String get fieldsInputAndTextarea => 'שדות, קלט ואזור טקסט';
 
   @override
+  String get password => 'סיסמה';
+
+  @override
+  String get showPassword => 'הצגת סיסמה';
+
+  @override
+  String get hidePassword => 'הסתרת סיסמה';
+
+  @override
   String get localExample => 'דוגמה מקומית';
 
   @override

@@ -58,6 +58,7 @@ export 'src/feature/allure/presentation/_barrel.dart'
         WantOption,
         WantPagination,
         WantPaginationLabels,
+        WantPasswordInput,
         WantPopover,
         WantProgress,
         WantProse,

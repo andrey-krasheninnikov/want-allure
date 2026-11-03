@@ -61,7 +61,8 @@
   {
     "web": "ui/input",
     "flutter": [
-      "WantInput"
+      "WantInput",
+      "WantPasswordInput"
     ],
     "example": "fields"
   },

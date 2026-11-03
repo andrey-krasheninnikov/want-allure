@@ -27,7 +27,7 @@ for (const width of [320, 1440]) test('shared kit works independently at ' + wid
   await expect(page.getByRole('button', { name: 'Saved', exact: true })).toBeDisabled();
   await page.getByRole('button', { name: 'Next comments' }).click();
   await expect(page.locator('.carousel-pagination output')).not.toHaveText(/^1 \/ /);
-  const email = page.getByRole('link', { name: /Email hello@example.com/ });
+  const email = page.getByRole('link', { name: 'Email', exact: true });
   await expect(email).toHaveAttribute('href', 'mailto:hello@example.com');
   await expect(email).not.toHaveAttribute('target', '_blank');
   await page.screenshot({ path: testInfo.outputPath('showcase-' + width + '.png'), fullPage: true });

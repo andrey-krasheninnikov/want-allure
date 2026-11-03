@@ -88,7 +88,7 @@ for (const width of [320, 768, 1024, 1440]) test('visual system works at ' + wid
   await page.clock.install();
   const palette = tokens.themes.wallpapers[dark ? 'dark' : 'light'];
   for (const variant of ['error', 'warning', 'info', 'success'] as const) {
-    const trigger = page.getByRole('button', { name: 'Show ' + variant + ' snackbar', exact: true });
+    const trigger = page.getByRole('button', { name: 'Show ' + variant.charAt(0).toUpperCase() + variant.slice(1) + ' snackbar', exact: true });
     await trigger.focus(); await trigger.press('Enter');
     const snackbar = page.locator('[data-slot="snackbar"]');
     await expect(snackbar).toHaveAttribute('data-variant', variant);
@@ -117,7 +117,7 @@ for (const width of [320, 768, 1024, 1440]) test('visual system works at ' + wid
     } else await snackbar.getByRole('button', { name: 'Dismiss status message', exact: true }).click();
     await expect(snackbar).toHaveCount(0);
   }
-  await page.getByRole('button', { name: 'Show info snackbar', exact: true }).focus();
+  await page.getByRole('button', { name: 'Show Info snackbar', exact: true }).focus();
   await page.keyboard.press('Enter');
   await expect(page.locator('[data-slot="snackbar"]')).toHaveAttribute('data-variant', 'info');
   await expect(page.locator('[data-slot="snackbar"]')).toHaveCSS('opacity', '1');
@@ -149,7 +149,7 @@ for (const width of [320, 768, 1024, 1440]) test('visual system works at ' + wid
       expect(layout.scroll, title + ' fits at 200% text').toBeLessThanOrEqual(layout.width + 1);
     }
     await category(page,'feedback');
-    await page.getByRole('button', { name: 'Show error snackbar', exact: true }).click();
+    await page.getByRole('button', { name: 'Show Error snackbar', exact: true }).click();
     const box = await page.locator('[data-slot="snackbar"]').boundingBox();
     expect(box!.x).toBeGreaterThanOrEqual(0);
     expect(box!.x + box!.width).toBeLessThanOrEqual(width);

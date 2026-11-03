@@ -1,3 +1,9 @@
+## 1.3.0
+
+- Add WantPasswordInput with localized show/hide actions, keyboard access and consumer-owned validation.
+- Disable autofill and input-assistance features by default in both password visibility states; expose explicit privacy overrides.
+- Add password examples and platform-input regression tests. Align foundation, React and Flutter at 1.3.0.
+
 ## 1.2.1
 
 - Restore optional background pause controls and compact dialog constraints with an accessible hidden title.

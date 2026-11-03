@@ -3,6 +3,7 @@ export 'checkbox.dart';
 export 'date_url.dart';
 export 'field.dart';
 export 'input.dart';
+export 'password_input.dart';
 export 'selection.dart';
 export 'slider.dart';
 export 'switch.dart';

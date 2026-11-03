@@ -14,7 +14,7 @@ test('catalogue server rendering localizes controls and accessible names', () =>
   expect(ru).not.toContain('>Open dialog<');
   expect(ru).not.toContain('id="kit-title"');
   expect(ru).toContain('Разделы каталога');
-  expect(en).toContain('REACT / 1.2.1');
+  expect(en).toContain('REACT / 1.3.0');
 });
 
 test('translation preserves spacing, placeholders and technical text', () => {

@@ -98,6 +98,15 @@ class CatalogueLocalizationsJa extends CatalogueLocalizations {
   String get fieldsInputAndTextarea => 'フィールド、入力エリア、テキストエリア';
 
   @override
+  String get password => 'パスワード';
+
+  @override
+  String get showPassword => 'パスワードを表示';
+
+  @override
+  String get hidePassword => 'パスワードを隠す';
+
+  @override
   String get localExample => '地元の例';
 
   @override

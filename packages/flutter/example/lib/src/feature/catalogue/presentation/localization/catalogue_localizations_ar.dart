@@ -98,6 +98,15 @@ class CatalogueLocalizationsAr extends CatalogueLocalizations {
   String get fieldsInputAndTextarea => 'الحقول والمدخلات ومنطقة النص';
 
   @override
+  String get password => 'كلمة المرور';
+
+  @override
+  String get showPassword => 'إظهار كلمة المرور';
+
+  @override
+  String get hidePassword => 'إخفاء كلمة المرور';
+
+  @override
   String get localExample => 'مثال محلي';
 
   @override

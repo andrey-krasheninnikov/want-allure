@@ -9,7 +9,7 @@ ForUI-based Want components for Android, iOS, web, macOS, Windows and Linux. The
 Requires Flutter 3.47.7 and Dart 3.13.5 or newer.
 
 ```sh
-flutter pub add want_allure:^1.2.2
+flutter pub add want_allure:^1.3.0
 ```
 
 Use your existing application shell and localization setup. Apply WantTheme in the application builder so routes and overlays inherit the theme:
@@ -50,6 +50,28 @@ Components receive values, labels and callbacks. A null button callback disables
 WantThemeData.light/dark provide the same primary #5962F0, success #7DF04A, info #28D7F5, warning #FFD43B and error #FF526D accents. Separate text roles preserve contrast. Override semantic values intentionally through the theme's overrides map. The source of truth remains the shared foundation JSON.
 
 WantTypography provides display, h1–h6, lead, body, small, caption, label, overline, mono, code, codeBlock and quote. TTF fonts and their licenses are bundled; no font download occurs at runtime. The Wallpapers SVG remains available at `assets/brand/wallpapers.svg` in package `want_allure`; products supply their own logo when appropriate.
+
+## Password input
+
+`WantPasswordInput` starts concealed and provides a 44 px visibility action. Supply localized field and action labels:
+
+```dart
+WantPasswordInput(
+  controller: passwordController,
+  focusNode: passwordFocus,
+  label: Text(strings.password),
+  showPasswordLabel: strings.showPassword,
+  hidePasswordLabel: strings.hidePassword,
+  error: passwordError,
+  onSubmitted: onPasswordSubmitted,
+)
+```
+
+The input preserves its value and selection when visibility changes. `onChanged` reports text changes, without reporting initialization or selection-only changes. `initialValue` seeds an internally managed controller; a supplied controller takes precedence and remains caller-owned. The field also accepts enabled/readOnly, autofocus, description, hint, keyboardType, textInputAction, inputFormatters and textDirection.
+
+Autocorrection, suggestions, IME personalized learning and stylus handwriting default to false. Smart quotes/dashes default to disabled. `autofillHints` defaults to null in both visibility states, which disables Flutter autofill; an empty list still enables autofill. Consumers can override these settings explicitly, for example with `autofillHints: [AutofillHints.newPassword]` when creating a password. OS and third-party keyboards may apply their own policies; these settings describe the configuration sent by Flutter.
+
+Selection remains enabled, with the standard adaptive toolbar. Set `enableInteractiveSelection` or `contextMenuBuilder` to apply the application's clipboard policy. Password validation, persistence and clipboard cleanup belong to the consumer. The field is single-line; multiline secret editing needs a separate consumer composition.
 
 ## Web selection and find
 

@@ -98,6 +98,15 @@ class CatalogueLocalizationsDe extends CatalogueLocalizations {
   String get fieldsInputAndTextarea => 'Felder, Eingabe und Textbereich';
 
   @override
+  String get password => 'Passwort';
+
+  @override
+  String get showPassword => 'Passwort anzeigen';
+
+  @override
+  String get hidePassword => 'Passwort ausblenden';
+
+  @override
   String get localExample => 'Lokales Beispiel';
 
   @override
