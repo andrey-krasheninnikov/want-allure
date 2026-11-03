@@ -32,6 +32,12 @@
 - Combine the Astro landing page and React/Flutter catalogues in one bilingual web application.
 - Share theme and language navigation, and prepare localized search and social metadata.
 
+## 1.1.1
+
+- Let Flutter consumers hide the background pause control while retaining reduced-motion and inactive-view suspension. The control remains visible by default.
+- Add dialog width constraints and an optional hidden visual title while preserving the accessible dialog name.
+- Keep foundation, React and Flutter release versions aligned.
+
 ## 1.1.0
 
 - Refactor Flutter UI ownership into presentation libraries and strict barrel imports while preserving the public Want API.

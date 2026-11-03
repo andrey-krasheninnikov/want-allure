@@ -5,12 +5,76 @@ import 'package:flutter/services.dart';
 import 'package:flutter/rendering.dart' show SelectionHandler;
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:forui/forui.dart' show FTheme;
+import 'package:forui/forui.dart' show FTheme, FDialog;
 import 'package:want_allure/want_allure.dart';
 
 import 'helpers.dart';
 
 void main() {
+  testWidgets('compact dialog keeps its accessible name', (tester) async {
+    final semantics = tester.ensureSemantics();
+    await tester.pumpWidget(
+      harness(
+        Builder(
+          builder: (context) => WantButton(
+            onPressed: () => showWantDialog<void>(
+              context: context,
+              builder: (_) => const WantDialog(
+                title: 'Recovery QR',
+                showTitle: false,
+                constraints: BoxConstraints(minWidth: 280, maxWidth: 320),
+                child: Text('QR content'),
+              ),
+            ),
+            child: const Text('Open'),
+          ),
+        ),
+      ),
+    );
+    await tester.tap(find.text('Open'));
+    await tester.pumpAndSettle();
+    expect(find.text('Recovery QR'), findsNothing);
+    expect(find.bySemanticsLabel('Recovery QR'), findsWidgets);
+    expect(
+      tester.widget<FDialog>(find.byType(FDialog)).constraints.maxWidth,
+      320,
+    );
+    expect(tester.takeException(), isNull);
+    semantics.dispose();
+  });
+
+  testWidgets(
+    'background pause control can be hidden without disabling accessibility',
+    (tester) async {
+      final controller = WantBackgroundController();
+      for (final showControl in [true, false]) {
+        await tester.pumpWidget(
+          harness(
+            SizedBox(
+              width: 320,
+              height: 320,
+              child: WantBackgroundMotion(
+                controller: controller,
+                showPauseControl: showControl,
+                pauseLabel: 'Pause sphere',
+                resumeLabel: 'Resume sphere',
+                child: const Text('Content'),
+              ),
+            ),
+            reduced: false,
+          ),
+        );
+        await tester.pump();
+        expect(
+          find.text('Pause sphere'),
+          showControl ? findsOneWidget : findsNothing,
+        );
+        expect(find.text('Content'), findsOneWidget);
+      }
+      await tester.pumpWidget(const SizedBox());
+      controller.dispose();
+    },
+  );
   testWidgets(
     'all sheets have a themed clipped surface, return values and restore focus',
     (tester) async {

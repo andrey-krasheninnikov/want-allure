@@ -47,3 +47,5 @@ The landing uses one guided sequence: framework selection, installation, then a 
 Flutter SVG extrusion preserves front, back, side faces and holes. Toast status plates and message blocks share their top edge; minimal status glyphs fade and settle on entry. Table rows enter in sequence when the consumer changes transitionKey, with stable row identity and reduced-motion support.
 
 Flutter password fields use WantPasswordInput with a labelled 44 px show/hide action. Initial content is concealed. Visibility changes preserve value and selection; input-assistance and autofill defaults remain disabled in both states. Consumers supply localized labels, validation and clipboard policy.
+
+Flutter consumers may set `showPauseControl: false` when the product omits that control. Reduced-motion and inactive-view suspension still apply. `WantDialog` supports consumer constraints and `showTitle: false`; its required title remains the accessible name.
