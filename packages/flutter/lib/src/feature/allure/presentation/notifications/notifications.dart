@@ -390,7 +390,7 @@ class _ToastTransitionState extends State<_ToastTransition>
       try {
         await _motion.reverse().orCancel;
       } on TickerCanceled {
-        return;
+        // Replacing the view must not cancel removal of its overlay entry.
       }
     }
     widget.handle._remove();
@@ -398,10 +398,10 @@ class _ToastTransitionState extends State<_ToastTransition>
 
   @override
   void dispose() {
-    widget.handle.animateClose = null;
-    widget.handle._showing = false;
-    widget.handle._removed = true;
-    widget.handle.owner._handles.remove(widget.handle);
+    // List reordering can replace this view while its toast still exists.
+    if (widget.handle.animateClose == _close) {
+      widget.handle.animateClose = null;
+    }
     _motion.dispose();
     super.dispose();
   }

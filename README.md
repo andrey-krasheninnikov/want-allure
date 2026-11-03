@@ -13,7 +13,7 @@ Shared design foundations and UI kits for Want products across web and mobile.
 - @want-foundation/allure-react: React 19 primitives and generic product compositions built on Radix.
 - want_allure: Flutter themes, controls, compositions and motion built on ForUI, for Android, iOS, web, macOS, Windows and Linux.
 
-All public packages use version 1.2.1. Keep matching releases aligned. The Flutter adapter is published as `want_allure` on pub.dev and uses ForUI with the same Want tokens and component families.
+The web packages use version 1.2.1; the Flutter adapter uses 1.2.2 with a toast lifecycle fix. The Flutter adapter is published as `want_allure` on pub.dev and uses ForUI with the same Want tokens and component families.
 
 Upgrading from the previous package names? Follow the [1.0.0 migration guide](docs/migration-1.0.0.md).
 
@@ -46,7 +46,7 @@ No stylesheet copying, source aliases or scanning library sources with Tailwind 
 ## Flutter
 
 ```sh
-flutter pub add want_allure:^1.2.1
+flutter pub add want_allure:^1.2.2
 ```
 
 Import `package:want_allure/want_allure.dart` and wrap the application content with `WantTheme`. The package includes local fonts, its SVG asset and all 46 web component families. See [Flutter documentation](packages/flutter/README.md) and [component parity](docs/flutter-parity.md).
@@ -192,7 +192,7 @@ Checks run locally. Browser checks use the combined production artifact and cove
 
 ## Release
 
-Build and verify the final candidate before publishing. Inspect both tarballs, keep only distribution files and license notices, and publish foundation before React with public access. Use the repository release tag v1.2.1 for this release. Never overwrite a published version; reconcile a registry response before retrying a timed-out publish.
+Build and verify the final candidate before publishing. Inspect both tarballs, keep only distribution files and license notices, and publish foundation before React with public access. The web release uses v1.2.1; the Flutter-only patch uses flutter-v1.2.2. Never overwrite a published version; reconcile a registry response before retrying a timed-out publish.
 
 The npm organization is want-foundation. Publishing requires a signed-in owner with the required npm authentication. Credentials never belong in source files. Registry availability is confirmed as part of release, separately from the source merge.
 

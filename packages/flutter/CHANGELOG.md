@@ -1,3 +1,7 @@
+## 1.2.2
+
+- Release toast pointer regions after stacked notifications close, including automatic dismissal and interrupted exit animations.
+
 ## 1.2.1
 
 - Restore optional background pause controls and compact dialog constraints with an accessible hidden title.
