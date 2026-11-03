@@ -46,38 +46,44 @@ class WantBrandLockup extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) => FTappable(
+    selectable: WantWebScope.enabledOf(context),
     onPress: onPressed,
-    child: Padding(
-      padding: const EdgeInsets.symmetric(vertical: 6),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        spacing: 12,
-        children: [
-          ExcludeSemantics(child: logo),
-          Flexible(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  name,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                if (subtitle != null)
+    child: DefaultSelectionStyle.merge(
+      mouseCursor: onPressed == null
+          ? SystemMouseCursors.text
+          : MouseCursor.defer,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 6),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          spacing: 12,
+          children: [
+            ExcludeSemantics(child: logo),
+            Flexible(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
                   Text(
-                    subtitle!,
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: WantTheme.of(context).color('muted-foreground'),
+                    name,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
-              ],
+                  if (subtitle != null)
+                    Text(
+                      subtitle!,
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: WantTheme.of(context).color('muted-foreground'),
+                      ),
+                    ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     ),
   );

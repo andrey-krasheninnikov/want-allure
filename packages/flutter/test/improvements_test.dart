@@ -141,6 +141,7 @@ void main() {
   ) async {
     var presses = 0;
     var toggles = 0;
+    var compositionPresses = 0;
     await tester.pumpWidget(
       harness(
         Column(
@@ -155,6 +156,20 @@ void main() {
               value: false,
               onChanged: (_) => toggles++,
               label: const Text('Switch label'),
+            ),
+            WantBrandLockup(
+              name: 'Brand label',
+              subtitle: 'Brand detail',
+              logo: const SizedBox.square(dimension: 16),
+              onPressed: () => compositionPresses++,
+            ),
+            WantMediaCard(
+              image: const SizedBox(),
+              imageLabel: 'Preview',
+              title: 'Media label',
+              caption: 'Media detail',
+              aspectRatio: 8,
+              onPressed: () => compositionPresses++,
             ),
             const Text('Select to here'),
           ],
@@ -200,6 +215,11 @@ void main() {
     final selected = selection.getSelectedContent()!.plainText;
     expect(selected, contains('Action label'));
     expect(selected, contains('Switch label'));
+    expect(selected, contains('Brand label'));
+    expect(selected, contains('Brand detail'));
+    expect(selected, contains('Media label'));
+    expect(selected, contains('Media detail'));
+    expect(compositionPresses, 0);
     expect(presses, 1);
     expect(toggles, 1);
     expect(
@@ -276,6 +296,90 @@ void main() {
       expect(tester.takeException(), isNull);
     },
   );
+  testWidgets('navigation glyphs mirror exactly once in RTL', (tester) async {
+    for (final direction in TextDirection.values) {
+      await tester.pumpWidget(
+        harness(
+          Column(
+            children: [
+              WantBreadcrumb(
+                semanticsLabel: 'Breadcrumbs',
+                items: [
+                  WantBreadcrumbItem(
+                    label: const Text('Home'),
+                    onPressed: () {},
+                  ),
+                  const WantBreadcrumbItem(label: Text('Current')),
+                ],
+              ),
+              WantPagination(
+                page: 2,
+                pageSize: 10,
+                totalItems: 30,
+                onChanged: (_, _) {},
+                labels: WantPaginationLabels(
+                  navigation: 'Pages',
+                  previous: 'Previous page',
+                  next: 'Next page',
+                  pageSize: 'Rows',
+                  page: (page) => 'Page $page',
+                  results: (_, _, _) => 'Results',
+                ),
+              ),
+            ],
+          ),
+          direction: direction,
+        ),
+      );
+      await tester.pumpAndSettle();
+      final previous = find.byIcon(WantIcons.chevronLeft);
+      expect(previous, findsOneWidget);
+      expect(find.byIcon(WantIcons.chevronRight), findsNWidgets(2));
+      final mirrors = tester
+          .widgetList<Transform>(
+            find.descendant(of: previous, matching: find.byType(Transform)),
+          )
+          .where((transform) => transform.transform.entry(0, 0) == -1);
+      expect(mirrors.length, direction == TextDirection.rtl ? 1 : 0);
+      expect(tester.takeException(), isNull);
+    }
+  });
+  testWidgets('persistent notifications dismiss by outward and upward swipes', (
+    tester,
+  ) async {
+    for (final gesture in [
+      (TextDirection.ltr, const Offset(500, 0)),
+      (TextDirection.rtl, const Offset(-500, 0)),
+      (TextDirection.ltr, const Offset(0, -200)),
+    ]) {
+      WantToastHandle? handle;
+      await tester.pumpWidget(
+        harness(
+          Builder(
+            builder: (context) => WantButton(
+              onPressed: () => handle = showWantSnackbar(
+                context: context,
+                variant: WantSnackbarVariant.error,
+                variantLabel: 'Error',
+                title: const Text('Swipe notification'),
+                closeLabel: 'Dismiss status',
+              ),
+              child: const Text('Notify swipe'),
+            ),
+          ),
+          direction: gesture.$1,
+        ),
+      );
+      await tester.tap(find.text('Notify swipe'));
+      await tester.pumpAndSettle();
+      expect(handle!.showing, isTrue);
+      await tester.drag(find.text('Swipe notification'), gesture.$2);
+      await tester.pumpAndSettle();
+      expect(handle!.showing, isFalse);
+      expect(find.text('Swipe notification'), findsNothing);
+      expect(tester.takeException(), isNull);
+    }
+  });
   testWidgets('toast handle can dismiss before its first frame', (
     tester,
   ) async {

@@ -22,54 +22,63 @@ class WantMediaCard extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) => FTappable(
+    selectable: WantWebScope.enabledOf(context),
     onPress: onPressed,
-    child: WantCard(
-      padding: EdgeInsets.zero,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          ClipRRect(
-            borderRadius: const BorderRadius.all(Radius.circular(24)),
-            child: AspectRatio(
-              aspectRatio: aspectRatio,
-              child: Semantics(
-                label: imageLabel,
-                image: true,
-                excludeSemantics: true,
-                child: image,
+    child: DefaultSelectionStyle.merge(
+      mouseCursor: onPressed == null
+          ? SystemMouseCursors.text
+          : MouseCursor.defer,
+      child: WantCard(
+        padding: EdgeInsets.zero,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ClipRRect(
+              borderRadius: const BorderRadius.all(Radius.circular(24)),
+              child: AspectRatio(
+                aspectRatio: aspectRatio,
+                child: Semantics(
+                  label: imageLabel,
+                  image: true,
+                  excludeSemantics: true,
+                  child: image,
+                ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(20),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              spacing: 12,
-              children: [
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    spacing: 8,
-                    children: [
-                      WantTypography(title, variant: WantTypographyVariant.h3),
-                      if (caption != null)
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                spacing: 12,
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      spacing: 8,
+                      children: [
                         WantTypography(
-                          caption!,
-                          variant: WantTypographyVariant.caption,
-                          colorRole: 'muted-foreground',
+                          title,
+                          variant: WantTypographyVariant.h3,
                         ),
-                    ],
+                        if (caption != null)
+                          WantTypography(
+                            caption!,
+                            variant: WantTypographyVariant.caption,
+                            colorRole: 'muted-foreground',
+                          ),
+                      ],
+                    ),
                   ),
-                ),
-                if (index != null)
-                  ExcludeSemantics(
-                    child: Text(index.toString().padLeft(2, '0')),
-                  ),
-              ],
+                  if (index != null)
+                    ExcludeSemantics(
+                      child: Text(index.toString().padLeft(2, '0')),
+                    ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     ),
   );

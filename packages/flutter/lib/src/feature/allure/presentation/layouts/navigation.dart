@@ -27,14 +27,7 @@ class WantBreadcrumb extends StatelessWidget {
       children: [
         for (var i = 0; i < items.length; i++) ...[
           if (i > 0)
-            ExcludeSemantics(
-              child: Icon(
-                Directionality.of(context) == TextDirection.rtl
-                    ? WantIcons.chevronLeft
-                    : WantIcons.chevronRight,
-                size: 16,
-              ),
-            ),
+            ExcludeSemantics(child: Icon(WantIcons.chevronRight, size: 16)),
           Semantics(
             selected: i == items.length - 1,
             child: items[i].onPressed == null

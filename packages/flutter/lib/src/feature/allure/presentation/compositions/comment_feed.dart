@@ -238,11 +238,7 @@ class _WantCommentFeedState extends State<WantCommentFeed> {
                 variant: WantButtonVariant.secondary,
                 semanticsLabel: widget.labels.previous,
                 onPressed: page <= 1 ? null : () => _move(-1),
-                child: Icon(
-                  Directionality.of(context) == TextDirection.rtl
-                      ? WantIcons.arrowRight
-                      : WantIcons.arrowLeft,
-                ),
+                child: Icon(WantIcons.arrowLeft),
               ),
               Semantics(
                 liveRegion: true,
@@ -256,11 +252,7 @@ class _WantCommentFeedState extends State<WantCommentFeed> {
                 variant: WantButtonVariant.secondary,
                 semanticsLabel: widget.labels.next,
                 onPressed: page >= _count ? null : () => _move(1),
-                child: Icon(
-                  Directionality.of(context) == TextDirection.rtl
-                      ? WantIcons.arrowLeft
-                      : WantIcons.arrowRight,
-                ),
+                child: Icon(WantIcons.arrowRight),
               ),
             ],
           ),

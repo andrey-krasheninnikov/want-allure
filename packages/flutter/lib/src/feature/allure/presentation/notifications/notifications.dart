@@ -306,7 +306,10 @@ WantToastHandle _showToast({
             child: _TimedToast(
               duration: duration,
               onDismiss: handle.dismiss,
-              child: builder(handle.dismiss),
+              child: _SwipeToast(
+                handle: handle,
+                child: builder(handle.dismiss),
+              ),
             ),
           ),
         ),
@@ -314,6 +317,31 @@ WantToastHandle _showToast({
     ),
   );
   return handle;
+}
+
+class _SwipeToast extends StatelessWidget {
+  final _ToastHandle handle;
+  final Widget child;
+  const _SwipeToast({required this.handle, required this.child});
+  @override
+  Widget build(BuildContext context) {
+    Widget swipe(Axis axis, DismissDirection direction, Widget child) =>
+        Dismissible(
+          key: ValueKey((handle, axis)),
+          direction: direction,
+          movementDuration: WantTheme.reducedMotionOf(context)
+              ? Duration.zero
+              : const Duration(milliseconds: 180),
+          resizeDuration: null,
+          onDismissed: (_) => handle._remove(),
+          child: child,
+        );
+    return swipe(
+      Axis.horizontal,
+      DismissDirection.startToEnd,
+      swipe(Axis.vertical, DismissDirection.up, child),
+    );
+  }
 }
 
 class _ToastTransition extends StatefulWidget {
@@ -465,7 +493,7 @@ class _TimedToastState extends State<_TimedToast> with WidgetsBindingObserver {
   Timer? _timer;
   Duration? _remaining;
   final _watch = Stopwatch();
-  bool _hovered = false, _focused = false, _active = true;
+  bool _hovered = false, _pressed = false, _focused = false, _active = true;
   @override
   void initState() {
     super.initState();
@@ -489,6 +517,7 @@ class _TimedToastState extends State<_TimedToast> with WidgetsBindingObserver {
   void _sync() {
     final paused =
         _hovered ||
+        _pressed ||
         _focused ||
         !_active ||
         !TickerMode.valuesOf(context).enabled ||
@@ -527,21 +556,35 @@ class _TimedToastState extends State<_TimedToast> with WidgetsBindingObserver {
   }
 
   @override
-  Widget build(BuildContext context) => MouseRegion(
-    onEnter: (_) {
-      _hovered = true;
+  Widget build(BuildContext context) => Listener(
+    onPointerDown: (_) {
+      _pressed = true;
       _sync();
     },
-    onExit: (_) {
-      _hovered = false;
+    onPointerUp: (_) {
+      _pressed = false;
       _sync();
     },
-    child: Focus(
-      onFocusChange: (value) {
-        _focused = value;
+    onPointerCancel: (_) {
+      _pressed = false;
+      _sync();
+    },
+    child: MouseRegion(
+      onEnter: (_) {
+        _hovered = true;
         _sync();
       },
-      child: widget.child,
+      onExit: (_) {
+        _hovered = false;
+        _sync();
+      },
+      child: Focus(
+        onFocusChange: (value) {
+          _focused = value;
+          _sync();
+        },
+        child: widget.child,
+      ),
     ),
   );
 }

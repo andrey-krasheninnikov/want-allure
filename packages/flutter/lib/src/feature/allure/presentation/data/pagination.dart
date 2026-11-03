@@ -72,11 +72,7 @@ class WantPagination extends StatelessWidget {
                 onPressed: current == 1
                     ? null
                     : () => onChanged(current - 1, size),
-                child: Icon(
-                  Directionality.of(context) == TextDirection.rtl
-                      ? WantIcons.chevronRight
-                      : WantIcons.chevronLeft,
-                ),
+                child: Icon(WantIcons.chevronLeft),
               ),
               for (
                 var value = start;
@@ -103,11 +99,7 @@ class WantPagination extends StatelessWidget {
                 onPressed: current == count
                     ? null
                     : () => onChanged(current + 1, size),
-                child: Icon(
-                  Directionality.of(context) == TextDirection.rtl
-                      ? WantIcons.chevronLeft
-                      : WantIcons.chevronRight,
-                ),
+                child: Icon(WantIcons.chevronRight),
               ),
             ],
           ),
