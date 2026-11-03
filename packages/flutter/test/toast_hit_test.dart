@@ -32,7 +32,7 @@ void main() {
             reduced: reduced,
           ),
         );
-        for (var i = 0; i < 3; i++) {
+        for (var i = 0; i < 6; i++) {
           handles.add(
             showWantToast(
               context: context,
@@ -46,7 +46,8 @@ void main() {
         focus.requestFocus();
         await tester.pump();
         final point = tester.getCenter(find.byType(WantToast).first);
-        expect(handles.every((handle) => handle.showing), isTrue);
+        expect(handles.first.showing, isFalse);
+        expect(handles.skip(1).every((handle) => handle.showing), isTrue);
         if (automatic) {
           for (
             var frame = 0;
