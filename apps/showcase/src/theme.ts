@@ -6,6 +6,7 @@ try { const saved = localStorage.getItem('want-theme'); if (saved === 'dark' || 
 function apply(theme: Theme) {
   document.documentElement.dataset.theme = theme;
   document.documentElement.classList.toggle('dark', theme === 'dark');
+  for (const icon of document.querySelectorAll<HTMLLinkElement>('link[data-theme-icon]')) icon.href = `/favicon/${theme}/${icon.dataset.themeIcon}`;
   dispatchEvent(new CustomEvent('want:theme', { detail: theme }));
 }
 function system() { if (!explicit) apply(media.matches ? 'dark' : 'light'); }

@@ -25,7 +25,7 @@ const schema = [{ '@context': 'https://schema.org', '@type': 'WebSite', name: 'W
     {section === 'home' && !notFound && <>{locales.map(language=><link rel="alternate" hreflang={language} href={new URL(route(language),siteUrl).href}/>)}<link rel="alternate" hreflang="x-default" href={new URL('/', siteUrl).href} /></>}
     <meta property="og:type" content="website" /><meta property="og:site_name" content="Want Allure" /><meta property="og:title" content={title} /><meta property="og:description" content={description} /><meta property="og:url" content={canonical} /><meta property="og:image" content={image} /><meta property="og:image:width" content="1280" /><meta property="og:image:height" content="640" /><meta property="og:image:alt" content="Want Allure" /><meta property="og:locale" content={({en:'en_US','zh-Hans':'zh_CN',hi:'hi_IN',es:'es_ES',ar:'ar_SA',fr:'fr_FR','pt-BR':'pt_BR',ru:'ru_RU',de:'de_DE',ja:'ja_JP',tr:'tr_TR',he:'he_IL'}[locale])} />
     <meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content={title} /><meta name="twitter:description" content={description} /><meta name="twitter:image" content={image} />
-    <link rel="icon" href="/favicon/favicon.ico" sizes="16x16 32x32 48x48 64x64 256x256" /><link rel="icon" href="/favicon/favicon.svg" type="image/svg+xml" sizes="any" /><link rel="apple-touch-icon" href="/favicon/dark/apple-touch-icon.png" sizes="180x180" /><link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#5962F0" /><link rel="manifest" href="/site.webmanifest" />
+    <link rel="icon" data-theme-icon="favicon.ico" href="/favicon/favicon.ico" sizes="16x16 32x32 48x48 64x64 256x256" /><link rel="icon" data-theme-icon="favicon-512.svg" href="/favicon/favicon.svg" type="image/svg+xml" sizes="any" /><link rel="apple-touch-icon" data-theme-icon="apple-touch-icon.png" href="/favicon/light/apple-touch-icon.png" sizes="180x180" /><link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#5962F0" /><link rel="manifest" href="/site.webmanifest" />
     {section === 'home' && !notFound && <script type="application/ld+json" set:html={JSON.stringify(schema).replace(/</g, '\u003c')} />}
     <script is:inline>
       let theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
@@ -33,6 +33,7 @@ const schema = [{ '@context': 'https://schema.org', '@type': 'WebSite', name: 'W
       try { const direction=localStorage.getItem('want-direction:'+document.documentElement.lang); if(direction==='ltr'||direction==='rtl')document.documentElement.dir=direction; } catch {}
       document.documentElement.dataset.theme = theme;
       document.documentElement.classList.toggle('dark', theme === 'dark');
+      for (const icon of document.querySelectorAll('link[data-theme-icon]')) icon.href = `/favicon/${theme}/${icon.dataset.themeIcon}`;
     </script>
   </head>
   <body class:list={['site-shell', { 'flutter-page': frame }]}>

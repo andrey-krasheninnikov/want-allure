@@ -70,6 +70,12 @@ class CatalogueHost {
       web.window.history.replaceState(null, '', uri.toString());
     }
     web.document.documentElement?.setAttribute('data-theme', theme);
+    web.document
+        .querySelector('link[rel="icon"]')
+        ?.setAttribute('href', 'favicon/$theme/favicon-512.svg');
+    web.document
+        .querySelector('link[rel="apple-touch-icon"]')
+        ?.setAttribute('href', 'favicon/$theme/apple-touch-icon.png');
     web.document.documentElement?.setAttribute('lang', locale);
     web.document.documentElement?.setAttribute('dir', direction);
     web.document.body?.style.backgroundColor = theme == 'light'
