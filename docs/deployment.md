@@ -57,7 +57,7 @@ The archive's revision must belong to origin/main. Record the returned source SH
 
 All twelve locales remain available. Existing directory pages redirect to a trailing slash while preserving query parameters. Missing pages and assets return 404 with the project's error document. There is no SPA fallback.
 
-HTML, release metadata, Flutter bootstrap and service worker use `no-store`. Hashed Astro resources use a one-year immutable cache; current and previous release chunks remain available. Other paths require revalidation. Errors use `no-store`, including missing immutable resources. The Flutter bootstrap does not register a caching service worker. Nginx supplies JS/WASM/font/SVG types and `nosniff`.
+HTML, release metadata, Flutter bootstrap and service worker use `no-store`. Hashed Astro resources use a one-year immutable cache; current and previous release chunks remain available. Other paths require revalidation. Errors use `no-store`, including missing immutable resources. The Flutter bootstrap does not register a caching service worker. Every response includes `no-transform` so Cloudflare preserves the verified body instead of injecting HTML scripts or obfuscating email addresses. Nginx supplies JS/WASM/font/SVG types and `nosniff`.
 
 Inspect public Cloudflare responses as well as origin behavior. If a hostname-specific cache override defeats these headers, correct only that host's rule with the owner account. Do not change zone-wide cache or TLS policy. Never claim a successful deployment while stale HTML/bootstrap remains observable.
 

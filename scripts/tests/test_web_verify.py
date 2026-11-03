@@ -50,7 +50,7 @@ class VerificationTest(unittest.TestCase):
                     cache = 'no-store'
                 mime = {'.html': 'text/html', '.js': 'application/javascript', '.wasm': 'application/wasm', '.png': 'image/png', '.svg': 'image/svg+xml', '.woff2': 'font/woff2', '.ttf': 'font/ttf'}.get(Path(name).suffix, 'application/octet-stream')
                 self.send_header('Content-Type', mime)
-                self.send_header('Cache-Control', cache)
+                self.send_header('Cache-Control', cache + ', no-transform')
                 self.send_header('X-Content-Type-Options', 'nosniff')
                 self.end_headers()
                 self.wfile.write(body or b'missing')

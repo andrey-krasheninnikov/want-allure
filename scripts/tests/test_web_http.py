@@ -26,7 +26,7 @@ class HttpTest(unittest.TestCase):
                 self.assertEqual(status, 200)
                 self.assertTrue(body)
                 self.assertIn('text/html', headers['Content-Type'])
-                self.assertEqual(headers['Cache-Control'], 'no-store')
+                self.assertEqual(headers['Cache-Control'], 'no-store, no-transform')
 
     def test_trailing_slash_redirect_preserves_query(self):
         for path in ['/react', '/flutter', '/ru', '/ru/react', '/ru/flutter']:
@@ -38,7 +38,7 @@ class HttpTest(unittest.TestCase):
         for path in ['/missing/', '/_flutter/missing.js', '/_astro/missing.js', '/.env', '/.archive-sha256']:
             status, headers, _ = self.request(path)
             self.assertEqual(status, 404, path)
-            self.assertEqual(headers['Cache-Control'], 'no-store', path)
+            self.assertEqual(headers['Cache-Control'], 'no-store, no-transform', path)
 
     def test_current_and_previous_hashed_chunks_remain_immutable(self):
         for path, expected in [('/_astro/current.hash.js', b'current chunk'), ('/_astro/previous.hash.js', b'previous chunk')]:
@@ -51,7 +51,7 @@ class HttpTest(unittest.TestCase):
         for path in ['/release.json', '/_flutter/flutter_bootstrap.js', '/_flutter/flutter_service_worker.js', '/?theme=dark']:
             status, headers, _ = self.request(path)
             self.assertEqual(status, 200, path)
-            self.assertEqual(headers['Cache-Control'], 'no-store', path)
+            self.assertEqual(headers['Cache-Control'], 'no-store, no-transform', path)
 
     def test_runtime_and_fonts_have_correct_types_and_revalidate(self):
         for path, mime in [('/_flutter/main.dart.js', 'application/javascript'), ('/_flutter/canvaskit.wasm', 'application/wasm'), ('/font.woff2', 'font/woff2'), ('/font.ttf', 'font/ttf'), ('/shader.frag', 'application/octet-stream')]:

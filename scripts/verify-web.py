@@ -43,6 +43,7 @@ def verify(base, revision=None):
         with response:
             body = response.read()
             assert response.status == expected, (path, response.status, expected)
+            assert 'no-transform' in response.headers.get('Cache-Control', ''), path
             if manifest and expected == 200:
                 name = urlsplit(path).path.lstrip('/')
                 if not name or name.endswith('/'):
