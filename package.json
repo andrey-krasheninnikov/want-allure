@@ -10,7 +10,7 @@
   "scripts": {
     "build": "bun scripts/build.ts",
     "check": "bun run assets:check && tsc --noEmit && bun run --cwd apps/showcase check",
-    "test": "bun test tests",
+    "test": "bun test tests && bun run web:test",
     "test:ui": "playwright test",
     "test:consumer": "bun scripts/check-consumer.ts",
     "dev": "bun scripts/web.ts dev",
@@ -25,7 +25,11 @@
     "web:build": "bun scripts/web.ts build",
     "web:preview": "bun scripts/web.ts preview",
     "web:flutter": "bun scripts/web.ts flutter",
-    "web:check": "bun scripts/check-web.ts"
+    "web:check": "bun scripts/check-web.ts",
+    "web:deploy": "python3 -B scripts/deploy-web.py deploy",
+    "web:rollback": "python3 -B scripts/deploy-web.py rollback",
+    "web:verify": "python3 -B scripts/verify-web.py",
+    "web:test": "python3 -B -m unittest discover -s scripts/tests -p test_web_*.py"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.5",

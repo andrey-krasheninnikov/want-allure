@@ -165,7 +165,7 @@ bun run web:build
 bun run web:preview --port 4321
 ```
 
-The artifact is `apps/showcase/dist`, including `/_flutter/`. Generated runtime files are ignored by Git. `bun run build` continues to build only the public npm packages. The default canonical origin is `https://allure.want.foundation`; `SITE_URL` may override it at build time. Production hosting is tracked in [issue #20](https://github.com/andrey-krasheninnikov/want-allure/issues/20).
+The artifact is `apps/showcase/dist`, including `/_flutter/`. Generated runtime files are ignored by Git. `bun run build` continues to build only the public npm packages. The default canonical origin is `https://allure.want.foundation`; `SITE_URL` may override it at build time. For local publication, HTTP verification and rollback on the existing Want hosting, see [deployment instructions](docs/deployment.md). Production acceptance is tracked in [issue #20](https://github.com/andrey-krasheninnikov/want-allure/issues/20).
 
 ## Brand resources
 
