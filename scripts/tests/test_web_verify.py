@@ -30,6 +30,8 @@ class VerificationTest(unittest.TestCase):
         manifest = {'sourceRevision': 'a' * 40, 'files': {name: hashlib.sha256(body).hexdigest() for name, body in sorted(self.files.items())}}
         self.files['release.json'] = json.dumps(manifest).encode()
         files = self.files
+        self.omit_transform = False
+        state = self
 
         class Handler(BaseHTTPRequestHandler):
             def log_message(self, *arguments):
@@ -39,6 +41,7 @@ class VerificationTest(unittest.TestCase):
                 path = urlsplit(self.path).path.lstrip('/')
                 if not path.endswith('/') and path + '/index.html' in files:
                     self.send_response(301)
+                    self.send_header('Cache-Control', 'public, max-age=0, must-revalidate, no-transform')
                     self.send_header('Location', '/' + path + '/?' + urlsplit(self.path).query)
                     self.end_headers()
                     return
@@ -50,7 +53,7 @@ class VerificationTest(unittest.TestCase):
                     cache = 'no-store'
                 mime = {'.html': 'text/html', '.js': 'application/javascript', '.wasm': 'application/wasm', '.png': 'image/png', '.svg': 'image/svg+xml', '.woff2': 'font/woff2', '.ttf': 'font/ttf'}.get(Path(name).suffix, 'application/octet-stream')
                 self.send_header('Content-Type', mime)
-                self.send_header('Cache-Control', cache)
+                self.send_header('Cache-Control', cache + ('' if state.omit_transform else ', no-transform'))
                 self.send_header('X-Content-Type-Options', 'nosniff')
                 self.end_headers()
                 self.wfile.write(body or b'missing')
@@ -79,3 +82,8 @@ class VerificationTest(unittest.TestCase):
         result = self.check()
         self.assertNotEqual(result.returncode, 0)
         self.assertIn('checksum', result.stderr.lower())
+
+    def test_responses_without_no_transform_are_rejected(self):
+        self.omit_transform = True
+        result = self.check()
+        self.assertNotEqual(result.returncode, 0)
