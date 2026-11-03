@@ -340,6 +340,7 @@ void main() {
       ),
     );
     await tester.tap(find.text('Show'));
+    await tester.pump();
     await tester.pump(const Duration(milliseconds: 400));
     final close = find.bySemanticsLabel('Close status').first;
     await tester.tap(close);
@@ -362,6 +363,7 @@ void main() {
       ),
     );
     await tester.tap(find.text('Show error'));
+    await tester.pump();
     await tester.pump(const Duration(seconds: 30));
     expect(find.text('Could not load'), findsOneWidget);
     await tester.tap(find.bySemanticsLabel('Dismiss error').first);
@@ -401,8 +403,9 @@ void main() {
         ),
       );
       await tester.tap(find.text('Show timed status'));
+      await tester.pump();
       await tester.pump(const Duration(milliseconds: 400));
-      Focus.of(tester.element(find.byIcon(FLucideIcons.x).last)).requestFocus();
+      Focus.of(tester.element(find.byIcon(WantIcons.x).last)).requestFocus();
       await tester.pump();
       await tester.pump(const Duration(seconds: 2));
       expect(find.text('Timed status'), findsOneWidget);

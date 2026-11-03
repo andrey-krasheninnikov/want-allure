@@ -6,6 +6,7 @@ import { resolve, join } from 'node:path';
 import { build } from 'vite';
 
 const root = resolve(import.meta.dirname, '..');
+const version = JSON.parse(await readFile(resolve(root, 'packages/foundation/package.json'), 'utf8')).version as string;
 const directory = await realpath(await mkdtemp(join(tmpdir(), 'want-allure-consumer-')));
 const run = (command: string, args: string[], cwd = directory) => execFileSync(command, args, { cwd, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], maxBuffer: 8 * 1024 * 1024 });
 try {
@@ -15,7 +16,7 @@ try {
     const output: unknown = JSON.parse(run('npm', ['pack', '--json', '--ignore-scripts', '--pack-destination', directory], resolve(root, 'packages', name)));
     assert(Array.isArray(output) && output.length === 1);
     const record = output[0];
-    const filename = name === 'foundation' ? 'want-foundation-allure-1.0.0.tgz' : 'want-foundation-allure-react-1.0.0.tgz';
+    const filename = `want-foundation-allure${name === 'react' ? '-react' : ''}-${version}.tgz`;
     assert(record && record.filename === filename);
     assert(Array.isArray(record.files));
     for (const file of record.files) {
@@ -78,7 +79,7 @@ try {
   run('node', ['node_modules/typescript/bin/tsc', '--noEmit', '--strict', '--skipLibCheck', '--jsx', 'react-jsx', '--module', 'ESNext', '--moduleResolution', 'Bundler', '--target', 'ES2022', '--resolveJsonModule', 'check.tsx']);
   const foundation = join(directory, 'node_modules/@want-foundation/allure');
   const skillDestination = join(directory, 'installed skills');
-  const installCommand = ['--offline', '--yes', '--package=@want-foundation/allure@1.0.0', 'want-design-install'];
+  const installCommand = ['--offline', '--yes', `--package=@want-foundation/allure@${version}`, 'want-design-install'];
   assert(run('npx', [...installCommand, '--dest', skillDestination]).includes('Installed:'));
   assert(run('npx', [...installCommand, '--dest', skillDestination]).includes('Already installed:'));
   assert(run('npx', [...installCommand, '--global', '--help']).includes('Usage: want-design-install'));

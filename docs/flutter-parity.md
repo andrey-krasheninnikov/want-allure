@@ -1,6 +1,6 @@
 # Flutter component parity
 
-The 0.4.0 Flutter adapter covers every family exported by the React adapter. Flutter uses native widget composition and callbacks. React-only trigger, portal and content parts map to builders, slots and the framework overlay system.
+The 1.1.0 Flutter adapter covers every family exported by the React adapter. Flutter uses native widget composition and callbacks. React-only trigger, portal and content parts map to builders, slots and the framework overlay system.
 
 | Web family | Flutter API | Example section |
 | --- | --- | --- |
@@ -58,3 +58,5 @@ File selection uses the platform dialog. Native and web drop data passes through
 `WantToaster` owns the overlay. Toast and snackbar functions return a dismissible handle. Status colors stay on the icon plate; the surface follows the theme. Errors stay until dismissed unless a duration is supplied. A null duration is persistent. Focus, hover, accessible navigation and inactive views pause timed dismissal.
 
 Optional effects never own product actions. The background controller has pause/resume/toggle and triggerWave. The widget owns and cancels animation resources and timers; consumers dispose controllers they create. Waves default to 8–18 second delays, preserving the separate background phase when restarted.
+
+The 1.1.0 release adds a presentation barrel tree, Phosphor icons, toastification delivery, smooth_sheets bottom sheets, web selection/find and bundled fragment shaders. Top/left/right sheets preserve their ForUI behavior. New APIs are additive; existing Want constructors, callback contracts and notification handles remain available.

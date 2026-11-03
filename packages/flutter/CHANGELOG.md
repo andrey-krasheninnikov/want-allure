@@ -1,5 +1,15 @@
 ## 1.0.0
 
+## 1.1.0
+
+- Refactor Flutter UI ownership into presentation libraries and strict barrel imports while preserving the public Want API.
+- Use toastification for themed animated feedback, Phosphor icons and smooth_sheets for bottom sheets. Give every sheet direction an opaque rounded surface.
+- Add web text selection with action-first pointer behavior and localized application find behind an opt-in `enableFind` flag.
+- Isolate continuous effects and indeterminate progress from static page repaints, and pause their tickers outside the visible viewport.
+- Improve attachment cards, control state motion and 360 ms text transitions. Render shimmer and the background sphere with bundled fragment shaders and static fallbacks.
+- Keep foundation, React and Flutter versions aligned. Run release checks locally with Actions skipped.
+
+
 - Rename the package to `want_allure` and the public import to `package:want_allure/want_allure.dart`.
 - Update bundled font and asset package paths, documentation and six-platform example identifiers.
 - Preserve all 44 component families, Want-prefixed APIs, themes, motion and accessibility behavior.
