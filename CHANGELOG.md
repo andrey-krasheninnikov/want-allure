@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.1.0
+
+- Refactor Flutter UI ownership into presentation libraries and strict barrel imports while preserving the public Want API.
+- Use toastification for themed animated feedback, Phosphor icons and smooth_sheets for bottom sheets. Give every sheet direction an opaque rounded surface.
+- Add web text selection with action-first pointer behavior and localized application find behind an opt-in `enableFind` flag.
+- Isolate continuous effects and indeterminate progress from static page repaints, and pause their tickers outside the visible viewport.
+- Improve attachment cards, control state motion and 360 ms text transitions. Render shimmer and the background sphere with bundled fragment shaders and static fallbacks.
+- Keep foundation, React and Flutter versions aligned. Run release checks locally with Actions skipped.
+
+
 ## 1.0.0
 
 - Rename the project to Want Allure and the repository to `want-allure`.

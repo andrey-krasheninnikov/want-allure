@@ -29,7 +29,18 @@ class _WantCatalogueState extends State<WantCatalogue> {
         reduceTransparency: _opaque,
         child: WantDirectionProvider(
           direction: _rtl ? TextDirection.rtl : TextDirection.ltr,
-          child: WantToaster(child: child!),
+          child: WantWebScope(
+            enableFind: const bool.fromEnvironment('WANT_ENABLE_FIND'),
+            labels: WantFindLabels(
+              search: 'Find in catalogue',
+              previous: 'Previous match',
+              next: 'Next match',
+              close: 'Close find',
+              matchStatus: (active, count) =>
+                  count == 0 ? 'No matches' : 'Match ${active + 1} of $count',
+            ),
+            child: WantToaster(child: child!),
+          ),
         ),
       ),
       home: Builder(
@@ -143,7 +154,7 @@ class _GalleryState extends State<_Gallery> {
               children: [
                 WantBrandLockup(
                   name: 'Want Allure',
-                  subtitle: 'Flutter · ForUI · 1.0.0',
+                  subtitle: 'Flutter · ForUI · 1.1.0',
                   logo: WantBrandLogo.asset(
                     'assets/brand/wallpapers.svg',
                     package: 'want_allure',
@@ -168,6 +179,19 @@ class _GalleryState extends State<_Gallery> {
                 ),
                 const SizedBox(height: 24),
                 _buttons([
+                  if (WantWebScope.findEnabledOf(context))
+                    WantButton(
+                      variant: WantButtonVariant.secondary,
+                      onPressed: () => WantWebScope.openFind(context),
+                      child: const Row(
+                        mainAxisSize: MainAxisSize.min,
+                        spacing: 8,
+                        children: [
+                          WantIcon(WantIcons.search),
+                          Text('Find · ⌘/Ctrl F'),
+                        ],
+                      ),
+                    ),
                   WantThemeToggle(
                     brightness: widget.brightness,
                     onChanged: widget.onBrightness,
@@ -288,7 +312,7 @@ class _GalleryState extends State<_Gallery> {
                         semanticsLabel: size.name,
                         onPressed: () => _message(size.name),
                         child: size.name.startsWith('icon')
-                            ? const Icon(FLucideIcons.download)
+                            ? const Icon(WantIcons.download)
                             : Text(size.name),
                       ),
                     const WantButton(onPressed: null, child: Text('Disabled')),
@@ -296,7 +320,7 @@ class _GalleryState extends State<_Gallery> {
                       onPressed: () => _message('Download selected'),
                       semanticsLabel: 'Download example',
                       size: WantButtonSize.icon,
-                      child: const Icon(FLucideIcons.download),
+                      child: const Icon(WantIcons.download),
                     ),
                   ]),
                 ),

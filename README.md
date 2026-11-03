@@ -8,7 +8,7 @@ Shared design foundations and UI kits for Want products across web and mobile.
 - @want-foundation/allure-react: React 19 primitives and generic product compositions built on Radix.
 - want_allure: Flutter themes, controls, compositions and motion built on ForUI, for Android, iOS, web, macOS, Windows and Linux.
 
-All public packages use version 1.0.0. Keep matching releases aligned. The Flutter adapter is published as `want_allure` on pub.dev and uses ForUI with the same Want tokens and component families.
+All public packages use version 1.1.0. Keep matching releases aligned. The Flutter adapter is published as `want_allure` on pub.dev and uses ForUI with the same Want tokens and component families.
 
 Upgrading from the previous package names? Follow the [1.0.0 migration guide](docs/migration-1.0.0.md).
 
@@ -17,7 +17,7 @@ Upgrading from the previous package names? Follow the [1.0.0 migration guide](do
 For a published release, install the matching versions:
 
 ```sh
-npm install @want-foundation/allure@1.0.0 @want-foundation/allure-react@1.0.0 react@^19 react-dom@^19
+npm install @want-foundation/allure@1.1.0 @want-foundation/allure-react@1.1.0 react@^19 react-dom@^19
 ```
 
 Import the stylesheet once in the application's entry point. The font stylesheet is optional and serves its font files locally.
@@ -41,7 +41,7 @@ No stylesheet copying, source aliases or scanning library sources with Tailwind 
 ## Flutter
 
 ```sh
-flutter pub add want_allure:^1.0.0
+flutter pub add want_allure:^1.1.0
 ```
 
 Import `package:want_allure/want_allure.dart` and wrap the application content with `WantTheme`. The package includes local fonts, its SVG asset and all 44 web component families. See [Flutter documentation](packages/flutter/README.md) and [component parity](docs/flutter-parity.md).
@@ -75,7 +75,7 @@ Use `bun run skill:install` for this checkout, or add `--dest /path/to/project/.
 From a consumer project's root, install the published skill with Node.js and npm:
 
 ```sh
-npx --yes --package=@want-foundation/allure@1.0.0 want-design-install
+npx --yes --package=@want-foundation/allure@1.1.0 want-design-install
 ```
 
 This creates `.agents/skills/want-design` in the current directory. The published skill includes its references and a token snapshot, so it does not need this repository afterward.
@@ -83,7 +83,7 @@ This creates `.agents/skills/want-design` in the current directory. The publishe
 For a personal installation shared across projects:
 
 ```sh
-npx --yes --package=@want-foundation/allure@1.0.0 want-design-install --global
+npx --yes --package=@want-foundation/allure@1.1.0 want-design-install --global
 ```
 
 This uses `~/.agents/skills/want-design`. Use `--dest PATH` instead of `--global` to select another parent skills directory; `want-design` is appended to that path. Quote paths containing spaces. `--help` lists the options. The installer does not change project configuration or install UI dependencies.
@@ -148,7 +148,7 @@ The Astro showcase lives in apps/showcase and uses local fixtures. Browser check
 
 ## Release
 
-Build and verify the final candidate before publishing. Inspect both tarballs, keep only distribution files and license notices, and publish foundation before React with public access. Use the repository release tag v1.0.0 for this release. Never overwrite a published version; reconcile a registry response before retrying a timed-out publish.
+Build and verify the final candidate before publishing. Inspect both tarballs, keep only distribution files and license notices, and publish foundation before React with public access. Use the repository release tag v1.1.0 for this release. Never overwrite a published version; reconcile a registry response before retrying a timed-out publish.
 
 The npm organization is want-foundation. Publishing requires a signed-in owner with the required npm authentication. Credentials never belong in source files. Registry availability is confirmed as part of release, separately from the source merge.
 

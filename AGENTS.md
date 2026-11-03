@@ -21,6 +21,10 @@ See `docs/agents/domain.md`.
 
 For Want interface, component, and UI-copy work, use the repository skill at `skills/want-design/SKILL.md`.
 
+### Flutter architecture
+
+For work in `packages/flutter`, use `$flutter-project-template`, `$flutter-domain-error`, `$flutter-domain-layer`, `$flutter-application-layer` and `$flutter-barrel-imports`. Read their contracts before changing the relevant structure or behavior. Keep widgets and visual controllers in presentation, use strict root-layer barrel imports, and preserve the public package API. Add domain or application layers only for a real scenario; do not introduce empty layers or business dependencies into UI components.
+
 ## Implementation contracts
 
 Use Bun 1.3.14 and the root scripts. Flutter uses the root FVM pin (3.47.7) and the Flutter scripts; use public ForUI primitives and derive Dart tokens from the canonical foundation JSON. Work from the issue-specific persistent worktree. Read GLOSSARY.md, DESIGN.md and relevant docs/adr before changes.

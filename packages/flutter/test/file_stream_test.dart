@@ -1,7 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:want_allure/src/widgets/file_stream.dart';
+import 'package:want_allure/src/feature/allure/presentation/_barrel.dart';
 
 void main() {
   test(
