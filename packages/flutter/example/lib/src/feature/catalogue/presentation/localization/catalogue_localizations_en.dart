@@ -592,4 +592,10 @@ class CatalogueLocalizationsEn extends CatalogueLocalizations {
 
   @override
   String get success => 'Success';
+
+  @override
+  String get brandAndTheme => 'Brand and theme';
+
+  @override
+  String get componentPreview => 'Component preview';
 }

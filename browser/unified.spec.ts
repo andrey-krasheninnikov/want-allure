@@ -18,6 +18,9 @@ for (const locale of ['en', 'ru']) for (const width of [320, 1440]) {
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
       const result = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze();
       expect(result.violations.map(item => ({ id: item.id, targets: item.nodes.map(node => node.target) }))).toEqual([]);
+      for (const action of await page.locator('.text-link, .site-footer a').all()) {
+        const box = await action.boundingBox(); expect(box!.width).toBeGreaterThanOrEqual(44); expect(box!.height).toBeGreaterThanOrEqual(44);
+      }
       await page.screenshot({ path: testInfo.outputPath(`landing-${locale}-${width}-${theme}.png`) });
     }
     expect(runtime).toEqual([]);
@@ -34,6 +37,14 @@ test('locale links preserve the selected section and saved theme', async ({ page
   await expect(page.getByRole('heading', { name: 'Общий дизайн.' })).toBeVisible();
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
   await expect(page.getByRole('button', { name: 'Открыть диалог', exact: true })).toBeVisible();
+  await page.getByRole('button', { name: 'Открыть диалог', exact: true }).click();
+  await page.getByRole('dialog').getByRole('button', { name: 'Закрыть', exact: true }).click();
+  await page.getByRole('button', { name: 'Открыть панель', exact: true }).click();
+  await page.getByRole('dialog').getByRole('button', { name: 'Закрыть', exact: true }).click();
+  await expect(page.getByRole('heading', { name: 'Бренд и тема', exact: true })).toBeVisible();
+  await page.getByRole('switch', { name: 'Тема компонента', exact: true }).uncheck();
+  await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
+  await expect(page.getByRole('switch', { name: 'Тёмная тема', exact: true })).not.toBeChecked();
   await page.reload();
   await expect(page.getByRole('heading', { name: 'Общий дизайн.' })).toBeVisible();
   await page.getByRole('link', { name: 'Switch to English' }).click();
@@ -60,6 +71,16 @@ test('Flutter synchronizes theme without restarting and rejects unrelated messag
     await page.screenshot({ path: testInfo.outputPath(`flutter-ru-${theme}.png`) });
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   }
+  await page.evaluate(() => {
+    dispatchEvent(new PageTransitionEvent('pagehide', { persisted: true }));
+    localStorage.setItem('want-theme', 'light');
+    dispatchEvent(new PageTransitionEvent('pageshow', { persisted: true }));
+  });
+  await expect.poll(() => frame.evaluate(() => document.documentElement.dataset.theme)).toBe('light');
+  await frame.evaluate(() => parent.postMessage({ type: 'want-allure:choose-theme', theme: 'dark' }, location.origin));
+  await expect(page.getByRole('switch')).toBeChecked();
+  await expect.poll(() => frame.evaluate(() => document.documentElement.dataset.theme)).toBe('dark');
+  expect(await frame.evaluate(() => (window as Window & { catalogueIdentity?: string }).catalogueIdentity)).toBe('preserved');
   await page.setViewportSize({ width: 320, height: 900 });
   const narrow = await page.locator('[data-flutter-frame]').boundingBox();
   expect(narrow!.height).toBeGreaterThan(540);

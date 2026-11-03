@@ -40,6 +40,15 @@ class CatalogueHost {
     }).toJS;
     web.window.addEventListener('message', _listener);
   }
+  void chooseTheme(String theme) {
+    if (embedded && (theme == 'light' || theme == 'dark')) {
+      web.window.parent?.postMessage(
+        {'type': 'want-allure:choose-theme', 'theme': theme}.jsify(),
+        web.window.location.origin.toJS,
+      );
+    }
+  }
+
   void ready() {
     if (embedded) {
       web.window.parent?.postMessage(

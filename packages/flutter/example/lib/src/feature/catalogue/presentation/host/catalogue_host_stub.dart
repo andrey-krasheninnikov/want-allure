@@ -5,6 +5,7 @@ class CatalogueHost {
   String get theme => 'dark';
   String get locale => 'en';
   bool get embedded => false;
+  void chooseTheme(String theme) {}
   void ready() {}
   void dispose() {}
 }

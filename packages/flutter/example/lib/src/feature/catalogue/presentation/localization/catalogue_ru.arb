@@ -178,5 +178,7 @@
   "error": "Ошибка",
   "warning": "Предупреждение",
   "info": "Информация",
-  "success": "Успех"
+  "success": "Успех",
+  "brandAndTheme": "Бренд и тема",
+  "componentPreview": "Пример компонентов"
 }

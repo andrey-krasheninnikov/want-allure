@@ -10,6 +10,8 @@ test('catalogue server rendering localizes controls and accessible names', () =>
   expect(ru).toContain('Общий дизайн.');
   expect(ru).toContain('aria-label="Пример навигации"');
   expect(ru).toContain('Открыть диалог');
+  expect(ru).toContain('Бренд и тема');
+  expect(ru).toContain('aria-label="Тема компонента"');
   expect(ru).toContain('Выбрать вложения');
   expect(ru).toContain('Фиолетовый горизонт');
   expect(ru).not.toContain('>Open dialog<');

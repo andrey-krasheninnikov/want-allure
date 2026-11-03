@@ -19,6 +19,25 @@ void main() {
     expect(find.text('Кнопки'), findsOneWidget);
     expect(find.text('Переключить на английский'), findsOneWidget);
     expect(find.text('Open dialog'), findsNothing);
+    expect(
+      tester
+          .widget<EditableText>(find.byType(EditableText).first)
+          .controller
+          .text,
+      'Фиолетовый горизонт',
+    );
+    await tester.enterText(find.byType(EditableText).first, 'Custom title');
+    await tester.ensureVisible(find.text('Переключить на английский'));
+    await tester.tap(find.text('Переключить на английский'));
+    await tester.pump(const Duration(milliseconds: 600));
+    expect(
+      tester
+          .widget<EditableText>(find.byType(EditableText).first)
+          .controller
+          .text,
+      'Custom title',
+    );
+    expect(find.text('Brand and theme'), findsOneWidget);
     await tester.pumpWidget(const SizedBox.shrink());
     await tester.pump(const Duration(seconds: 1));
   });

@@ -592,4 +592,10 @@ class CatalogueLocalizationsRu extends CatalogueLocalizations {
 
   @override
   String get success => 'Успех';
+
+  @override
+  String get brandAndTheme => 'Бренд и тема';
+
+  @override
+  String get componentPreview => 'Пример компонентов';
 }

@@ -17,6 +17,10 @@ const c = copy[locale];
   function settings() {
     frame.contentWindow?.postMessage({ type: 'want-allure:settings', theme: document.documentElement.dataset.theme, locale: stage.dataset.locale }, location.origin);
   }
+  function armTimeout() {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => { stage.dataset.state = 'error'; }, 45000);
+  }
   function load() {
     clearTimeout(timeout); stage.dataset.state = 'loading';
     const url = new URL('/_flutter/', location.origin);
@@ -24,16 +28,25 @@ const c = copy[locale];
     url.searchParams.set('theme', document.documentElement.dataset.theme ?? 'dark');
     url.searchParams.set('embedded', '1');
     frame.src = url.href;
-    timeout = setTimeout(() => { stage.dataset.state = 'error'; }, 45000);
+    armTimeout();
   }
   function message(event: MessageEvent) {
     if (event.origin !== location.origin || event.source !== frame.contentWindow) return;
+    if (event.data?.type === 'want-allure:choose-theme' && (event.data.theme === 'light' || event.data.theme === 'dark')) dispatchEvent(new CustomEvent('want:choose-theme', { detail: event.data.theme }));
     if (event.data?.type === 'want-allure:ready') { clearTimeout(timeout); settings(); stage.dataset.state = 'ready'; }
     if (event.data?.type === 'want-allure:error') { clearTimeout(timeout); stage.dataset.state = 'error'; }
   }
   addEventListener('message', message);
   addEventListener('want:theme', settings);
   stage.querySelector('[data-flutter-retry]')!.addEventListener('click', load);
-  addEventListener('pagehide', () => { clearTimeout(timeout); removeEventListener('message', message); removeEventListener('want:theme', settings); }, { once: true });
+  window.addEventListener('pagehide', event => {
+    clearTimeout(timeout);
+    if (!event.persisted) { removeEventListener('message', message); removeEventListener('want:theme', settings); }
+  });
+  window.addEventListener('pageshow', event => {
+    if (!event.persisted) return;
+    settings();
+    if (stage.dataset.state === 'loading') armTimeout();
+  });
   load();
 </script>

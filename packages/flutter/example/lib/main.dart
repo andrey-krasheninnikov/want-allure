@@ -95,7 +95,12 @@ class _WantCatalogueState extends State<WantCatalogue> {
                   rtl: _rtl,
                   reduced: _reduced,
                   opaque: _opaque,
-                  onBrightness: (value) => setState(() => _brightness = value),
+                  onBrightness: (value) {
+                    setState(() => _brightness = value);
+                    _host.chooseTheme(
+                      value == Brightness.light ? 'light' : 'dark',
+                    );
+                  },
                   onRtl: (value) => setState(() => _rtl = value),
                   onReduced: (value) => setState(() => _reduced = value),
                   onOpaque: (value) => setState(() => _opaque = value),
@@ -142,7 +147,18 @@ class _GalleryState extends State<_Gallery> {
   };
 
   final _background = WantBackgroundController();
-  final _name = TextEditingController(text: 'Violet Horizon');
+  final _name = TextEditingController();
+  bool _nameEdited = false, _updatingName = false;
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (!_nameEdited && _name.text != l.violetHorizon) {
+      _updatingName = true;
+      _name.text = l.violetHorizon;
+      _updatingName = false;
+    }
+  }
+
   final _url = TextEditingController(text: 'https://want.design');
   final _scroll = ScrollController();
   bool _checkbox = true,
@@ -255,13 +271,6 @@ class _GalleryState extends State<_Gallery> {
                             : l.switchToEnglish,
                       ),
                     ),
-                  if (!widget.embedded)
-                    WantThemeToggle(
-                      brightness: widget.brightness,
-                      onChanged: widget.onBrightness,
-                      lightLabel: l.useLightTheme,
-                      darkLabel: l.useDarkTheme,
-                    ),
                   WantSwitch(
                     value: widget.rtl,
                     onChanged: widget.onRtl,
@@ -284,6 +293,36 @@ class _GalleryState extends State<_Gallery> {
                   ),
                 ]),
                 const WantSeparator(space: 40),
+                _section(
+                  'brand',
+                  l.brandAndTheme,
+                  WantFieldGroup(
+                    children: [
+                      WantBrandLockup(
+                        name: 'Want Allure',
+                        subtitle: l.componentPreview,
+                        logo: WantBrandLogo.asset(
+                          widget.brightness == Brightness.dark
+                              ? 'assets/brand/allure/logos/dark/transparent.svg'
+                              : 'assets/brand/allure/logos/light/transparent.svg',
+                          package: 'want_allure',
+                          label: 'Want Allure',
+                        ),
+                        onPressed: () => _scroll.animateTo(
+                          0,
+                          duration: const Duration(milliseconds: 180),
+                          curve: Curves.easeOut,
+                        ),
+                      ),
+                      WantThemeToggle(
+                        brightness: widget.brightness,
+                        onChanged: widget.onBrightness,
+                        lightLabel: l.useLightTheme,
+                        darkLabel: l.useDarkTheme,
+                      ),
+                    ],
+                  ),
+                ),
                 _section(
                   'palette',
                   l.palette,
@@ -399,6 +438,9 @@ class _GalleryState extends State<_Gallery> {
                     children: [
                       WantInput(
                         controller: _name,
+                        onChanged: (_) {
+                          if (!_updatingName) _nameEdited = true;
+                        },
                         label: Text(l.title),
                         description: Text(l.editableLocalValue),
                       ),

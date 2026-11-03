@@ -1174,6 +1174,18 @@ abstract class CatalogueLocalizations {
   /// In en, this message translates to:
   /// **'Success'**
   String get success;
+
+  /// No description provided for @brandAndTheme.
+  ///
+  /// In en, this message translates to:
+  /// **'Brand and theme'**
+  String get brandAndTheme;
+
+  /// No description provided for @componentPreview.
+  ///
+  /// In en, this message translates to:
+  /// **'Component preview'**
+  String get componentPreview;
 }
 
 class _CatalogueLocalizationsDelegate

@@ -396,5 +396,9 @@
   "Trigger background wave": "Запустить волну фона",
   "snackbar": "уведомление",
   "preview": "превью",
-  "files.": "файлов."
+  "files.": "файлов.",
+  "Close": "Закрыть",
+  "Brand and theme": "Бренд и тема",
+  "Component theme": "Тема компонента",
+  "Component preview": "Пример компонентов"
 }

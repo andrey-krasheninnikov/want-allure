@@ -11,8 +11,19 @@ function apply(theme: Theme) {
 }
 function system() { if (!explicit) apply(media.matches ? 'dark' : 'light'); }
 media.addEventListener('change', system);
-input?.addEventListener('change', () => {
-  explicit = input.checked ? 'dark' : 'light'; apply(explicit);
-  try { localStorage.setItem('want-theme', explicit); } catch {}
+function choose(theme: Theme) {
+  explicit = theme; apply(theme);
+  try { localStorage.setItem('want-theme', theme); } catch {}
+}
+input?.addEventListener('change', () => choose(input.checked ? 'dark' : 'light'));
+addEventListener('want:choose-theme', event => {
+  const theme: unknown = (event as CustomEvent).detail;
+  if (theme === 'light' || theme === 'dark') choose(theme);
+});
+window.addEventListener('pageshow', event => {
+  if (!event.persisted) return;
+  explicit = undefined;
+  try { const saved = localStorage.getItem('want-theme'); if (saved === 'light' || saved === 'dark') explicit = saved; } catch {}
+  apply(explicit ?? (media.matches ? 'dark' : 'light'));
 });
 apply(explicit ?? (media.matches ? 'dark' : 'light'));

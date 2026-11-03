@@ -309,5 +309,7 @@
   "error": "Error",
   "warning": "Warning",
   "info": "Info",
-  "success": "Success"
+  "success": "Success",
+  "brandAndTheme": "Brand and theme",
+  "componentPreview": "Component preview"
 }

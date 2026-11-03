@@ -2,7 +2,7 @@
 
 Status: accepted.
 
-The existing Astro showcase owns the public landing page and both framework catalogues. English uses the root URLs; Russian uses /ru/. React runs as an island on its catalogue route. Flutter runs in a same-origin iframe under /_flutter/ and initializes only when its catalogue is opened. Full page navigation releases the previous runtime.
+The existing Astro showcase owns the public landing page and both framework catalogues. English uses the root URLs; Russian uses /ru/. React runs as an island on its catalogue route. Flutter runs in a same-origin iframe under /_flutter/ and initializes only when its catalogue is opened. Browser history may suspend and restore the catalogue document. Its lifecycle handlers preserve settings and readiness when that document returns.
 
 The application shell owns the saved theme, system-theme subscription, navigation and language. It sends validated settings to the Flutter example without restarting the engine. Flutter reports readiness or startup failure. The host checks message origin and source, and exposes loading, retry and standalone recovery. The native example uses a platform stub and retains its controls. No host integration or translation dictionary is added to the public UI package API.
 
