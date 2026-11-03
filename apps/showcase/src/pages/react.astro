@@ -1,0 +1,6 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import Showcase from '../components/Showcase';
+import {catalogueMessages} from '../i18n/load-catalogue';
+---
+<SiteLayout locale="en" section="react"><Showcase locale="en" messages={await catalogueMessages('en')} client:load /></SiteLayout>

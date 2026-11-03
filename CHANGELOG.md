@@ -1,4 +1,36 @@
+## 1.3.0
+
+- Add WantPasswordInput with localized show/hide actions, keyboard access and consumer-owned validation.
+- Disable autofill and input-assistance features by default in both password visibility states; expose explicit privacy overrides.
+- Add password examples and platform-input regression tests. Align foundation, React and Flutter at 1.3.0.
+
+## 1.2.1
+
+- Restore optional background pause controls and compact dialog constraints with an accessible hidden title.
+- Alternate the Flutter sphere and lightning with a paused, accessibility-aware crossfade.
+- Align Flutter toast status plates and multiline messages at the top.
+
 # Changelog
+
+## 1.2.0
+
+- Add a guided framework and installation flow, an orbital selector, automatic logo rotation, letter halos and twelve interface languages.
+- Add Flutter SVG extrusion with asset, string and asynchronous builder sources, cached meshes and reduced-motion support.
+- Align toast content and table cells, animate page rows, and refine card actions in both adapters.
+- Bundle Chinese, Devanagari and Hebrew fonts and add an opaque favicon background.
+
+- Refine the landing page with a floating preference header, a rotatable pixel logo, glowing framework actions, installation instructions and animated FAQ.
+- Organize bilingual catalogues into seven categories with shared RTL, direct links, history and retained form values.
+- Add controlled Slider/RangeSlider and primary/warning lightning to both adapters; Flutter lightning uses a bundled fragment shader.
+- Refine Flutter card hover, table surfaces, comment pagination and restrained spring feedback. Keep invalid input values readable on status fills.
+
+- Disable reduced-motion transitions completely so theme colors update together.
+
+- Fix the default multiline field limit so the textarea can grow from its minimum height.
+
+- Add Want Allure pixel feather logos and backgrounds while preserving existing resource paths.
+- Combine the Astro landing page and React/Flutter catalogues in one bilingual web application.
+- Share theme and language navigation, and prepare localized search and social metadata.
 
 ## 1.1.1
 

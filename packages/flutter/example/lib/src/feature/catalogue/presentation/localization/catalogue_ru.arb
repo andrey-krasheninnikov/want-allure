@@ -1,0 +1,334 @@
+{
+  "@@locale": "ru",
+  "findInCatalogue": "Найти в каталоге",
+  "previousMatch": "Предыдущее совпадение",
+  "nextMatch": "Следующее совпадение",
+  "closeFind": "Закрыть поиск",
+  "noMatches": "Нет совпадений",
+  "matchActiveOfCount": "Совпадение {active} из {count}",
+  "@matchActiveOfCount": {
+    "placeholders": {
+      "active": {
+        "type": "Object"
+      },
+      "count": {
+        "type": "Object"
+      }
+    }
+  },
+  "dismissMessage": "Закрыть сообщение",
+  "pauseBackground": "Приостановить фон",
+  "resumeBackground": "Продолжить фон",
+  "oneWantEveryPlatform": "Один Want. На любой платформе.",
+  "theSameWantColorsControlsAndMotionAcrossWeb": "Единые цвета, компоненты и анимации Want для web и Flutter. Изучите элементы с клавиатурой, касаниями и мышью.",
+  "findCtrlF": "Поиск · ⌘/Ctrl F",
+  "useLightTheme": "Светлая тема",
+  "useDarkTheme": "Тёмная тема",
+  "reduceMotion": "Уменьшить движение",
+  "opaqueSurfaces": "Непрозрачные поверхности",
+  "resumeEffects": "Продолжить эффекты",
+  "pauseEffects": "Приостановить эффекты",
+  "palette": "Палитра",
+  "typography": "Типографика",
+  "variantNameWantMakesRoomForYourContent": "{variantName} · Want оставляет место вашему контенту.",
+  "@variantNameWantMakesRoomForYourContent": {
+    "placeholders": {
+      "variantName": {
+        "type": "Object"
+      }
+    }
+  },
+  "buttons": "Кнопки",
+  "variantNamePressed": "Нажато: {variantName}",
+  "@variantNamePressed": {
+    "placeholders": {
+      "variantName": {
+        "type": "Object"
+      }
+    }
+  },
+  "disabled": "Недоступно",
+  "downloadSelected": "Выбрано скачивание",
+  "downloadExample": "Пример скачивания",
+  "fieldsInputAndTextarea": "Поля, ввод и текстовая область",
+  "password": "Пароль",
+  "showPassword": "Показать пароль",
+  "hidePassword": "Скрыть пароль",
+  "localExample": "Локальный пример",
+  "title": "Название",
+  "editableLocalValue": "Редактируемое локальное значение.",
+  "invalidExample": "Пример ошибки ввода",
+  "enterATitle": "Введите название.",
+  "disabledExample": "Недоступный пример",
+  "contoursOfSilence": "Контуры тишины",
+  "description": "Описание",
+  "describeThePreview": "Опишите превью",
+  "fieldAndLabel": "Поле и подпись",
+  "consumerOwnedHelperText": "Подсказку задаёт приложение.",
+  "selectRadioCheckboxAndSwitch": "Список, радиокнопки, флажок и переключатель",
+  "format": "Формат",
+  "desktop": "Компьютер",
+  "mobile": "Телефон",
+  "unavailable": "Недоступно",
+  "wallpaperOrientation": "Ориентация обоев",
+  "includePreview": "Включить превью",
+  "aControlledCheckbox": "Управляемый флажок.",
+  "mixedSelection": "Частичный выбор",
+  "enableExampleSetting": "Включить настройку примера",
+  "disabledCheckbox": "Недоступный флажок",
+  "tabsAndAccordion": "Вкладки и аккордеон",
+  "landscapePreview": "Горизонтальное превью.",
+  "portraitPreview": "Вертикальное превью.",
+  "howAreComponentsShared": "Что объединяет компоненты?",
+  "bothAdaptersUseTheSameFoundationTokens": "Оба адаптера используют общие токены foundation.",
+  "whoOwnsApplicationData": "Кто управляет данными приложения?",
+  "theConsumingApplicationOwnsDataAndPersistence": "Данные и хранение находятся в приложении.",
+  "dialogSheetMenuTooltipAndPopover": "Диалог, панель, меню и подсказки",
+  "previewSettings": "Настройки превью",
+  "done": "Готово",
+  "previewName": "Название превью",
+  "openDialog": "Открыть диалог",
+  "panelSideName": "Панель {sideName}",
+  "@panelSideName": {
+    "placeholders": {
+      "sideName": {
+        "type": "Object"
+      }
+    }
+  },
+  "closePanel": "Закрыть панель",
+  "theSheetEntersFromItsSelectedSide": "Панель появляется с выбранной стороны.",
+  "sideNameSheet": "Панель {sideName}",
+  "@sideNameSheet": {
+    "placeholders": {
+      "sideName": {
+        "type": "Object"
+      }
+    }
+  },
+  "actions": "Действия",
+  "copyLink": "Копировать ссылку",
+  "copyActionSelected": "Выбрано копирование",
+  "aKeyboardAndPointerHint": "Подсказка для клавиатуры и мыши",
+  "hintSelected": "Выбрана подсказка",
+  "tooltip": "Подсказка",
+  "settings": "Настройки",
+  "note": "Заметка",
+  "closeSettings": "Закрыть настройки",
+  "navigationAndBreadcrumbs": "Навигация и путь",
+  "exampleNavigation": "Пример навигации",
+  "collections": "Коллекции",
+  "collectionsSelected": "Выбраны коллекции",
+  "search": "Поиск",
+  "searchSelected": "Выбран поиск",
+  "breadcrumbs": "Путь навигации",
+  "home": "Главная",
+  "homeSelected": "Выбрана главная",
+  "uiKit": "UI-кит",
+  "badgesAlertsAndProgress": "Метки, сообщения и прогресс",
+  "primary": "Основной",
+  "previewAvailable": "Превью доступно",
+  "chooseAnExampleActionToContinue": "Выберите действие в примере.",
+  "couldNotLoadPreview": "Не удалось загрузить превью",
+  "tryAgain": "Попробуйте снова.",
+  "exampleProgress": "Прогресс примера",
+  "loadingPreview": "Загружаем превью",
+  "toastAndSemanticSnackbars": "Тосты и уведомления состояний",
+  "localPreviewReady": "Локальное превью готово",
+  "showToast": "Показать тост",
+  "variantNameExampleStatus": "{variantName}: пример состояния",
+  "@variantNameExampleStatus": {
+    "placeholders": {
+      "variantName": {
+        "type": "Object"
+      }
+    }
+  },
+  "themeAwareFeedbackWithOneUsefulAction": "Уведомление в цвете темы с полезным действием.",
+  "dismissStatus": "Закрыть сообщение",
+  "viewDetails": "Посмотреть подробности",
+  "detailsSelected": "Выбраны подробности",
+  "searchableCombobox": "Список с поиском",
+  "collection": "Коллекция",
+  "searchCollections": "Поиск коллекций",
+  "violetHorizon": "Фиолетовый горизонт",
+  "wovenSpectrum": "Переплетённый спектр",
+  "tableAndPagination": "Таблица и страницы",
+  "localCollection": "Локальная коллекция",
+  "noRecords": "Нет записей",
+  "name": "Название",
+  "previewValue": "Превью {value}",
+  "@previewValue": {
+    "placeholders": {
+      "value": {
+        "type": "Object"
+      }
+    }
+  },
+  "pages": "Страницы",
+  "previousPage": "Предыдущая страница",
+  "nextPage": "Следующая страница",
+  "rowsPerPage": "Строк на странице",
+  "pagePage": "Страница {page}",
+  "@pagePage": {
+    "placeholders": {
+      "page": {
+        "type": "Object"
+      }
+    }
+  },
+  "fromToOfTotal": "{from}–{to} из {total}",
+  "@fromToOfTotal": {
+    "placeholders": {
+      "from": {
+        "type": "Object"
+      },
+      "to": {
+        "type": "Object"
+      },
+      "total": {
+        "type": "Object"
+      }
+    }
+  },
+  "fileSelection": "Выбор файлов",
+  "images": "Изображения",
+  "chooseImages": "Выбрать изображения",
+  "dropImagesHereOrChooseAFile": "Перетащите изображения или выберите файл.",
+  "couldNotReadTheSelectedFile": "Не удалось прочитать выбранный файл.",
+  "removeName": "Удалить {name}",
+  "@removeName": {
+    "placeholders": {
+      "name": {
+        "type": "Object"
+      }
+    }
+  },
+  "nameIsNotASupportedImage": "{name}: неподдерживаемое изображение.",
+  "@nameIsNotASupportedImage": {
+    "placeholders": {
+      "name": {
+        "type": "Object"
+      }
+    }
+  },
+  "nameExceedsLimitBytes": "{name}: размер превышает {limit} байт.",
+  "@nameExceedsLimitBytes": {
+    "placeholders": {
+      "name": {
+        "type": "Object"
+      },
+      "limit": {
+        "type": "Object"
+      }
+    }
+  },
+  "chooseUpToCountFiles": "Выберите до {count} файлов.",
+  "@chooseUpToCountFiles": {
+    "placeholders": {
+      "count": {
+        "type": "Object"
+      }
+    }
+  },
+  "dateURLAndPageLayout": "Дата, URL и компоновка страницы",
+  "createAPreview": "Создать превью",
+  "localComposition": "Локальная композиция",
+  "previewActionSelected": "Выбрано действие превью",
+  "preview": "Превью",
+  "date": "Дата",
+  "time": "Время",
+  "useToday": "Выбрать сегодня",
+  "sourceURL": "Ссылка на источник",
+  "openSource": "Открыть источник",
+  "openUriHost": "Открыть {uriHost}",
+  "@openUriHost": {
+    "placeholders": {
+      "uriHost": {
+        "type": "Object"
+      }
+    }
+  },
+  "cardsMediaAndLiquidGlass": "Карточки, медиа и жидкое стекло",
+  "localDemonstrationArtwork": "Локальное изображение для примера",
+  "violetGradient": "Фиолетовый градиент",
+  "previewSelected": "Выбрано превью",
+  "downloadPanel": "Панель скачивания",
+  "aComposedCard": "Составная карточка",
+  "publicSlotsKeepContentInTheConsumingApplication": "Публичные слоты оставляют контент в приложении.",
+  "liquidGlassOpaqueWhenTransparencyIsReduced": "Жидкое стекло становится непрозрачным при уменьшении прозрачности.",
+  "contactCard": "Карточка контакта",
+  "productDesign": "Дизайн продукта",
+  "website": "Сайт",
+  "websiteSelected": "Выбран сайт",
+  "commentCarousel": "Карусель комментариев",
+  "comments": "Комментарии",
+  "noComments": "Нет комментариев",
+  "previousComments": "Предыдущие комментарии",
+  "nextComments": "Следующие комментарии",
+  "readMore": "Читать дальше",
+  "collapse": "Свернуть",
+  "reviewerIndex": "Участник {index}",
+  "@reviewerIndex": {
+    "placeholders": {
+      "index": {
+        "type": "Object"
+      }
+    }
+  },
+  "today": "Сегодня",
+  "readableCopyFollowsTheSameWantTypography": "Читаемый текст следует единой типографике Want.",
+  "thePreviewIsReadyToExplore": "Превью готово к просмотру.",
+  "reply": "Ответить",
+  "actionSelected": "Выбрано действие: {action}",
+  "@actionSelected": {
+    "placeholders": {
+      "action": {
+        "type": "Object"
+      }
+    }
+  },
+  "customLoaders": "Индикаторы загрузки",
+  "loadingVariantName": "Загрузка {variantName}",
+  "@loadingVariantName": {
+    "placeholders": {
+      "variantName": {
+        "type": "Object"
+      }
+    }
+  },
+  "shimmerPlaceholders": "Shimmer-заглушки",
+  "animatedText": "Анимированный текст",
+  "yourNextIdea": "Ваша следующая идея.",
+  "madeWithWant": "Создано с Want.",
+  "readyToExplore": "Можно начинать.",
+  "changeText": "Сменить текст",
+  "reusableGlowAndConfetti": "Свечение и конфетти",
+  "aVisibleHaloWithTwoExpandingWaves": "Заметное свечение с двумя расходящимися волнами.",
+  "exploreWant": "Открыть Want",
+  "triggerBackgroundWave": "Запустить волну фона",
+  "switchToRussian": "Switch to English",
+  "switchToEnglish": "Переключить на английский",
+  "error": "Ошибка",
+  "warning": "Предупреждение",
+  "info": "Информация",
+  "success": "Успех",
+  "brandAndTheme": "Бренд и тема",
+  "componentPreview": "Пример компонентов",
+  "categoryFoundation": "Основа",
+  "categoryInputs": "Ввод",
+  "categoryNavigation": "Навигация",
+  "categoryData": "Данные",
+  "categoryFeedback": "Обратная связь",
+  "categoryEffects": "Эффекты",
+  "categoryCompositions": "Композиции",
+  "componentsInAction": "Компоненты в действии",
+  "sliders": "Ползунки",
+  "intensity": "Интенсивность",
+  "range": "Диапазон",
+  "backgroundLightning": "Фоновые молнии",
+  "lightAndSpace": "Свет и пространство",
+  "svg3D": "3D модель SVG",
+  "rotateLogo": "Перетащите или используйте клавиши со стрелками, чтобы повернуть логотип.",
+  "changeLanguage": "Язык"
+}

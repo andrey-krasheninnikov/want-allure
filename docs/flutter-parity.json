@@ -61,7 +61,8 @@
   {
     "web": "ui/input",
     "flutter": [
-      "WantInput"
+      "WantInput",
+      "WantPasswordInput"
     ],
     "example": "fields"
   },
@@ -321,5 +322,20 @@
       "WantSnackbar"
     ],
     "example": "notifications"
+  },
+  {
+    "web": "lightning-background",
+    "flutter": [
+      "WantLightningBackground"
+    ],
+    "example": "lightning"
+  },
+  {
+    "web": "ui/slider",
+    "flutter": [
+      "WantSlider",
+      "WantRangeSlider"
+    ],
+    "example": "sliders"
   }
 ]

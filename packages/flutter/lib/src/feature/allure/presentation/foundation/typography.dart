@@ -54,10 +54,12 @@ class WantTypography extends StatelessWidget {
       fontFamily: technical
           ? 'monospace'
           : 'packages/want_allure/${token.font == 'display' ? 'Days One' : 'Manrope'}',
-      fontFamilyFallback: const [
-        'packages/want_allure/Noto Sans JP',
-        'packages/want_allure/Noto Sans Arabic',
-      ],
+      fontFamilyFallback: WantTheme.of(context)
+          .forui
+          .typography
+          .body
+          .lg
+          .fontFamilyFallback,
       fontSize: size,
       fontVariations: [FontVariation('wght', token.weight)],
       fontWeight:

@@ -1,0 +1,334 @@
+{
+  "@@locale": "tr",
+  "findInCatalogue": "Katalogda bul",
+  "previousMatch": "Önceki maç",
+  "nextMatch": "Sonraki maç",
+  "closeFind": "Bulmayı kapat",
+  "noMatches": "Eşleşme yok",
+  "matchActiveOfCount": "{count} ile {active}'yi eşleştirin",
+  "@matchActiveOfCount": {
+    "placeholders": {
+      "active": {
+        "type": "Object"
+      },
+      "count": {
+        "type": "Object"
+      }
+    }
+  },
+  "dismissMessage": "Mesajı kapat",
+  "pauseBackground": "Arka planı duraklat",
+  "resumeBackground": "Arka planı devam ettir",
+  "oneWantEveryPlatform": "Bir Want. Her platformda.",
+  "theSameWantColorsControlsAndMotionAcrossWeb": "Web ve Flutter genelinde aynı Want renkler, kontroller ve hareket. Klavye, dokunma ve işaretçi girişi ile bileşenleri keşfedin.",
+  "findCtrlF": "Bul · ⌘/Ctrl F",
+  "useLightTheme": "Açık temayı kullan",
+  "useDarkTheme": "Koyu temayı kullan",
+  "reduceMotion": "Hareketi azalt",
+  "opaqueSurfaces": "Opak yüzeyler",
+  "resumeEffects": "Efektleri devam ettir",
+  "pauseEffects": "Efektleri duraklat",
+  "palette": "Palet",
+  "typography": "Tipografi",
+  "variantNameWantMakesRoomForYourContent": "{variantName} · Want içeriğiniz için yer açar.",
+  "@variantNameWantMakesRoomForYourContent": {
+    "placeholders": {
+      "variantName": {
+        "type": "Object"
+      }
+    }
+  },
+  "buttons": "Düğmeler",
+  "variantNamePressed": "{variantName}'ye basıldı",
+  "@variantNamePressed": {
+    "placeholders": {
+      "variantName": {
+        "type": "Object"
+      }
+    }
+  },
+  "disabled": "Devre dışı",
+  "downloadSelected": "Seçileni indir",
+  "downloadExample": "Örneği indir",
+  "fieldsInputAndTextarea": "Alanlar, giriş ve metin alanı",
+  "password": "Parola",
+  "showPassword": "Parolayı göster",
+  "hidePassword": "Parolayı gizle",
+  "localExample": "Yerel örnek",
+  "title": "Başlık",
+  "editableLocalValue": "Düzenlenebilir yerel değer.",
+  "invalidExample": "Geçersiz örnek",
+  "enterATitle": "Bir başlık girin.",
+  "disabledExample": "Devre dışı bırakılmış örnek",
+  "contoursOfSilence": "Sessizliğin Hatları",
+  "description": "Açıklama",
+  "describeThePreview": "Önizlemeyi açıklayın",
+  "fieldAndLabel": "Alan ve etiket",
+  "consumerOwnedHelperText": "Tüketicinin sahip olduğu yardımcı metin.",
+  "selectRadioCheckboxAndSwitch": "Seç, radyo, onay kutusu ve geçiş",
+  "format": "Biçim",
+  "desktop": "Masaüstü",
+  "mobile": "Mobil",
+  "unavailable": "Kullanılamıyor",
+  "wallpaperOrientation": "Duvar kağıdı yönü",
+  "includePreview": "Önizlemeyi ekle",
+  "aControlledCheckbox": "Kontrollü bir onay kutusu.",
+  "mixedSelection": "Karışık seçim",
+  "enableExampleSetting": "Örnek ayarı etkinleştir",
+  "disabledCheckbox": "Devre dışı onay kutusu",
+  "tabsAndAccordion": "Sekmeler ve akordeon",
+  "landscapePreview": "Manzara önizlemesi.",
+  "portraitPreview": "Portre önizlemesi.",
+  "howAreComponentsShared": "Bileşenler nasıl paylaşılır?",
+  "bothAdaptersUseTheSameFoundationTokens": "Her iki bağdaştırıcı da aynı temel belirteçleri kullanır.",
+  "whoOwnsApplicationData": "Uygulama verilerinin sahibi kim?",
+  "theConsumingApplicationOwnsDataAndPersistence": "Tüketen uygulama veriye ve kalıcılığa sahiptir.",
+  "dialogSheetMenuTooltipAndPopover": "İletişim kutusu, sayfa, menü, araç ipucu ve açılır pencere",
+  "previewSettings": "Önizleme ayarları",
+  "done": "Bitti",
+  "previewName": "Önizleme adı",
+  "openDialog": "İletişim kutusunu aç",
+  "panelSideName": "Panel {sideName}",
+  "@panelSideName": {
+    "placeholders": {
+      "sideName": {
+        "type": "Object"
+      }
+    }
+  },
+  "closePanel": "Paneli kapat",
+  "theSheetEntersFromItsSelectedSide": "Sayfa seçilen tarafından girer.",
+  "sideNameSheet": "{sideName} sayfası",
+  "@sideNameSheet": {
+    "placeholders": {
+      "sideName": {
+        "type": "Object"
+      }
+    }
+  },
+  "actions": "Eylemler",
+  "copyLink": "Bağlantıyı kopyala",
+  "copyActionSelected": "Seçilen işlemi kopyala",
+  "aKeyboardAndPointerHint": "Bir klavye ve işaretçi ipucu",
+  "hintSelected": "İpucu seçildi",
+  "tooltip": "İpucu",
+  "settings": "Ayarlar",
+  "note": "Not",
+  "closeSettings": "Ayarları kapat",
+  "navigationAndBreadcrumbs": "Gezinme ve kırıntılar",
+  "exampleNavigation": "Örnek gezinme",
+  "collections": "Koleksiyonlar",
+  "collectionsSelected": "Seçilen koleksiyonlar",
+  "search": "Ara",
+  "searchSelected": "Arama seçildi",
+  "breadcrumbs": "Ekmek kırıntıları",
+  "home": "Ana sayfa",
+  "homeSelected": "Ana sayfa seçildi",
+  "uiKit": "UI kit",
+  "badgesAlertsAndProgress": "Rozetler, uyarılar ve ilerleme",
+  "primary": "Birincil",
+  "previewAvailable": "Önizleme mevcut",
+  "chooseAnExampleActionToContinue": "Devam etmek için bir örnek eylem seçin.",
+  "couldNotLoadPreview": "Önizleme yüklenemedi",
+  "tryAgain": "Tekrar deneyin.",
+  "exampleProgress": "Örnek ilerleme",
+  "loadingPreview": "Önizleme yükleniyor",
+  "toastAndSemanticSnackbars": "Bildirimler ve durum mesajları",
+  "localPreviewReady": "Yerel önizleme hazır",
+  "showToast": "Bildirim göster",
+  "variantNameExampleStatus": "{variantName}: örnek durum",
+  "@variantNameExampleStatus": {
+    "placeholders": {
+      "variantName": {
+        "type": "Object"
+      }
+    }
+  },
+  "themeAwareFeedbackWithOneUsefulAction": "Tek bir yararlı eylemle temaya duyarlı geri bildirim.",
+  "dismissStatus": "Durumu reddet",
+  "viewDetails": "Ayrıntıları görüntüle",
+  "detailsSelected": "Ayrıntılar seçildi",
+  "searchableCombobox": "Aranabilir açılan kutu",
+  "collection": "Koleksiyon",
+  "searchCollections": "Koleksiyonlarda ara",
+  "violetHorizon": "Menekşe Ufuk",
+  "wovenSpectrum": "Dokuma Spektrumu",
+  "tableAndPagination": "Tablo ve sayfalandırma",
+  "localCollection": "Yerel koleksiyon",
+  "noRecords": "Kayıt yok",
+  "name": "İsim",
+  "previewValue": "Önizleme {value}",
+  "@previewValue": {
+    "placeholders": {
+      "value": {
+        "type": "Object"
+      }
+    }
+  },
+  "pages": "Sayfalar",
+  "previousPage": "Önceki sayfa",
+  "nextPage": "Sonraki sayfa",
+  "rowsPerPage": "Sayfa başına satır",
+  "pagePage": "Sayfa {page}",
+  "@pagePage": {
+    "placeholders": {
+      "page": {
+        "type": "Object"
+      }
+    }
+  },
+  "fromToOfTotal": "{from}–{to} veya {total}",
+  "@fromToOfTotal": {
+    "placeholders": {
+      "from": {
+        "type": "Object"
+      },
+      "to": {
+        "type": "Object"
+      },
+      "total": {
+        "type": "Object"
+      }
+    }
+  },
+  "fileSelection": "Dosya seçimi",
+  "images": "Görseller",
+  "chooseImages": "Resimleri seç",
+  "dropImagesHereOrChooseAFile": "Resimleri buraya bırakın veya bir dosya seçin.",
+  "couldNotReadTheSelectedFile": "Seçilen dosya okunamadı.",
+  "removeName": "{name}'yi kaldır",
+  "@removeName": {
+    "placeholders": {
+      "name": {
+        "type": "Object"
+      }
+    }
+  },
+  "nameIsNotASupportedImage": "{name} desteklenen bir resim değil.",
+  "@nameIsNotASupportedImage": {
+    "placeholders": {
+      "name": {
+        "type": "Object"
+      }
+    }
+  },
+  "nameExceedsLimitBytes": "{name}, {limit} baytını aşıyor.",
+  "@nameExceedsLimitBytes": {
+    "placeholders": {
+      "name": {
+        "type": "Object"
+      },
+      "limit": {
+        "type": "Object"
+      }
+    }
+  },
+  "chooseUpToCountFiles": "En fazla {count} dosyasını seçin.",
+  "@chooseUpToCountFiles": {
+    "placeholders": {
+      "count": {
+        "type": "Object"
+      }
+    }
+  },
+  "dateURLAndPageLayout": "Tarih, URL ve sayfa düzeni",
+  "createAPreview": "Önizleme oluştur",
+  "localComposition": "Yerel kompozisyon",
+  "previewActionSelected": "Önizleme eylemi seçildi",
+  "preview": "Önizleme",
+  "date": "Tarih",
+  "time": "Zaman",
+  "useToday": "Bugün kullanın",
+  "sourceURL": "Kaynak URL'si",
+  "openSource": "Açık kaynak",
+  "openUriHost": "{uriHost}'yi açın",
+  "@openUriHost": {
+    "placeholders": {
+      "uriHost": {
+        "type": "Object"
+      }
+    }
+  },
+  "cardsMediaAndLiquidGlass": "Kartlar, medya ve sıvı cam",
+  "localDemonstrationArtwork": "Yerel gösteri sanat eseri",
+  "violetGradient": "Menekşe gradyanı",
+  "previewSelected": "Önizleme seçildi",
+  "downloadPanel": "İndirme paneli",
+  "aComposedCard": "Oluşturulmuş bir kart",
+  "publicSlotsKeepContentInTheConsumingApplication": "Genel yuvalar, içeriği tüketen uygulamada tutar.",
+  "liquidGlassOpaqueWhenTransparencyIsReduced": "Sıvı cam · şeffaflık azaldığında opaktır.",
+  "contactCard": "Kişi kartı",
+  "productDesign": "Ürün tasarımı",
+  "website": "Web sitesi",
+  "websiteSelected": "Web sitesi seçildi",
+  "commentCarousel": "Yorum bandı",
+  "comments": "Yorumlar",
+  "noComments": "Yorum yok",
+  "previousComments": "Önceki yorumlar",
+  "nextComments": "Sonraki yorumlar",
+  "readMore": "Devamını oku",
+  "collapse": "Daralt",
+  "reviewerIndex": "İnceleyen {index}",
+  "@reviewerIndex": {
+    "placeholders": {
+      "index": {
+        "type": "Object"
+      }
+    }
+  },
+  "today": "Bugün",
+  "readableCopyFollowsTheSameWantTypography": "Okunabilir kopya aynı Want tipografisini takip eder.",
+  "thePreviewIsReadyToExplore": "Önizleme keşfetmeye hazır.",
+  "reply": "Yanıtla",
+  "actionSelected": "{action} seçildi",
+  "@actionSelected": {
+    "placeholders": {
+      "action": {
+        "type": "Object"
+      }
+    }
+  },
+  "customLoaders": "Özel yükleme göstergeleri",
+  "loadingVariantName": "{variantName} yükleniyor",
+  "@loadingVariantName": {
+    "placeholders": {
+      "variantName": {
+        "type": "Object"
+      }
+    }
+  },
+  "shimmerPlaceholders": "Parıltılı yer tutucular",
+  "animatedText": "Animasyonlu metin",
+  "yourNextIdea": "Bir sonraki fikriniz.",
+  "madeWithWant": "Want ile yapılmıştır.",
+  "readyToExplore": "Keşfetmeye hazır.",
+  "changeText": "Metni değiştir",
+  "reusableGlowAndConfetti": "Yeniden kullanılabilir parıltı ve konfeti",
+  "aVisibleHaloWithTwoExpandingWaves": "Genişleyen iki dalgadan oluşan görünür bir hale.",
+  "exploreWant": "Want'yi keşfedin",
+  "triggerBackgroundWave": "Arka plan dalgasını tetikleyin",
+  "switchToRussian": "Rusçaya geç",
+  "switchToEnglish": "İngilizceye geç",
+  "error": "Hata",
+  "warning": "Uyarı",
+  "info": "Bilgi",
+  "success": "Başarı",
+  "brandAndTheme": "Marka ve tema",
+  "componentPreview": "Bileşen önizlemesi",
+  "categoryFoundation": "Vakıf",
+  "categoryInputs": "Girişler",
+  "categoryNavigation": "Navigasyon",
+  "categoryData": "Veri",
+  "categoryFeedback": "Geribildirim",
+  "categoryEffects": "Efektler",
+  "categoryCompositions": "Kompozisyonlar",
+  "componentsInAction": "Bileşenler iş başında",
+  "sliders": "Kaydırıcılar",
+  "intensity": "Yoğunluk",
+  "range": "Aralık",
+  "backgroundLightning": "Arka plan yıldırım",
+  "lightAndSpace": "Işık ve mekan",
+  "svg3D": "3D SVG",
+  "rotateLogo": "Logoyu döndürmek için sürükleyin veya ok tuşlarını kullanın.",
+  "changeLanguage": "Dil"
+}

@@ -9,12 +9,16 @@
     "check": "astro check"
   },
   "dependencies": {
+    "@astrojs/react": "^4",
     "@want-foundation/allure": "workspace:*",
     "@want-foundation/allure-react": "workspace:*",
     "astro": "^5.16.0",
-    "@astrojs/react": "^4",
+    "lucide-react": "1.50.0",
     "react": "^19",
     "react-dom": "^19",
-    "lucide-react": "1.50.0"
+    "three": "^0.187.0"
+  },
+  "devDependencies": {
+    "@types/three": "^0.187.0"
   }
 }

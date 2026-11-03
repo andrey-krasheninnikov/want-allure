@@ -1,0 +1,334 @@
+{
+  "@@locale": "hi",
+  "findInCatalogue": "कैटलॉग में खोजें",
+  "previousMatch": "पिछला मैच",
+  "nextMatch": "अगला मैच",
+  "closeFind": "खोज बंद करें",
+  "noMatches": "कोई मेल नहीं",
+  "matchActiveOfCount": "{count} का {active} से मिलान करें",
+  "@matchActiveOfCount": {
+    "placeholders": {
+      "active": {
+        "type": "Object"
+      },
+      "count": {
+        "type": "Object"
+      }
+    }
+  },
+  "dismissMessage": "संदेश ख़ारिज करें",
+  "pauseBackground": "पृष्ठभूमि रोकें",
+  "resumeBackground": "पृष्ठभूमि फिर से शुरू करें",
+  "oneWantEveryPlatform": "एक Want. हर मंच.",
+  "theSameWantColorsControlsAndMotionAcrossWeb": "वेब और Flutter पर समान Want रंग, नियंत्रण और गति। कीबोर्ड, टच और पॉइंटर इनपुट के साथ घटकों का अन्वेषण करें।",
+  "findCtrlF": "खोजें · ⌘/Ctrl F",
+  "useLightTheme": "हल्की थीम चुनें",
+  "useDarkTheme": "गहरी थीम चुनें",
+  "reduceMotion": "गति कम करें",
+  "opaqueSurfaces": "अपारदर्शी सतहें",
+  "resumeEffects": "प्रभाव फिर से शुरू करें",
+  "pauseEffects": "प्रभाव रोकें",
+  "palette": "पैलेट",
+  "typography": "टाइपोग्राफी",
+  "variantNameWantMakesRoomForYourContent": "{variantName} · Want आपकी सामग्री के लिए जगह बनाता है।",
+  "@variantNameWantMakesRoomForYourContent": {
+    "placeholders": {
+      "variantName": {
+        "type": "Object"
+      }
+    }
+  },
+  "buttons": "बटन",
+  "variantNamePressed": "{variantName} दबाया गया",
+  "@variantNamePressed": {
+    "placeholders": {
+      "variantName": {
+        "type": "Object"
+      }
+    }
+  },
+  "disabled": "विकलांग",
+  "downloadSelected": "डाउनलोड चयनित",
+  "downloadExample": "उदाहरण डाउनलोड करें",
+  "fieldsInputAndTextarea": "फ़ील्ड्स, इनपुट और टेक्स्टएरिया",
+  "password": "पासवर्ड",
+  "showPassword": "पासवर्ड दिखाएँ",
+  "hidePassword": "पासवर्ड छिपाएँ",
+  "localExample": "स्थानीय उदाहरण",
+  "title": "शीर्षक",
+  "editableLocalValue": "संपादन योग्य स्थानीय मान.",
+  "invalidExample": "अमान्य उदाहरण",
+  "enterATitle": "एक शीर्षक दर्ज करें.",
+  "disabledExample": "अक्षम उदाहरण",
+  "contoursOfSilence": "मौन की रूपरेखा",
+  "description": "विवरण",
+  "describeThePreview": "पूर्वावलोकन का वर्णन करें",
+  "fieldAndLabel": "फ़ील्ड और लेबल",
+  "consumerOwnedHelperText": "उपभोक्ता-स्वामित्व वाला सहायक पाठ.",
+  "selectRadioCheckboxAndSwitch": "चयन करें, रेडियो, चेकबॉक्स और स्विच",
+  "format": "प्रारूप",
+  "desktop": "डेस्कटॉप",
+  "mobile": "मोबाइल",
+  "unavailable": "अनुपलब्ध",
+  "wallpaperOrientation": "वॉलपेपर ओरिएंटेशन",
+  "includePreview": "पूर्वावलोकन शामिल करें",
+  "aControlledCheckbox": "एक नियंत्रित चेकबॉक्स.",
+  "mixedSelection": "मिश्रित चयन",
+  "enableExampleSetting": "उदाहरण सेटिंग सक्षम करें",
+  "disabledCheckbox": "अक्षम चेकबॉक्स",
+  "tabsAndAccordion": "टैब और अकॉर्डियन",
+  "landscapePreview": "लैंडस्केप पूर्वावलोकन.",
+  "portraitPreview": "पोर्ट्रेट पूर्वावलोकन.",
+  "howAreComponentsShared": "घटकों को कैसे साझा किया जाता है?",
+  "bothAdaptersUseTheSameFoundationTokens": "दोनों एडाप्टर समान फाउंडेशन टोकन का उपयोग करते हैं।",
+  "whoOwnsApplicationData": "एप्लिकेशन डेटा का स्वामी कौन है?",
+  "theConsumingApplicationOwnsDataAndPersistence": "उपभोग करने वाला एप्लिकेशन डेटा और दृढ़ता का मालिक है।",
+  "dialogSheetMenuTooltipAndPopover": "संवाद, शीट, मेनू, टूलटिप और पॉपओवर",
+  "previewSettings": "पूर्वावलोकन सेटिंग्स",
+  "done": "हो गया",
+  "previewName": "नाम का पूर्वावलोकन करें",
+  "openDialog": "संवाद खोलें",
+  "panelSideName": "पैनल {sideName}",
+  "@panelSideName": {
+    "placeholders": {
+      "sideName": {
+        "type": "Object"
+      }
+    }
+  },
+  "closePanel": "पैनल बंद करें",
+  "theSheetEntersFromItsSelectedSide": "शीट अपने चयनित पक्ष से प्रवेश करती है।",
+  "sideNameSheet": "{sideName} शीट",
+  "@sideNameSheet": {
+    "placeholders": {
+      "sideName": {
+        "type": "Object"
+      }
+    }
+  },
+  "actions": "क्रियाएँ",
+  "copyLink": "लिंक कॉपी करें",
+  "copyActionSelected": "प्रतिलिपि कार्रवाई चयनित",
+  "aKeyboardAndPointerHint": "एक कीबोर्ड और सूचक संकेत",
+  "hintSelected": "संकेत चयनित",
+  "tooltip": "टूलटिप",
+  "settings": "सेटिंग्स",
+  "note": "नोट",
+  "closeSettings": "सेटिंग्स बंद करें",
+  "navigationAndBreadcrumbs": "नेविगेशन और ब्रेडक्रंब",
+  "exampleNavigation": "उदाहरण नेविगेशन",
+  "collections": "संग्रह",
+  "collectionsSelected": "संग्रह चयनित",
+  "search": "खोजें",
+  "searchSelected": "खोजें चयनित",
+  "breadcrumbs": "ब्रेडक्रम्ब्स",
+  "home": "घर",
+  "homeSelected": "घर चयनित",
+  "uiKit": "UI kit",
+  "badgesAlertsAndProgress": "बैज, अलर्ट और प्रगति",
+  "primary": "प्राथमिक",
+  "previewAvailable": "पूर्वावलोकन उपलब्ध है",
+  "chooseAnExampleActionToContinue": "जारी रखने के लिए एक उदाहरण कार्रवाई चुनें.",
+  "couldNotLoadPreview": "पूर्वावलोकन लोड नहीं किया जा सका",
+  "tryAgain": "पुनः प्रयास करें.",
+  "exampleProgress": "उदाहरण प्रगति",
+  "loadingPreview": "पूर्वावलोकन लोड हो रहा है",
+  "toastAndSemanticSnackbars": "सूचनाएँ और स्थिति संदेश",
+  "localPreviewReady": "स्थानीय पूर्वावलोकन तैयार",
+  "showToast": "सूचना दिखाएँ",
+  "variantNameExampleStatus": "{variantName}: उदाहरण स्थिति",
+  "@variantNameExampleStatus": {
+    "placeholders": {
+      "variantName": {
+        "type": "Object"
+      }
+    }
+  },
+  "themeAwareFeedbackWithOneUsefulAction": "एक उपयोगी कार्रवाई के साथ थीम-जागरूक प्रतिक्रिया।",
+  "dismissStatus": "ख़ारिज स्थिति",
+  "viewDetails": "विवरण देखें",
+  "detailsSelected": "विवरण चयनित",
+  "searchableCombobox": "खोजने योग्य कॉम्बोबॉक्स",
+  "collection": "संग्रह",
+  "searchCollections": "संग्रह खोजें",
+  "violetHorizon": "बैंगनी क्षितिज",
+  "wovenSpectrum": "बुना हुआ स्पेक्ट्रम",
+  "tableAndPagination": "तालिका और पृष्ठांकन",
+  "localCollection": "स्थानीय संग्रह",
+  "noRecords": "कोई रिकॉर्ड नहीं",
+  "name": "नाम",
+  "previewValue": "{value} का पूर्वावलोकन करें",
+  "@previewValue": {
+    "placeholders": {
+      "value": {
+        "type": "Object"
+      }
+    }
+  },
+  "pages": "पन्ने",
+  "previousPage": "पिछला पृष्ठ",
+  "nextPage": "अगला पेज",
+  "rowsPerPage": "प्रति पृष्ठ पंक्तियाँ",
+  "pagePage": "पेज {page}",
+  "@pagePage": {
+    "placeholders": {
+      "page": {
+        "type": "Object"
+      }
+    }
+  },
+  "fromToOfTotal": "{from}-{total} का {to}",
+  "@fromToOfTotal": {
+    "placeholders": {
+      "from": {
+        "type": "Object"
+      },
+      "to": {
+        "type": "Object"
+      },
+      "total": {
+        "type": "Object"
+      }
+    }
+  },
+  "fileSelection": "फ़ाइल चयन",
+  "images": "छवियाँ",
+  "chooseImages": "छवियाँ चुनें",
+  "dropImagesHereOrChooseAFile": "यहां छवियां छोड़ें या कोई फ़ाइल चुनें.",
+  "couldNotReadTheSelectedFile": "चयनित फ़ाइल को पढ़ा नहीं जा सका.",
+  "removeName": "{name} हटाएं",
+  "@removeName": {
+    "placeholders": {
+      "name": {
+        "type": "Object"
+      }
+    }
+  },
+  "nameIsNotASupportedImage": "{name} एक समर्थित छवि नहीं है.",
+  "@nameIsNotASupportedImage": {
+    "placeholders": {
+      "name": {
+        "type": "Object"
+      }
+    }
+  },
+  "nameExceedsLimitBytes": "{name} {limit} बाइट्स से अधिक है।",
+  "@nameExceedsLimitBytes": {
+    "placeholders": {
+      "name": {
+        "type": "Object"
+      },
+      "limit": {
+        "type": "Object"
+      }
+    }
+  },
+  "chooseUpToCountFiles": "{count} फ़ाइलें तक चुनें.",
+  "@chooseUpToCountFiles": {
+    "placeholders": {
+      "count": {
+        "type": "Object"
+      }
+    }
+  },
+  "dateURLAndPageLayout": "दिनांक, यूआरएल और पेज लेआउट",
+  "createAPreview": "एक पूर्वावलोकन बनाएँ",
+  "localComposition": "स्थानीय रचना",
+  "previewActionSelected": "पूर्वावलोकन क्रिया चयनित",
+  "preview": "पूर्वावलोकन",
+  "date": "दिनांक",
+  "time": "समय",
+  "useToday": "आज ही प्रयोग करें",
+  "sourceURL": "स्रोत यूआरएल",
+  "openSource": "खुला स्रोत",
+  "openUriHost": "{uriHost} खोलें",
+  "@openUriHost": {
+    "placeholders": {
+      "uriHost": {
+        "type": "Object"
+      }
+    }
+  },
+  "cardsMediaAndLiquidGlass": "कार्ड, मीडिया और तरल ग्लास",
+  "localDemonstrationArtwork": "स्थानीय प्रदर्शन कलाकृति",
+  "violetGradient": "बैंगनी ढाल",
+  "previewSelected": "पूर्वावलोकन चयनित",
+  "downloadPanel": "पैनल डाउनलोड करें",
+  "aComposedCard": "एक रचित कार्ड",
+  "publicSlotsKeepContentInTheConsumingApplication": "सार्वजनिक स्लॉट उपभोक्ता एप्लिकेशन में सामग्री रखते हैं।",
+  "liquidGlassOpaqueWhenTransparencyIsReduced": "पारदर्शिता कम होने पर तरल ग्लास · अपारदर्शी।",
+  "contactCard": "संपर्क कार्ड",
+  "productDesign": "उत्पाद डिज़ाइन",
+  "website": "वेबसाइट",
+  "websiteSelected": "वेबसाइट चयनित",
+  "commentCarousel": "टिप्पणी हिंडोला",
+  "comments": "टिप्पणियाँ",
+  "noComments": "कोई टिप्पणी नहीं",
+  "previousComments": "पिछली टिप्पणियाँ",
+  "nextComments": "अगली टिप्पणियाँ",
+  "readMore": "और पढ़ें",
+  "collapse": "पतन",
+  "reviewerIndex": "समीक्षक {index}",
+  "@reviewerIndex": {
+    "placeholders": {
+      "index": {
+        "type": "Object"
+      }
+    }
+  },
+  "today": "आज",
+  "readableCopyFollowsTheSameWantTypography": "पढ़ने योग्य प्रतिलिपि उसी Want टाइपोग्राफी का अनुसरण करती है।",
+  "thePreviewIsReadyToExplore": "पूर्वावलोकन अन्वेषण के लिए तैयार है.",
+  "reply": "उत्तर",
+  "actionSelected": "{action} चयनित",
+  "@actionSelected": {
+    "placeholders": {
+      "action": {
+        "type": "Object"
+      }
+    }
+  },
+  "customLoaders": "कस्टम लोडिंग संकेतक",
+  "loadingVariantName": "{variantName} लोड हो रहा है",
+  "@loadingVariantName": {
+    "placeholders": {
+      "variantName": {
+        "type": "Object"
+      }
+    }
+  },
+  "shimmerPlaceholders": "शिमर प्लेसहोल्डर",
+  "animatedText": "एनिमेटेड पाठ",
+  "yourNextIdea": "आपका अगला विचार.",
+  "madeWithWant": "Want के साथ बनाया गया।",
+  "readyToExplore": "अन्वेषण के लिए तैयार.",
+  "changeText": "पाठ बदलें",
+  "reusableGlowAndConfetti": "पुन: प्रयोज्य चमक और कंफ़ेद्दी",
+  "aVisibleHaloWithTwoExpandingWaves": "दो विस्तारित तरंगों वाला एक दृश्यमान प्रभामंडल।",
+  "exploreWant": "Want का अन्वेषण करें",
+  "triggerBackgroundWave": "ट्रिगर पृष्ठभूमि तरंग",
+  "switchToRussian": "रूसी पर स्विच करें",
+  "switchToEnglish": "अंग्रेजी पर स्विच करें",
+  "error": "त्रुटि",
+  "warning": "चेतावनी",
+  "info": "जानकारी",
+  "success": "सफलता",
+  "brandAndTheme": "ब्रांड और थीम",
+  "componentPreview": "घटक पूर्वावलोकन",
+  "categoryFoundation": "फाउंडेशन",
+  "categoryInputs": "इनपुट",
+  "categoryNavigation": "नेविगेशन",
+  "categoryData": "डेटा",
+  "categoryFeedback": "प्रतिक्रिया",
+  "categoryEffects": "प्रभाव",
+  "categoryCompositions": "रचनाएँ",
+  "componentsInAction": "क्रिया में घटक",
+  "sliders": "स्लाइडर",
+  "intensity": "तीव्रता",
+  "range": "रेंज",
+  "backgroundLightning": "पृष्ठभूमि बिजली",
+  "lightAndSpace": "प्रकाश और स्थान",
+  "svg3D": "3डी SVG",
+  "rotateLogo": "लोगो को घुमाने के लिए तीर कुंजियों को खींचें या उपयोग करें।",
+  "changeLanguage": "भाषा"
+}

@@ -1,4 +1,4 @@
-import { cp, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
+import { cp, mkdtemp, readFile, readdir, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { resolve } from 'node:path';
 import assert from 'node:assert/strict';
@@ -23,13 +23,20 @@ try {
   assert.ok((await readFile(resolve(archive, 'assets/fonts/Manrope.ttf'))).length > 100000);
   await run(['flutter', 'create', '--no-pub', '--platforms=web', '--project-name=want_package_consumer', app], root);
   await cp(resolve(root, '.fvmrc'), resolve(app, '.fvmrc'));
-  await writeFile(resolve(app, 'pubspec.yaml'), `name: want_package_consumer\npublish_to: none\nenvironment:\n  sdk: ^3.13.5\ndependencies:\n  flutter:\n    sdk: flutter\n  flutter_localizations:\n    sdk: flutter\n  forui: ^0.27.7\n  material_ui: ^1.9.0\n  want_allure:${hosted ? ' ' + version : '\n    path: ' + archive}\nflutter:\n  uses-material-design: true\n`);
-  await cp(resolve(root, 'packages/flutter/example/lib/main.dart'), resolve(app, 'lib/main.dart'));
+  await writeFile(resolve(app, 'pubspec.yaml'), `name: want_package_consumer\npublish_to: none\nenvironment:\n  sdk: ^3.13.5\ndependencies:\n  flutter:\n    sdk: flutter\n  flutter_localizations:\n    sdk: flutter\n  forui: ^0.27.7\n  material_ui: ^1.9.0\n  intl: ^0.20.3\n  web: ^1.1.1\n  want_allure:${hosted ? ' ' + version : '\n    path: ' + archive}\nflutter:\n  uses-material-design: true\n  generate: true\n`);
+  await cp(resolve(root, 'packages/flutter/example/lib'), resolve(app, 'lib'), { recursive: true });
+  await cp(resolve(root, 'packages/flutter/example/l10n.yaml'), resolve(app, 'l10n.yaml'));
+  for(const file of await readdir(resolve(app,'lib'),{recursive:true})) {
+    if(!file.endsWith('.dart'))continue;
+    const target=resolve(app,'lib',file);
+    await writeFile(target,(await readFile(target,'utf8')).replaceAll('package:want_allure_example/','package:want_package_consumer/'));
+  }
   await run(['flutter', 'pub', 'get'], app);
   await run(['flutter', 'build', 'web', '--release', '--no-pub'], app);
-  for (const name of ['shimmer', 'sphere']) {
+  for (const name of ['shimmer', 'sphere', 'lightning']) {
     assert((await readFile(resolve(app, `build/web/assets/packages/want_allure/shaders/${name}.frag`))).length > 0);
   }
+  for (const theme of ['light', 'dark']) assert((await readFile(resolve(app, `build/web/assets/packages/want_allure/assets/brand/allure/logos/${theme}/transparent.svg`))).length > 0);
   const manifest = await readFile(resolve(app, 'build/web/assets/FontManifest.json'), 'utf8');
   assert.match(manifest, /packages\/want_allure\/Manrope/);
   assert.match(manifest, /packages\/want_allure\/Days One/);

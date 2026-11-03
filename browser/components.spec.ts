@@ -1,3 +1,4 @@
+import { category } from './helpers';
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
@@ -7,10 +8,11 @@ for (const width of [320, 1440]) {
     page.on('pageerror', error => errors.push(error.message));
     await page.setViewportSize({ width, height: 1000 });
     await page.emulateMedia({ colorScheme: width === 320 ? 'dark' : 'light', reducedMotion: width === 320 ? 'reduce' : 'no-preference' });
-    await page.goto('/');
+    await page.goto('/react/');
     await expect(page.locator('astro-island[ssr]')).toHaveCount(0, { timeout: 15000 });
-    if (width === 320) await page.getByRole('button', { name: 'Toggle RTL' }).click();
+    if (width === 320) await page.getByRole('switch', { name: 'Right to left', exact: true }).click();
 
+    await category(page,'inputs');
     const checkbox = page.getByRole('checkbox', { name: 'Select all examples' });
     await expect(checkbox).toHaveAttribute('aria-checked', 'mixed');
     await checkbox.focus(); await checkbox.press('Space');
@@ -18,6 +20,7 @@ for (const width of [320, 1440]) {
     await expect(page.getByRole('checkbox', { name: 'Example 1', exact: true })).toBeChecked();
     await expect(page.getByRole('checkbox', { name: 'Disabled checkbox' })).toBeDisabled();
 
+    await category(page,'navigation');
     const actions = page.getByRole('button', { name: 'Example actions' });
     await actions.focus(); await actions.press('ArrowDown');
     await expect(page.getByRole('menuitem', { name: 'Edit example' })).toBeFocused();
@@ -47,6 +50,7 @@ for (const width of [320, 1440]) {
     await expect(popover).toHaveCount(0);
     await expect(settings).toBeFocused();
 
+    await category(page,'inputs');
     const project = page.getByRole('combobox', { name: 'Project', exact: true });
     await project.fill('WEB');
     await expect(page.getByRole('option', { name: 'Website', exact: true })).toBeVisible();
@@ -69,6 +73,7 @@ for (const width of [320, 1440]) {
     await project.press('Enter');
     await expect(project).toHaveValue('Mobile app');
 
+    await category(page,'feedback');
     const show = page.getByRole('button', { name: 'Show notification' });
     await show.focus(); await show.press('Enter');
     await expect(page.getByText('Example saved', { exact: true })).toBeVisible();
@@ -81,6 +86,7 @@ for (const width of [320, 1440]) {
     await expect(page.getByRole('progressbar', { name: 'Indeterminate example' })).not.toHaveAttribute('aria-valuenow');
     await expect(page.getByRole('progressbar', { name: 'Indeterminate example' }).locator('[data-slot="progress-indicator"]')).toHaveCSS('animation-name', width === 320 ? 'none' : 'want-progress');
 
+    await category(page,'data');
     const table = page.getByRole('table', { name: 'Local project examples' });
     await page.getByRole('button', { name: 'Next page', exact: true }).click();
     await expect(table.getByRole('rowheader', { name: 'Example 6', exact: true })).toBeVisible();
@@ -108,9 +114,10 @@ for (const width of [320, 1440]) {
       URL.revokeObjectURL = url => { (window as unknown as { revoked: string[] }).revoked.push(url); original(url); };
     });
     await page.setViewportSize({ width, height: 900 });
-    await page.goto('/');
+    await page.goto('/react/');
     await expect(page.locator('astro-island[ssr]')).toHaveCount(0, { timeout: 15000 });
-    if (width === 320) await page.getByRole('button', { name: 'Toggle RTL' }).click();
+    if (width === 320) await page.getByRole('switch', { name: 'Right to left', exact: true }).click();
+    await category(page,'data');
     const input = page.getByLabel('Attachments', { exact: true });
     await input.setInputFiles({ name: 'notes.txt', mimeType: 'text/plain', buffer: Buffer.from('Example') });
     await expect(page.getByText('notes.txt', { exact: true })).toBeVisible();

@@ -15,8 +15,11 @@ abstract final class WantIcons {
   static const circleCheck = PhosphorIconsRegular.checkCircle;
   static const circleX = PhosphorIconsRegular.xCircle;
   static const download = PhosphorIconsRegular.downloadSimple;
+  static const eye = PhosphorIconsRegular.eye;
+  static const eyeClosed = PhosphorIconsRegular.eyeClosed;
   static const file = PhosphorIconsRegular.file;
   static const info = PhosphorIconsRegular.info;
+  static const question = PhosphorIconsRegular.question;
   static const link = PhosphorIconsRegular.link;
   static const moon = PhosphorIconsRegular.moon;
   static const sun = PhosphorIconsRegular.sun;
@@ -27,10 +30,10 @@ abstract final class WantIcons {
   static const image = PhosphorIconsRegular.image;
   static const pause = PhosphorIconsRegular.pause;
   static const play = PhosphorIconsRegular.play;
-  static const success = PhosphorIconsDuotone.checkCircle;
-  static const error = PhosphorIconsDuotone.xCircle;
-  static const warning = PhosphorIconsDuotone.warning;
-  static const information = PhosphorIconsDuotone.info;
+  static const success = PhosphorIconsRegular.check;
+  static const error = PhosphorIconsRegular.x;
+  static const warning = PhosphorIconsRegular.warning;
+  static const information = PhosphorIconsRegular.info;
 }
 
 /// Renders regular and duotone Want icons with the surrounding icon theme.

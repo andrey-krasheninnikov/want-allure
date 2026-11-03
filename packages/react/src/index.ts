@@ -43,3 +43,5 @@ export * from './shimmer.js';
 export * from './animated-text.js';
 export * from './glow.js';
 export * from './snackbar.js';
+export * from './lightning-background.js';
+export * from './ui/slider.js';

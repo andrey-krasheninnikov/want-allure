@@ -1,0 +1,4 @@
+import React from 'react';
+export function FrameworkLogo({framework,size=24}:{framework:'react'|'flutter';size?:number}): React.JSX.Element {
+  return framework==='react'?<svg width={size} height={size} viewBox="0 0 28 28" fill="none" aria-hidden="true" focusable="false"><g stroke="currentColor" strokeWidth="1.5"><ellipse cx="14" cy="14" rx="12" ry="4.8"/><ellipse cx="14" cy="14" rx="12" ry="4.8" transform="rotate(60 14 14)"/><ellipse cx="14" cy="14" rx="12" ry="4.8" transform="rotate(120 14 14)"/></g><circle cx="14" cy="14" r="2.2" fill="currentColor"/></svg>:<svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M14.3 1 2.5 12.8l3.6 3.6L21.5 1H14.3Z"/><path d="m14.3 11-6.1 6.1 3.6 3.6L21.5 11h-7.2Z" opacity=".8"/><path d="m11.8 20.7 2.5 2.3h7.2L15.4 17l-3.6 3.7Z" opacity=".55"/></svg>;
+}

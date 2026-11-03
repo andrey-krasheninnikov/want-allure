@@ -1,0 +1,334 @@
+{
+  "@@locale": "zh",
+  "findInCatalogue": "在目录中查找",
+  "previousMatch": "上一场比赛",
+  "nextMatch": "下一场比赛",
+  "closeFind": "关闭查找",
+  "noMatches": "没有匹配项",
+  "matchActiveOfCount": "匹配 {count} 的 {active}",
+  "@matchActiveOfCount": {
+    "placeholders": {
+      "active": {
+        "type": "Object"
+      },
+      "count": {
+        "type": "Object"
+      }
+    }
+  },
+  "dismissMessage": "关闭消息",
+  "pauseBackground": "暂停背景",
+  "resumeBackground": "简历背景",
+  "oneWantEveryPlatform": "1个Want。每个平台。",
+  "theSameWantColorsControlsAndMotionAcrossWeb": "在网络和 Flutter 上，Want 的颜色、控制和动作相同。探索具有键盘、触摸和指针输入的组件。",
+  "findCtrlF": "查找 · ⌘/Ctrl F",
+  "useLightTheme": "使用浅色主题",
+  "useDarkTheme": "使用深色主题",
+  "reduceMotion": "减少运动",
+  "opaqueSurfaces": "不透明表面",
+  "resumeEffects": "恢复效果",
+  "pauseEffects": "暂停效果",
+  "palette": "调色板",
+  "typography": "版式",
+  "variantNameWantMakesRoomForYourContent": "{variantName} · Want 为您的内容腾出空间。",
+  "@variantNameWantMakesRoomForYourContent": {
+    "placeholders": {
+      "variantName": {
+        "type": "Object"
+      }
+    }
+  },
+  "buttons": "按钮",
+  "variantNamePressed": "{variantName} 按下",
+  "@variantNamePressed": {
+    "placeholders": {
+      "variantName": {
+        "type": "Object"
+      }
+    }
+  },
+  "disabled": "残疾人",
+  "downloadSelected": "下载选定的",
+  "downloadExample": "下载示例",
+  "fieldsInputAndTextarea": "字段、输入和文本区域",
+  "password": "密码",
+  "showPassword": "显示密码",
+  "hidePassword": "隐藏密码",
+  "localExample": "本地示例",
+  "title": "标题",
+  "editableLocalValue": "可编辑的本地值。",
+  "invalidExample": "无效示例",
+  "enterATitle": "输入标题。",
+  "disabledExample": "禁用示例",
+  "contoursOfSilence": "沉默的轮廓",
+  "description": "描述",
+  "describeThePreview": "描述预览",
+  "fieldAndLabel": "字段和标签",
+  "consumerOwnedHelperText": "消费者拥有的帮助文本。",
+  "selectRadioCheckboxAndSwitch": "选择、单选、复选框和开关",
+  "format": "格式",
+  "desktop": "桌面",
+  "mobile": "手机",
+  "unavailable": "不可用",
+  "wallpaperOrientation": "壁纸方向",
+  "includePreview": "包括预览",
+  "aControlledCheckbox": "受控复选框。",
+  "mixedSelection": "混合选择",
+  "enableExampleSetting": "启用示例设置",
+  "disabledCheckbox": "禁用复选框",
+  "tabsAndAccordion": "标签和手风琴",
+  "landscapePreview": "风景预览。",
+  "portraitPreview": "肖像预览。",
+  "howAreComponentsShared": "组件如何共享？",
+  "bothAdaptersUseTheSameFoundationTokens": "两个适配器都使用相同的基础令牌。",
+  "whoOwnsApplicationData": "谁拥有应用程序数据？",
+  "theConsumingApplicationOwnsDataAndPersistence": "消费应用程序拥有数据和持久性。",
+  "dialogSheetMenuTooltipAndPopover": "对话框、工作表、菜单、工具提示和弹出窗口",
+  "previewSettings": "预览设置",
+  "done": "完成",
+  "previewName": "预览名称",
+  "openDialog": "打开对话框",
+  "panelSideName": "面板{sideName}",
+  "@panelSideName": {
+    "placeholders": {
+      "sideName": {
+        "type": "Object"
+      }
+    }
+  },
+  "closePanel": "关闭面板",
+  "theSheetEntersFromItsSelectedSide": "纸张从其选定的一侧进入。",
+  "sideNameSheet": "{sideName}板材",
+  "@sideNameSheet": {
+    "placeholders": {
+      "sideName": {
+        "type": "Object"
+      }
+    }
+  },
+  "actions": "行动",
+  "copyLink": "复制链接",
+  "copyActionSelected": "复制已选择的操作",
+  "aKeyboardAndPointerHint": "键盘和指针提示",
+  "hintSelected": "已选择提示",
+  "tooltip": "工具提示",
+  "settings": "设置",
+  "note": "注意事项",
+  "closeSettings": "关闭设置",
+  "navigationAndBreadcrumbs": "导航和面包屑",
+  "exampleNavigation": "导航示例",
+  "collections": "收藏",
+  "collectionsSelected": "精选系列",
+  "search": "搜索",
+  "searchSelected": "搜索已选择",
+  "breadcrumbs": "面包屑",
+  "home": "首页",
+  "homeSelected": "已选择首页",
+  "uiKit": "UI kit",
+  "badgesAlertsAndProgress": "徽章、警报和进度",
+  "primary": "小学",
+  "previewAvailable": "可用预览",
+  "chooseAnExampleActionToContinue": "选择一个示例操作以继续。",
+  "couldNotLoadPreview": "无法加载预览",
+  "tryAgain": "再试一次。",
+  "exampleProgress": "进展示例",
+  "loadingPreview": "加载预览",
+  "toastAndSemanticSnackbars": "通知与状态提示",
+  "localPreviewReady": "本地预览就绪",
+  "showToast": "显示通知",
+  "variantNameExampleStatus": "{variantName}：状态示例",
+  "@variantNameExampleStatus": {
+    "placeholders": {
+      "variantName": {
+        "type": "Object"
+      }
+    }
+  },
+  "themeAwareFeedbackWithOneUsefulAction": "通过一项有用的操作进行主题感知反馈。",
+  "dismissStatus": "解除状态",
+  "viewDetails": "查看详情",
+  "detailsSelected": "详细信息已选择",
+  "searchableCombobox": "可搜索组合框",
+  "collection": "收藏",
+  "searchCollections": "搜索收藏",
+  "violetHorizon": "紫地平线",
+  "wovenSpectrum": "编织光谱",
+  "tableAndPagination": "表格和分页",
+  "localCollection": "本地收藏",
+  "noRecords": "没有记录",
+  "name": "名称",
+  "previewValue": "预览 {value}",
+  "@previewValue": {
+    "placeholders": {
+      "value": {
+        "type": "Object"
+      }
+    }
+  },
+  "pages": "页数",
+  "previousPage": "上一页",
+  "nextPage": "下一页",
+  "rowsPerPage": "每页行数",
+  "pagePage": "第{page}页",
+  "@pagePage": {
+    "placeholders": {
+      "page": {
+        "type": "Object"
+      }
+    }
+  },
+  "fromToOfTotal": "{total}的{from}–{to}",
+  "@fromToOfTotal": {
+    "placeholders": {
+      "from": {
+        "type": "Object"
+      },
+      "to": {
+        "type": "Object"
+      },
+      "total": {
+        "type": "Object"
+      }
+    }
+  },
+  "fileSelection": "文件选择",
+  "images": "图片",
+  "chooseImages": "选择图像",
+  "dropImagesHereOrChooseAFile": "将图像拖放到此处或选择一个文件。",
+  "couldNotReadTheSelectedFile": "无法读取所选文件。",
+  "removeName": "删除{name}",
+  "@removeName": {
+    "placeholders": {
+      "name": {
+        "type": "Object"
+      }
+    }
+  },
+  "nameIsNotASupportedImage": "{name} 不是受支持的图像。",
+  "@nameIsNotASupportedImage": {
+    "placeholders": {
+      "name": {
+        "type": "Object"
+      }
+    }
+  },
+  "nameExceedsLimitBytes": "{name} 超过 {limit} 字节。",
+  "@nameExceedsLimitBytes": {
+    "placeholders": {
+      "name": {
+        "type": "Object"
+      },
+      "limit": {
+        "type": "Object"
+      }
+    }
+  },
+  "chooseUpToCountFiles": "最多选择 {count} 文件。",
+  "@chooseUpToCountFiles": {
+    "placeholders": {
+      "count": {
+        "type": "Object"
+      }
+    }
+  },
+  "dateURLAndPageLayout": "日期、URL 和页面布局",
+  "createAPreview": "创建预览",
+  "localComposition": "局部成分",
+  "previewActionSelected": "预览选定的操作",
+  "preview": "预览",
+  "date": "日期",
+  "time": "时间",
+  "useToday": "今天使用",
+  "sourceURL": "来源网址",
+  "openSource": "开源",
+  "openUriHost": "打开{uriHost}",
+  "@openUriHost": {
+    "placeholders": {
+      "uriHost": {
+        "type": "Object"
+      }
+    }
+  },
+  "cardsMediaAndLiquidGlass": "卡片、介质和液体玻璃",
+  "localDemonstrationArtwork": "当地示范艺术作品",
+  "violetGradient": "紫色渐变",
+  "previewSelected": "预览已选择",
+  "downloadPanel": "下载面板",
+  "aComposedCard": "一张组合卡",
+  "publicSlotsKeepContentInTheConsumingApplication": "公共槽将内容保存在消费应用程序中。",
+  "liquidGlassOpaqueWhenTransparencyIsReduced": "液态玻璃 · 透明度降低时不透明。",
+  "contactCard": "联系卡",
+  "productDesign": "产品设计",
+  "website": "网站",
+  "websiteSelected": "已选择网站",
+  "commentCarousel": "评论轮播",
+  "comments": "评论",
+  "noComments": "没有评论",
+  "previousComments": "之前的评论",
+  "nextComments": "下一条评论",
+  "readMore": "了解更多",
+  "collapse": "崩溃",
+  "reviewerIndex": "审稿人{index}",
+  "@reviewerIndex": {
+    "placeholders": {
+      "index": {
+        "type": "Object"
+      }
+    }
+  },
+  "today": "今天",
+  "readableCopyFollowsTheSameWantTypography": "可读副本遵循相同的 Want 排版。",
+  "thePreviewIsReadyToExplore": "预览已准备好探索。",
+  "reply": "回复",
+  "actionSelected": "{action} 已选择",
+  "@actionSelected": {
+    "placeholders": {
+      "action": {
+        "type": "Object"
+      }
+    }
+  },
+  "customLoaders": "自定义加载指示器",
+  "loadingVariantName": "正在加载{variantName}",
+  "@loadingVariantName": {
+    "placeholders": {
+      "variantName": {
+        "type": "Object"
+      }
+    }
+  },
+  "shimmerPlaceholders": "微光占位效果",
+  "animatedText": "动画文字",
+  "yourNextIdea": "你的下一个想法。",
+  "madeWithWant": "用 Want 制作。",
+  "readyToExplore": "准备探索。",
+  "changeText": "更改文字",
+  "reusableGlowAndConfetti": "可重复使用的发光和五彩纸屑",
+  "aVisibleHaloWithTwoExpandingWaves": "带有两个不断扩展的波浪的可见光环。",
+  "exploreWant": "探索Want",
+  "triggerBackgroundWave": "触发背景波",
+  "switchToRussian": "切换到俄语",
+  "switchToEnglish": "切换到英语",
+  "error": "错误",
+  "warning": "警告",
+  "info": "信息",
+  "success": "成功",
+  "brandAndTheme": "品牌及主题",
+  "componentPreview": "组件预览",
+  "categoryFoundation": "基金会",
+  "categoryInputs": "输入",
+  "categoryNavigation": "导航",
+  "categoryData": "数据",
+  "categoryFeedback": "反馈意见",
+  "categoryEffects": "效果",
+  "categoryCompositions": "作文",
+  "componentsInAction": "运行中的组件",
+  "sliders": "滑块",
+  "intensity": "强度",
+  "range": "范围",
+  "backgroundLightning": "背景闪电",
+  "lightAndSpace": "光与空间",
+  "svg3D": "3D SVG",
+  "rotateLogo": "拖动或使用箭头键旋转徽标。",
+  "changeLanguage": "语言"
+}

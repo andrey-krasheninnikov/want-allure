@@ -1,0 +1,334 @@
+{
+  "@@locale": "fr",
+  "findInCatalogue": "Rechercher dans le catalogue",
+  "previousMatch": "Match précédent",
+  "nextMatch": "Prochain match",
+  "closeFind": "Fermer la recherche",
+  "noMatches": "Aucune correspondance",
+  "matchActiveOfCount": "Correspond à {active} de {count}",
+  "@matchActiveOfCount": {
+    "placeholders": {
+      "active": {
+        "type": "Object"
+      },
+      "count": {
+        "type": "Object"
+      }
+    }
+  },
+  "dismissMessage": "Ignorer le message",
+  "pauseBackground": "Suspendre l'arrière-plan",
+  "resumeBackground": "Reprendre l'arrière-plan",
+  "oneWantEveryPlatform": "Un Want. Chaque plateforme.",
+  "theSameWantColorsControlsAndMotionAcrossWeb": "Les mêmes couleurs, commandes et mouvements du Want sur le Web et le Flutter. Explorez les composants avec la saisie au clavier, au toucher et au pointeur.",
+  "findCtrlF": "Rechercher · ⌘/Ctrl F",
+  "useLightTheme": "Utiliser le thème clair",
+  "useDarkTheme": "Utiliser le thème sombre",
+  "reduceMotion": "Réduire les mouvements",
+  "opaqueSurfaces": "Surfaces opaques",
+  "resumeEffects": "Reprendre les effets",
+  "pauseEffects": "Effets de pause",
+  "palette": "Palette",
+  "typography": "Typographie",
+  "variantNameWantMakesRoomForYourContent": "{variantName} · Want fait de la place pour votre contenu.",
+  "@variantNameWantMakesRoomForYourContent": {
+    "placeholders": {
+      "variantName": {
+        "type": "Object"
+      }
+    }
+  },
+  "buttons": "Boutons",
+  "variantNamePressed": "{variantName} pressé",
+  "@variantNamePressed": {
+    "placeholders": {
+      "variantName": {
+        "type": "Object"
+      }
+    }
+  },
+  "disabled": "Désactivé",
+  "downloadSelected": "Télécharger sélectionné",
+  "downloadExample": "Exemple de téléchargement",
+  "fieldsInputAndTextarea": "Champs, saisie et zone de texte",
+  "password": "Mot de passe",
+  "showPassword": "Afficher le mot de passe",
+  "hidePassword": "Masquer le mot de passe",
+  "localExample": "Exemple local",
+  "title": "Titre",
+  "editableLocalValue": "Valeur locale modifiable.",
+  "invalidExample": "Exemple invalide",
+  "enterATitle": "Entrez un titre.",
+  "disabledExample": "Exemple désactivé",
+  "contoursOfSilence": "Contours du silence",
+  "description": "Descriptif",
+  "describeThePreview": "Décrire l'aperçu",
+  "fieldAndLabel": "Champ et étiquette",
+  "consumerOwnedHelperText": "Texte d'aide appartenant au consommateur.",
+  "selectRadioCheckboxAndSwitch": "Sélectionnez, radio, case à cocher et commutateur",
+  "format": "Formater",
+  "desktop": "Bureau",
+  "mobile": "Mobile",
+  "unavailable": "Indisponible",
+  "wallpaperOrientation": "Orientation du papier peint",
+  "includePreview": "Inclure un aperçu",
+  "aControlledCheckbox": "Une case à cocher contrôlée.",
+  "mixedSelection": "Sélection mixte",
+  "enableExampleSetting": "Activer l'exemple de paramètre",
+  "disabledCheckbox": "Case à cocher désactivée",
+  "tabsAndAccordion": "Tablatures et accordéon",
+  "landscapePreview": "Aperçu du paysage.",
+  "portraitPreview": "Aperçu du portrait.",
+  "howAreComponentsShared": "Comment les composants sont-ils partagés ?",
+  "bothAdaptersUseTheSameFoundationTokens": "Les deux adaptateurs utilisent les mêmes jetons de fondation.",
+  "whoOwnsApplicationData": "À qui appartiennent les données des applications ?",
+  "theConsumingApplicationOwnsDataAndPersistence": "L'application consommatrice possède les données et la persistance.",
+  "dialogSheetMenuTooltipAndPopover": "Boîte de dialogue, feuille, menu, info-bulle et popover",
+  "previewSettings": "Paramètres d'aperçu",
+  "done": "Terminé",
+  "previewName": "Nom de l'aperçu",
+  "openDialog": "Ouvrir la boîte de dialogue",
+  "panelSideName": "Panneau {sideName}",
+  "@panelSideName": {
+    "placeholders": {
+      "sideName": {
+        "type": "Object"
+      }
+    }
+  },
+  "closePanel": "Fermer le panneau",
+  "theSheetEntersFromItsSelectedSide": "La feuille entre par son côté sélectionné.",
+  "sideNameSheet": "Fiche {sideName}",
+  "@sideNameSheet": {
+    "placeholders": {
+      "sideName": {
+        "type": "Object"
+      }
+    }
+  },
+  "actions": "Actions",
+  "copyLink": "Copier le lien",
+  "copyActionSelected": "Action de copie sélectionnée",
+  "aKeyboardAndPointerHint": "Un indice de clavier et de pointeur",
+  "hintSelected": "Indice sélectionné",
+  "tooltip": "Info-bulle",
+  "settings": "Paramètres",
+  "note": "Remarque",
+  "closeSettings": "Fermer les paramètres",
+  "navigationAndBreadcrumbs": "Navigation et fil d'Ariane",
+  "exampleNavigation": "Exemple de navigation",
+  "collections": "Collections",
+  "collectionsSelected": "Collections sélectionnées",
+  "search": "Rechercher",
+  "searchSelected": "Rechercher sélectionné",
+  "breadcrumbs": "Fil d'Ariane",
+  "home": "Accueil",
+  "homeSelected": "Accueil sélectionné",
+  "uiKit": "UI kit",
+  "badgesAlertsAndProgress": "Badges, alertes et progression",
+  "primary": "Primaire",
+  "previewAvailable": "Aperçu disponible",
+  "chooseAnExampleActionToContinue": "Choisissez un exemple d’action pour continuer.",
+  "couldNotLoadPreview": "Impossible de charger l'aperçu",
+  "tryAgain": "Réessayez.",
+  "exampleProgress": "Exemple de progression",
+  "loadingPreview": "Aperçu du chargement",
+  "toastAndSemanticSnackbars": "Notifications et messages d’état",
+  "localPreviewReady": "Aperçu local prêt",
+  "showToast": "Afficher une notification",
+  "variantNameExampleStatus": "{variantName} : exemple de statut",
+  "@variantNameExampleStatus": {
+    "placeholders": {
+      "variantName": {
+        "type": "Object"
+      }
+    }
+  },
+  "themeAwareFeedbackWithOneUsefulAction": "Commentaires adaptés au thème avec une action utile.",
+  "dismissStatus": "Statut de rejet",
+  "viewDetails": "Afficher les détails",
+  "detailsSelected": "Détails sélectionnés",
+  "searchableCombobox": "Combobox consultable",
+  "collection": "Collecte",
+  "searchCollections": "Rechercher des collections",
+  "violetHorizon": "Horizon violet",
+  "wovenSpectrum": "Spectre tissé",
+  "tableAndPagination": "Tableau et pagination",
+  "localCollection": "Collecte locale",
+  "noRecords": "Aucun enregistrement",
+  "name": "Nom",
+  "previewValue": "Aperçu {value}",
+  "@previewValue": {
+    "placeholders": {
+      "value": {
+        "type": "Object"
+      }
+    }
+  },
+  "pages": "Pages",
+  "previousPage": "Page précédente",
+  "nextPage": "Page suivante",
+  "rowsPerPage": "Lignes par page",
+  "pagePage": "Page {page}",
+  "@pagePage": {
+    "placeholders": {
+      "page": {
+        "type": "Object"
+      }
+    }
+  },
+  "fromToOfTotal": "{from} – {to} ou {total}",
+  "@fromToOfTotal": {
+    "placeholders": {
+      "from": {
+        "type": "Object"
+      },
+      "to": {
+        "type": "Object"
+      },
+      "total": {
+        "type": "Object"
+      }
+    }
+  },
+  "fileSelection": "Sélection de fichiers",
+  "images": "Images",
+  "chooseImages": "Choisissez des images",
+  "dropImagesHereOrChooseAFile": "Déposez des images ici ou choisissez un fichier.",
+  "couldNotReadTheSelectedFile": "Impossible de lire le fichier sélectionné.",
+  "removeName": "Supprimer {name}",
+  "@removeName": {
+    "placeholders": {
+      "name": {
+        "type": "Object"
+      }
+    }
+  },
+  "nameIsNotASupportedImage": "{name} n’est pas une image prise en charge.",
+  "@nameIsNotASupportedImage": {
+    "placeholders": {
+      "name": {
+        "type": "Object"
+      }
+    }
+  },
+  "nameExceedsLimitBytes": "{name} dépasse les octets {limit}.",
+  "@nameExceedsLimitBytes": {
+    "placeholders": {
+      "name": {
+        "type": "Object"
+      },
+      "limit": {
+        "type": "Object"
+      }
+    }
+  },
+  "chooseUpToCountFiles": "Choisissez jusqu'à des fichiers {count}.",
+  "@chooseUpToCountFiles": {
+    "placeholders": {
+      "count": {
+        "type": "Object"
+      }
+    }
+  },
+  "dateURLAndPageLayout": "Date, URL et mise en page",
+  "createAPreview": "Créer un aperçu",
+  "localComposition": "Composition locale",
+  "previewActionSelected": "Action d'aperçu sélectionnée",
+  "preview": "Aperçu",
+  "date": "Date",
+  "time": "Temps",
+  "useToday": "Utiliser aujourd'hui",
+  "sourceURL": "URL source",
+  "openSource": "Source ouverte",
+  "openUriHost": "Ouvrir {uriHost}",
+  "@openUriHost": {
+    "placeholders": {
+      "uriHost": {
+        "type": "Object"
+      }
+    }
+  },
+  "cardsMediaAndLiquidGlass": "Cartes, supports et verre liquide",
+  "localDemonstrationArtwork": "Oeuvre de démonstration locale",
+  "violetGradient": "Dégradé violet",
+  "previewSelected": "Aperçu sélectionné",
+  "downloadPanel": "Panneau de téléchargement",
+  "aComposedCard": "Une carte composée",
+  "publicSlotsKeepContentInTheConsumingApplication": "Les emplacements publics conservent le contenu dans l'application consommatrice.",
+  "liquidGlassOpaqueWhenTransparencyIsReduced": "Verre liquide · opaque lorsque la transparence est réduite.",
+  "contactCard": "Fiche de contact",
+  "productDesign": "Conception de produits",
+  "website": "Site Web",
+  "websiteSelected": "Site Web sélectionné",
+  "commentCarousel": "Carrousel de commentaires",
+  "comments": "Commentaires",
+  "noComments": "Pas de commentaires",
+  "previousComments": "Commentaires précédents",
+  "nextComments": "Commentaires suivants",
+  "readMore": "Lire la suite",
+  "collapse": "Réduire",
+  "reviewerIndex": "Évaluateur {index}",
+  "@reviewerIndex": {
+    "placeholders": {
+      "index": {
+        "type": "Object"
+      }
+    }
+  },
+  "today": "Aujourd'hui",
+  "readableCopyFollowsTheSameWantTypography": "La copie lisible suit la même typographie Want.",
+  "thePreviewIsReadyToExplore": "L'aperçu est prêt à être exploré.",
+  "reply": "Répondre",
+  "actionSelected": "{action} sélectionné",
+  "@actionSelected": {
+    "placeholders": {
+      "action": {
+        "type": "Object"
+      }
+    }
+  },
+  "customLoaders": "Indicateurs de chargement personnalisés",
+  "loadingVariantName": "Chargement de {variantName}",
+  "@loadingVariantName": {
+    "placeholders": {
+      "variantName": {
+        "type": "Object"
+      }
+    }
+  },
+  "shimmerPlaceholders": "Espaces réservés scintillants",
+  "animatedText": "Texte animé",
+  "yourNextIdea": "Votre prochaine idée.",
+  "madeWithWant": "Fabriqué avec Want.",
+  "readyToExplore": "Prêt à explorer.",
+  "changeText": "Changer le texte",
+  "reusableGlowAndConfetti": "Lueur et confettis réutilisables",
+  "aVisibleHaloWithTwoExpandingWaves": "Un halo visible avec deux vagues en expansion.",
+  "exploreWant": "Explorer Want",
+  "triggerBackgroundWave": "Déclencher une vague de fond",
+  "switchToRussian": "Passer au russe",
+  "switchToEnglish": "Passer à l'anglais",
+  "error": "Erreur",
+  "warning": "Avertissement",
+  "info": "Informations",
+  "success": "Succès",
+  "brandAndTheme": "Marque et thème",
+  "componentPreview": "Aperçu du composant",
+  "categoryFoundation": "Fondation",
+  "categoryInputs": "Entrées",
+  "categoryNavigation": "Navigation",
+  "categoryData": "Données",
+  "categoryFeedback": "Commentaires",
+  "categoryEffects": "Effets",
+  "categoryCompositions": "Compositions",
+  "componentsInAction": "Composants en action",
+  "sliders": "Curseurs",
+  "intensity": "Intensité",
+  "range": "Gamme",
+  "backgroundLightning": "Éclair de fond",
+  "lightAndSpace": "Lumière et espace",
+  "svg3D": "SVG modèle 3D",
+  "rotateLogo": "Faites glisser ou utilisez les touches fléchées pour faire pivoter le logo.",
+  "changeLanguage": "Langue"
+}

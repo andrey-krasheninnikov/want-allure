@@ -1,6 +1,6 @@
 # Flutter component parity
 
-The 1.1.1 Flutter adapter covers every family exported by the React adapter. Flutter uses native widget composition and callbacks. React-only trigger, portal and content parts map to builders, slots and the framework overlay system.
+The 1.3.0 Flutter adapter covers every family exported by the React adapter. Flutter uses native widget composition and callbacks. React-only trigger, portal and content parts map to builders, slots and the framework overlay system.
 
 | Web family | Flutter API | Example section |
 | --- | --- | --- |
@@ -46,6 +46,8 @@ The 1.1.1 Flutter adapter covers every family exported by the React adapter. Flu
 | `loader` | `WantLoader` | loaders |
 | `shimmer` | `WantShimmer` | shimmer |
 | `animated-text` | `WantAnimatedText` | animated-text |
+| `lightning-background` | `WantLightningBackground` | lightning |
+| `ui/slider` | `WantSlider`, `WantRangeSlider` | sliders |
 | `glow` | `WantGlow` | glow |
 | `snackbar` | `WantSnackbar` | notifications |
 
@@ -60,3 +62,9 @@ File selection uses the platform dialog. Native and web drop data passes through
 Optional effects never own product actions. The background controller has pause/resume/toggle and triggerWave. The widget owns and cancels animation resources and timers; consumers dispose controllers they create. Waves default to 8–18 second delays, preserving the separate background phase when restarted.
 
 The 1.1.0 release adds a presentation barrel tree, Phosphor icons, toastification delivery, smooth_sheets bottom sheets, web selection/find and bundled fragment shaders. Top/left/right sheets preserve their ForUI behavior. New APIs are additive; existing Want constructors, callback contracts and notification handles remain available.
+
+The 1.2.0 example adds English/Russian catalogues and Allure branding. Its web build participates in the unified Astro application; translations and host-page settings remain example-owned.
+
+Both catalogues organize their 46 families into the same seven categories. Slider adapters accept controlled numeric values and callbacks; Flutter maps those values to ForUI internally. The Flutter range uses a `(start: double, end: double)` record. Lightning is a decorative background surface in both adapters; Flutter renders it through `lightning.frag`.
+
+Flutter also exposes `WantSvg3D` for filled SVG extrusion. Its example is in the Effects category. This native addition does not add a React export or change the count of shared component families. See the Flutter README for supported SVG features and builders.

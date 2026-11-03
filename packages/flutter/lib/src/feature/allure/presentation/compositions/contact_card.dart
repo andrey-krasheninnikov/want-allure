@@ -78,31 +78,50 @@ class WantContactCard extends StatelessWidget {
           ],
         ),
         for (final action in actions)
-          WantButton(
-            variant: WantButtonVariant.secondary,
-            semanticsLabel: action.semanticsLabel,
-            onPressed: action.onPressed,
-            child: Row(
-              spacing: 12,
-              children: [
-                action.icon ?? const Icon(WantIcons.link),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(action.title),
-                      if (action.detail != null)
-                        Text(
-                          action.detail!,
-                          textDirection: TextDirection.ltr,
-                          style: const TextStyle(fontSize: 14),
-                        ),
-                    ],
+          DecoratedBox(
+            decoration: BoxDecoration(
+              color: WantTheme.of(context).color('secondary'),
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child: Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(16, 10, 8, 10),
+              child: Row(
+                spacing: 12,
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      spacing: 4,
+                      children: [
+                        Text(action.title),
+                        if (action.detail != null)
+                          Text(
+                            action.detail!,
+                            textDirection: TextDirection.ltr,
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: WantTheme.of(context)
+                                  .color('muted-foreground'),
+                            ),
+                          ),
+                      ],
+                    ),
                   ),
-                ),
-                const Icon(WantIcons.arrowUpRight, size: 18),
-              ],
+                  WantTooltip(
+                    message: action.semanticsLabel ?? action.title,
+                    child: WantButton(
+                      size: WantButtonSize.icon,
+                      variant: WantButtonVariant.ghost,
+                      semanticsLabel: action.semanticsLabel ?? action.title,
+                      onPressed: action.onPressed,
+                      child:
+                          action.icon ??
+                          const WantIcon(WantIcons.arrowUpRight, size: 20),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
       ],
