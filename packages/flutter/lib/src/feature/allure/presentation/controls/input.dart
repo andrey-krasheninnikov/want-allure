@@ -80,7 +80,7 @@ class WantTextarea extends WantInput {
     super.readOnly,
     super.autofocus,
     super.minLines = 4,
-    super.maxLines,
+    super.maxLines = null,
     super.textDirection,
   }) : super(keyboardType: TextInputType.multiline);
 }

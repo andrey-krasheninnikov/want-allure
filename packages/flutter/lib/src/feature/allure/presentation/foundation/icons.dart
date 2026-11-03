@@ -27,10 +27,10 @@ abstract final class WantIcons {
   static const image = PhosphorIconsRegular.image;
   static const pause = PhosphorIconsRegular.pause;
   static const play = PhosphorIconsRegular.play;
-  static const success = PhosphorIconsDuotone.checkCircle;
-  static const error = PhosphorIconsDuotone.xCircle;
-  static const warning = PhosphorIconsDuotone.warning;
-  static const information = PhosphorIconsDuotone.info;
+  static const success = PhosphorIconsRegular.check;
+  static const error = PhosphorIconsRegular.x;
+  static const warning = PhosphorIconsRegular.warning;
+  static const information = PhosphorIconsRegular.info;
 }
 
 /// Renders regular and duotone Want icons with the surrounding icon theme.

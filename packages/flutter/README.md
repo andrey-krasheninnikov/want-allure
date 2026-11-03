@@ -9,7 +9,7 @@ ForUI-based Want components for Android, iOS, web, macOS, Windows and Linux. The
 Requires Flutter 3.47.7 and Dart 3.13.5 or newer.
 
 ```sh
-flutter pub add want_allure:^1.1.0
+flutter pub add want_allure:^1.2.0
 ```
 
 Use your existing application shell and localization setup. Apply WantTheme in the application builder so routes and overlays inherit the theme:
@@ -121,3 +121,58 @@ The example contains every component family with theme, RTL and motion controls.
 ## License
 
 MIT for the package source. Bundled fonts use the SIL Open Font License; complete texts are in licenses/. Dependencies and brand assets retain their own notices.
+
+## Allure artwork
+
+The package includes light/dark Allure logos and backgrounds alongside the existing Wallpapers asset:
+
+```dart
+WantBrandLogo.asset(
+  'assets/brand/allure/logos/light/transparent.svg',
+  package: 'want_allure',
+  label: 'Want Allure',
+)
+```
+
+Choose `logos/dark/transparent.svg` for a dark surface. Other supplied logo backgrounds and PNG variants retain their filenames. The background artwork is under `assets/brand/allure/backgrounds/brand-light.svg` and `brand-dark.svg`. Consumers choose the asset for their current theme; the public widget constructors are unchanged.
+
+The repository's web catalogue supports twelve locales through the Astro application, including `/flutter/`, `/ru/flutter/` and the other localized routes. Its browser integration and translations belong to the example application. Installing the UI package does not add a router, stored preference or host-page integration to a consumer.
+
+## Sliders, hover and lightning
+
+`WantSlider` accepts `value`, `onChanged`, `label`, `min`, `max`, `step`, optional `onChangeEnd` and `formatValue`. `WantRangeSlider` uses the same numeric settings and a record such as `(start: 25.0, end: 75.0)`. A null callback disables the control. ForUI supplies native interaction, RTL, keyboard and localized range semantics.
+
+`WantCard` has `hoverEffect: true` by default. Set it to false for a quiet reading surface. The moving highlight and soft shadow preserve layout and native pointer/selection behavior. Motion stops when inactive and respects reduced motion.
+
+Use `Positioned.fill(child: WantLightningBackground(paused: paused))` inside a bounded Stack. Its optional `colors` list contains exactly two colors; otherwise it uses primary and warning. The shader is bundled with the package. Loading failures and reduced motion use a static fallback; high contrast hides the decoration. The caller owns the pause control.
+
+`WantTableColumn.alignment` controls cell alignment and `sortLabel` provides a consumer-localized sort action name. Columns retain their minimum widths, expand proportionally on larger surfaces and scroll horizontally when necessary.
+
+The example groups components into seven categories. Its shared web header owns theme, language and RTL. The standalone example retains equivalent native controls. `sprung` is used for restrained feedback curves; drag positions and numeric values update directly.
+
+
+## Extruded SVG
+
+`WantSvg3D` builds front, back and side faces from filled SVG contours and preserves holes. Use `.asset`, `.string` or `.builder`; the builder returns `FutureOr<String>`. Give the widget bounded constraints and a localized `semanticsLabel`.
+
+```dart
+SizedBox(
+  width: 280,
+  height: 280,
+  child: WantSvg3D.asset(
+    'assets/logo.svg',
+    semanticsLabel: 'Product logo. Drag or use arrow keys to rotate.',
+    depth: .12,
+  ),
+)
+```
+
+`depth` is a fraction of the longest SVG dimension, greater than zero and at most one. `autoRotate`, `paused` and `glow` control presentation. System reduced motion, viewport visibility and application lifecycle stop automatic movement. Rotation supports pointer dragging and arrow keys. Geometry is cached between frames; animation updates at most 30 times per second.
+
+The initial SVG contract supports paths with solid hex fills, plain rectangles, polygons, circles, ellipses and group transforms. Convert text, strokes and rounded rectangles to filled paths before use. Flatten opacity before extrusion. Filters, masks, clipping, external resources and raster images are outside this mesh contract. Supply `placeholderBuilder` and `errorBuilder` when loading or failure needs product-specific content. When parsing cannot create a mesh, the original SVG is the default fallback if its source was loaded.
+
+`WantThemeData.light(locale: ...)` and `.dark(locale: ...)` select the preferred bundled font fallback. Chinese, Hindi and Hebrew use Noto Sans SC, Noto Sans Devanagari and Noto Sans Hebrew.
+
+## Table transitions
+
+Pass a stable `rowKey` and a `transitionKey` representing the current page or sort state to animate incoming rows in sequence. Without `transitionKey`, rows render immediately. Reduced motion removes transitions. Header and body cells share alignment and padding; pagination stays mounted while rows change.

@@ -33,7 +33,7 @@ try {
     "import assert from 'node:assert/strict';",
     "import React from 'react';",
     "import { renderToStaticMarkup } from 'react-dom/server';",
-    "import { Button, DateField, MediaCard, UrlField, Window, Checkbox, DropdownMenu, Toast, Tooltip, Combobox, Popover, Table, Pagination, FileUpload, Progress, Typography, Prose, Loader, Shimmer, AnimatedText, Glow, Snackbar } from '@want-foundation/allure-react';",
+    "import { Button, DateField, MediaCard, UrlField, Window, Checkbox, DropdownMenu, Toast, Tooltip, Combobox, Popover, Table, Pagination, FileUpload, Progress, Typography, Prose, Loader, Shimmer, AnimatedText, Glow, Snackbar, Slider, RangeSlider, LightningBackground } from '@want-foundation/allure-react';",
     "import { tokens, initInteractionEffects, initBackgroundMotion, burstConfetti } from '@want-foundation/allure';",
     "assert.equal(typeof document, 'undefined');",
     "assert.equal(tokens.themes.wallpapers.dark.primary, '#5962F0');",
@@ -49,7 +49,7 @@ try {
     "assert.match(renderToStaticMarkup(React.createElement(Loader, {label:'Loading',variant:'bars'})), /Loading/);",
     "assert.match(renderToStaticMarkup(React.createElement(AnimatedText, {text:'Ready'})), /Ready/);",
     "assert.match(renderToStaticMarkup(React.createElement(Glow, {paused:true})), /aria-hidden/);",
-    "for (const component of [Checkbox, DropdownMenu, Toast, Tooltip, Combobox, Popover, Table, Pagination, FileUpload, Progress, Typography, Prose, Loader, Shimmer, AnimatedText, Glow, Snackbar]) assert(component);",
+    "for (const component of [Checkbox, DropdownMenu, Toast, Tooltip, Combobox, Popover, Table, Pagination, FileUpload, Progress, Typography, Prose, Loader, Shimmer, AnimatedText, Glow, Snackbar, Slider, RangeSlider, LightningBackground]) assert(component);",
     "assert.match(renderToStaticMarkup(React.createElement(Checkbox, { checked: 'indeterminate', 'aria-label': 'Select all' })), /aria-checked/);",
     "assert.match(renderToStaticMarkup(React.createElement(Progress, { label: 'Upload', value: 50 })), /aria-valuenow/);",
     "assert.match(renderToStaticMarkup(React.createElement(Combobox, { label: 'Project', value: 'demo', options: [{value:'demo',label:'Demo'}], emptyLabel: 'Empty', onValueChange() {} })), /combobox/);"
@@ -78,6 +78,12 @@ try {
   ].join('\n'));
   run('node', ['node_modules/typescript/bin/tsc', '--noEmit', '--strict', '--skipLibCheck', '--jsx', 'react-jsx', '--module', 'ESNext', '--moduleResolution', 'Bundler', '--target', 'ES2022', '--resolveJsonModule', 'check.tsx']);
   const foundation = join(directory, 'node_modules/@want-foundation/allure');
+  for (const theme of ['light', 'dark']) {
+    const asset = join(foundation, `dist/assets/allure/logos/${theme}/transparent.svg`);
+    assert((await stat(asset)).size > 0);
+    const resolved = run('node', ['--input-type=module', '-e', `console.log(import.meta.resolve('@want-foundation/allure/assets/allure/logos/${theme}/transparent.svg'))`]);
+    assert(resolved.includes(`/dist/assets/allure/logos/${theme}/transparent.svg`));
+  }
   const skillDestination = join(directory, 'installed skills');
   const installCommand = ['--offline', '--yes', `--package=@want-foundation/allure@${version}`, 'want-design-install'];
   assert(run('npx', [...installCommand, '--dest', skillDestination]).includes('Installed:'));
@@ -99,10 +105,11 @@ try {
   await writeFile(join(directory, 'index.html'), '<!doctype html><html lang="en"><head><title>Package consumer</title></head><body><div id="root"></div><script type="module" src="/main.tsx"></script></body></html>');
   await writeFile(join(directory, 'main.tsx'), [
     "import React from 'react'; import { createRoot } from 'react-dom/client';",
+    "import logo from '@want-foundation/allure/assets/allure/logos/light/transparent.svg?url';",
     "import { Button, DateField, UrlField, Window } from '@want-foundation/allure-react';",
     "import '@want-foundation/allure/styles.css'; import '@want-foundation/allure/fonts.css';",
     "const labels = { date: 'Date', datetime: 'Date and time', calendar: 'Calendar', year: 'Year', previousYear: 'Previous year', previousMonth: 'Previous month', nextMonth: 'Next month', nextYear: 'Next year', hours: 'Hours', minutes: 'Minutes', today: 'Today', clear: 'Clear', apply: 'Apply' };",
-    "createRoot(document.getElementById('root')!).render(<Window title='Consumer window'><DateField mode='date' value='2026-10-28' onChange={() => {}} locale='en-GB' labels={labels} /><UrlField label='URL' value='https://example.com' onChange={() => {}} openLabel='Open URL' /><Button>Independent consumer</Button></Window>);"
+    "createRoot(document.getElementById('root')!).render(<Window title='Consumer window'><img src={logo} alt='Allure' /><DateField mode='date' value='2026-10-28' onChange={() => {}} locale='en-GB' labels={labels} /><UrlField label='URL' value='https://example.com' onChange={() => {}} openLabel='Open URL' /><Button>Independent consumer</Button></Window>);"
   ].join('\n'));
   await build({ root: directory, configFile: false, logLevel: 'error' });
   console.log('Packed consumer passed: SSR, types, styles, local fonts/assets, standalone skill installation, one React instance and production web build.');

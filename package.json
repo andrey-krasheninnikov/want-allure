@@ -9,17 +9,23 @@
   ],
   "scripts": {
     "build": "bun scripts/build.ts",
-    "check": "tsc --noEmit && bun run --cwd apps/showcase check",
+    "check": "bun run assets:check && tsc --noEmit && bun run --cwd apps/showcase check",
     "test": "bun test tests",
     "test:ui": "playwright test",
     "test:consumer": "bun scripts/check-consumer.ts",
-    "dev": "bun run --cwd apps/showcase dev",
+    "dev": "bun scripts/web.ts dev",
     "skill:install": "node packages/foundation/dist/install-skill.js",
     "flutter:tokens": "bun scripts/generate-flutter-tokens.ts",
     "flutter:check": "bun scripts/generate-flutter-tokens.ts --check && bun scripts/check-flutter-parity.ts && fvm flutter analyze packages/flutter",
     "flutter:test": "cd packages/flutter && fvm flutter test",
     "flutter:example": "cd packages/flutter/example && fvm flutter run",
-    "flutter:consumer": "bun scripts/check-flutter-consumer.ts"
+    "flutter:consumer": "bun scripts/check-flutter-consumer.ts",
+    "assets:sync": "bun scripts/brand-assets.ts",
+    "assets:check": "bun scripts/brand-assets.ts --check",
+    "web:build": "bun scripts/web.ts build",
+    "web:preview": "bun scripts/web.ts preview",
+    "web:flutter": "bun scripts/web.ts flutter",
+    "web:check": "bun scripts/check-web.ts"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.5",

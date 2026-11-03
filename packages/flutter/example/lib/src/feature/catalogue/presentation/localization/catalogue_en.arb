@@ -1,0 +1,331 @@
+{
+  "@@locale": "en",
+  "findInCatalogue": "Find in catalogue",
+  "previousMatch": "Previous match",
+  "nextMatch": "Next match",
+  "closeFind": "Close find",
+  "noMatches": "No matches",
+  "matchActiveOfCount": "Match {active} of {count}",
+  "@matchActiveOfCount": {
+    "placeholders": {
+      "active": {
+        "type": "Object"
+      },
+      "count": {
+        "type": "Object"
+      }
+    }
+  },
+  "dismissMessage": "Dismiss message",
+  "pauseBackground": "Pause background",
+  "resumeBackground": "Resume background",
+  "oneWantEveryPlatform": "One Want. Every platform.",
+  "theSameWantColorsControlsAndMotionAcrossWeb": "The same Want colors, controls and motion across web and Flutter. Explore components with keyboard, touch and pointer input.",
+  "findCtrlF": "Find · ⌘/Ctrl F",
+  "useLightTheme": "Use light theme",
+  "useDarkTheme": "Use dark theme",
+  "reduceMotion": "Reduce motion",
+  "opaqueSurfaces": "Opaque surfaces",
+  "resumeEffects": "Resume effects",
+  "pauseEffects": "Pause effects",
+  "palette": "Palette",
+  "typography": "Typography",
+  "variantNameWantMakesRoomForYourContent": "{variantName} · Want makes room for your content.",
+  "@variantNameWantMakesRoomForYourContent": {
+    "placeholders": {
+      "variantName": {
+        "type": "Object"
+      }
+    }
+  },
+  "buttons": "Buttons",
+  "variantNamePressed": "{variantName} pressed",
+  "@variantNamePressed": {
+    "placeholders": {
+      "variantName": {
+        "type": "Object"
+      }
+    }
+  },
+  "disabled": "Disabled",
+  "downloadSelected": "Download selected",
+  "downloadExample": "Download example",
+  "fieldsInputAndTextarea": "Fields, input and textarea",
+  "localExample": "Local example",
+  "title": "Title",
+  "editableLocalValue": "Editable local value.",
+  "invalidExample": "Invalid example",
+  "enterATitle": "Enter a title.",
+  "disabledExample": "Disabled example",
+  "contoursOfSilence": "Contours of Silence",
+  "description": "Description",
+  "describeThePreview": "Describe the preview",
+  "fieldAndLabel": "Field and label",
+  "consumerOwnedHelperText": "Consumer-owned helper text.",
+  "selectRadioCheckboxAndSwitch": "Select, radio, checkbox and switch",
+  "format": "Format",
+  "desktop": "Desktop",
+  "mobile": "Mobile",
+  "unavailable": "Unavailable",
+  "wallpaperOrientation": "Wallpaper orientation",
+  "includePreview": "Include preview",
+  "aControlledCheckbox": "A controlled checkbox.",
+  "mixedSelection": "Mixed selection",
+  "enableExampleSetting": "Enable example setting",
+  "disabledCheckbox": "Disabled checkbox",
+  "tabsAndAccordion": "Tabs and accordion",
+  "landscapePreview": "Landscape preview.",
+  "portraitPreview": "Portrait preview.",
+  "howAreComponentsShared": "How are components shared?",
+  "bothAdaptersUseTheSameFoundationTokens": "Both adapters use the same foundation tokens.",
+  "whoOwnsApplicationData": "Who owns application data?",
+  "theConsumingApplicationOwnsDataAndPersistence": "The consuming application owns data and persistence.",
+  "dialogSheetMenuTooltipAndPopover": "Dialog, sheet, menu, tooltip and popover",
+  "previewSettings": "Preview settings",
+  "done": "Done",
+  "previewName": "Preview name",
+  "openDialog": "Open dialog",
+  "panelSideName": "Panel {sideName}",
+  "@panelSideName": {
+    "placeholders": {
+      "sideName": {
+        "type": "Object"
+      }
+    }
+  },
+  "closePanel": "Close panel",
+  "theSheetEntersFromItsSelectedSide": "The sheet enters from its selected side.",
+  "sideNameSheet": "{sideName} sheet",
+  "@sideNameSheet": {
+    "placeholders": {
+      "sideName": {
+        "type": "Object"
+      }
+    }
+  },
+  "actions": "Actions",
+  "copyLink": "Copy link",
+  "copyActionSelected": "Copy action selected",
+  "aKeyboardAndPointerHint": "A keyboard and pointer hint",
+  "hintSelected": "Hint selected",
+  "tooltip": "Tooltip",
+  "settings": "Settings",
+  "note": "Note",
+  "closeSettings": "Close settings",
+  "navigationAndBreadcrumbs": "Navigation and breadcrumbs",
+  "exampleNavigation": "Example navigation",
+  "collections": "Collections",
+  "collectionsSelected": "Collections selected",
+  "search": "Search",
+  "searchSelected": "Search selected",
+  "breadcrumbs": "Breadcrumbs",
+  "home": "Home",
+  "homeSelected": "Home selected",
+  "uiKit": "UI kit",
+  "badgesAlertsAndProgress": "Badges, alerts and progress",
+  "primary": "Primary",
+  "previewAvailable": "Preview available",
+  "chooseAnExampleActionToContinue": "Choose an example action to continue.",
+  "couldNotLoadPreview": "Could not load preview",
+  "tryAgain": "Try again.",
+  "exampleProgress": "Example progress",
+  "loadingPreview": "Loading preview",
+  "toastAndSemanticSnackbars": "Toast and semantic snackbars",
+  "localPreviewReady": "Local preview ready",
+  "showToast": "Show toast",
+  "variantNameExampleStatus": "{variantName}: example status",
+  "@variantNameExampleStatus": {
+    "placeholders": {
+      "variantName": {
+        "type": "Object"
+      }
+    }
+  },
+  "themeAwareFeedbackWithOneUsefulAction": "Theme-aware feedback with one useful action.",
+  "dismissStatus": "Dismiss status",
+  "viewDetails": "View details",
+  "detailsSelected": "Details selected",
+  "searchableCombobox": "Searchable combobox",
+  "collection": "Collection",
+  "searchCollections": "Search collections",
+  "violetHorizon": "Violet Horizon",
+  "wovenSpectrum": "Woven Spectrum",
+  "tableAndPagination": "Table and pagination",
+  "localCollection": "Local collection",
+  "noRecords": "No records",
+  "name": "Name",
+  "previewValue": "Preview {value}",
+  "@previewValue": {
+    "placeholders": {
+      "value": {
+        "type": "Object"
+      }
+    }
+  },
+  "pages": "Pages",
+  "previousPage": "Previous page",
+  "nextPage": "Next page",
+  "rowsPerPage": "Rows per page",
+  "pagePage": "Page {page}",
+  "@pagePage": {
+    "placeholders": {
+      "page": {
+        "type": "Object"
+      }
+    }
+  },
+  "fromToOfTotal": "{from}–{to} of {total}",
+  "@fromToOfTotal": {
+    "placeholders": {
+      "from": {
+        "type": "Object"
+      },
+      "to": {
+        "type": "Object"
+      },
+      "total": {
+        "type": "Object"
+      }
+    }
+  },
+  "fileSelection": "File selection",
+  "images": "Images",
+  "chooseImages": "Choose images",
+  "dropImagesHereOrChooseAFile": "Drop images here or choose a file.",
+  "couldNotReadTheSelectedFile": "Could not read the selected file.",
+  "removeName": "Remove {name}",
+  "@removeName": {
+    "placeholders": {
+      "name": {
+        "type": "Object"
+      }
+    }
+  },
+  "nameIsNotASupportedImage": "{name} is not a supported image.",
+  "@nameIsNotASupportedImage": {
+    "placeholders": {
+      "name": {
+        "type": "Object"
+      }
+    }
+  },
+  "nameExceedsLimitBytes": "{name} exceeds {limit} bytes.",
+  "@nameExceedsLimitBytes": {
+    "placeholders": {
+      "name": {
+        "type": "Object"
+      },
+      "limit": {
+        "type": "Object"
+      }
+    }
+  },
+  "chooseUpToCountFiles": "Choose up to {count} files.",
+  "@chooseUpToCountFiles": {
+    "placeholders": {
+      "count": {
+        "type": "Object"
+      }
+    }
+  },
+  "dateURLAndPageLayout": "Date, URL and page layout",
+  "createAPreview": "Create a preview",
+  "localComposition": "Local composition",
+  "previewActionSelected": "Preview action selected",
+  "preview": "Preview",
+  "date": "Date",
+  "time": "Time",
+  "useToday": "Use today",
+  "sourceURL": "Source URL",
+  "openSource": "Open source",
+  "openUriHost": "Open {uriHost}",
+  "@openUriHost": {
+    "placeholders": {
+      "uriHost": {
+        "type": "Object"
+      }
+    }
+  },
+  "cardsMediaAndLiquidGlass": "Cards, media and liquid glass",
+  "localDemonstrationArtwork": "Local demonstration artwork",
+  "violetGradient": "Violet gradient",
+  "previewSelected": "Preview selected",
+  "downloadPanel": "Download panel",
+  "aComposedCard": "A composed card",
+  "publicSlotsKeepContentInTheConsumingApplication": "Public slots keep content in the consuming application.",
+  "liquidGlassOpaqueWhenTransparencyIsReduced": "Liquid glass · opaque when transparency is reduced.",
+  "contactCard": "Contact card",
+  "productDesign": "Product design",
+  "website": "Website",
+  "websiteSelected": "Website selected",
+  "commentCarousel": "Comment carousel",
+  "comments": "Comments",
+  "noComments": "No comments",
+  "previousComments": "Previous comments",
+  "nextComments": "Next comments",
+  "readMore": "Read more",
+  "collapse": "Collapse",
+  "reviewerIndex": "Reviewer {index}",
+  "@reviewerIndex": {
+    "placeholders": {
+      "index": {
+        "type": "Object"
+      }
+    }
+  },
+  "today": "Today",
+  "readableCopyFollowsTheSameWantTypography": "Readable copy follows the same Want typography.",
+  "thePreviewIsReadyToExplore": "The preview is ready to explore.",
+  "reply": "Reply",
+  "actionSelected": "{action} selected",
+  "@actionSelected": {
+    "placeholders": {
+      "action": {
+        "type": "Object"
+      }
+    }
+  },
+  "customLoaders": "Custom loaders",
+  "loadingVariantName": "Loading {variantName}",
+  "@loadingVariantName": {
+    "placeholders": {
+      "variantName": {
+        "type": "Object"
+      }
+    }
+  },
+  "shimmerPlaceholders": "Shimmer placeholders",
+  "animatedText": "Animated text",
+  "yourNextIdea": "Your next idea.",
+  "madeWithWant": "Made with Want.",
+  "readyToExplore": "Ready to explore.",
+  "changeText": "Change text",
+  "reusableGlowAndConfetti": "Reusable glow and confetti",
+  "aVisibleHaloWithTwoExpandingWaves": "A visible halo with two expanding waves.",
+  "exploreWant": "Explore Want",
+  "triggerBackgroundWave": "Trigger background wave",
+  "switchToRussian": "Switch to Russian",
+  "switchToEnglish": "Switch to English",
+  "error": "Error",
+  "warning": "Warning",
+  "info": "Info",
+  "success": "Success",
+  "brandAndTheme": "Brand and theme",
+  "componentPreview": "Component preview",
+  "categoryFoundation": "Foundation",
+  "categoryInputs": "Inputs",
+  "categoryNavigation": "Navigation",
+  "categoryData": "Data",
+  "categoryFeedback": "Feedback",
+  "categoryEffects": "Effects",
+  "categoryCompositions": "Compositions",
+  "componentsInAction": "Components in action",
+  "sliders": "Sliders",
+  "intensity": "Intensity",
+  "range": "Range",
+  "backgroundLightning": "Background lightning",
+  "lightAndSpace": "Light and space",
+  "svg3D": "3D SVG",
+  "rotateLogo": "Drag or use arrow keys to rotate the logo.",
+  "changeLanguage": "Language"
+}

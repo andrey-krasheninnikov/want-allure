@@ -11,21 +11,26 @@ class WantThemeData {
 
   const WantThemeData({required this.colors, required this.forui});
 
-  factory WantThemeData.light({Map<String, Color> overrides = const {}}) =>
-      WantThemeData._create(Brightness.light, {
-        ...WantTokens.light,
-        ...overrides,
-      });
+  factory WantThemeData.light({
+    Map<String, Color> overrides = const {},
+    Locale? locale,
+  }) => WantThemeData._create(Brightness.light, {
+    ...WantTokens.light,
+    ...overrides,
+  }, locale);
 
-  factory WantThemeData.dark({Map<String, Color> overrides = const {}}) =>
-      WantThemeData._create(Brightness.dark, {
-        ...WantTokens.dark,
-        ...overrides,
-      });
+  factory WantThemeData.dark({
+    Map<String, Color> overrides = const {},
+    Locale? locale,
+  }) => WantThemeData._create(Brightness.dark, {
+    ...WantTokens.dark,
+    ...overrides,
+  }, locale);
 
   factory WantThemeData._create(
     Brightness brightness,
     Map<String, Color> values,
+    Locale? locale,
   ) {
     final base = brightness == Brightness.dark
         ? FColors.neutralDark
@@ -46,7 +51,18 @@ class WantThemeData {
       card: values['card'],
       border: values['border'],
     );
-    const fallbacks = [
+    final preferred = switch (locale?.languageCode) {
+      'zh' => 'Noto Sans SC',
+      'hi' => 'Noto Sans Devanagari',
+      'he' => 'Noto Sans Hebrew',
+      'ar' => 'Noto Sans Arabic',
+      _ => 'Noto Sans JP',
+    };
+    final fallbacks = [
+      'packages/want_allure/$preferred',
+      'packages/want_allure/Noto Sans SC',
+      'packages/want_allure/Noto Sans Devanagari',
+      'packages/want_allure/Noto Sans Hebrew',
       'packages/want_allure/Noto Sans JP',
       'packages/want_allure/Noto Sans Arabic',
     ];
@@ -110,8 +126,8 @@ class WantThemeData {
       forui: theme.copyWith(
         accordionStyle: theme.accordionStyle.copyWith(
           motion: FAccordionMotion(
-            expandDuration: WantTokens.motion['transitionMs']!,
-            collapseDuration: WantTokens.motion['transitionMs']!,
+            expandDuration: const Duration(milliseconds: 280),
+            collapseDuration: const Duration(milliseconds: 220),
             expandCurve: const Cubic(.32, .72, 0, 1),
           ),
         ),

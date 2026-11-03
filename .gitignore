@@ -25,3 +25,8 @@ test-results/
 **/Flutter/GeneratedPluginRegistrant.*
 **/.idea/
 **/*.iml
+
+# Combined web runtime, prepared by the root web commands.
+apps/showcase/public/_flutter/
+apps/showcase/public/brand/
+apps/showcase/public/favicon/

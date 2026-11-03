@@ -1,0 +1,11 @@
+---
+import { type Locale } from '../site';
+import { HeroExperience, FrameworkJourney, BackToTop } from './LandingInteractive';
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+---
+<div class="landing">
+  <HeroExperience locale={locale} client:load />
+  <FrameworkJourney locale={locale} client:load />
+  <div class="landing-final"><BackToTop locale={locale} client:load /></div>
+</div>

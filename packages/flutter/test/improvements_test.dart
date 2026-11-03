@@ -171,6 +171,18 @@ void main() {
               aspectRatio: 8,
               onPressed: () => compositionPresses++,
             ),
+            WantTable<int>(
+              rows: const [1],
+              caption: 'Records',
+              emptyLabel: 'Empty',
+              columns: [
+                WantTableColumn(
+                  label: 'Sortable label',
+                  onSort: () => presses++,
+                  cellBuilder: (row) => Text('$row'),
+                ),
+              ],
+            ),
             const Text('Select to here'),
           ],
         ),
@@ -219,6 +231,7 @@ void main() {
     expect(selected, contains('Brand detail'));
     expect(selected, contains('Media label'));
     expect(selected, contains('Media detail'));
+    expect(selected, contains('Sortable label'));
     expect(compositionPresses, 0);
     expect(presses, 1);
     expect(toggles, 1);
@@ -539,13 +552,13 @@ void main() {
   testWidgets('packaged shaders compile and shader instances dispose', (
     tester,
   ) async {
-    for (final name in ['shimmer', 'sphere']) {
+    for (final name in ['shimmer', 'sphere', 'lightning']) {
       final program = await tester.runAsync(
         () => ui.FragmentProgram.fromAsset('shaders/$name.frag'),
       );
       expect(program, isNotNull);
       final shader = program!.fragmentShader();
-      for (var i = 0; i < 12; i++) {
+      for (var i = 0; i < (name == 'lightning' ? 11 : 12); i++) {
         shader.setFloat(i, .5);
       }
       shader.dispose();

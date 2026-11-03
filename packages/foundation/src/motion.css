@@ -12,8 +12,8 @@
     [data-slot="radio-group-indicator"][data-state="checked"] { animation: want-indicator-in var(--motion-fast) var(--motion-ease); }
     [data-slot="switch-thumb"] { transition-duration: var(--motion-transition); transition-timing-function: var(--motion-ease); }
     [data-slot="tabs-content"][data-state="active"] { animation: want-content-in var(--motion-transition) var(--motion-ease); }
-    [data-slot="accordion-content"][data-state="open"] { animation: want-accordion-in var(--motion-transition) var(--motion-ease); }
-    [data-slot="accordion-content"][data-state="closed"] { animation: want-accordion-out var(--motion-fast) ease-in; }
+    [data-slot="accordion-content"][data-state="open"] { animation: want-accordion-in 280ms var(--motion-ease); }
+    [data-slot="accordion-content"][data-state="closed"] { animation: want-accordion-out 220ms var(--motion-ease); }
     :is([data-slot="dialog-overlay"], [data-slot="sheet-overlay"])[data-state="open"] { animation: want-fade-in var(--motion-transition) ease-out; }
     :is([data-slot="dialog-overlay"], [data-slot="sheet-overlay"])[data-state="closed"] { animation: want-fade-out var(--motion-fast) ease-in both; }
     [data-slot="date-popover"] { transform-origin: var(--radix-popover-content-transform-origin); }

@@ -5,7 +5,7 @@ for (const timezoneId of ['Pacific/Honolulu', 'Asia/Tokyo', 'Europe/Berlin']) {
     const context = await browser.newContext({ timezoneId });
     const page = await context.newPage();
     try {
-      await page.goto('/calendar-boundaries');
+      await page.goto('/calendar-boundaries/');
       await expect(page.locator('astro-island[ssr]')).toHaveCount(0);
       const input = page.getByLabel('Calendar value');
       const trigger = page.getByRole('button', { name: /^Test date:/ });

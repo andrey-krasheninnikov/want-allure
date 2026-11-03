@@ -1,0 +1,331 @@
+{
+  "@@locale": "es",
+  "findInCatalogue": "Buscar en catálogo",
+  "previousMatch": "Partido anterior",
+  "nextMatch": "Próximo partido",
+  "closeFind": "Cerrar encontrar",
+  "noMatches": "No hay coincidencias",
+  "matchActiveOfCount": "Partido {active} de {count}",
+  "@matchActiveOfCount": {
+    "placeholders": {
+      "active": {
+        "type": "Object"
+      },
+      "count": {
+        "type": "Object"
+      }
+    }
+  },
+  "dismissMessage": "Descartar mensaje",
+  "pauseBackground": "Pausa de fondo",
+  "resumeBackground": "Reanudar antecedentes",
+  "oneWantEveryPlatform": "Un Want. Cada plataforma.",
+  "theSameWantColorsControlsAndMotionAcrossWeb": "Los mismos colores, controles y movimientos de Want en la web y Flutter. Explore componentes con entrada de teclado, táctil y de puntero.",
+  "findCtrlF": "Buscar · ⌘/Ctrl F",
+  "useLightTheme": "Usar tema claro",
+  "useDarkTheme": "Usar tema oscuro",
+  "reduceMotion": "Reducir el movimiento",
+  "opaqueSurfaces": "Superficies opacas",
+  "resumeEffects": "Reanudar efectos",
+  "pauseEffects": "Efectos de pausa",
+  "palette": "paleta",
+  "typography": "tipografía",
+  "variantNameWantMakesRoomForYourContent": "{variantName} · Want deja espacio para su contenido.",
+  "@variantNameWantMakesRoomForYourContent": {
+    "placeholders": {
+      "variantName": {
+        "type": "Object"
+      }
+    }
+  },
+  "buttons": "Botones",
+  "variantNamePressed": "{variantName} presionado",
+  "@variantNamePressed": {
+    "placeholders": {
+      "variantName": {
+        "type": "Object"
+      }
+    }
+  },
+  "disabled": "Discapacitado",
+  "downloadSelected": "Descargar seleccionado",
+  "downloadExample": "Descargar ejemplo",
+  "fieldsInputAndTextarea": "Campos, entrada y área de texto.",
+  "localExample": "Ejemplo local",
+  "title": "Título",
+  "editableLocalValue": "Valor local editable.",
+  "invalidExample": "Ejemplo no válido",
+  "enterATitle": "Introduzca un título.",
+  "disabledExample": "Ejemplo deshabilitado",
+  "contoursOfSilence": "Contornos del silencio",
+  "description": "Descripción",
+  "describeThePreview": "Describe la vista previa",
+  "fieldAndLabel": "Campo y etiqueta",
+  "consumerOwnedHelperText": "Texto de ayuda propiedad del consumidor.",
+  "selectRadioCheckboxAndSwitch": "Seleccionar, radio, casilla de verificación y cambiar",
+  "format": "Formato",
+  "desktop": "Escritorio",
+  "mobile": "Móvil",
+  "unavailable": "No disponible",
+  "wallpaperOrientation": "Orientación del papel tapiz",
+  "includePreview": "Incluir vista previa",
+  "aControlledCheckbox": "Una casilla de verificación controlada.",
+  "mixedSelection": "Selección mixta",
+  "enableExampleSetting": "Habilitar configuración de ejemplo",
+  "disabledCheckbox": "Casilla de verificación deshabilitada",
+  "tabsAndAccordion": "Tablaturas y acordeón",
+  "landscapePreview": "Vista previa del paisaje.",
+  "portraitPreview": "Vista previa del retrato.",
+  "howAreComponentsShared": "¿Cómo se comparten los componentes?",
+  "bothAdaptersUseTheSameFoundationTokens": "Ambos adaptadores utilizan los mismos tokens básicos.",
+  "whoOwnsApplicationData": "¿A quién pertenecen los datos de la aplicación?",
+  "theConsumingApplicationOwnsDataAndPersistence": "La aplicación consumidora posee datos y persistencia.",
+  "dialogSheetMenuTooltipAndPopover": "Diálogo, hoja, menú, información sobre herramientas y ventana emergente",
+  "previewSettings": "Configuración de vista previa",
+  "done": "hecho",
+  "previewName": "Nombre de vista previa",
+  "openDialog": "Abrir diálogo",
+  "panelSideName": "Panel {sideName}",
+  "@panelSideName": {
+    "placeholders": {
+      "sideName": {
+        "type": "Object"
+      }
+    }
+  },
+  "closePanel": "Cerrar panel",
+  "theSheetEntersFromItsSelectedSide": "La hoja entra por su lado seleccionado.",
+  "sideNameSheet": "Hoja {sideName}",
+  "@sideNameSheet": {
+    "placeholders": {
+      "sideName": {
+        "type": "Object"
+      }
+    }
+  },
+  "actions": "Acciones",
+  "copyLink": "Copiar enlace",
+  "copyActionSelected": "Copiar acción seleccionada",
+  "aKeyboardAndPointerHint": "Una sugerencia de teclado y puntero",
+  "hintSelected": "Pista seleccionada",
+  "tooltip": "Información sobre herramientas",
+  "settings": "Configuración",
+  "note": "Nota",
+  "closeSettings": "Cerrar configuración",
+  "navigationAndBreadcrumbs": "Navegación y migas de pan",
+  "exampleNavigation": "Navegación de ejemplo",
+  "collections": "Colecciones",
+  "collectionsSelected": "Colecciones seleccionadas",
+  "search": "Buscar",
+  "searchSelected": "Búsqueda seleccionada",
+  "breadcrumbs": "Pan rallado",
+  "home": "Inicio",
+  "homeSelected": "Casa seleccionada",
+  "uiKit": "UI kit",
+  "badgesAlertsAndProgress": "Insignias, alertas y progreso.",
+  "primary": "Primaria",
+  "previewAvailable": "Vista previa disponible",
+  "chooseAnExampleActionToContinue": "Elija una acción de ejemplo para continuar.",
+  "couldNotLoadPreview": "No se pudo cargar la vista previa",
+  "tryAgain": "Inténtalo de nuevo.",
+  "exampleProgress": "Ejemplo de progreso",
+  "loadingPreview": "Cargando vista previa",
+  "toastAndSemanticSnackbars": "Notificaciones y avisos de estado",
+  "localPreviewReady": "Vista previa local lista",
+  "showToast": "Mostrar notificación",
+  "variantNameExampleStatus": "{variantName}: ejemplo de estado",
+  "@variantNameExampleStatus": {
+    "placeholders": {
+      "variantName": {
+        "type": "Object"
+      }
+    }
+  },
+  "themeAwareFeedbackWithOneUsefulAction": "Comentarios basados ​​en el tema con una acción útil.",
+  "dismissStatus": "Descartar estado",
+  "viewDetails": "Ver detalles",
+  "detailsSelected": "Detalles seleccionados",
+  "searchableCombobox": "Cuadro combinado de búsqueda",
+  "collection": "Colección",
+  "searchCollections": "Buscar colecciones",
+  "violetHorizon": "Horizonte violeta",
+  "wovenSpectrum": "Espectro tejido",
+  "tableAndPagination": "Tabla y paginación",
+  "localCollection": "Colección local",
+  "noRecords": "Sin registros",
+  "name": "Nombre",
+  "previewValue": "Vista previa {value}",
+  "@previewValue": {
+    "placeholders": {
+      "value": {
+        "type": "Object"
+      }
+    }
+  },
+  "pages": "paginas",
+  "previousPage": "Pagina anterior",
+  "nextPage": "Página siguiente",
+  "rowsPerPage": "Filas por página",
+  "pagePage": "Página {page}",
+  "@pagePage": {
+    "placeholders": {
+      "page": {
+        "type": "Object"
+      }
+    }
+  },
+  "fromToOfTotal": "{from}–{to} de {total}",
+  "@fromToOfTotal": {
+    "placeholders": {
+      "from": {
+        "type": "Object"
+      },
+      "to": {
+        "type": "Object"
+      },
+      "total": {
+        "type": "Object"
+      }
+    }
+  },
+  "fileSelection": "Selección de archivos",
+  "images": "Imágenes",
+  "chooseImages": "Elige imágenes",
+  "dropImagesHereOrChooseAFile": "Suelta imágenes aquí o elige un archivo.",
+  "couldNotReadTheSelectedFile": "No se pudo leer el archivo seleccionado.",
+  "removeName": "Quitar {name}",
+  "@removeName": {
+    "placeholders": {
+      "name": {
+        "type": "Object"
+      }
+    }
+  },
+  "nameIsNotASupportedImage": "{name} no es una imagen compatible.",
+  "@nameIsNotASupportedImage": {
+    "placeholders": {
+      "name": {
+        "type": "Object"
+      }
+    }
+  },
+  "nameExceedsLimitBytes": "{name} excede los bytes de {limit}.",
+  "@nameExceedsLimitBytes": {
+    "placeholders": {
+      "name": {
+        "type": "Object"
+      },
+      "limit": {
+        "type": "Object"
+      }
+    }
+  },
+  "chooseUpToCountFiles": "Elija hasta archivos {count}.",
+  "@chooseUpToCountFiles": {
+    "placeholders": {
+      "count": {
+        "type": "Object"
+      }
+    }
+  },
+  "dateURLAndPageLayout": "Fecha, URL y diseño de página",
+  "createAPreview": "Crear una vista previa",
+  "localComposition": "Composición local",
+  "previewActionSelected": "Acción de vista previa seleccionada",
+  "preview": "Vista previa",
+  "date": "Fecha",
+  "time": "tiempo",
+  "useToday": "Usar hoy",
+  "sourceURL": "URL de origen",
+  "openSource": "Código abierto",
+  "openUriHost": "Abrir {uriHost}",
+  "@openUriHost": {
+    "placeholders": {
+      "uriHost": {
+        "type": "Object"
+      }
+    }
+  },
+  "cardsMediaAndLiquidGlass": "Tarjetas, medios y vidrio líquido.",
+  "localDemonstrationArtwork": "Obra de arte de demostración local",
+  "violetGradient": "gradiente violeta",
+  "previewSelected": "Vista previa seleccionada",
+  "downloadPanel": "Panel de descarga",
+  "aComposedCard": "Una tarjeta compuesta",
+  "publicSlotsKeepContentInTheConsumingApplication": "Los espacios públicos mantienen el contenido en la aplicación consumidora.",
+  "liquidGlassOpaqueWhenTransparencyIsReduced": "Vidrio líquido · opaco cuando se reduce la transparencia.",
+  "contactCard": "tarjeta de contacto",
+  "productDesign": "Diseño de producto",
+  "website": "Sitio web",
+  "websiteSelected": "Sitio web seleccionado",
+  "commentCarousel": "Carrusel de comentarios",
+  "comments": "Comentarios",
+  "noComments": "Sin comentarios",
+  "previousComments": "Comentarios anteriores",
+  "nextComments": "Siguientes comentarios",
+  "readMore": "Leer más",
+  "collapse": "Colapso",
+  "reviewerIndex": "Revisor {index}",
+  "@reviewerIndex": {
+    "placeholders": {
+      "index": {
+        "type": "Object"
+      }
+    }
+  },
+  "today": "hoy",
+  "readableCopyFollowsTheSameWantTypography": "La copia legible sigue la misma tipografía Want.",
+  "thePreviewIsReadyToExplore": "La vista previa está lista para explorar.",
+  "reply": "Responder",
+  "actionSelected": "{action} seleccionado",
+  "@actionSelected": {
+    "placeholders": {
+      "action": {
+        "type": "Object"
+      }
+    }
+  },
+  "customLoaders": "Indicadores de carga personalizados",
+  "loadingVariantName": "Cargando {variantName}",
+  "@loadingVariantName": {
+    "placeholders": {
+      "variantName": {
+        "type": "Object"
+      }
+    }
+  },
+  "shimmerPlaceholders": "Marcadores con efecto de brillo",
+  "animatedText": "texto animado",
+  "yourNextIdea": "Tu próxima idea.",
+  "madeWithWant": "Fabricado con Want.",
+  "readyToExplore": "Listo para explorar.",
+  "changeText": "Cambiar texto",
+  "reusableGlowAndConfetti": "Resplandor y confeti reutilizables",
+  "aVisibleHaloWithTwoExpandingWaves": "Un halo visible con dos ondas en expansión.",
+  "exploreWant": "Explorar Want",
+  "triggerBackgroundWave": "Activar onda de fondo",
+  "switchToRussian": "Cambiar a ruso",
+  "switchToEnglish": "Cambiar al inglés",
+  "error": "error",
+  "warning": "Advertencia",
+  "info": "Información",
+  "success": "Éxito",
+  "brandAndTheme": "Marca y tema",
+  "componentPreview": "Vista previa del componente",
+  "categoryFoundation": "Fundación",
+  "categoryInputs": "Entradas",
+  "categoryNavigation": "Navegación",
+  "categoryData": "Datos",
+  "categoryFeedback": "Comentarios",
+  "categoryEffects": "Efectos",
+  "categoryCompositions": "Composiciones",
+  "componentsInAction": "Componentes en acción",
+  "sliders": "Controles deslizantes",
+  "intensity": "intensidad",
+  "range": "Rango",
+  "backgroundLightning": "Rayo de fondo",
+  "lightAndSpace": "Luz y espacio",
+  "svg3D": "3D SVG",
+  "rotateLogo": "Arrastre o use las teclas de flecha para rotar el logotipo.",
+  "changeLanguage": "Idioma"
+}

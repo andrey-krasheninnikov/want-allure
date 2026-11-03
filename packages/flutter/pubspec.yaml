@@ -1,6 +1,6 @@
 name: want_allure
 description: Want Allure design system for Flutter. ForUI-based components, themes, typography, motion and accessible product compositions.
-version: 1.1.0
+version: 1.2.0
 homepage: https://github.com/andrey-krasheninnikov/want-allure
 repository: https://github.com/andrey-krasheninnikov/want-allure/tree/main/packages/flutter
 issue_tracker: https://github.com/andrey-krasheninnikov/want-allure/issues
@@ -37,6 +37,12 @@ dependencies:
   phosphoricons_flutter: ^1.1.1
   find_in_page: ^2.4.0
   visibility_detector: ^0.4.0+2
+  sprung: ^3.0.1
+  ditredi: ^2.0.2
+  dart_earcut: ^1.2.0
+  path_parsing: ^1.1.0
+  xml: ^7.0.1
+  vector_math: ^2.1.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -44,10 +50,14 @@ dev_dependencies:
   file_selector_platform_interface: ^2.7.0
 flutter:
   shaders:
+    - shaders/lightning.frag
     - shaders/shimmer.frag
     - shaders/sphere.frag
   assets:
     - assets/brand/
+    - assets/brand/allure/logos/light/
+    - assets/brand/allure/logos/dark/
+    - assets/brand/allure/backgrounds/
   fonts:
     - family: Days One
       fonts:
@@ -61,3 +71,12 @@ flutter:
     - family: Noto Sans Arabic
       fonts:
         - asset: assets/fonts/NotoSansArabic.ttf
+    - family: Noto Sans SC
+      fonts:
+        - asset: assets/fonts/NotoSansSC.ttf
+    - family: Noto Sans Devanagari
+      fonts:
+        - asset: assets/fonts/NotoSansDevanagari.ttf
+    - family: Noto Sans Hebrew
+      fonts:
+        - asset: assets/fonts/NotoSansHebrew.ttf

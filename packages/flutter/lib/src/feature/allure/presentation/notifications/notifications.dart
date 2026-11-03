@@ -159,12 +159,12 @@ class WantToast extends StatelessWidget {
               spacing: 6,
               children: [
                 Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   spacing: 10,
                   children: [
                     if (icon != null)
                       Padding(
-                        padding: const EdgeInsets.only(top: 6),
+                        padding: EdgeInsets.zero,
                         child: WantMotionBuilder(
                           duration: const Duration(milliseconds: 420),
                           repeat: false,
@@ -172,18 +172,25 @@ class WantToast extends StatelessWidget {
                             scale: WantTheme.reducedMotionOf(context)
                                 ? 1
                                 : .75 + .25 * Curves.easeOutBack.transform(t),
-                            child: Container(
-                              width: 32,
-                              height: 32,
-                              decoration: BoxDecoration(
-                                color: theme.color(variant!.name),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: WantIcon(
-                                icon,
-                                size: 18,
-                                color: theme.color(
-                                  '${variant!.name}-foreground',
+                            child: Opacity(
+                              opacity: WantTheme.reducedMotionOf(context)
+                                  ? 1
+                                  : Curves.easeOut.transform(t),
+                              child: Container(
+                                width: 32,
+                                height: 32,
+                                decoration: BoxDecoration(
+                                  color: theme.color(variant!.name),
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: Center(
+                                  child: WantIcon(
+                                    icon,
+                                    size: 18,
+                                    color: theme.color(
+                                      '${variant!.name}-foreground',
+                                    ),
+                                  ),
                                 ),
                               ),
                             ),

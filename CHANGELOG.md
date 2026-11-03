@@ -1,5 +1,25 @@
 # Changelog
 
+## 1.2.0
+
+- Add a guided framework and installation flow, an orbital selector, automatic logo rotation, letter halos and twelve interface languages.
+- Add Flutter SVG extrusion with asset, string and asynchronous builder sources, cached meshes and reduced-motion support.
+- Align toast content and table cells, animate page rows, and refine card actions in both adapters.
+- Bundle Chinese, Devanagari and Hebrew fonts and add an opaque favicon background.
+
+- Refine the landing page with a floating preference header, a rotatable pixel logo, glowing framework actions, installation instructions and animated FAQ.
+- Organize bilingual catalogues into seven categories with shared RTL, direct links, history and retained form values.
+- Add controlled Slider/RangeSlider and primary/warning lightning to both adapters; Flutter lightning uses a bundled fragment shader.
+- Refine Flutter card hover, table surfaces, comment pagination and restrained spring feedback. Keep invalid input values readable on status fills.
+
+- Disable reduced-motion transitions completely so theme colors update together.
+
+- Fix the default multiline field limit so the textarea can grow from its minimum height.
+
+- Add Want Allure pixel feather logos and backgrounds while preserving existing resource paths.
+- Combine the Astro landing page and React/Flutter catalogues in one bilingual web application.
+- Share theme and language navigation, and prepare localized search and social metadata.
+
 ## 1.1.0
 
 - Refactor Flutter UI ownership into presentation libraries and strict barrel imports while preserving the public Want API.

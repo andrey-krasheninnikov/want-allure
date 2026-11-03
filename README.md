@@ -1,5 +1,10 @@
 # Want Allure
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/brand/readme/banner-dark.svg">
+  <img src="assets/brand/readme/banner-light.svg" alt="Want Allure: design system and brand identity" width="1600" height="640">
+</picture>
+
 Shared design foundations and UI kits for Want products across web and mobile.
 
 ## Packages
@@ -8,7 +13,7 @@ Shared design foundations and UI kits for Want products across web and mobile.
 - @want-foundation/allure-react: React 19 primitives and generic product compositions built on Radix.
 - want_allure: Flutter themes, controls, compositions and motion built on ForUI, for Android, iOS, web, macOS, Windows and Linux.
 
-All public packages use version 1.1.0. Keep matching releases aligned. The Flutter adapter is published as `want_allure` on pub.dev and uses ForUI with the same Want tokens and component families.
+All public packages use version 1.2.0. Keep matching releases aligned. The Flutter adapter is published as `want_allure` on pub.dev and uses ForUI with the same Want tokens and component families.
 
 Upgrading from the previous package names? Follow the [1.0.0 migration guide](docs/migration-1.0.0.md).
 
@@ -17,7 +22,7 @@ Upgrading from the previous package names? Follow the [1.0.0 migration guide](do
 For a published release, install the matching versions:
 
 ```sh
-npm install @want-foundation/allure@1.1.0 @want-foundation/allure-react@1.1.0 react@^19 react-dom@^19
+npm install @want-foundation/allure@1.2.0 @want-foundation/allure-react@1.2.0
 ```
 
 Import the stylesheet once in the application's entry point. The font stylesheet is optional and serves its font files locally.
@@ -41,10 +46,10 @@ No stylesheet copying, source aliases or scanning library sources with Tailwind 
 ## Flutter
 
 ```sh
-flutter pub add want_allure:^1.1.0
+flutter pub add want_allure:^1.2.0
 ```
 
-Import `package:want_allure/want_allure.dart` and wrap the application content with `WantTheme`. The package includes local fonts, its SVG asset and all 44 web component families. See [Flutter documentation](packages/flutter/README.md) and [component parity](docs/flutter-parity.md).
+Import `package:want_allure/want_allure.dart` and wrap the application content with `WantTheme`. The package includes local fonts, its SVG asset and all 46 web component families. See [Flutter documentation](packages/flutter/README.md) and [component parity](docs/flutter-parity.md).
 
 From this checkout, use FVM with Flutter 3.47.7 and Dart 3.13.5:
 
@@ -75,7 +80,7 @@ Use `bun run skill:install` for this checkout, or add `--dest /path/to/project/.
 From a consumer project's root, install the published skill with Node.js and npm:
 
 ```sh
-npx --yes --package=@want-foundation/allure@1.1.0 want-design-install
+npx --yes --package=@want-foundation/allure@1.2.0 want-design-install
 ```
 
 This creates `.agents/skills/want-design` in the current directory. The published skill includes its references and a token snapshot, so it does not need this repository afterward.
@@ -83,7 +88,7 @@ This creates `.agents/skills/want-design` in the current directory. The publishe
 For a personal installation shared across projects:
 
 ```sh
-npx --yes --package=@want-foundation/allure@1.1.0 want-design-install --global
+npx --yes --package=@want-foundation/allure@1.2.0 want-design-install --global
 ```
 
 This uses `~/.agents/skills/want-design`. Use `--dest PATH` instead of `--global` to select another parent skills directory; `want-design` is appended to that path. Quote paths containing spaces. `--help` lists the options. The installer does not change project configuration or install UI dependencies.
@@ -110,6 +115,12 @@ Additional controls are Checkbox, DropdownMenu, Toast, Tooltip, Combobox, Popove
 
 Set data-theme="light" or data-theme="dark" on the document root for explicit selection. Also toggle the dark class for class-based Tailwind states. Without an explicit choice, the stylesheet follows the system color preference.
 
+## Component showcases
+
+The React and Flutter catalogues share seven categories: Foundation, Inputs, Navigation, Data, Feedback, Effects and Compositions. A `section` query parameter opens a category directly. Browser history, language changes and the common theme/RTL controls preserve catalogue context. Visited examples keep edited values; hidden panels pause their motion.
+
+The landing page includes a rotatable extrusion of the supplied transparent logo, installation commands and animated FAQ. Its Three.js renderer loads only on the landing page and renders on demand. The SVG remains visible if rendering is unavailable.
+
 ## Optional effects
 
 ```ts
@@ -132,23 +143,56 @@ The optional shimmerDelayMs pair sets the minimum and maximum pause between wave
 
 Effects do not subscribe to application download events or start downloads. Call confetti beside the native download action. Reduced motion, unsuitable pointers and forced colors disable decorative interaction effects.
 
-## Develop and verify
+## Unified web application
+
+The Astro application serves English at `/` and localized pages under `/zh-Hans/`, `/hi/`, `/es/`, `/ar/`, `/fr/`, `/pt-BR/`, `/ru/`, `/de/`, `/ja/`, `/tr/` and `/he/`. Each locale has `/react/` and `/flutter/` catalogues. Language choices follow total first- and second-language speakers; Mandarin represents `zh-Hans` and Portuguese represents `pt-BR`. Navigation preserves the selected category and theme. Arabic and Hebrew default to RTL, with a direction override stored per locale. Flutter initializes only on its catalogue route.
+
+The landing guides framework selection, package and skill installation, then a horizontal FAQ and tips carousel. Logo rotation and the orbital selector follow system reduced-motion settings. Hidden effects pause automatically. The supplied SVG remains visible if 3D rendering is unavailable.
+
+Use Bun 1.3.14 and the pinned FVM SDK:
 
 ```sh
 bun install --frozen-lockfile
-bun run build
-bun run check
-bun test tests
-bun run test:ui
-bun run test:consumer
 bun run dev
 ```
 
-The Astro showcase lives in apps/showcase and uses local fixtures. Browser checks cover keyboard focus, themes, RTL, controls and decorative-effect cleanup. Test reports and screenshots stay outside the source tree. The consumer check installs packed artifacts in a temporary separate project and removes that project afterward.
+This prepares the package assets and Flutter runtime, then starts Astro on http://localhost:4321. Astro and React changes reload during development. After editing Flutter, run `bun run web:flutter` to rebuild its embedded runtime. `bun run flutter:example` still runs the standalone example on a selected device.
+
+Build and preview the complete static application:
+
+```sh
+bun run web:build
+bun run web:preview --port 4321
+```
+
+The artifact is `apps/showcase/dist`, including `/_flutter/`. Generated runtime files are ignored by Git. `bun run build` continues to build only the public npm packages. The default canonical origin is `https://allure.want.foundation`; `SITE_URL` may override it at build time. Production hosting is tracked in [issue #20](https://github.com/andrey-krasheninnikov/want-allure/issues/20).
+
+## Brand resources
+
+The source artwork lives in `assets/brand`. Logo variants, backgrounds, favicon, social images and README banners preserve the supplied geometry and colors. The source set includes its original usage notes and font licenses. The ZIP duplicate is not stored.
+
+Run `bun run assets:sync` after changing the source artwork. `bun run assets:check` verifies the package and Flutter web copies. Runtime logos and backgrounds are distributed under `@want-foundation/allure/assets/allure/` and Flutter's `assets/brand/allure/`. The existing Wallpapers asset remains available. Product applications choose their own approved identity.
+
+LightningBackground (React) and WantLightningBackground (Flutter) add primary/warning discharges to a bounded decorative surface. Both accept `paused` and an optional pair of colors. Flutter uses the bundled lightning fragment shader with a static fallback. Effects pause outside the viewport and when the document/application is inactive. Reduced motion keeps a static drawing; forced/high-contrast modes remove the decoration.
+
+## Develop and verify
+
+```sh
+bun run check
+bun test tests
+bun run flutter:check
+bun run flutter:test
+bun run web:build
+bun run test:ui
+bun run test:consumer
+bun run flutter:consumer
+```
+
+Checks run locally. Browser checks use the combined production artifact and cover both landing locales, navigation, themes, Flutter initialization and existing React controls. Reports and screenshots stay outside the source tree. Consumer checks install separate distributions and remove their temporary projects afterward. Production, physical-device and local test evidence remain distinct.
 
 ## Release
 
-Build and verify the final candidate before publishing. Inspect both tarballs, keep only distribution files and license notices, and publish foundation before React with public access. Use the repository release tag v1.1.0 for this release. Never overwrite a published version; reconcile a registry response before retrying a timed-out publish.
+Build and verify the final candidate before publishing. Inspect both tarballs, keep only distribution files and license notices, and publish foundation before React with public access. Use the repository release tag v1.2.0 for this release. Never overwrite a published version; reconcile a registry response before retrying a timed-out publish.
 
 The npm organization is want-foundation. Publishing requires a signed-in owner with the required npm authentication. Credentials never belong in source files. Registry availability is confirmed as part of release, separately from the source merge.
 

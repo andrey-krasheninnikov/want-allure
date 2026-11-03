@@ -1,0 +1,331 @@
+{
+  "@@locale": "he",
+  "findInCatalogue": "מצא בקטלוג",
+  "previousMatch": "משחק קודם",
+  "nextMatch": "המשחק הבא",
+  "closeFind": "סגור למצוא",
+  "noMatches": "אין התאמות",
+  "matchActiveOfCount": "התאם {active} של {count}",
+  "@matchActiveOfCount": {
+    "placeholders": {
+      "active": {
+        "type": "Object"
+      },
+      "count": {
+        "type": "Object"
+      }
+    }
+  },
+  "dismissMessage": "סגור הודעה",
+  "pauseBackground": "השהה רקע",
+  "resumeBackground": "רקע המשך",
+  "oneWantEveryPlatform": "אחד Want. כל פלטפורמה.",
+  "theSameWantColorsControlsAndMotionAcrossWeb": "אותם צבעים, בקרות ותנועה של Want ברחבי האינטרנט ו-Flutter. חקור רכיבים עם קלט מקלדת, מגע ומצביע.",
+  "findCtrlF": "מצא · ⌘/Ctrl F",
+  "useLightTheme": "שימוש בערכת נושא בהירה",
+  "useDarkTheme": "שימוש בערכת נושא כהה",
+  "reduceMotion": "הפחת תנועה",
+  "opaqueSurfaces": "משטחים אטומים",
+  "resumeEffects": "אפקטים של קורות חיים",
+  "pauseEffects": "השהה אפקטים",
+  "palette": "פלטה",
+  "typography": "טיפוגרפיה",
+  "variantNameWantMakesRoomForYourContent": "{variantName} · Want מפנה מקום לתוכן שלך.",
+  "@variantNameWantMakesRoomForYourContent": {
+    "placeholders": {
+      "variantName": {
+        "type": "Object"
+      }
+    }
+  },
+  "buttons": "כפתורים",
+  "variantNamePressed": "{variantName} לחוץ",
+  "@variantNamePressed": {
+    "placeholders": {
+      "variantName": {
+        "type": "Object"
+      }
+    }
+  },
+  "disabled": "מושבת",
+  "downloadSelected": "ההורדה נבחרה",
+  "downloadExample": "דוגמה להורדה",
+  "fieldsInputAndTextarea": "שדות, קלט ואזור טקסט",
+  "localExample": "דוגמה מקומית",
+  "title": "כותרת",
+  "editableLocalValue": "ערך מקומי ניתן לעריכה.",
+  "invalidExample": "דוגמה לא חוקית",
+  "enterATitle": "הזן כותרת.",
+  "disabledExample": "דוגמה לנכים",
+  "contoursOfSilence": "קווי מתאר של שתיקה",
+  "description": "תיאור",
+  "describeThePreview": "תאר את התצוגה המקדימה",
+  "fieldAndLabel": "שדה ותווית",
+  "consumerOwnedHelperText": "טקסט עוזר בבעלות הצרכן.",
+  "selectRadioCheckboxAndSwitch": "בחר, רדיו, תיבת סימון והחלף",
+  "format": "פורמט",
+  "desktop": "שולחן עבודה",
+  "mobile": "נייד",
+  "unavailable": "לא זמין",
+  "wallpaperOrientation": "כיוון טפט",
+  "includePreview": "כלול תצוגה מקדימה",
+  "aControlledCheckbox": "תיבת סימון מבוקרת.",
+  "mixedSelection": "מבחר מעורב",
+  "enableExampleSetting": "אפשר הגדרת דוגמה",
+  "disabledCheckbox": "תיבת סימון מושבתת",
+  "tabsAndAccordion": "טאבים ואקורדיון",
+  "landscapePreview": "תצוגה מקדימה של נוף.",
+  "portraitPreview": "תצוגה מקדימה לאורך.",
+  "howAreComponentsShared": "כיצד משותפים רכיבים?",
+  "bothAdaptersUseTheSameFoundationTokens": "שני המתאמים משתמשים באותם אסימוני בסיס.",
+  "whoOwnsApplicationData": "מי הבעלים של נתוני האפליקציה?",
+  "theConsumingApplicationOwnsDataAndPersistence": "האפליקציה הצורכת היא הבעלים של נתונים והתמדה.",
+  "dialogSheetMenuTooltipAndPopover": "דיאלוג, גיליון, תפריט, תיאור כלים ופופ-אובר",
+  "previewSettings": "תצוגה מקדימה של הגדרות",
+  "done": "בוצע",
+  "previewName": "שם תצוגה מקדימה",
+  "openDialog": "פתח דו-שיח",
+  "panelSideName": "פאנל {sideName}",
+  "@panelSideName": {
+    "placeholders": {
+      "sideName": {
+        "type": "Object"
+      }
+    }
+  },
+  "closePanel": "סגור לוח",
+  "theSheetEntersFromItsSelectedSide": "הגיליון נכנס מהצד הנבחר שלו.",
+  "sideNameSheet": "גיליון {sideName}",
+  "@sideNameSheet": {
+    "placeholders": {
+      "sideName": {
+        "type": "Object"
+      }
+    }
+  },
+  "actions": "פעולות",
+  "copyLink": "העתק קישור",
+  "copyActionSelected": "נבחרה פעולת העתקה",
+  "aKeyboardAndPointerHint": "רמז למקלדת ומצביע",
+  "hintSelected": "רמז נבחר",
+  "tooltip": "טיפים לכלי עבודה",
+  "settings": "הגדרות",
+  "note": "הערה",
+  "closeSettings": "סגור הגדרות",
+  "navigationAndBreadcrumbs": "ניווט ופירורי לחם",
+  "exampleNavigation": "ניווט לדוגמה",
+  "collections": "אוספים",
+  "collectionsSelected": "נבחרו אוספים",
+  "search": "חפש",
+  "searchSelected": "חיפוש נבחר",
+  "breadcrumbs": "פירורי לחם",
+  "home": "בית",
+  "homeSelected": "נבחר בית",
+  "uiKit": "UI kit",
+  "badgesAlertsAndProgress": "תגים, התראות והתקדמות",
+  "primary": "ראשוני",
+  "previewAvailable": "תצוגה מקדימה זמינה",
+  "chooseAnExampleActionToContinue": "בחר פעולה לדוגמה כדי להמשיך.",
+  "couldNotLoadPreview": "לא ניתן היה לטעון את התצוגה המקדימה",
+  "tryAgain": "נסה שוב.",
+  "exampleProgress": "התקדמות לדוגמה",
+  "loadingPreview": "טוען תצוגה מקדימה",
+  "toastAndSemanticSnackbars": "התראות והודעות מצב",
+  "localPreviewReady": "תצוגה מקדימה מקומית מוכנה",
+  "showToast": "הצגת התראה",
+  "variantNameExampleStatus": "{variantName}: מצב לדוגמה",
+  "@variantNameExampleStatus": {
+    "placeholders": {
+      "variantName": {
+        "type": "Object"
+      }
+    }
+  },
+  "themeAwareFeedbackWithOneUsefulAction": "משוב מודע לנושא עם פעולה שימושית אחת.",
+  "dismissStatus": "בטל סטטוס",
+  "viewDetails": "הצג פרטים",
+  "detailsSelected": "פרטים נבחרו",
+  "searchableCombobox": "תיבה משולבת ניתנת לחיפוש",
+  "collection": "אוסף",
+  "searchCollections": "חפש באוספים",
+  "violetHorizon": "אופק סגול",
+  "wovenSpectrum": "ספקטרום ארוג",
+  "tableAndPagination": "טבלה ועימוד",
+  "localCollection": "אוסף מקומי",
+  "noRecords": "אין רשומות",
+  "name": "שם",
+  "previewValue": "תצוגה מקדימה של {value}",
+  "@previewValue": {
+    "placeholders": {
+      "value": {
+        "type": "Object"
+      }
+    }
+  },
+  "pages": "דפים",
+  "previousPage": "העמוד הקודם",
+  "nextPage": "העמוד הבא",
+  "rowsPerPage": "שורות בעמוד",
+  "pagePage": "עמוד {page}",
+  "@pagePage": {
+    "placeholders": {
+      "page": {
+        "type": "Object"
+      }
+    }
+  },
+  "fromToOfTotal": "{from}–{to} של {total}",
+  "@fromToOfTotal": {
+    "placeholders": {
+      "from": {
+        "type": "Object"
+      },
+      "to": {
+        "type": "Object"
+      },
+      "total": {
+        "type": "Object"
+      }
+    }
+  },
+  "fileSelection": "בחירת קובץ",
+  "images": "תמונות",
+  "chooseImages": "בחר תמונות",
+  "dropImagesHereOrChooseAFile": "שחרר תמונות כאן או בחר קובץ.",
+  "couldNotReadTheSelectedFile": "לא ניתן היה לקרוא את הקובץ שנבחר.",
+  "removeName": "הסר את {name}",
+  "@removeName": {
+    "placeholders": {
+      "name": {
+        "type": "Object"
+      }
+    }
+  },
+  "nameIsNotASupportedImage": "{name} אינה תמונה נתמכת.",
+  "@nameIsNotASupportedImage": {
+    "placeholders": {
+      "name": {
+        "type": "Object"
+      }
+    }
+  },
+  "nameExceedsLimitBytes": "{name} חורג מ-{limit} בתים.",
+  "@nameExceedsLimitBytes": {
+    "placeholders": {
+      "name": {
+        "type": "Object"
+      },
+      "limit": {
+        "type": "Object"
+      }
+    }
+  },
+  "chooseUpToCountFiles": "בחר עד קבצי {count}.",
+  "@chooseUpToCountFiles": {
+    "placeholders": {
+      "count": {
+        "type": "Object"
+      }
+    }
+  },
+  "dateURLAndPageLayout": "תאריך, כתובת אתר ופריסת עמוד",
+  "createAPreview": "צור תצוגה מקדימה",
+  "localComposition": "הרכב מקומי",
+  "previewActionSelected": "נבחרה פעולת תצוגה מקדימה",
+  "preview": "תצוגה מקדימה",
+  "date": "תאריך",
+  "time": "זמן",
+  "useToday": "השתמש היום",
+  "sourceURL": "כתובת האתר של המקור",
+  "openSource": "קוד פתוח",
+  "openUriHost": "פתח את {uriHost}",
+  "@openUriHost": {
+    "placeholders": {
+      "uriHost": {
+        "type": "Object"
+      }
+    }
+  },
+  "cardsMediaAndLiquidGlass": "כרטיסים, מדיה וזכוכית נוזלית",
+  "localDemonstrationArtwork": "יצירות הדגמה מקומיות",
+  "violetGradient": "שיפוע סגול",
+  "previewSelected": "נבחרה תצוגה מקדימה",
+  "downloadPanel": "פאנל הורדה",
+  "aComposedCard": "קלף מורכב",
+  "publicSlotsKeepContentInTheConsumingApplication": "משבצות ציבוריות שומרים תוכן באפליקציה הצורכת.",
+  "liquidGlassOpaqueWhenTransparencyIsReduced": "זכוכית נוזלית · אטומה כאשר השקיפות מצטמצמת.",
+  "contactCard": "כרטיס איש קשר",
+  "productDesign": "עיצוב מוצר",
+  "website": "אתר אינטרנט",
+  "websiteSelected": "אתר נבחר",
+  "commentCarousel": "קרוסלת הערות",
+  "comments": "הערות",
+  "noComments": "אין הערות",
+  "previousComments": "הערות קודמות",
+  "nextComments": "הערות הבאות",
+  "readMore": "קרא עוד",
+  "collapse": "התמוטט",
+  "reviewerIndex": "מבקר {index}",
+  "@reviewerIndex": {
+    "placeholders": {
+      "index": {
+        "type": "Object"
+      }
+    }
+  },
+  "today": "היום",
+  "readableCopyFollowsTheSameWantTypography": "עותק קריא עוקב אחר אותה טיפוגרפיה Want.",
+  "thePreviewIsReadyToExplore": "התצוגה המקדימה מוכנה לחקור.",
+  "reply": "השב",
+  "actionSelected": "{action} נבחר",
+  "@actionSelected": {
+    "placeholders": {
+      "action": {
+        "type": "Object"
+      }
+    }
+  },
+  "customLoaders": "מחווני טעינה מותאמים",
+  "loadingVariantName": "טוען {variantName}",
+  "@loadingVariantName": {
+    "placeholders": {
+      "variantName": {
+        "type": "Object"
+      }
+    }
+  },
+  "shimmerPlaceholders": "מצייני מיקום מנצנצים",
+  "animatedText": "טקסט מונפש",
+  "yourNextIdea": "הרעיון הבא שלך.",
+  "madeWithWant": "מיוצר עם Want.",
+  "readyToExplore": "מוכן לחקור.",
+  "changeText": "שנה טקסט",
+  "reusableGlowAndConfetti": "זוהר וקונפטי לשימוש חוזר",
+  "aVisibleHaloWithTwoExpandingWaves": "הילה גלויה עם שני גלים מתרחבים.",
+  "exploreWant": "חקור את Want",
+  "triggerBackgroundWave": "מפעיל גל רקע",
+  "switchToRussian": "תעבור לרוסית",
+  "switchToEnglish": "עבור לאנגלית",
+  "error": "שְׁגִיאָה",
+  "warning": "אזהרה",
+  "info": "מידע",
+  "success": "הצלחה",
+  "brandAndTheme": "מותג ומוטיב",
+  "componentPreview": "תצוגה מקדימה של רכיב",
+  "categoryFoundation": "קרן",
+  "categoryInputs": "תשומות",
+  "categoryNavigation": "ניווט",
+  "categoryData": "נתונים",
+  "categoryFeedback": "משוב",
+  "categoryEffects": "אפקטים",
+  "categoryCompositions": "קומפוזיציות",
+  "componentsInAction": "רכיבים בפעולה",
+  "sliders": "מחוונים",
+  "intensity": "אינטנסיביות",
+  "range": "טווח",
+  "backgroundLightning": "ברק רקע",
+  "lightAndSpace": "אור וחלל",
+  "svg3D": "3D SVG",
+  "rotateLogo": "גרור או השתמש במקשי החצים כדי לסובב את הלוגו.",
+  "changeLanguage": "שפה"
+}

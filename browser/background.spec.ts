@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/test';
 test('custom background interval and manual waves preserve phases and pause rules', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'no-preference' });
   await page.addInitScript(() => { Math.random = () => 0; });
-  await page.goto('/');
+  await page.goto('/react/?section=effects');
   await expect(page.locator('astro-island[ssr]')).toHaveCount(0);
   const background = page.locator('.page-background');
   const control = page.locator('[data-background-toggle]');
