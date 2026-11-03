@@ -305,13 +305,13 @@ class CatalogueLocalizationsEs extends CatalogueLocalizations {
   String get loadingPreview => 'Cargando vista previa';
 
   @override
-  String get toastAndSemanticSnackbars => 'Tostadas y snacks semánticos';
+  String get toastAndSemanticSnackbars => 'Notificaciones y avisos de estado';
 
   @override
   String get localPreviewReady => 'Vista previa local lista';
 
   @override
-  String get showToast => 'mostrar brindis';
+  String get showToast => 'Mostrar notificación';
 
   @override
   String variantNameExampleStatus(Object variantName) {
@@ -541,7 +541,7 @@ class CatalogueLocalizationsEs extends CatalogueLocalizations {
   }
 
   @override
-  String get customLoaders => 'Cargadores personalizados';
+  String get customLoaders => 'Indicadores de carga personalizados';
 
   @override
   String loadingVariantName(Object variantName) {
@@ -549,7 +549,7 @@ class CatalogueLocalizationsEs extends CatalogueLocalizations {
   }
 
   @override
-  String get shimmerPlaceholders => 'Marcadores de posición brillantes';
+  String get shimmerPlaceholders => 'Marcadores con efecto de brillo';
 
   @override
   String get animatedText => 'texto animado';
@@ -628,7 +628,7 @@ class CatalogueLocalizationsEs extends CatalogueLocalizations {
   String get componentsInAction => 'Componentes en acción';
 
   @override
-  String get sliders => 'Deslizadores';
+  String get sliders => 'Controles deslizantes';
 
   @override
   String get intensity => 'intensidad';

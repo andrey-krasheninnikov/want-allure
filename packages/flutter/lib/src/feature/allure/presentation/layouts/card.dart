@@ -33,44 +33,65 @@ class WantCard extends StatelessWidget {
           spacing: 16,
           children: [
             if (title != null || description != null || actions != null)
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                spacing: 16,
-                children: [
-                  if (title != null || description != null)
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.min,
-                        spacing: 8,
-                        children: [
-                          if (title != null)
-                            DefaultTextStyle(
-                              style: WantTheme.of(context)
-                                  .forui
-                                  .typography
-                                  .display
-                                  .lg,
-                              child: title!,
-                            ),
-                          if (description != null)
-                            DefaultTextStyle.merge(
-                              style: TextStyle(
-                                fontSize: 14,
-                                color: WantTheme.of(context)
-                                    .color('muted-foreground'),
-                              ),
-                              child: description!,
-                            ),
-                        ],
-                      ),
-                    ),
-                  if (actions != null)
-                    Align(
-                      alignment: AlignmentDirectional.topEnd,
-                      child: actions!,
-                    ),
-                ],
+              LayoutBuilder(
+                builder: (context, constraints) {
+                  final heading = Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    spacing: 8,
+                    children: [
+                      if (title != null)
+                        DefaultTextStyle(
+                          style: WantTheme.of(context)
+                              .forui
+                              .typography
+                              .display
+                              .lg,
+                          child: title!,
+                        ),
+                      if (description != null)
+                        DefaultTextStyle.merge(
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: WantTheme.of(context)
+                                .color('muted-foreground'),
+                          ),
+                          child: description!,
+                        ),
+                    ],
+                  );
+                  if (constraints.maxWidth < 480) {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      mainAxisSize: MainAxisSize.min,
+                      spacing: 12,
+                      children: [
+                        if (title != null || description != null) heading,
+                        if (actions != null)
+                          Align(
+                            alignment: AlignmentDirectional.centerEnd,
+                            child: actions!,
+                          ),
+                      ],
+                    );
+                  }
+                  return Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    spacing: 16,
+                    children: [
+                      if (title != null || description != null)
+                        Expanded(child: heading),
+                      if (actions != null)
+                        Flexible(
+                          child: Align(
+                            widthFactor: 1,
+                            alignment: AlignmentDirectional.topEnd,
+                            child: actions!,
+                          ),
+                        ),
+                    ],
+                  );
+                },
               ),
             child,
             if (footer != null)

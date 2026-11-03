@@ -20,10 +20,10 @@ export function DemoBriefElements() {
     actions={<Button variant="secondary" onClick={() => setSaved(t("Example saved locally."))}>{t("Save example")}</Button>}>
     <div className="demo-fields">
       <div className="demo-field-label"><span>{t("Due date")}</span>
-        <DateField mode="date" value={day} onChange={setDay} labels={dateLabels} locale={locale === 'ru' ? 'ru-RU' : 'en-GB'} ariaLabel={t("Due date")} />
+        <DateField mode="date" value={day} onChange={setDay} labels={dateLabels} locale={locale === 'en' ? 'en-GB' : locale} ariaLabel={t("Due date")} />
       </div>
       <div className="demo-field-label"><span>{t("Meeting")}</span>
-        <DateField mode="datetime" value={meeting} onChange={setMeeting} labels={dateLabels} locale={locale === 'ru' ? 'ru-RU' : 'en-GB'} ariaLabel={t("Meeting")} />
+        <DateField mode="datetime" value={meeting} onChange={setMeeting} labels={dateLabels} locale={locale === 'en' ? 'en-GB' : locale} ariaLabel={t("Meeting")} />
       </div>
       <UrlField label={t("Reference URL")} value={url} onChange={setUrl} openLabel={t("Open reference URL")} />
       <p role="status" className="demo-status">{saved}</p>

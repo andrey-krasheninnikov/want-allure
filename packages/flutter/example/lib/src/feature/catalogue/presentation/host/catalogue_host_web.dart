@@ -58,6 +58,17 @@ class CatalogueHost {
     web.window.addEventListener('popstate', _history);
   }
   void _apply() {
+    if (!embedded) {
+      final uri = Uri.base.replace(
+        queryParameters: {
+          ...Uri.base.queryParameters,
+          'locale': locale,
+          'theme': theme,
+          'direction': direction,
+        },
+      );
+      web.window.history.replaceState(null, '', uri.toString());
+    }
     web.document.documentElement?.setAttribute('data-theme', theme);
     web.document.documentElement?.setAttribute('lang', locale);
     web.document.documentElement?.setAttribute('dir', direction);
@@ -78,15 +89,19 @@ class CatalogueHost {
 
   void chooseTheme(String value) {
     theme = value;
+    _apply();
     _send('want-allure:choose-theme', {'theme': value});
   }
 
   void chooseLocale(String value) {
-    locale = value;
+    locale = catalogueLocaleTag(value);
+    direction = catalogueDirection(locale);
+    _apply();
   }
 
   void chooseDirection(String value) {
     direction = value;
+    _apply();
     _send('want-allure:choose-direction', {'direction': value});
   }
 

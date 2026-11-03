@@ -70,7 +70,7 @@ function DemoTable() {
       <TableBody>{loading ? <TableRow><TableCell colSpan={3}><Skeleton className="h-11 w-full" /><span role="status" className="sr-only">{t("Loading table preview")}</span></TableCell></TableRow> : rows.slice((page - 1) * pageSize, page * pageSize).map(row => <TableRow key={row.id} data-state={selected.includes(row.id) ? 'selected' : undefined}><TableCell><Checkbox aria-label={t("Select example ") + row.id} checked={selected.includes(row.id)} onCheckedChange={value => setSelected(current => value ? [...current, row.id] : current.filter(id => id !== row.id))} /></TableCell><TableHead scope="row">{row.name}</TableHead><TableCell>{t(row.status)}</TableCell></TableRow>)}</TableBody>
     </Table>
     <Pagination page={page} pageSize={pageSize} totalItems={rows.length} pageSizeOptions={[5, 10, 20]} onChange={(nextPage, nextSize) => { setPage(nextPage); setPageSize(nextSize); }}
-      labels={{ navigation: t("Project pages"), previous: t("Previous page"), next: t("Next page"), pageSize: t("Rows per page"), page: value => t("Page ") + value, results: (from, to, total) => locale === 'ru' ? `${from}–${to} из ${total}` : `${from} to ${to} of ${total} examples` }} />
+      labels={{ navigation: t("Project pages"), previous: t("Previous page"), next: t("Next page"), pageSize: t("Rows per page"), page: value => t('Page {page}').replace('{page}',new Intl.NumberFormat(locale).format(value)), results: (from,to,total) => t('$from–$to of $total').replace('$from',new Intl.NumberFormat(locale).format(from)).replace('$to',new Intl.NumberFormat(locale).format(to)).replace('$total',new Intl.NumberFormat(locale).format(total)) }} />
   </div>;
 }
 
@@ -82,13 +82,12 @@ function DemoFiles() {
 }
 
 function DemoSliders() {
-  const locale=useCatalogueLocale();
   const [value,setValue]=useState(42),[range,setRange]=useState<[number,number]>([25,75]);
-  const label=locale==='ru'?'Интенсивность':'Intensity',rangeLabel=locale==='ru'?'Диапазон':'Range';
-  return <Section category="inputs" title={locale==='ru'?'Ползунки':'Sliders'}><div className="demo-stack">
+  const t=useT(),label=t('Intensity'),rangeLabel=t('Range');
+  return <Section category="inputs" title={t('Sliders')}><div className="demo-stack">
     <label>{label}: <output>{value}%</output><Slider label={label} value={value} onValueChange={setValue} formatValue={value=>`${value}%`}/></label>
-    <label>{rangeLabel}: <output>{range.join(' – ')}</output><RangeSlider label={rangeLabel} value={range} onValueChange={setRange} thumbLabels={locale==='ru'?['Начало диапазона','Конец диапазона']:['Range start','Range end']}/></label>
-    <Slider label={locale==='ru'?'Отключённый ползунок':'Disabled slider'} value={60} onValueChange={()=>{}} disabled/>
+    <label>{rangeLabel}: <output>{range.join(' – ')}</output><RangeSlider label={rangeLabel} value={range} onValueChange={setRange} thumbLabels={[t('Range start'),t('Range end')]}/></label>
+    <Slider label={t('Disabled slider')} value={60} onValueChange={()=>{}} disabled/>
   </div></Section>;
 }
 

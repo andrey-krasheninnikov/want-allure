@@ -130,9 +130,9 @@
   "tryAgain": "再试一次。",
   "exampleProgress": "进展示例",
   "loadingPreview": "加载预览",
-  "toastAndSemanticSnackbars": "Toast 和语义小吃栏",
+  "toastAndSemanticSnackbars": "通知与状态提示",
   "localPreviewReady": "本地预览就绪",
-  "showToast": "显示吐司",
+  "showToast": "显示通知",
   "variantNameExampleStatus": "{variantName}：状态示例",
   "@variantNameExampleStatus": {
     "placeholders": {
@@ -285,7 +285,7 @@
       }
     }
   },
-  "customLoaders": "定制装载机",
+  "customLoaders": "自定义加载指示器",
   "loadingVariantName": "正在加载{variantName}",
   "@loadingVariantName": {
     "placeholders": {
@@ -294,7 +294,7 @@
       }
     }
   },
-  "shimmerPlaceholders": "闪光占位符",
+  "shimmerPlaceholders": "微光占位效果",
   "animatedText": "动画文字",
   "yourNextIdea": "你的下一个想法。",
   "madeWithWant": "用 Want 制作。",

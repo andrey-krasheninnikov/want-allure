@@ -130,9 +130,9 @@
   "tryAgain": "נסה שוב.",
   "exampleProgress": "התקדמות לדוגמה",
   "loadingPreview": "טוען תצוגה מקדימה",
-  "toastAndSemanticSnackbars": "טוסט וחטיפים סמנטיים",
+  "toastAndSemanticSnackbars": "התראות והודעות מצב",
   "localPreviewReady": "תצוגה מקדימה מקומית מוכנה",
-  "showToast": "הצג טוסט",
+  "showToast": "הצגת התראה",
   "variantNameExampleStatus": "{variantName}: מצב לדוגמה",
   "@variantNameExampleStatus": {
     "placeholders": {
@@ -285,7 +285,7 @@
       }
     }
   },
-  "customLoaders": "מעמיסים בהתאמה אישית",
+  "customLoaders": "מחווני טעינה מותאמים",
   "loadingVariantName": "טוען {variantName}",
   "@loadingVariantName": {
     "placeholders": {
@@ -320,7 +320,7 @@
   "categoryEffects": "אפקטים",
   "categoryCompositions": "קומפוזיציות",
   "componentsInAction": "רכיבים בפעולה",
-  "sliders": "סליידרים",
+  "sliders": "מחוונים",
   "intensity": "אינטנסיביות",
   "range": "טווח",
   "backgroundLightning": "ברק רקע",

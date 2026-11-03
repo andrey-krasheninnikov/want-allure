@@ -130,9 +130,9 @@
   "tryAgain": "Inténtalo de nuevo.",
   "exampleProgress": "Ejemplo de progreso",
   "loadingPreview": "Cargando vista previa",
-  "toastAndSemanticSnackbars": "Tostadas y snacks semánticos",
+  "toastAndSemanticSnackbars": "Notificaciones y avisos de estado",
   "localPreviewReady": "Vista previa local lista",
-  "showToast": "mostrar brindis",
+  "showToast": "Mostrar notificación",
   "variantNameExampleStatus": "{variantName}: ejemplo de estado",
   "@variantNameExampleStatus": {
     "placeholders": {
@@ -285,7 +285,7 @@
       }
     }
   },
-  "customLoaders": "Cargadores personalizados",
+  "customLoaders": "Indicadores de carga personalizados",
   "loadingVariantName": "Cargando {variantName}",
   "@loadingVariantName": {
     "placeholders": {
@@ -294,7 +294,7 @@
       }
     }
   },
-  "shimmerPlaceholders": "Marcadores de posición brillantes",
+  "shimmerPlaceholders": "Marcadores con efecto de brillo",
   "animatedText": "texto animado",
   "yourNextIdea": "Tu próxima idea.",
   "madeWithWant": "Fabricado con Want.",
@@ -320,7 +320,7 @@
   "categoryEffects": "Efectos",
   "categoryCompositions": "Composiciones",
   "componentsInAction": "Componentes en acción",
-  "sliders": "Deslizadores",
+  "sliders": "Controles deslizantes",
   "intensity": "intensidad",
   "range": "Rango",
   "backgroundLightning": "Rayo de fondo",

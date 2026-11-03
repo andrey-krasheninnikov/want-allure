@@ -303,13 +303,13 @@ class CatalogueLocalizationsTr extends CatalogueLocalizations {
   String get loadingPreview => 'Önizleme yükleniyor';
 
   @override
-  String get toastAndSemanticSnackbars => 'Tost ve anlamsal snackbarlar';
+  String get toastAndSemanticSnackbars => 'Bildirimler ve durum mesajları';
 
   @override
   String get localPreviewReady => 'Yerel önizleme hazır';
 
   @override
-  String get showToast => 'Tostu göster';
+  String get showToast => 'Bildirim göster';
 
   @override
   String variantNameExampleStatus(Object variantName) {
@@ -537,7 +537,7 @@ class CatalogueLocalizationsTr extends CatalogueLocalizations {
   }
 
   @override
-  String get customLoaders => 'Özel yükleyiciler';
+  String get customLoaders => 'Özel yükleme göstergeleri';
 
   @override
   String loadingVariantName(Object variantName) {
@@ -545,7 +545,7 @@ class CatalogueLocalizationsTr extends CatalogueLocalizations {
   }
 
   @override
-  String get shimmerPlaceholders => 'Pırıltılı yer tutucular';
+  String get shimmerPlaceholders => 'Parıltılı yer tutucular';
 
   @override
   String get animatedText => 'Animasyonlu metin';

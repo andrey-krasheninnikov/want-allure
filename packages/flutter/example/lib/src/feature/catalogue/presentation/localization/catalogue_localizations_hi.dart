@@ -303,13 +303,13 @@ class CatalogueLocalizationsHi extends CatalogueLocalizations {
   String get loadingPreview => 'पूर्वावलोकन लोड हो रहा है';
 
   @override
-  String get toastAndSemanticSnackbars => 'टोस्ट और सिमेंटिक स्नैकबार';
+  String get toastAndSemanticSnackbars => 'सूचनाएँ और स्थिति संदेश';
 
   @override
   String get localPreviewReady => 'स्थानीय पूर्वावलोकन तैयार';
 
   @override
-  String get showToast => 'टोस्ट दिखाओ';
+  String get showToast => 'सूचना दिखाएँ';
 
   @override
   String variantNameExampleStatus(Object variantName) {
@@ -538,7 +538,7 @@ class CatalogueLocalizationsHi extends CatalogueLocalizations {
   }
 
   @override
-  String get customLoaders => 'कस्टम लोडर';
+  String get customLoaders => 'कस्टम लोडिंग संकेतक';
 
   @override
   String loadingVariantName(Object variantName) {

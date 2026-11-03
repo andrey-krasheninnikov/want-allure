@@ -304,13 +304,14 @@ class CatalogueLocalizationsDe extends CatalogueLocalizations {
   String get loadingPreview => 'Vorschau wird geladen';
 
   @override
-  String get toastAndSemanticSnackbars => 'Toast und semantische Snackbars';
+  String get toastAndSemanticSnackbars =>
+      'Benachrichtigungen und Statusmeldungen';
 
   @override
   String get localPreviewReady => 'Lokale Vorschau bereit';
 
   @override
-  String get showToast => 'Toast zeigen';
+  String get showToast => 'Benachrichtigung anzeigen';
 
   @override
   String variantNameExampleStatus(Object variantName) {
@@ -540,7 +541,7 @@ class CatalogueLocalizationsDe extends CatalogueLocalizations {
   }
 
   @override
-  String get customLoaders => 'Benutzerdefinierte Lader';
+  String get customLoaders => 'Eigene Ladeanzeigen';
 
   @override
   String loadingVariantName(Object variantName) {

@@ -169,7 +169,7 @@ SizedBox(
 
 `depth` is a fraction of the longest SVG dimension, greater than zero and at most one. `autoRotate`, `paused` and `glow` control presentation. System reduced motion, viewport visibility and application lifecycle stop automatic movement. Rotation supports pointer dragging and arrow keys. Geometry is cached between frames; animation updates at most 30 times per second.
 
-The initial SVG contract supports paths with solid hex fills, rectangles, polygons, circles, ellipses and group transforms. Convert text and strokes to filled paths before use. Filters, masks, clipping, external resources and raster images are outside this mesh contract. Supply `placeholderBuilder` and `errorBuilder` when loading or failure needs product-specific content. When parsing cannot create a mesh, the original SVG is the default fallback if its source was loaded.
+The initial SVG contract supports paths with solid hex fills, plain rectangles, polygons, circles, ellipses and group transforms. Convert text, strokes and rounded rectangles to filled paths before use. Flatten opacity before extrusion. Filters, masks, clipping, external resources and raster images are outside this mesh contract. Supply `placeholderBuilder` and `errorBuilder` when loading or failure needs product-specific content. When parsing cannot create a mesh, the original SVG is the default fallback if its source was loaded.
 
 `WantThemeData.light(locale: ...)` and `.dark(locale: ...)` select the preferred bundled font fallback. Chinese, Hindi and Hebrew use Noto Sans SC, Noto Sans Devanagari and Noto Sans Hebrew.
 

@@ -130,9 +130,9 @@
   "tryAgain": "पुनः प्रयास करें.",
   "exampleProgress": "उदाहरण प्रगति",
   "loadingPreview": "पूर्वावलोकन लोड हो रहा है",
-  "toastAndSemanticSnackbars": "टोस्ट और सिमेंटिक स्नैकबार",
+  "toastAndSemanticSnackbars": "सूचनाएँ और स्थिति संदेश",
   "localPreviewReady": "स्थानीय पूर्वावलोकन तैयार",
-  "showToast": "टोस्ट दिखाओ",
+  "showToast": "सूचना दिखाएँ",
   "variantNameExampleStatus": "{variantName}: उदाहरण स्थिति",
   "@variantNameExampleStatus": {
     "placeholders": {
@@ -285,7 +285,7 @@
       }
     }
   },
-  "customLoaders": "कस्टम लोडर",
+  "customLoaders": "कस्टम लोडिंग संकेतक",
   "loadingVariantName": "{variantName} लोड हो रहा है",
   "@loadingVariantName": {
     "placeholders": {

@@ -301,13 +301,13 @@ class CatalogueLocalizationsHe extends CatalogueLocalizations {
   String get loadingPreview => 'טוען תצוגה מקדימה';
 
   @override
-  String get toastAndSemanticSnackbars => 'טוסט וחטיפים סמנטיים';
+  String get toastAndSemanticSnackbars => 'התראות והודעות מצב';
 
   @override
   String get localPreviewReady => 'תצוגה מקדימה מקומית מוכנה';
 
   @override
-  String get showToast => 'הצג טוסט';
+  String get showToast => 'הצגת התראה';
 
   @override
   String variantNameExampleStatus(Object variantName) {
@@ -534,7 +534,7 @@ class CatalogueLocalizationsHe extends CatalogueLocalizations {
   }
 
   @override
-  String get customLoaders => 'מעמיסים בהתאמה אישית';
+  String get customLoaders => 'מחווני טעינה מותאמים';
 
   @override
   String loadingVariantName(Object variantName) {
@@ -621,7 +621,7 @@ class CatalogueLocalizationsHe extends CatalogueLocalizations {
   String get componentsInAction => 'רכיבים בפעולה';
 
   @override
-  String get sliders => 'סליידרים';
+  String get sliders => 'מחוונים';
 
   @override
   String get intensity => 'אינטנסיביות';

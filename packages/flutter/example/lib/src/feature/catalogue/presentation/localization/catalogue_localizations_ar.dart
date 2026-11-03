@@ -303,14 +303,13 @@ class CatalogueLocalizationsAr extends CatalogueLocalizations {
   String get loadingPreview => 'جارٍ تحميل المعاينة';
 
   @override
-  String get toastAndSemanticSnackbars =>
-      'الخبز المحمص والوجبات الخفيفة الدلالية';
+  String get toastAndSemanticSnackbars => 'الإشعارات ورسائل الحالة';
 
   @override
   String get localPreviewReady => 'المعاينة المحلية جاهزة';
 
   @override
-  String get showToast => 'عرض الخبز المحمص';
+  String get showToast => 'عرض إشعار';
 
   @override
   String variantNameExampleStatus(Object variantName) {
@@ -538,7 +537,7 @@ class CatalogueLocalizationsAr extends CatalogueLocalizations {
   }
 
   @override
-  String get customLoaders => 'لوادر مخصصة';
+  String get customLoaders => 'مؤشرات تحميل مخصصة';
 
   @override
   String loadingVariantName(Object variantName) {
@@ -546,7 +545,7 @@ class CatalogueLocalizationsAr extends CatalogueLocalizations {
   }
 
   @override
-  String get shimmerPlaceholders => 'العناصر النائبة اللامعة';
+  String get shimmerPlaceholders => 'عناصر نائبة بتأثير لامع';
 
   @override
   String get animatedText => 'نص متحرك';
@@ -625,7 +624,7 @@ class CatalogueLocalizationsAr extends CatalogueLocalizations {
   String get componentsInAction => 'المكونات في العمل';
 
   @override
-  String get sliders => 'المتزلجون';
+  String get sliders => 'المنزلقات';
 
   @override
   String get intensity => 'الشدة';

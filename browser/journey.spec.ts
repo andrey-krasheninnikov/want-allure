@@ -22,3 +22,16 @@ test('language chooser keeps category and lists all twelve locales in speaker or
   await expect(page).toHaveURL('/ar/react/?section=inputs');await expect(page.locator('html')).toHaveAttribute('dir','rtl');
   await expect(page.getByRole('slider').first()).toBeVisible();
 });
+
+test('Arabic catalogue localizes slider names and dates',async({page})=>{
+  await page.goto('/ar/react/?section=inputs');await expect(page.locator('astro-island[ssr]')).toHaveCount(0);
+  await expect(page.getByRole('slider',{name:'بداية النطاق',exact:true})).toBeVisible();
+  await expect(page.getByRole('slider',{name:'منزلق معطّل',exact:true})).toBeDisabled();
+  await page.getByRole('tab').last().click();
+  await expect(page.locator('.demo-fields .ui-date-trigger').first()).toContainText('أكتوبر');
+});
+test('standalone Arabic Flutter starts with native document direction',async({page})=>{
+  await page.goto('/_flutter/?locale=ar&section=data');
+  await expect(page.locator('html')).toHaveAttribute('lang','ar');
+  await expect(page.locator('html')).toHaveAttribute('dir','rtl');
+});

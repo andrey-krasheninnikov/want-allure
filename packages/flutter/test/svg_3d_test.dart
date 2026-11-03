@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/widgets.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:ditredi/ditredi.dart';
 import 'package:want_allure/want_allure.dart';
@@ -157,6 +158,78 @@ void main() {
       tester.getCenter(icon).dy,
       closeTo(tester.getCenter(find.text('Saved')).dy, .1),
     );
+    await tester.pumpWidget(const SizedBox.shrink());
+    await tester.pump(const Duration(seconds: 1));
+  });
+  testWidgets('unsupported rounded geometry and alpha keep the original SVG', (
+    tester,
+  ) async {
+    for (final property in ['rx="3"', 'opacity=".5"', 'fill-opacity=".5"']) {
+      await tester.pumpWidget(
+        harness(
+          SizedBox(
+            width: 200,
+            height: 200,
+            child: WantSvg3D.string(
+              '<svg viewBox="0 0 10 10"><rect width="10" height="10" $property/></svg>',
+              semanticsLabel: 'Fallback',
+              errorBuilder: (_, error) => const Text('Original SVG'),
+            ),
+          ),
+        ),
+      );
+      await tester.pump();
+      expect(find.text('Original SVG'), findsOneWidget);
+      expect(find.byType(DiTreDi), findsNothing);
+    }
+    await tester.pumpWidget(const SizedBox.shrink());
+    await tester.pump(const Duration(seconds: 1));
+  });
+  testWidgets('brand SVG preserves every touching pixel rectangle', (
+    tester,
+  ) async {
+    final source = await rootBundle.loadString(
+      'packages/want_allure/assets/brand/allure/logos/dark/transparent.svg',
+    );
+    final rectangles = RegExp(r'M([0-9]+) ([0-9]+)H([0-9]+)V([0-9]+)H')
+        .allMatches(source);
+    var expected = 0.0;
+    for (final rect in rectangles) {
+      expected +=
+          (double.parse(rect[3]!) - double.parse(rect[1]!)) *
+          (double.parse(rect[4]!) - double.parse(rect[2]!)) *
+          .0009;
+    }
+    expect(rectangles.length, greaterThan(50));
+    await tester.pumpWidget(
+      harness(
+        SizedBox(
+          width: 300,
+          height: 300,
+          child: WantSvg3D.string(
+            source,
+            semanticsLabel: 'Brand',
+            paused: true,
+          ),
+        ),
+      ),
+    );
+    await tester.pump();
+    var actual = 0.0;
+    for (final face
+        in tester
+            .widget<DiTreDi>(find.byType(DiTreDi))
+            .figures
+            .whereType<Face3D>()) {
+      final a = face.triangle.point0,
+          b = face.triangle.point1,
+          c = face.triangle.point2;
+      if ([a, b, c].every((point) => (point.z - .12).abs() < .0001)) {
+        actual +=
+            ((b.x - a.x) * (c.y - a.y) - (b.y - a.y) * (c.x - a.x)).abs() / 2;
+      }
+    }
+    expect(actual, closeTo(expected, .001));
     await tester.pumpWidget(const SizedBox.shrink());
     await tester.pump(const Duration(seconds: 1));
   });

@@ -145,4 +145,37 @@ void main() {
     await tester.pumpWidget(const SizedBox.shrink());
     await tester.pump(const Duration(seconds: 1));
   });
+  testWidgets('card actions wrap below long titles at 320 pixels', (
+    tester,
+  ) async {
+    await tester.pumpWidget(
+      harness(
+        SizedBox(
+          width: 288,
+          child: WantCard(
+            title: const Text('A long localized title that must wrap'),
+            actions: WantButton(
+              onPressed: () {},
+              child: const Text('Ein sehr langer lokalisierter Aktionsname'),
+            ),
+            child: const Text('Content'),
+          ),
+        ),
+      ),
+    );
+    await tester.pump();
+    expect(tester.takeException(), isNull);
+    expect(
+      tester
+          .getTopLeft(find.text('Ein sehr langer lokalisierter Aktionsname'))
+          .dy,
+      greaterThan(
+        tester
+            .getBottomLeft(find.text('A long localized title that must wrap'))
+            .dy,
+      ),
+    );
+    await tester.pumpWidget(const SizedBox.shrink());
+    await tester.pump(const Duration(seconds: 1));
+  });
 }

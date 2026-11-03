@@ -130,9 +130,9 @@
   "tryAgain": "Versuchen Sie es erneut.",
   "exampleProgress": "Beispielfortschritt",
   "loadingPreview": "Vorschau wird geladen",
-  "toastAndSemanticSnackbars": "Toast und semantische Snackbars",
+  "toastAndSemanticSnackbars": "Benachrichtigungen und Statusmeldungen",
   "localPreviewReady": "Lokale Vorschau bereit",
-  "showToast": "Toast zeigen",
+  "showToast": "Benachrichtigung anzeigen",
   "variantNameExampleStatus": "{variantName}: Beispielstatus",
   "@variantNameExampleStatus": {
     "placeholders": {
@@ -285,7 +285,7 @@
       }
     }
   },
-  "customLoaders": "Benutzerdefinierte Lader",
+  "customLoaders": "Eigene Ladeanzeigen",
   "loadingVariantName": "Laden von {variantName}",
   "@loadingVariantName": {
     "placeholders": {

@@ -2,6 +2,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/semantics.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:forui/forui.dart';
 
 import 'package:want_allure/src/feature/allure/presentation/_barrel.dart';
@@ -125,6 +126,17 @@ class WantTable<T> extends StatelessWidget {
                                         label: column.sortLabel ?? column.label,
                                         child: FTappable(
                                           onPress: column.onSort,
+                                          selectable:
+                                              kIsWeb ||
+                                              WantWebScope.enabledOf(context),
+                                          focusedOutlineStyle: theme
+                                              .forui
+                                              .buttonStyles
+                                              .resolve({
+                                                FButtonVariant.secondary,
+                                              })
+                                              .resolve({FButtonSizeVariant.md})
+                                              .focusedOutlineStyle,
                                           child: ConstrainedBox(
                                             constraints: const BoxConstraints(
                                               minHeight: 44,
@@ -134,7 +146,9 @@ class WantTable<T> extends StatelessWidget {
                                               mainAxisSize: MainAxisSize.min,
                                               children: [
                                                 Flexible(
-                                                  child: Text(column.label),
+                                                  child: WantSelectable(
+                                                    child: Text(column.label),
+                                                  ),
                                                 ),
                                                 Icon(
                                                   column.ascending == false

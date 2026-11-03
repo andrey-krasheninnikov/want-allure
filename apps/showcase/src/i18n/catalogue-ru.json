@@ -423,5 +423,9 @@
   "{sideName} sheet": "Панель {sideName}",
   "{variantName} pressed": "Нажато: {variantName}",
   "{variantName} · Want makes room for your content.": "{variantName} · Want оставляет место вашему контенту.",
-  "{variantName}: example status": "{variantName}: пример состояния"
+  "{variantName}: example status": "{variantName}: пример состояния",
+  "Range start": "Начало диапазона",
+  "Range end": "Конец диапазона",
+  "Disabled slider": "Отключённый ползунок",
+  "Show {status} snackbar": "Показать {status} snackbar"
 }

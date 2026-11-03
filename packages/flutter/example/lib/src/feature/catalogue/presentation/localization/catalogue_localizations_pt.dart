@@ -305,13 +305,13 @@ class CatalogueLocalizationsPt extends CatalogueLocalizations {
   String get loadingPreview => 'Carregando visualização';
 
   @override
-  String get toastAndSemanticSnackbars => 'Torradas e lanchonetes semânticas';
+  String get toastAndSemanticSnackbars => 'Notificações e mensagens de status';
 
   @override
   String get localPreviewReady => 'Visualização local pronta';
 
   @override
-  String get showToast => 'Mostrar brinde';
+  String get showToast => 'Mostrar notificação';
 
   @override
   String variantNameExampleStatus(Object variantName) {
@@ -541,7 +541,7 @@ class CatalogueLocalizationsPt extends CatalogueLocalizations {
   }
 
   @override
-  String get customLoaders => 'Carregadores personalizados';
+  String get customLoaders => 'Indicadores de carregamento personalizados';
 
   @override
   String loadingVariantName(Object variantName) {
@@ -549,7 +549,7 @@ class CatalogueLocalizationsPt extends CatalogueLocalizations {
   }
 
   @override
-  String get shimmerPlaceholders => 'Espaços reservados brilhantes';
+  String get shimmerPlaceholders => 'Espaços reservados com brilho';
 
   @override
   String get animatedText => 'Texto animado';
@@ -953,13 +953,13 @@ class CatalogueLocalizationsPtBr extends CatalogueLocalizationsPt {
   String get loadingPreview => 'Carregando visualização';
 
   @override
-  String get toastAndSemanticSnackbars => 'Torradas e lanchonetes semânticas';
+  String get toastAndSemanticSnackbars => 'Notificações e mensagens de status';
 
   @override
   String get localPreviewReady => 'Visualização local pronta';
 
   @override
-  String get showToast => 'Mostrar brinde';
+  String get showToast => 'Mostrar notificação';
 
   @override
   String variantNameExampleStatus(Object variantName) {
@@ -1189,7 +1189,7 @@ class CatalogueLocalizationsPtBr extends CatalogueLocalizationsPt {
   }
 
   @override
-  String get customLoaders => 'Carregadores personalizados';
+  String get customLoaders => 'Indicadores de carregamento personalizados';
 
   @override
   String loadingVariantName(Object variantName) {
@@ -1197,7 +1197,7 @@ class CatalogueLocalizationsPtBr extends CatalogueLocalizationsPt {
   }
 
   @override
-  String get shimmerPlaceholders => 'Espaços reservados brilhantes';
+  String get shimmerPlaceholders => 'Espaços reservados com brilho';
 
   @override
   String get animatedText => 'Texto animado';

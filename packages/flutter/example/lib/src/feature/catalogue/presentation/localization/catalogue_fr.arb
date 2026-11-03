@@ -130,9 +130,9 @@
   "tryAgain": "Réessayez.",
   "exampleProgress": "Exemple de progression",
   "loadingPreview": "Aperçu du chargement",
-  "toastAndSemanticSnackbars": "Toasts et snacks sémantiques",
+  "toastAndSemanticSnackbars": "Notifications et messages d’état",
   "localPreviewReady": "Aperçu local prêt",
-  "showToast": "Afficher un toast",
+  "showToast": "Afficher une notification",
   "variantNameExampleStatus": "{variantName} : exemple de statut",
   "@variantNameExampleStatus": {
     "placeholders": {
@@ -285,7 +285,7 @@
       }
     }
   },
-  "customLoaders": "Chargeurs personnalisés",
+  "customLoaders": "Indicateurs de chargement personnalisés",
   "loadingVariantName": "Chargement de {variantName}",
   "@loadingVariantName": {
     "placeholders": {

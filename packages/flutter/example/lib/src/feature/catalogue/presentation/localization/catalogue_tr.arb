@@ -130,9 +130,9 @@
   "tryAgain": "Tekrar deneyin.",
   "exampleProgress": "Örnek ilerleme",
   "loadingPreview": "Önizleme yükleniyor",
-  "toastAndSemanticSnackbars": "Tost ve anlamsal snackbarlar",
+  "toastAndSemanticSnackbars": "Bildirimler ve durum mesajları",
   "localPreviewReady": "Yerel önizleme hazır",
-  "showToast": "Tostu göster",
+  "showToast": "Bildirim göster",
   "variantNameExampleStatus": "{variantName}: örnek durum",
   "@variantNameExampleStatus": {
     "placeholders": {
@@ -285,7 +285,7 @@
       }
     }
   },
-  "customLoaders": "Özel yükleyiciler",
+  "customLoaders": "Özel yükleme göstergeleri",
   "loadingVariantName": "{variantName} yükleniyor",
   "@loadingVariantName": {
     "placeholders": {
@@ -294,7 +294,7 @@
       }
     }
   },
-  "shimmerPlaceholders": "Pırıltılı yer tutucular",
+  "shimmerPlaceholders": "Parıltılı yer tutucular",
   "animatedText": "Animasyonlu metin",
   "yourNextIdea": "Bir sonraki fikriniz.",
   "madeWithWant": "Want ile yapılmıştır.",

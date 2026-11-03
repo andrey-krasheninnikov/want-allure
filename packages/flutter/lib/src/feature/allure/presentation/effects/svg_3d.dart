@@ -307,9 +307,21 @@ List<Face3D> _extrude(String source, double depth) {
         );
       }
     }
+    for (final attribute in ['opacity', 'fill-opacity']) {
+      final value = node.getAttribute(attribute) ?? style[attribute];
+      if (value != null && double.tryParse(value) != 1) {
+        throw const FormatException('Flatten opacity before extrusion');
+      }
+    }
     String? data;
     if (name == 'path') data = node.getAttribute('d');
     if (name == 'rect') {
+      if ((double.tryParse(node.getAttribute('rx') ?? '0') ?? 1) != 0 ||
+          (double.tryParse(node.getAttribute('ry') ?? '0') ?? 1) != 0) {
+        throw const FormatException(
+          'Convert rounded rectangles to filled paths before extrusion',
+        );
+      }
       final x = double.tryParse(node.getAttribute('x') ?? '') ?? 0,
           y = double.tryParse(node.getAttribute('y') ?? '') ?? 0;
       final w = double.parse(node.getAttribute('width')!),
@@ -352,11 +364,21 @@ List<Face3D> _extrude(String source, double depth) {
       final paths = contours
           .map((points) => Path()..addPolygon(points, true))
           .toList();
+      bool containsContour(int outer, int inner) {
+        final a = paths[outer].getBounds(), b = paths[inner].getBounds();
+        return a.left <= b.left &&
+            a.top <= b.top &&
+            a.right >= b.right &&
+            a.bottom >= b.bottom &&
+            a.width * a.height > b.width * b.height &&
+            paths[outer].contains(contours[inner].first);
+      }
+
       final parents = <int?>[for (var i = 0; i < contours.length; i++) null];
       for (var i = 0; i < contours.length; i++) {
         final candidates = [
           for (var j = 0; j < contours.length; j++)
-            if (j != i && paths[j].contains(contours[i].first)) j,
+            if (j != i && containsContour(j, i)) j,
         ];
         if (candidates.isNotEmpty) {
           candidates.sort(

@@ -130,9 +130,9 @@
   "tryAgain": "もう一度試してください。",
   "exampleProgress": "進捗状況の例",
   "loadingPreview": "プレビューを読み込んでいます",
-  "toastAndSemanticSnackbars": "トーストおよびセマンティック スナックバー",
+  "toastAndSemanticSnackbars": "通知とステータスメッセージ",
   "localPreviewReady": "ローカルプレビューの準備ができました",
-  "showToast": "トーストを表示",
+  "showToast": "通知を表示",
   "variantNameExampleStatus": "{variantName}: ステータスの例",
   "@variantNameExampleStatus": {
     "placeholders": {
@@ -285,7 +285,7 @@
       }
     }
   },
-  "customLoaders": "カスタムローダー",
+  "customLoaders": "カスタム読み込みインジケーター",
   "loadingVariantName": "{variantName}をロード中",
   "@loadingVariantName": {
     "placeholders": {
@@ -294,7 +294,7 @@
       }
     }
   },
-  "shimmerPlaceholders": "シマープレースホルダー",
+  "shimmerPlaceholders": "シマーのプレースホルダー",
   "animatedText": "アニメーションテキスト",
   "yourNextIdea": "次のアイデア。",
   "madeWithWant": "Wantで作られています。",

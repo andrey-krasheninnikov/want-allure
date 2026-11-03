@@ -130,9 +130,9 @@
   "tryAgain": "Tente novamente.",
   "exampleProgress": "Exemplo de progresso",
   "loadingPreview": "Carregando visualização",
-  "toastAndSemanticSnackbars": "Torradas e lanchonetes semânticas",
+  "toastAndSemanticSnackbars": "Notificações e mensagens de status",
   "localPreviewReady": "Visualização local pronta",
-  "showToast": "Mostrar brinde",
+  "showToast": "Mostrar notificação",
   "variantNameExampleStatus": "{variantName}: exemplo de status",
   "@variantNameExampleStatus": {
     "placeholders": {
@@ -285,7 +285,7 @@
       }
     }
   },
-  "customLoaders": "Carregadores personalizados",
+  "customLoaders": "Indicadores de carregamento personalizados",
   "loadingVariantName": "Carregando {variantName}",
   "@loadingVariantName": {
     "placeholders": {
@@ -294,7 +294,7 @@
       }
     }
   },
-  "shimmerPlaceholders": "Espaços reservados brilhantes",
+  "shimmerPlaceholders": "Espaços reservados com brilho",
   "animatedText": "Texto animado",
   "yourNextIdea": "Sua próxima ideia.",
   "madeWithWant": "Feito com Want.",

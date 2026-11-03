@@ -1,4 +1,4 @@
-import { useT, useCatalogueLocale } from '../i18n/catalogue';
+import { useT } from '../i18n/catalogue';
 import { useState } from 'react';
 import { AnimatedText, Button, Glow, Loader, Prose, Shimmer, Snackbar, SnackbarProvider, SnackbarViewport, Typography, type SnackbarVariant } from '@want-foundation/allure-react';
 import { Section } from './Section';
@@ -74,14 +74,13 @@ const notifications = {
 
 function DemoSnackbars() {
   const t = useT();
-  const locale = useCatalogueLocale();
   const [variant, setVariant] = useState<SnackbarVariant>('info');
   const [open, setOpen] = useState(false);
   const [sequence, setSequence] = useState(0);
   const [result, setResult] = useState('');
   const copy = notifications[variant];
   return <Section category="feedback" title={t("Semantic snackbars")}><SnackbarProvider label={t("Notification")}><div className="demo-stack">
-    <div className="demo-actions">{(['error', 'warning', 'info', 'success'] as const).map(kind => <Button key={kind} variant="secondary" onClick={() => { setVariant(kind); setSequence(value => value + 1); setOpen(true); }}>{t("Show ")}{locale === 'ru' ? t(kind[0]!.toUpperCase() + kind.slice(1)) : kind} {t("snackbar")}</Button>)}</div>
+    <div className="demo-actions">{(['error', 'warning', 'info', 'success'] as const).map(kind => <Button key={kind} variant="secondary" onClick={() => { setVariant(kind); setSequence(value => value + 1); setOpen(true); }}>{t('Show {status} snackbar').replace('{status}',t(kind[0]!.toUpperCase()+kind.slice(1)))}</Button>)}</div>
     <Typography variant="small" tone="muted">{t("Four semantic colors and icons. Errors stay visible until dismissed. Hover or focus pauses timed messages.")}</Typography>
     <p className="demo-status" role="status">{result}</p>
     <Snackbar key={sequence} variant={variant} variantLabel={t(copy.label)} title={t(copy.title)} description={t(copy.description)} open={open} onOpenChange={setOpen} closeLabel={t("Dismiss status message")}

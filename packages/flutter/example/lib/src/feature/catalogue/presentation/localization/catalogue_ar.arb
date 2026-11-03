@@ -130,9 +130,9 @@
   "tryAgain": "حاول مرة أخرى.",
   "exampleProgress": "تقدم المثال",
   "loadingPreview": "جارٍ تحميل المعاينة",
-  "toastAndSemanticSnackbars": "الخبز المحمص والوجبات الخفيفة الدلالية",
+  "toastAndSemanticSnackbars": "الإشعارات ورسائل الحالة",
   "localPreviewReady": "المعاينة المحلية جاهزة",
-  "showToast": "عرض الخبز المحمص",
+  "showToast": "عرض إشعار",
   "variantNameExampleStatus": "{variantName}: حالة المثال",
   "@variantNameExampleStatus": {
     "placeholders": {
@@ -285,7 +285,7 @@
       }
     }
   },
-  "customLoaders": "لوادر مخصصة",
+  "customLoaders": "مؤشرات تحميل مخصصة",
   "loadingVariantName": "جاري التحميل {variantName}",
   "@loadingVariantName": {
     "placeholders": {
@@ -294,7 +294,7 @@
       }
     }
   },
-  "shimmerPlaceholders": "العناصر النائبة اللامعة",
+  "shimmerPlaceholders": "عناصر نائبة بتأثير لامع",
   "animatedText": "نص متحرك",
   "yourNextIdea": "فكرتك القادمة.",
   "madeWithWant": "مصنوعة من Want.",
@@ -320,7 +320,7 @@
   "categoryEffects": "التأثيرات",
   "categoryCompositions": "التراكيب",
   "componentsInAction": "المكونات في العمل",
-  "sliders": "المتزلجون",
+  "sliders": "المنزلقات",
   "intensity": "الشدة",
   "range": "النطاق",
   "backgroundLightning": "البرق الخلفية",

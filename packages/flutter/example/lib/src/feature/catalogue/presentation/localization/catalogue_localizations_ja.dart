@@ -300,13 +300,13 @@ class CatalogueLocalizationsJa extends CatalogueLocalizations {
   String get loadingPreview => 'プレビューを読み込んでいます';
 
   @override
-  String get toastAndSemanticSnackbars => 'トーストおよびセマンティック スナックバー';
+  String get toastAndSemanticSnackbars => '通知とステータスメッセージ';
 
   @override
   String get localPreviewReady => 'ローカルプレビューの準備ができました';
 
   @override
-  String get showToast => 'トーストを表示';
+  String get showToast => '通知を表示';
 
   @override
   String variantNameExampleStatus(Object variantName) {
@@ -533,7 +533,7 @@ class CatalogueLocalizationsJa extends CatalogueLocalizations {
   }
 
   @override
-  String get customLoaders => 'カスタムローダー';
+  String get customLoaders => 'カスタム読み込みインジケーター';
 
   @override
   String loadingVariantName(Object variantName) {
@@ -541,7 +541,7 @@ class CatalogueLocalizationsJa extends CatalogueLocalizations {
   }
 
   @override
-  String get shimmerPlaceholders => 'シマープレースホルダー';
+  String get shimmerPlaceholders => 'シマーのプレースホルダー';
 
   @override
   String get animatedText => 'アニメーションテキスト';

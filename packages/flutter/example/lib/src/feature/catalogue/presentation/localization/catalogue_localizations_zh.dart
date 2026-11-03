@@ -297,13 +297,13 @@ class CatalogueLocalizationsZh extends CatalogueLocalizations {
   String get loadingPreview => '加载预览';
 
   @override
-  String get toastAndSemanticSnackbars => 'Toast 和语义小吃栏';
+  String get toastAndSemanticSnackbars => '通知与状态提示';
 
   @override
   String get localPreviewReady => '本地预览就绪';
 
   @override
-  String get showToast => '显示吐司';
+  String get showToast => '显示通知';
 
   @override
   String variantNameExampleStatus(Object variantName) {
@@ -527,7 +527,7 @@ class CatalogueLocalizationsZh extends CatalogueLocalizations {
   }
 
   @override
-  String get customLoaders => '定制装载机';
+  String get customLoaders => '自定义加载指示器';
 
   @override
   String loadingVariantName(Object variantName) {
@@ -535,7 +535,7 @@ class CatalogueLocalizationsZh extends CatalogueLocalizations {
   }
 
   @override
-  String get shimmerPlaceholders => '闪光占位符';
+  String get shimmerPlaceholders => '微光占位效果';
 
   @override
   String get animatedText => '动画文字';
@@ -929,13 +929,13 @@ class CatalogueLocalizationsZhHans extends CatalogueLocalizationsZh {
   String get loadingPreview => '加载预览';
 
   @override
-  String get toastAndSemanticSnackbars => 'Toast 和语义小吃栏';
+  String get toastAndSemanticSnackbars => '通知与状态提示';
 
   @override
   String get localPreviewReady => '本地预览就绪';
 
   @override
-  String get showToast => '显示吐司';
+  String get showToast => '显示通知';
 
   @override
   String variantNameExampleStatus(Object variantName) {
@@ -1159,7 +1159,7 @@ class CatalogueLocalizationsZhHans extends CatalogueLocalizationsZh {
   }
 
   @override
-  String get customLoaders => '定制装载机';
+  String get customLoaders => '自定义加载指示器';
 
   @override
   String loadingVariantName(Object variantName) {
@@ -1167,7 +1167,7 @@ class CatalogueLocalizationsZhHans extends CatalogueLocalizationsZh {
   }
 
   @override
-  String get shimmerPlaceholders => '闪光占位符';
+  String get shimmerPlaceholders => '微光占位效果';
 
   @override
   String get animatedText => '动画文字';
