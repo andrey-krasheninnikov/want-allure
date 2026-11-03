@@ -323,17 +323,16 @@ WantToastHandle _showToast({
       ),
     ),
   );
-  // The manager admits every pending toast in post-frame callbacks.
+  // Reconcile this batch after its deferred manager admission.
+  final handles = owner._handles.toList();
   WidgetsBinding.instance.addPostFrameCallback((_) {
-    scheduleMicrotask(() {
-      for (final entry in owner._handles.toList()) {
-        final item = entry.item;
-        if (item != null &&
-            owner._toasts.findToastificationItem(item.id) == null) {
-          entry._remove();
-        }
+    for (final entry in handles) {
+      final item = entry.item;
+      if (item != null &&
+          owner._toasts.findToastificationItem(item.id) == null) {
+        entry._remove();
       }
-    });
+    }
   });
   WidgetsBinding.instance.scheduleFrame();
   return handle;

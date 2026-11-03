@@ -67,6 +67,36 @@ void main() {
         await tester.tapAt(point);
         await tester.pump();
         expect(taps, 1);
+        final deferredHandles = <WantToastHandle>[
+          showWantToast(
+            context: context,
+            title: const Text('Immediate'),
+            closeLabel: 'Close immediate',
+            duration: null,
+          ),
+        ];
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          deferredHandles.add(
+            showWantToast(
+              context: context,
+              title: const Text('Deferred'),
+              closeLabel: 'Close deferred',
+              duration: null,
+            ),
+          );
+        });
+        await tester.pumpAndSettle();
+        expect(deferredHandles.every((handle) => handle.showing), isTrue);
+        expect(find.text('Deferred'), findsOneWidget);
+        for (final handle in deferredHandles) {
+          handle.dismiss();
+        }
+        await tester.pumpAndSettle();
+        await tester.pump(const Duration(milliseconds: 100));
+        expect(find.byType(WantToast), findsNothing);
+        await tester.tapAt(point);
+        await tester.pump();
+        expect(taps, 2);
         await tester.pumpWidget(const SizedBox.shrink());
         await tester.pump(const Duration(milliseconds: 100));
         focus.dispose();
