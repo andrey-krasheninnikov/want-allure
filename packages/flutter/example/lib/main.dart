@@ -272,7 +272,7 @@ class _GalleryState extends State<_Gallery> {
               if (!widget.embedded)
                 WantBrandLockup(
                   name: 'Want Allure',
-                  subtitle: 'Flutter · ForUI · 1.2.0',
+                  subtitle: 'Flutter · ForUI · 1.2.1',
                   logo: WantBrandLogo.asset(
                     widget.brightness == Brightness.dark
                         ? 'assets/brand/allure/logos/dark/transparent.svg'

@@ -7,16 +7,21 @@ class WantDialog extends StatelessWidget {
   final String title;
   final Widget child;
   final Widget? actions;
+  final bool showTitle;
+  final BoxConstraints constraints;
   const WantDialog({
     super.key,
     required this.title,
     required this.child,
     this.actions,
+    this.showTitle = true,
+    this.constraints = const BoxConstraints(minWidth: 280, maxWidth: 560),
   });
   @override
   Widget build(BuildContext context) => FDialog(
     animation: ModalRoute.of(context)?.animation,
     semanticsLabel: title,
+    constraints: constraints,
     builder: (context, style) => Padding(
       padding: const EdgeInsets.all(24),
       child: Column(
@@ -24,7 +29,8 @@ class WantDialog extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         spacing: 20,
         children: [
-          WantTypography(title, variant: WantTypographyVariant.h3),
+          if (showTitle)
+            WantTypography(title, variant: WantTypographyVariant.h3),
           child,
           ?actions,
         ],

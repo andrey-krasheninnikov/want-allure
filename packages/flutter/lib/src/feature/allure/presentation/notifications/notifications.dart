@@ -159,12 +159,12 @@ class WantToast extends StatelessWidget {
               spacing: 6,
               children: [
                 Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   spacing: 10,
                   children: [
                     if (icon != null)
                       Padding(
-                        padding: EdgeInsets.zero,
+                        padding: const EdgeInsets.only(top: 4),
                         child: WantMotionBuilder(
                           duration: const Duration(milliseconds: 420),
                           repeat: false,

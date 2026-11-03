@@ -136,13 +136,16 @@ void main() {
       expect(tester.takeException(), isNull);
     },
   );
-  testWidgets('toast status icon and message share their vertical center', (
+  testWidgets('toast status plate and wrapped message align at the top', (
     tester,
   ) async {
     await tester.pumpWidget(
       harness(
         WantToast(
-          title: const Text('Saved'),
+          title: const SizedBox(
+            width: 100,
+            child: Text('Saved with a longer message'),
+          ),
           variant: WantSnackbarVariant.success,
           variantLabel: 'Success',
           closeLabel: 'Dismiss',
@@ -155,8 +158,15 @@ void main() {
       (widget) => widget is WantIcon && widget.icon == WantIcons.success,
     );
     expect(
-      tester.getCenter(icon).dy,
-      closeTo(tester.getCenter(find.text('Saved')).dy, .1),
+      tester
+          .getTopLeft(
+            find.ancestor(of: icon, matching: find.byType(Container)).first,
+          )
+          .dy,
+      closeTo(
+        tester.getTopLeft(find.text('Saved with a longer message')).dy,
+        .1,
+      ),
     );
     await tester.pumpWidget(const SizedBox.shrink());
     await tester.pump(const Duration(seconds: 1));
