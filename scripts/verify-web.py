@@ -1,6 +1,7 @@
 """Check the public HTTP contract of a complete Want Allure release."""
 import argparse
 from html.parser import HTMLParser
+import hashlib
 import json
 from urllib.error import HTTPError
 from urllib.parse import urljoin, urlsplit
@@ -29,7 +30,10 @@ class Metadata(HTMLParser):
 
 
 def verify(base, revision=None):
+    if not __debug__:
+        raise RuntimeError('HTTP verification requires assertions enabled')
     opener = build_opener(NoRedirect())
+    manifest = None
 
     def get(path, expected=200):
         try:
@@ -39,6 +43,12 @@ def verify(base, revision=None):
         with response:
             body = response.read()
             assert response.status == expected, (path, response.status, expected)
+            if manifest and expected == 200:
+                name = urlsplit(path).path.lstrip('/')
+                if not name or name.endswith('/'):
+                    name += 'index.html'
+                if name != 'release.json':
+                    assert hashlib.sha256(body).hexdigest() == manifest['files'][name], ('Response checksum mismatch', path)
             return response.headers, body
 
     headers, body = get('/release.json')
@@ -82,7 +92,7 @@ def verify(base, revision=None):
     }
     for suffix, mime in [('.woff2', 'font/woff2'), ('.ttf', 'font/ttf')]:
         path = next(name for name in files if name.endswith(suffix))
-        resources[path] = (mime, 'must-revalidate')
+        resources[path] = (mime, 'immutable' if path.startswith('_astro/') else 'must-revalidate')
     chunk = next(name for name in files if name.startswith('_astro/') and name.endswith('.js'))
     resources[chunk] = ('javascript', 'immutable')
     for path, (mime, cache) in resources.items():

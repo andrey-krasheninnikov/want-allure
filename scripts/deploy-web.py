@@ -182,9 +182,17 @@ def package(output):
     (artifact / 'release.json').write_text(json.dumps(manifest, sort_keys=True) + '\n')
     output.mkdir(parents=True, exist_ok=True)
     archive = output / ('allure-' + revision + '.tgz')
-    with archive.open('xb') as stream, tarfile.open(fileobj=stream, mode='w:gz') as bundle:
-        for path in [*files, artifact / 'release.json']:
-            bundle.add(path, arcname=path.relative_to(artifact).as_posix(), recursive=False)
+    descriptor, temporary = tempfile.mkstemp(prefix='.allure-', suffix='.tgz', dir=output)
+    try:
+        with os.fdopen(descriptor, 'wb') as stream:
+            with tarfile.open(fileobj=stream, mode='w:gz') as bundle:
+                for path in [*files, artifact / 'release.json']:
+                    bundle.add(path, arcname=path.relative_to(artifact).as_posix(), recursive=False)
+            stream.flush()
+            os.fsync(stream.fileno())
+        os.link(temporary, archive)
+    finally:
+        os.unlink(temporary)
     return archive
 
 
@@ -199,6 +207,9 @@ def remote(host, *arguments):
 
 
 def publish(arguments):
+    if arguments.command == 'deploy' and arguments.prepare_only:
+        archive = package(arguments.output)
+        return {'artifact': str(archive), 'artifactSha256': digest(archive)}
     if not re.fullmatch(r'[a-zA-Z0-9][a-zA-Z0-9._-]*', arguments.host):
         raise ValueError('Use an SSH config host alias')
     installed = ssh(arguments.host, 'sudo', '-n', 'sha256sum', REMOTE + '/deploy-web.py').split()[0]
@@ -255,6 +266,7 @@ def main():
         if command == 'rollback':
             sub.add_argument('revision')
         else:
+            sub.add_argument('--prepare-only', action='store_true')
             sub.add_argument('--artifact', type=Path)
             sub.add_argument('--output', type=Path, default=Path.home() / '.local/share/want-allure/releases')
     arguments = parser.parse_args()

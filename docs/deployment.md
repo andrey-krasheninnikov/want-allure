@@ -24,7 +24,7 @@ Copy `deploy/traefik.yml` to a temporary file outside Traefik's watched director
 
 The container has no published host port, writable application mount or Docker socket. Its pinned Nginx image already exists on the VPS. Read-only configuration uses a 64 MiB memory limit and a bounded tmpfs. Keep the parent data directory mounted: mounting the `current` symlink target would prevent atomic switching from taking effect.
 
-For later helper/configuration updates, inspect the diff, copy the reviewed files to unique private staging paths, verify their checksums, then install only those files. Validate Nginx before reloading the Allure container. A helper checksum mismatch stops the client instead of silently using an older contract.
+For later helper/configuration updates, inspect the diff, copy the reviewed files to unique private staging paths, verify their checksums, then install only those files. Validate the replacement Nginx configuration in a disposable container before updating the service. Because nginx.conf is a file bind mount, replacing its inode requires `docker compose -f /opt/want/apps/allure/compose.yml up -d --force-recreate static`; a signal-only reload would still read the old mount. Recreate only the Allure service. A helper checksum mismatch stops the client instead of silently using an older contract.
 
 ## Publish a merged revision
 
@@ -41,6 +41,8 @@ The command verifies public routes, metadata, fonts, shaders, runtime, MIME and 
 ```sh
 ssh wf-landings 'sudo -n python3 /opt/want/apps/allure/deploy-web.py status --root /opt/want/apps/allure/data'
 ```
+
+To prepare a merged release before server setup, use `bun run web:deploy --prepare-only`. Archive creation writes to a private temporary pathname and publishes the final name only after completion. An interrupted preparation cannot leave a partial final archive.
 
 Retry the exact retained archive rather than rebuilding the same source:
 
