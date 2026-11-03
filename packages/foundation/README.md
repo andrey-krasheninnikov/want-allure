@@ -11,10 +11,10 @@ See the repository README for usage, compatibility and release instructions.
 Install the bundled brand, UI/UX, motion, composition, and product-voice skill from the target project's root:
 
 ```sh
-npx --yes --package=@want-foundation/allure@1.2.0 want-design-install
+npx --yes --package=@want-foundation/allure@1.2.1 want-design-install
 ```
 
-The default destination is `.agents/skills/want-design`. Add `--global` for `~/.agents/skills/want-design`, or `--dest PATH` for another parent skills directory. Matching installations are unchanged; different installations are never overwritten. See the [repository instructions](https://github.com/andrey-krasheninnikov/want-allure/tree/v1.2.0#want-design-skill) for invocation and updates.
+The default destination is `.agents/skills/want-design`. Add `--global` for `~/.agents/skills/want-design`, or `--dest PATH` for another parent skills directory. Matching installations are unchanged; different installations are never overwritten. See the [repository instructions](https://github.com/andrey-krasheninnikov/want-allure/tree/v1.2.1#want-design-skill) for invocation and updates.
 
 ## Allure artwork
 

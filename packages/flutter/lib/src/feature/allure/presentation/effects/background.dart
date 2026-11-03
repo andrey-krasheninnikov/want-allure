@@ -39,12 +39,18 @@ class WantBackgroundMotion extends StatefulWidget {
   final Widget child;
   final String pauseLabel, resumeLabel;
   final Duration minimumWaveDelay, maximumWaveDelay;
+  final bool showPauseControl, alternateWithLightning;
+  final Duration switchInterval, transitionDuration;
   const WantBackgroundMotion({
     super.key,
     required this.controller,
     required this.child,
     required this.pauseLabel,
     required this.resumeLabel,
+    this.showPauseControl = true,
+    this.alternateWithLightning = false,
+    this.switchInterval = const Duration(seconds: 30),
+    this.transitionDuration = const Duration(milliseconds: 1200),
     this.minimumWaveDelay = const Duration(seconds: 8),
     this.maximumWaveDelay = const Duration(seconds: 18),
   });
@@ -53,13 +59,20 @@ class WantBackgroundMotion extends StatefulWidget {
 }
 
 class _WantBackgroundMotionState extends State<WantBackgroundMotion>
-    with SingleTickerProviderStateMixin, WidgetsBindingObserver {
+    with TickerProviderStateMixin, WidgetsBindingObserver {
   late final AnimationController _wave;
+  late final AnimationController _cycle, _blend;
+  bool _lightning = false, _sphereActive = false;
   Timer? _timer;
   bool _active = true, _running = false;
   int _request = 0;
   final _random = math.Random();
   void _validate() {
+    if (widget.switchInterval <= Duration.zero ||
+        widget.transitionDuration.isNegative ||
+        widget.transitionDuration > widget.switchInterval) {
+      throw ArgumentError('Invalid background switch or transition duration.');
+    }
     if (widget.minimumWaveDelay.isNegative ||
         widget.maximumWaveDelay < widget.minimumWaveDelay ||
         widget.maximumWaveDelay.inMilliseconds > 2147483647) {
@@ -76,6 +89,20 @@ class _WantBackgroundMotionState extends State<WantBackgroundMotion>
     _active =
         WidgetsBinding.instance.lifecycleState == null ||
         WidgetsBinding.instance.lifecycleState == AppLifecycleState.resumed;
+    _cycle = AnimationController(vsync: this, duration: widget.switchInterval)
+      ..addStatusListener((status) {
+        if (status == AnimationStatus.completed &&
+            _running &&
+            widget.alternateWithLightning) {
+          _lightning = !_lightning;
+          _lightning ? _blend.forward() : _blend.reverse();
+          _cycle.forward(from: 0);
+        }
+      });
+    _blend = AnimationController(
+      vsync: this,
+      duration: widget.transitionDuration,
+    )..addStatusListener((_) => _syncSphere());
     _wave =
         AnimationController(vsync: this, duration: const Duration(seconds: 4))
           ..addStatusListener((status) {
@@ -89,7 +116,7 @@ class _WantBackgroundMotionState extends State<WantBackgroundMotion>
   void _schedule() {
     _timer?.cancel();
     _timer = null;
-    if (!_running) return;
+    if (!_sphereActive) return;
     final min = widget.minimumWaveDelay.inMilliseconds,
         range =
             widget.maximumWaveDelay.inMilliseconds -
@@ -97,7 +124,7 @@ class _WantBackgroundMotionState extends State<WantBackgroundMotion>
     _timer = Timer(
       Duration(milliseconds: min + (_random.nextDouble() * range).round()),
       () {
-        if (_running && mounted) _wave.forward(from: 0);
+        if (_sphereActive && mounted) _wave.forward(from: 0);
       },
     );
   }
@@ -109,9 +136,24 @@ class _WantBackgroundMotionState extends State<WantBackgroundMotion>
         TickerMode.valuesOf(context).enabled &&
         !WantTheme.reducedMotionOf(context) &&
         !MediaQuery.highContrastOf(context);
-    final changed = running != _running;
     _running = running;
-    if (!running) {
+    if (running && widget.alternateWithLightning) {
+      if (!_cycle.isAnimating) _cycle.forward();
+      if (_lightning && _blend.value < 1) _blend.forward();
+      if (!_lightning && _blend.value > 0) _blend.reverse();
+    } else {
+      _cycle.stop(canceled: false);
+      _blend.stop(canceled: false);
+    }
+    _syncSphere();
+  }
+
+  void _syncSphere() {
+    final active =
+        _running && (!widget.alternateWithLightning || _blend.value < 1);
+    final changed = active != _sphereActive;
+    _sphereActive = active;
+    if (!active) {
       _timer?.cancel();
       _timer = null;
       _wave.stop(canceled: false);
@@ -129,7 +171,7 @@ class _WantBackgroundMotionState extends State<WantBackgroundMotion>
     _sync();
     if (_request != widget.controller._wave) {
       _request = widget.controller._wave;
-      if (_running) {
+      if (_sphereActive) {
         _timer?.cancel();
         _timer = null;
         _wave.forward(from: 0);
@@ -148,6 +190,14 @@ class _WantBackgroundMotionState extends State<WantBackgroundMotion>
   void didUpdateWidget(WantBackgroundMotion old) {
     super.didUpdateWidget(old);
     _validate();
+    _cycle.duration = widget.switchInterval;
+    _blend.duration = widget.transitionDuration;
+    if (old.alternateWithLightning != widget.alternateWithLightning ||
+        old.switchInterval != widget.switchInterval) {
+      _lightning = false;
+      _cycle.reset();
+      _blend.reset();
+    }
     if (old.controller != widget.controller) {
       old.controller.removeListener(_controlChanged);
       widget.controller.addListener(_controlChanged);
@@ -173,6 +223,8 @@ class _WantBackgroundMotionState extends State<WantBackgroundMotion>
     widget.controller.removeListener(_controlChanged);
     WidgetsBinding.instance.removeObserver(this);
     _wave.dispose();
+    _cycle.dispose();
+    _blend.dispose();
     super.dispose();
   }
 
@@ -192,41 +244,65 @@ class _WantBackgroundMotionState extends State<WantBackgroundMotion>
             Positioned.fill(
               child: IgnorePointer(
                 child: ExcludeSemantics(
-                  child: WantShaderSurface(
-                    asset: 'sphere.frag',
-                    fallback: CustomPaint(
-                      painter: _BackgroundPainter(
-                        0,
-                        0,
-                        WantTheme.of(context).color('primary'),
-                      ),
-                    ),
-                    builder: (context, shader) => WantMotionBuilder(
-                      duration: Duration(
-                        milliseconds: math.max(
-                          28000,
-                          (height / 30 * 1000).round(),
-                        ),
-                      ),
-                      paused: !_running,
-                      builder: (context, phase) => AnimatedBuilder(
-                        animation: _wave,
-                        builder: (context, _) => CustomPaint(
-                          painter: _BackgroundPainter(
-                            phase,
-                            _wave.value,
-                            WantTheme.of(context).color('primary'),
-                            shader: shader,
+                  child: AnimatedBuilder(
+                    animation: _blend,
+                    builder: (context, _) => Stack(
+                      fit: StackFit.expand,
+                      children: [
+                        Opacity(
+                          key: const ValueKey('want-background-sphere'),
+                          opacity: WantTheme.reducedMotionOf(context)
+                              ? 1
+                              : 1 - _blend.value,
+                          child: WantShaderSurface(
+                            asset: 'sphere.frag',
+                            fallback: CustomPaint(
+                              painter: _BackgroundPainter(
+                                0,
+                                0,
+                                WantTheme.of(context).color('primary'),
+                              ),
+                            ),
+                            builder: (context, shader) => WantMotionBuilder(
+                              duration: Duration(
+                                milliseconds: math.max(
+                                  28000,
+                                  (height / 30 * 1000).round(),
+                                ),
+                              ),
+                              paused: !_sphereActive,
+                              builder: (context, phase) => AnimatedBuilder(
+                                animation: _wave,
+                                builder: (context, _) => CustomPaint(
+                                  painter: _BackgroundPainter(
+                                    phase,
+                                    _wave.value,
+                                    WantTheme.of(context).color('primary'),
+                                    shader: shader,
+                                  ),
+                                ),
+                              ),
+                            ),
                           ),
                         ),
-                      ),
+                        if (widget.alternateWithLightning)
+                          Opacity(
+                            key: const ValueKey('want-background-lightning'),
+                            opacity: WantTheme.reducedMotionOf(context)
+                                ? 0
+                                : _blend.value,
+                            child: WantLightningBackground(
+                              paused: !_running || _blend.value == 0,
+                            ),
+                          ),
+                      ],
                     ),
                   ),
                 ),
               ),
             ),
           widget.child,
-          if (available)
+          if (available && widget.showPauseControl)
             PositionedDirectional(
               end: 16,
               bottom: 16,

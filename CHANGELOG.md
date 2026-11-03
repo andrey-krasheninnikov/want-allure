@@ -1,3 +1,9 @@
+## 1.2.1
+
+- Restore optional background pause controls and compact dialog constraints with an accessible hidden title.
+- Alternate the Flutter sphere and lightning with a paused, accessibility-aware crossfade.
+- Align Flutter toast status plates and multiline messages at the top.
+
 # Changelog
 
 ## 1.2.0

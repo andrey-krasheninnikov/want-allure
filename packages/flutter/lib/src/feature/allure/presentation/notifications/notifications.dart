@@ -159,12 +159,12 @@ class WantToast extends StatelessWidget {
               spacing: 6,
               children: [
                 Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   spacing: 10,
                   children: [
                     if (icon != null)
                       Padding(
-                        padding: EdgeInsets.zero,
+                        padding: const EdgeInsets.only(top: 4),
                         child: WantMotionBuilder(
                           duration: const Duration(milliseconds: 420),
                           repeat: false,
@@ -323,6 +323,18 @@ WantToastHandle _showToast({
       ),
     ),
   );
+  // Reconcile this batch after its deferred manager admission.
+  final handles = owner._handles.toList();
+  WidgetsBinding.instance.addPostFrameCallback((_) {
+    for (final entry in handles) {
+      final item = entry.item;
+      if (item != null &&
+          owner._toasts.findToastificationItem(item.id) == null) {
+        entry._remove();
+      }
+    }
+  });
+  WidgetsBinding.instance.scheduleFrame();
   return handle;
 }
 
@@ -390,7 +402,7 @@ class _ToastTransitionState extends State<_ToastTransition>
       try {
         await _motion.reverse().orCancel;
       } on TickerCanceled {
-        return;
+        // Replacing the view must not cancel removal of its overlay entry.
       }
     }
     widget.handle._remove();
@@ -398,10 +410,10 @@ class _ToastTransitionState extends State<_ToastTransition>
 
   @override
   void dispose() {
-    widget.handle.animateClose = null;
-    widget.handle._showing = false;
-    widget.handle._removed = true;
-    widget.handle.owner._handles.remove(widget.handle);
+    // List reordering can replace this view while its toast still exists.
+    if (widget.handle.animateClose == _close) {
+      widget.handle.animateClose = null;
+    }
     _motion.dispose();
     super.dispose();
   }

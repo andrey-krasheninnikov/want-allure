@@ -9,7 +9,7 @@ ForUI-based Want components for Android, iOS, web, macOS, Windows and Linux. The
 Requires Flutter 3.47.7 and Dart 3.13.5 or newer.
 
 ```sh
-flutter pub add want_allure:^1.2.0
+flutter pub add want_allure:^1.2.2
 ```
 
 Use your existing application shell and localization setup. Apply WantTheme in the application builder so routes and overlays inherit the theme:

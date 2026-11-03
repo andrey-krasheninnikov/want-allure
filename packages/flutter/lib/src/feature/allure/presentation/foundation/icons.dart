@@ -17,6 +17,7 @@ abstract final class WantIcons {
   static const download = PhosphorIconsRegular.downloadSimple;
   static const file = PhosphorIconsRegular.file;
   static const info = PhosphorIconsRegular.info;
+  static const question = PhosphorIconsRegular.question;
   static const link = PhosphorIconsRegular.link;
   static const moon = PhosphorIconsRegular.moon;
   static const sun = PhosphorIconsRegular.sun;

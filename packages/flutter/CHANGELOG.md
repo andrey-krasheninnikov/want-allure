@@ -1,3 +1,13 @@
+## 1.2.2
+
+- Release toast pointer regions after stacked notifications close, including automatic dismissal and interrupted exit animations.
+
+## 1.2.1
+
+- Restore optional background pause controls and compact dialog constraints with an accessible hidden title.
+- Alternate the Flutter sphere and lightning with a paused, accessibility-aware crossfade.
+- Align Flutter toast status plates and multiline messages at the top.
+
 ## 1.0.0
 
 ## 1.2.0
