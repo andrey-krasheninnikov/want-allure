@@ -38,6 +38,10 @@ class VerificationTest(unittest.TestCase):
                 pass
 
             def do_GET(self):
+                if self.headers.get('User-Agent', '').startswith('Python-urllib/'):
+                    self.send_response(403)
+                    self.end_headers()
+                    return
                 path = urlsplit(self.path).path.lstrip('/')
                 if not path.endswith('/') and path + '/index.html' in files:
                     self.send_response(301)

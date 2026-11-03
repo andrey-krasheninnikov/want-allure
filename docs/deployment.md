@@ -36,7 +36,7 @@ bun run web:deploy
 
 This runs `web:build` and `web:check`, writes `release.json` with the source revision and file checksums, and creates an exclusive archive under `~/.local/share/want-allure/releases`. It uploads to a unique temporary server directory, checks the archive and every file, and atomically switches `data/current` under a nonblocking lock. `data/previous` retains the previous release. Existing revision directories are immutable: a different archive for the same SHA is refused.
 
-The command verifies public routes, metadata, fonts, shaders, runtime, MIME and cache headers. Verification failure restores the previous pointer; on the first deployment it removes only the new current pointer. Interrupted or ambiguous SSH results require a fresh status check before any retry:
+The command verifies public routes, metadata, fonts, shaders, runtime, MIME and cache headers. Its HTTP requests identify themselves as WantAllureReleaseCheck; the default Python client identifier is rejected by the current CDN configuration. Verification failure restores the previous pointer; on the first deployment it removes only the new current pointer. Interrupted or ambiguous SSH results require a fresh status check before any retry:
 
 ```sh
 ssh wf-landings 'sudo -n python3 /opt/want/apps/allure/deploy-web.py status --root /opt/want/apps/allure/data'
