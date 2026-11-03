@@ -33,6 +33,7 @@ def verify(base, revision=None):
     if not __debug__:
         raise RuntimeError('HTTP verification requires assertions enabled')
     opener = build_opener(NoRedirect())
+    opener.addheaders = [('User-Agent', 'WantAllureReleaseCheck/1.0 (+https://allure.want.foundation/)')]
     manifest = None
 
     def get(path, expected=200):
