@@ -2,6 +2,10 @@
 
 ## 1.2.0
 
+- Add controlled sliders and shader lightning, with public exports and packaged shader resources.
+- Refine card highlights, responsive tables, comment paging and spring feedback.
+- Group the bilingual catalogue into seven categories and synchronize RTL/category with its host without replacing the engine.
+
 - Fix the default multiline field limit so the textarea can grow from its minimum height.
 
 - Add Want Allure peacock logos and backgrounds while preserving existing resource paths.

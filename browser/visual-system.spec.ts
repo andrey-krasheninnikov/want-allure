@@ -1,3 +1,4 @@
+import { category } from './helpers';
 import { expect, test } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import tokens from '../packages/foundation/tokens.json' with { type: 'json' };
@@ -16,8 +17,9 @@ for (const width of [320, 768, 1024, 1440]) test('visual system works at ' + wid
   await page.goto('/react/');
   await expect(page.locator('astro-island[ssr]')).toHaveCount(0, { timeout: 15000 });
   await page.evaluate(() => document.fonts.ready);
-  if (dark) await page.getByRole('button', { name: 'Toggle RTL' }).click();
+  if (dark) await page.getByRole('switch', { name: 'Right to left', exact: true }).click();
 
+  await category(page,'navigation');
   for (const selector of ['[data-slot="navigation-menu-link"]', '[data-slot="breadcrumb-link"]', '[data-slot="breadcrumb-page"]']) {
     const controls = page.locator(selector);
     for (const control of await controls.all()) {
@@ -27,6 +29,7 @@ for (const width of [320, 768, 1024, 1440]) test('visual system works at ' + wid
       expect((await control.boundingBox())!.height).toBeGreaterThanOrEqual(44);
     }
   }
+  await category(page,'foundation');
   const typeRows = page.locator('.demo-type-row [data-slot="typography"]');
   await expect(typeRows).toHaveCount(17);
   for (const [name, style] of Object.entries(tokens.typography.styles)) {
@@ -39,6 +42,7 @@ for (const width of [320, 768, 1024, 1440]) test('visual system works at ' + wid
   await expect(page.locator('.demo-type-locales [lang="ar"]')).toHaveCSS('font-family', /Noto Sans Arabic/);
   await expect(typeRows.and(page.locator('[data-variant="code-block"]'))).toHaveCSS('direction', 'ltr');
 
+  await category(page,'effects');
   for (const [variant, animation] of [['spinner', 'want-loader-rotate'], ['dots', 'want-loader-dot'], ['bars', 'want-loader-bar'], ['orbit', 'want-loader-rotate']]) {
     const loader = page.getByRole('status', { name: 'Loading with ' + variant, exact: true });
     await expect(loader).toBeVisible();
@@ -80,6 +84,7 @@ for (const width of [320, 768, 1024, 1440]) test('visual system works at ' + wid
   await expect(page.getByText('CTA activated locally.', { exact: true })).toBeVisible();
   if (width === 1440) await page.locator('section').filter({ has: page.getByRole('heading', { name: 'Reusable background glow', exact: true }) }).screenshot({ path: testInfo.outputPath('glow.png') });
 
+  await category(page,'feedback');
   await page.clock.install();
   const palette = tokens.themes.wallpapers[dark ? 'dark' : 'light'];
   for (const variant of ['error', 'warning', 'info', 'success'] as const) {
@@ -125,6 +130,7 @@ for (const width of [320, 768, 1024, 1440]) test('visual system works at ' + wid
   await expect(page.locator('[data-slot="snackbar"]')).toHaveCount(0);
 
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  await category(page,'effects');
   await page.emulateMedia({ forcedColors: 'active' });
   await expect(glow).toBeHidden();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
@@ -134,12 +140,15 @@ for (const width of [320, 768, 1024, 1440]) test('visual system works at ' + wid
   expect(await glow.evaluate(element => getComputedStyle(element, '::before').animationName)).toBe(reduced ? 'none' : 'want-glow-wave');
   if (width === 320) {
     const zoomStyle = await page.addStyleTag({ content: 'html { font-size:200%; }' });
+    await category(page,'foundation');
     await expect(typeRows.and(page.locator('[data-variant="body"]'))).toHaveCSS('font-size', '32px');
     for (const title of ['Typography', 'Navigation menu and breadcrumbs', 'Custom loaders', 'Shimmer placeholders', 'Animated text', 'Reusable background glow', 'Semantic snackbars']) {
+      await category(page,title==='Typography'?'foundation':title==='Navigation menu and breadcrumbs'?'navigation':title==='Semantic snackbars'?'feedback':'effects');
       const section = page.locator('.kit-section').filter({ has: page.getByRole('heading', { name: title, exact: true }) });
       const layout = await section.evaluate(element => ({ scroll: element.scrollWidth, width: element.clientWidth }));
       expect(layout.scroll, title + ' fits at 200% text').toBeLessThanOrEqual(layout.width + 1);
     }
+    await category(page,'feedback');
     await page.getByRole('button', { name: 'Show error snackbar', exact: true }).click();
     const box = await page.locator('[data-slot="snackbar"]').boundingBox();
     expect(box!.x).toBeGreaterThanOrEqual(0);

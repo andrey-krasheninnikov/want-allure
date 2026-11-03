@@ -539,13 +539,13 @@ void main() {
   testWidgets('packaged shaders compile and shader instances dispose', (
     tester,
   ) async {
-    for (final name in ['shimmer', 'sphere']) {
+    for (final name in ['shimmer', 'sphere', 'lightning']) {
       final program = await tester.runAsync(
         () => ui.FragmentProgram.fromAsset('shaders/$name.frag'),
       );
       expect(program, isNotNull);
       final shader = program!.fragmentShader();
-      for (var i = 0; i < 12; i++) {
+      for (var i = 0; i < (name == 'lightning' ? 11 : 12); i++) {
         shader.setFloat(i, .5);
       }
       shader.dispose();

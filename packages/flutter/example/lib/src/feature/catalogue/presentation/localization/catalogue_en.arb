@@ -311,5 +311,18 @@
   "info": "Info",
   "success": "Success",
   "brandAndTheme": "Brand and theme",
-  "componentPreview": "Component preview"
+  "componentPreview": "Component preview",
+  "categoryFoundation": "Foundation",
+  "categoryInputs": "Inputs",
+  "categoryNavigation": "Navigation",
+  "categoryData": "Data",
+  "categoryFeedback": "Feedback",
+  "categoryEffects": "Effects",
+  "categoryCompositions": "Compositions",
+  "componentsInAction": "Components in action",
+  "sliders": "Sliders",
+  "intensity": "Intensity",
+  "range": "Range",
+  "backgroundLightning": "Background lightning",
+  "lightAndSpace": "Light and space"
 }

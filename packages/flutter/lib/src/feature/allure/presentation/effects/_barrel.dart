@@ -2,6 +2,7 @@ export 'animated_text.dart';
 export 'background.dart';
 export 'confetti.dart';
 export 'glow.dart';
+export 'lightning_background.dart';
 export 'loader.dart';
 export 'motion.dart';
 export 'shader_surface.dart';

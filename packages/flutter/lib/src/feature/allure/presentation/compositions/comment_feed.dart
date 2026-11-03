@@ -1,6 +1,7 @@
 import 'dart:math' as math;
 
 import 'package:flutter/widgets.dart';
+import 'package:sprung/sprung.dart';
 
 import 'package:want_allure/src/feature/allure/presentation/_barrel.dart';
 
@@ -89,8 +90,8 @@ class _WantCommentFeedState extends State<WantCommentFeed> {
     } else {
       _scroll.animateTo(
         offset,
-        duration: const Duration(milliseconds: 180),
-        curve: Curves.easeOut,
+        duration: const Duration(milliseconds: 380),
+        curve: Sprung.criticallyDamped,
       );
     }
   }
@@ -123,6 +124,7 @@ class _WantCommentFeedState extends State<WantCommentFeed> {
             child: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               controller: _scroll,
+              physics: _CommentPagePhysics(step: _step),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 spacing: 16,
@@ -260,4 +262,37 @@ class _WantCommentFeedState extends State<WantCommentFeed> {
       );
     },
   );
+}
+
+class _CommentPagePhysics extends ScrollPhysics {
+  final double step;
+  const _CommentPagePhysics({required this.step, super.parent});
+  @override
+  _CommentPagePhysics applyTo(ScrollPhysics? ancestor) =>
+      _CommentPagePhysics(step: step, parent: buildParent(ancestor));
+  @override
+  Simulation? createBallisticSimulation(
+    ScrollMetrics position,
+    double velocity,
+  ) {
+    if ((velocity <= 0 && position.pixels <= position.minScrollExtent) ||
+        (velocity >= 0 && position.pixels >= position.maxScrollExtent)) {
+      return super.createBallisticSimulation(position, velocity);
+    }
+    final tolerance = toleranceFor(position);
+    var page = position.pixels / step;
+    if (velocity.abs() > tolerance.velocity) page += velocity.sign * .5;
+    final target = (page.round() * step).clamp(
+      position.minScrollExtent,
+      position.maxScrollExtent,
+    );
+    if (target == position.pixels) return null;
+    return ScrollSpringSimulation(
+      spring,
+      position.pixels,
+      target,
+      velocity,
+      tolerance: tolerance,
+    );
+  }
 }

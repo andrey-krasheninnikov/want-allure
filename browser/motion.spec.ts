@@ -1,3 +1,4 @@
+import { category } from './helpers';
 import { test, expect } from '@playwright/test';
 
 for (const width of [320, 1440]) for (const reduced of [false, true]) {
@@ -8,8 +9,9 @@ for (const width of [320, 1440]) for (const reduced of [false, true]) {
     await page.emulateMedia({ reducedMotion: reduced ? 'reduce' : 'no-preference', colorScheme: width === 320 ? 'dark' : 'light' });
     await page.goto('/react/');
     await expect(page.locator('astro-island[ssr]')).toHaveCount(0, { timeout: 15000 });
-    if (width === 320) await page.getByRole('button', { name: 'Toggle RTL' }).click();
+    if (width === 320) await page.getByRole('switch', { name: 'Right to left', exact: true }).click();
 
+    await category(page,'navigation');
     const openDialog = page.getByRole('button', { name: 'Open dialog', exact: true });
     await openDialog.click();
     const dialog = page.getByRole('dialog', { name: 'Wallpaper details' });
@@ -33,6 +35,7 @@ for (const width of [320, 1440]) for (const reduced of [false, true]) {
     await expect(page.locator('[data-slot="sheet-overlay"]')).toHaveCount(0);
     await expect(openSheet).toBeFocused();
 
+    await category(page,'inputs');
     const collection = page.getByRole('combobox', { name: 'Collection', exact: true });
     await collection.click();
     await expect(page.getByRole('listbox')).toHaveCSS('animation-name', reduced ? 'none' : 'want-scale-in');
@@ -41,6 +44,7 @@ for (const width of [320, 1440]) for (const reduced of [false, true]) {
     await expect(collection).toContainText('Woven Spectrum');
     await expect(collection).toBeFocused();
 
+    await category(page,'compositions');
     const date = page.getByRole('button', { name: /^Due date:/ });
     await date.click();
     const calendar = page.getByRole('dialog', { name: 'Calendar' });
@@ -50,6 +54,7 @@ for (const width of [320, 1440]) for (const reduced of [false, true]) {
     await expect(calendar).toHaveCount(0);
     await expect(date).toBeFocused();
 
+    await category(page,'navigation');
     await page.getByRole('tab', { name: 'Mobile', exact: true }).click();
     const panel = page.getByRole('tabpanel', { name: 'Mobile', exact: true });
     await expect(panel).toHaveText('Portrait wallpaper preview.');
@@ -64,6 +69,7 @@ for (const width of [320, 1440]) for (const reduced of [false, true]) {
     await expect(content).toBeHidden();
     await expect(accordion).toHaveAttribute('aria-expanded', 'false');
 
+    await category(page,'inputs');
     const radio = page.getByRole('radio', { name: 'Mobile', exact: true });
     await radio.click();
     await expect(radio).toBeChecked();

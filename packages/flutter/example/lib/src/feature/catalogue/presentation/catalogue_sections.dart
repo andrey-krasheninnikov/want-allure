@@ -1,0 +1,38 @@
+const catalogueCategories = [
+  'foundation',
+  'inputs',
+  'navigation',
+  'data',
+  'feedback',
+  'effects',
+  'compositions',
+];
+String catalogueCategory(String? value) =>
+    catalogueCategories.contains(value) ? value! : 'foundation';
+const catalogueSectionCategories = {
+  'brand': 'foundation',
+  'palette': 'foundation',
+  'typography': 'foundation',
+  'buttons': 'inputs',
+  'fields': 'inputs',
+  'selection': 'inputs',
+  'search': 'inputs',
+  'sliders': 'inputs',
+  'disclosure': 'navigation',
+  'overlays': 'navigation',
+  'navigation': 'navigation',
+  'table': 'data',
+  'files': 'data',
+  'feedback': 'feedback',
+  'notifications': 'feedback',
+  'loaders': 'effects',
+  'shimmer': 'effects',
+  'animated-text': 'effects',
+  'glow': 'effects',
+  'lightning': 'effects',
+  'background': 'effects',
+  'date-url-window': 'compositions',
+  'cards': 'compositions',
+  'contact': 'compositions',
+  'comments': 'compositions',
+};

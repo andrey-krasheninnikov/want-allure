@@ -22,7 +22,7 @@ Upgrading from the previous package names? Follow the [1.0.0 migration guide](do
 For a published release, install the matching versions:
 
 ```sh
-npm install @want-foundation/allure@1.2.0 @want-foundation/allure-react@1.2.0 react@^19 react-dom@^19
+npm install @want-foundation/allure@1.2.0 @want-foundation/allure-react@1.2.0
 ```
 
 Import the stylesheet once in the application's entry point. The font stylesheet is optional and serves its font files locally.
@@ -49,7 +49,7 @@ No stylesheet copying, source aliases or scanning library sources with Tailwind 
 flutter pub add want_allure:^1.2.0
 ```
 
-Import `package:want_allure/want_allure.dart` and wrap the application content with `WantTheme`. The package includes local fonts, its SVG asset and all 44 web component families. See [Flutter documentation](packages/flutter/README.md) and [component parity](docs/flutter-parity.md).
+Import `package:want_allure/want_allure.dart` and wrap the application content with `WantTheme`. The package includes local fonts, its SVG asset and all 46 web component families. See [Flutter documentation](packages/flutter/README.md) and [component parity](docs/flutter-parity.md).
 
 From this checkout, use FVM with Flutter 3.47.7 and Dart 3.13.5:
 
@@ -115,6 +115,12 @@ Additional controls are Checkbox, DropdownMenu, Toast, Tooltip, Combobox, Popove
 
 Set data-theme="light" or data-theme="dark" on the document root for explicit selection. Also toggle the dark class for class-based Tailwind states. Without an explicit choice, the stylesheet follows the system color preference.
 
+## Component showcases
+
+The React and Flutter catalogues share seven categories: Foundation, Inputs, Navigation, Data, Feedback, Effects and Compositions. A `section` query parameter opens a category directly. Browser history, language changes and the common theme/RTL controls preserve catalogue context. Visited examples keep edited values; hidden panels pause their motion.
+
+The landing page includes a rotatable extrusion of the supplied transparent logo, installation commands and animated FAQ. Its Three.js renderer loads only on the landing page and renders on demand. The SVG remains visible if rendering is unavailable.
+
 ## Optional effects
 
 ```ts
@@ -164,6 +170,8 @@ The artifact is `apps/showcase/dist`, including `/_flutter/`. Generated runtime 
 The source artwork lives in `assets/brand`. Logo variants, backgrounds, favicon, social images and README banners preserve the supplied geometry and colors. The source set includes its original usage notes and font licenses. The ZIP duplicate is not stored.
 
 Run `bun run assets:sync` after changing the source artwork. `bun run assets:check` verifies the package and Flutter web copies. Runtime logos and backgrounds are distributed under `@want-foundation/allure/assets/allure/` and Flutter's `assets/brand/allure/`. The existing Wallpapers asset remains available. Product applications choose their own approved identity.
+
+LightningBackground (React) and WantLightningBackground (Flutter) add primary/warning discharges to a bounded decorative surface. Both accept `paused` and an optional pair of colors. Flutter uses the bundled lightning fragment shader with a static fallback. Effects pause outside the viewport and when the document/application is inactive. Reduced motion keeps a static drawing; forced/high-contrast modes remove the decoration.
 
 ## Develop and verify
 

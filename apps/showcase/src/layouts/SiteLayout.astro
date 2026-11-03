@@ -3,6 +3,7 @@ import '@want-foundation/allure/styles.css';
 import '@want-foundation/allure/fonts.css';
 import '../styles.css';
 import '../site.css';
+import SiteHeader from '../components/SiteHeader';
 import { copy, route, siteUrl, type Locale, type Section } from '../site';
 interface Props { locale: Locale; section?: Section; title?: string; description?: string; frame?: boolean; notFound?: boolean; }
 const { locale, section = 'home', frame = false, notFound = false } = Astro.props;
@@ -29,25 +30,15 @@ const schema = [{ '@context': 'https://schema.org', '@type': 'WebSite', name: 'W
     <script is:inline>
       let theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
       try { const saved = localStorage.getItem('want-theme'); if (saved === 'light' || saved === 'dark') theme = saved; } catch {}
+      try { document.documentElement.dir=localStorage.getItem('want-direction')==='rtl'?'rtl':'ltr'; } catch {}
       document.documentElement.dataset.theme = theme;
       document.documentElement.classList.toggle('dark', theme === 'dark');
     </script>
   </head>
   <body class:list={['site-shell', { 'flutter-page': frame }]}>
     <a href="#main" class="skip-link">{c.skip}</a>
-    <header class="site-header">
-      <a class="site-brand" href={route(locale)} aria-label="Want Allure">
-        <img class="logo-light" src="/brand/logos/light/transparent.svg" alt="" width="36" height="36" /><img class="logo-dark" src="/brand/logos/dark/transparent.svg" alt="" width="36" height="36" /><span>Want Allure</span>
-      </a>
-      <nav class="site-nav" aria-label={c.navigation}>
-        {(['home', 'react', 'flutter'] as const).map(item => <a href={route(locale, item)} aria-current={section === item && !notFound ? 'page' : undefined}>{item === 'home' ? c.home : item === 'react' ? 'React' : 'Flutter'}</a>)}
-        <a href="https://github.com/andrey-krasheninnikov/want-allure">GitHub</a>
-      </nav>
-      <div class="site-preferences">
-        <a class="site-language" href={route(locale === 'en' ? 'ru' : 'en', section)} lang={locale === 'en' ? 'ru' : 'en'} aria-label={c.language}>{locale === 'en' ? 'RU' : 'EN'}</a>
-        <label class="site-theme"><input data-theme-toggle type="checkbox" role="switch" aria-label={c.theme} /><span aria-hidden="true">◐</span></label>
-      </div>
-    </header>
+    <SiteHeader locale={locale} section={section} notFound={notFound} client:load />
+    <noscript><nav class="site-noscript" aria-label={c.language}><a href={route('en',section)}>English</a><a href={route('ru',section)}>Русский</a></nav></noscript>
     <main id="main" class:list={{ 'flutter-main': frame }} tabindex="-1"><slot /></main>
     {!frame && <footer class="site-footer"><span>Want Allure</span><a href="https://github.com/andrey-krasheninnikov/want-allure">{c.source}</a><a href="https://github.com/andrey-krasheninnikov/want-allure/blob/main/LICENSE">{c.license}</a><a href="https://www.npmjs.com/package/@want-foundation/allure-react">npm</a><a href="https://pub.dev/packages/want_allure">pub.dev</a></footer>}
     <script>

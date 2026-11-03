@@ -46,6 +46,8 @@ The 1.2.0 Flutter adapter covers every family exported by the React adapter. Flu
 | `loader` | `WantLoader` | loaders |
 | `shimmer` | `WantShimmer` | shimmer |
 | `animated-text` | `WantAnimatedText` | animated-text |
+| `lightning-background` | `WantLightningBackground` | lightning |
+| `ui/slider` | `WantSlider`, `WantRangeSlider` | sliders |
 | `glow` | `WantGlow` | glow |
 | `snackbar` | `WantSnackbar` | notifications |
 
@@ -62,3 +64,5 @@ Optional effects never own product actions. The background controller has pause/
 The 1.1.0 release adds a presentation barrel tree, Phosphor icons, toastification delivery, smooth_sheets bottom sheets, web selection/find and bundled fragment shaders. Top/left/right sheets preserve their ForUI behavior. New APIs are additive; existing Want constructors, callback contracts and notification handles remain available.
 
 The 1.2.0 example adds English/Russian catalogues and Allure branding. Its web build participates in the unified Astro application; translations and host-page settings remain example-owned.
+
+Both catalogues organize their 46 families into the same seven categories. Slider adapters accept controlled numeric values and callbacks; Flutter maps those values to ForUI internally. The Flutter range uses a `(start: double, end: double)` record. Lightning is a decorative background surface in both adapters; Flutter renders it through `lightning.frag`.

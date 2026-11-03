@@ -180,5 +180,18 @@
   "info": "Информация",
   "success": "Успех",
   "brandAndTheme": "Бренд и тема",
-  "componentPreview": "Пример компонентов"
+  "componentPreview": "Пример компонентов",
+  "categoryFoundation": "Основа",
+  "categoryInputs": "Ввод",
+  "categoryNavigation": "Навигация",
+  "categoryData": "Данные",
+  "categoryFeedback": "Обратная связь",
+  "categoryEffects": "Эффекты",
+  "categoryCompositions": "Композиции",
+  "componentsInAction": "Компоненты в действии",
+  "sliders": "Ползунки",
+  "intensity": "Интенсивность",
+  "range": "Диапазон",
+  "backgroundLightning": "Фоновые молнии",
+  "lightAndSpace": "Свет и пространство"
 }

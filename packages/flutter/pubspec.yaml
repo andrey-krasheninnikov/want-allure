@@ -37,6 +37,7 @@ dependencies:
   phosphoricons_flutter: ^1.1.1
   find_in_page: ^2.4.0
   visibility_detector: ^0.4.0+2
+  sprung: ^3.0.1
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -44,6 +45,7 @@ dev_dependencies:
   file_selector_platform_interface: ^2.7.0
 flutter:
   shaders:
+    - shaders/lightning.frag
     - shaders/shimmer.frag
     - shaders/sphere.frag
   assets:

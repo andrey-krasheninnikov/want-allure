@@ -156,7 +156,7 @@
 :where(a, button, input, textarea, select):focus-visible :where(svg, .text-muted-foreground, .text-link, small, [data-slot="card-description"]){ color: inherit; }
 :where(input, textarea):focus-visible{ outline: 2px solid var(--ring); outline-offset: 3px; background-color: var(--secondary); color: var(--foreground); }
 :where(input, textarea)::placeholder{ color: var(--muted-foreground); opacity: 1; }
-:where(input, textarea)[aria-invalid="true"]{ background-color: color-mix(in srgb, var(--destructive) 12%, var(--secondary)); }
+:where(input, textarea)[aria-invalid="true"]{ color:var(--foreground); background-color: color-mix(in srgb, var(--destructive) 12%, var(--secondary)); }
 :where(input, textarea)[aria-invalid="true"]:focus-visible{ background-color: color-mix(in srgb, var(--destructive) 12%, var(--secondary)); }
 .gallery-card > a:focus-visible [data-slot="badge"]{ background: var(--background); color: var(--foreground); }
 [data-slot="select-item"][data-highlighted]{ background: var(--foreground); color: var(--background); }
@@ -327,3 +327,21 @@ html[data-background-motion="running"] .page-background > div::after{ animation-
 :dir(rtl) .ui-date-nav svg { transform:scaleX(-1); }
 @media (max-width:359px) { .ui-date-popover { padding:6px; } }
 @media (forced-colors:active) { .ui-date-day[aria-pressed="true"] { outline:2px solid Highlight; outline-offset:-2px; } }
+
+.ui-lightning-background { position:absolute; inset:0; pointer-events:none; overflow:hidden; contain:paint; }
+.ui-lightning-background svg { width:100%; height:100%; }
+.lightning-bolt { stroke-width:1.6; opacity:0; stroke-dasharray:100; stroke-dashoffset:100; animation:want-lightning 9s linear infinite; }
+.lightning-primary { stroke:var(--lightning-primary,var(--primary)); filter:drop-shadow(0 0 5px var(--lightning-primary,var(--primary))); }
+.lightning-warning { stroke:var(--lightning-warning,var(--warning)); filter:drop-shadow(0 0 5px var(--lightning-warning,var(--warning))); animation-delay:4.5s; }
+[data-slot=lightning-background][data-paused=true] .lightning-bolt { animation-play-state:paused; }
+@keyframes want-lightning { 0%,2% { opacity:0; stroke-dashoffset:100; } 8% { opacity:.65; stroke-dashoffset:0; } 20% { opacity:0; stroke-dashoffset:0; } 100% { opacity:0; stroke-dashoffset:0; } }
+.ui-slider { position:relative; display:flex; align-items:center; width:100%; min-width:44px; min-height:44px; touch-action:pan-y; user-select:none; cursor:pointer; }
+.ui-slider[data-disabled] { opacity:.45; cursor:not-allowed; }
+.ui-slider-track { position:relative; flex:1; height:8px; border-radius:99px; background:var(--secondary); }
+.ui-slider-range { position:absolute; height:100%; background:var(--primary); border-radius:inherit; }
+.ui-slider-thumb { display:block; width:24px; height:24px; border-radius:50%; background:var(--card); box-shadow:inset 0 0 0 3px var(--primary),0 2px 8px #0002; transition:transform 180ms var(--motion-ease),box-shadow 180ms; }
+.ui-slider-thumb::before { content:''; position:absolute; inset:-10px; }
+.ui-slider-thumb:hover,.ui-slider[data-dragging] .ui-slider-thumb { transform:scale(1.12); box-shadow:inset 0 0 0 4px var(--primary),0 0 0 6px color-mix(in srgb,var(--primary) 16%,transparent); }
+.ui-slider-thumb:focus-visible { outline:2px solid var(--ring); outline-offset:5px; }
+@media(prefers-reduced-motion:reduce) { .lightning-bolt { animation:none; opacity:.12; stroke-dashoffset:0; } .ui-slider-thumb { transition:none; } }
+@media(forced-colors:active) { .ui-lightning-background { display:none; } .ui-slider-track { background:CanvasText; } .ui-slider-range { background:Highlight; } .ui-slider-thumb { background:ButtonFace; outline:2px solid ButtonText; } }

@@ -53,3 +53,5 @@ The example leaves application effects and localized copy in the consumer. Use t
 Use `data-theme="light"` or `data-theme="dark"` on the document root for an explicit theme, and keep the `dark` class in sync for class-based utilities. Without an explicit theme, foundation styles follow the system preference. ThemeToggle is controlled; the consumer owns persistence and system subscriptions.
 
 Respect logical direction and technical LTR isolation. Pass prepared, localized dates and labels so SSR and hydration agree. Keep routes, APIs, telemetry, advertising, authentication, storage, and localization dictionaries outside the public packages.
+
+Slider accepts a numeric value and RangeSlider a pair of values, with consumer callbacks, labels and optional value formatting. RangeSlider requires two localized thumbLabels. LightningBackground is a decorative bounded layer with paused and optional color-pair props. It defaults to primary and warning, pauses outside the viewport or in hidden documents, and leaves input and text selection untouched.

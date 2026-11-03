@@ -5,7 +5,7 @@ import { Button, Checkbox, Combobox, DropdownMenu, DropdownMenuTrigger, Dropdown
   FileUpload, Pagination, Popover, PopoverTrigger, PopoverContent, PopoverClose, Progress,
   Table, TableCaption, TableHeader, TableBody, TableRow, TableHead, TableCell, Skeleton,
   ToastProvider, Toast, ToastTitle, ToastDescription, ToastAction, ToastClose, ToastViewport,
-  TooltipProvider, Tooltip, TooltipTrigger, TooltipContent, Input } from '@want-foundation/allure-react';
+  TooltipProvider, Tooltip, TooltipTrigger, TooltipContent, Input, Slider, RangeSlider } from '@want-foundation/allure-react';
 import { Section } from './Section';
 
 function DemoCheckbox() {
@@ -81,14 +81,26 @@ function DemoFiles() {
     labels={{ choose: t("Choose attachments"), drop: t("Drop images or text files here. Up to 3 files, 1 MB each. Files stay in this page."), remove: name => t("Remove ") + name, invalidType: name => name + t(": choose an image or text file."), tooLarge: name => name + t(": maximum size is 1 MB."), tooMany: max => t("Choose at most ") + max + t(" files.") }} />;
 }
 
+function DemoSliders() {
+  const locale=useCatalogueLocale();
+  const [value,setValue]=useState(42),[range,setRange]=useState<[number,number]>([25,75]);
+  const label=locale==='ru'?'Интенсивность':'Intensity',rangeLabel=locale==='ru'?'Диапазон':'Range';
+  return <Section category="inputs" title={locale==='ru'?'Ползунки':'Sliders'}><div className="demo-stack">
+    <label>{label}: <output>{value}%</output><Slider label={label} value={value} onValueChange={setValue} formatValue={value=>`${value}%`}/></label>
+    <label>{rangeLabel}: <output>{range.join(' – ')}</output><RangeSlider label={rangeLabel} value={range} onValueChange={setRange} thumbLabels={locale==='ru'?['Начало диапазона','Конец диапазона']:['Range start','Range end']}/></label>
+    <Slider label={locale==='ru'?'Отключённый ползунок':'Disabled slider'} value={60} onValueChange={()=>{}} disabled/>
+  </div></Section>;
+}
+
 export function AdditionalDemos() {
   const t = useT();
   return <>
-    <Section title={t("Checkboxes")}><DemoCheckbox /></Section>
-    <Section title={t("Menus, tooltips and popovers")}><DemoOverlays /></Section>
-    <Section title={t("Notifications and progress")}><DemoFeedback /></Section>
-    <Section title={t("Searchable combobox")}><DemoCombobox /></Section>
-    <Section title={t("Table and pagination")}><DemoTable /></Section>
-    <Section title={t("File selection")}><DemoFiles /></Section>
+    <DemoSliders />
+    <Section category="inputs" title={t("Checkboxes")}><DemoCheckbox /></Section>
+    <Section category="navigation" title={t("Menus, tooltips and popovers")}><DemoOverlays /></Section>
+    <Section category="feedback" title={t("Notifications and progress")}><DemoFeedback /></Section>
+    <Section category="inputs" title={t("Searchable combobox")}><DemoCombobox /></Section>
+    <Section category="data" title={t("Table and pagination")}><DemoTable /></Section>
+    <Section category="data" title={t("File selection")}><DemoFiles /></Section>
   </>;
 }

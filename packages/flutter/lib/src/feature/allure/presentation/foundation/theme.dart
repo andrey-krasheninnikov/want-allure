@@ -110,8 +110,8 @@ class WantThemeData {
       forui: theme.copyWith(
         accordionStyle: theme.accordionStyle.copyWith(
           motion: FAccordionMotion(
-            expandDuration: WantTokens.motion['transitionMs']!,
-            collapseDuration: WantTokens.motion['transitionMs']!,
+            expandDuration: const Duration(milliseconds: 280),
+            collapseDuration: const Duration(milliseconds: 220),
             expandCurve: const Cubic(.32, .72, 0, 1),
           ),
         ),

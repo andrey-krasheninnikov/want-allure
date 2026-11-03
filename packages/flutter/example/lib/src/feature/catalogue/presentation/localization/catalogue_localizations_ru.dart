@@ -598,4 +598,43 @@ class CatalogueLocalizationsRu extends CatalogueLocalizations {
 
   @override
   String get componentPreview => 'Пример компонентов';
+
+  @override
+  String get categoryFoundation => 'Основа';
+
+  @override
+  String get categoryInputs => 'Ввод';
+
+  @override
+  String get categoryNavigation => 'Навигация';
+
+  @override
+  String get categoryData => 'Данные';
+
+  @override
+  String get categoryFeedback => 'Обратная связь';
+
+  @override
+  String get categoryEffects => 'Эффекты';
+
+  @override
+  String get categoryCompositions => 'Композиции';
+
+  @override
+  String get componentsInAction => 'Компоненты в действии';
+
+  @override
+  String get sliders => 'Ползунки';
+
+  @override
+  String get intensity => 'Интенсивность';
+
+  @override
+  String get range => 'Диапазон';
+
+  @override
+  String get backgroundLightning => 'Фоновые молнии';
+
+  @override
+  String get lightAndSpace => 'Свет и пространство';
 }

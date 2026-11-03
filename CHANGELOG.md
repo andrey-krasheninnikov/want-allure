@@ -2,6 +2,11 @@
 
 ## 1.2.0
 
+- Refine the landing page with a floating preference header, a rotatable pixel logo, glowing framework actions, installation instructions and animated FAQ.
+- Organize bilingual catalogues into seven categories with shared RTL, direct links, history and retained form values.
+- Add controlled Slider/RangeSlider and primary/warning lightning to both adapters; Flutter lightning uses a bundled fragment shader.
+- Refine Flutter card hover, table surfaces, comment pagination and restrained spring feedback. Keep invalid input values readable on status fills.
+
 - Disable reduced-motion transitions completely so theme colors update together.
 
 - Fix the default multiline field limit so the textarea can grow from its minimum height.

@@ -598,4 +598,43 @@ class CatalogueLocalizationsEn extends CatalogueLocalizations {
 
   @override
   String get componentPreview => 'Component preview';
+
+  @override
+  String get categoryFoundation => 'Foundation';
+
+  @override
+  String get categoryInputs => 'Inputs';
+
+  @override
+  String get categoryNavigation => 'Navigation';
+
+  @override
+  String get categoryData => 'Data';
+
+  @override
+  String get categoryFeedback => 'Feedback';
+
+  @override
+  String get categoryEffects => 'Effects';
+
+  @override
+  String get categoryCompositions => 'Compositions';
+
+  @override
+  String get componentsInAction => 'Components in action';
+
+  @override
+  String get sliders => 'Sliders';
+
+  @override
+  String get intensity => 'Intensity';
+
+  @override
+  String get range => 'Range';
+
+  @override
+  String get backgroundLightning => 'Background lightning';
+
+  @override
+  String get lightAndSpace => 'Light and space';
 }

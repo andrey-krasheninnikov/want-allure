@@ -1,10 +1,11 @@
+import { category } from './helpers';
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
 for (const width of [320, 1440]) test('shared kit works independently at ' + width + 'px', async ({ page }, testInfo) => {
   const errors: string[] = []; page.on('pageerror', error => errors.push(error.message));
   await page.setViewportSize({ width, height: 1000 }); await page.emulateMedia({ colorScheme: 'dark' }); await page.goto('/react/');
-  await expect(page.getByRole('heading', { name: 'Shared by design.' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Components in action' })).toBeVisible();
   await expect(page.locator('astro-island[ssr]')).toHaveCount(0, { timeout: 15000 });
   await page.evaluate(() => document.fonts.ready);
   for (const theme of ['light', 'dark']) {
@@ -15,11 +16,13 @@ for (const width of [320, 1440]) test('shared kit works independently at ' + wid
     const axe = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze();
     expect(axe.violations.map(item => ({ id: item.id, targets: item.nodes.map(node => ({ target: node.target, details: node.any.map(check => check.message) })) }))).toEqual([]);
   }
+  await category(page,'navigation');
   await page.getByRole('button', { name: 'Open dialog', exact: true }).click();
   await expect(page.getByRole('dialog')).toBeVisible(); await page.keyboard.press('Escape');
   await expect(page.getByRole('button', { name: 'Open dialog', exact: true })).toBeFocused();
-  await page.getByRole('button', { name: 'Toggle RTL' }).click();
+  await page.getByRole('switch', { name: 'Right to left', exact: true }).click();
   await expect(page.locator('html')).toHaveAttribute('dir', 'rtl');
+  await category(page,'compositions');
   await page.getByRole('button', { name: 'Report', exact: true }).first().click();
   await expect(page.getByRole('button', { name: 'Saved', exact: true })).toBeDisabled();
   await page.getByRole('button', { name: 'Next comments' }).click();
@@ -33,7 +36,7 @@ for (const width of [320, 1440]) test('shared kit works independently at ' + wid
 
 test('effects respect preferences and dispose their particles', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'no-preference' });
-  await page.goto('/react/'); await expect(page.locator('astro-island[ssr]')).toHaveCount(0);
+  await page.goto('/react/?section=effects'); await expect(page.locator('astro-island[ssr]')).toHaveCount(0);
   await page.getByRole('button', { name: 'Preview confetti' }).click();
   await expect(page.locator('.download-confetti')).toHaveCount(18);
   await expect(page.locator('.download-confetti')).toHaveCount(0);
@@ -66,11 +69,11 @@ test('keyboard focus retains a visible outline in both themes', async ({ page })
     const overview = page.getByRole('navigation', { name: 'Main navigation' }).getByRole('link', { name: 'Overview' });
     await expect(overview).toBeFocused();
     await expect(overview).toHaveCSS('outline-width', '2px');
-    await expect(overview).toHaveCSS('outline-offset', '3px');
+    await expect(overview).toHaveCSS('outline-offset', '4px');
     await theme.focus();
-    await expect(page.locator('.site-theme')).toHaveCSS('outline-width', '2px');
-    await page.getByRole('button', { name: 'Toggle RTL' }).focus();
-    await expect(page.getByRole('button', { name: 'Toggle RTL' })).toHaveCSS('outline-width', '2px');
+    await expect(theme).toHaveCSS('outline-width', '2px');
+    await page.getByRole('switch', { name: 'Right to left', exact: true }).focus();
+    await expect(page.getByRole('switch', { name: 'Right to left', exact: true })).toHaveCSS('outline-width', '2px');
   }
 });
 
@@ -103,6 +106,7 @@ for (const width of [320, 1440]) test('date, URL and window controls work at ' +
   await page.emulateMedia({ colorScheme: width === 320 ? 'dark' : 'light', reducedMotion: 'reduce' });
   await page.goto('/react/');
   await expect(page.locator('astro-island[ssr]')).toHaveCount(0, { timeout: 15000 });
+  await category(page,'compositions');
   const window = page.getByRole('region', { name: 'Project planning' });
   await expect(window.getByRole('heading', { name: 'Project planning' })).toBeVisible();
   await window.getByRole('button', { name: 'Due date' }).click();
@@ -137,7 +141,7 @@ for (const width of [320, 1440]) test('date, URL and window controls work at ' +
   await window.getByRole('button', { name: 'Save example' }).click();
   await expect(window.getByRole('status')).toHaveText('Example saved locally.');
   if (width === 1440) {
-    await page.getByRole('button', { name: 'Toggle RTL' }).click();
+    await page.getByRole('switch', { name: 'Right to left', exact: true }).click();
     await window.getByRole('button', { name: 'Due date' }).click();
     await calendar.getByRole('button', { name: /29 October 2026/ }).focus();
     await page.keyboard.press('ArrowRight');

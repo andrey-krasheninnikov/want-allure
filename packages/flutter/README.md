@@ -137,3 +137,15 @@ WantBrandLogo.asset(
 Choose `logos/dark/transparent.svg` for a dark surface. Other supplied logo backgrounds and PNG variants retain their filenames. The background artwork is under `assets/brand/allure/backgrounds/brand-light.svg` and `brand-dark.svg`. Consumers choose the asset for their current theme; the public widget constructors are unchanged.
 
 The repository's bilingual web catalogue is served by Astro at `/flutter/` and `/ru/flutter/`. Its browser integration and translations belong to the example application. Installing the UI package does not add a router, stored preference or host-page integration to a consumer.
+
+## Sliders, hover and lightning
+
+`WantSlider` accepts `value`, `onChanged`, `label`, `min`, `max`, `step`, optional `onChangeEnd` and `formatValue`. `WantRangeSlider` uses the same numeric settings and a record such as `(start: 25.0, end: 75.0)`. A null callback disables the control. ForUI supplies native interaction, RTL, keyboard and localized range semantics.
+
+`WantCard` has `hoverEffect: true` by default. Set it to false for a quiet reading surface. The moving highlight and soft shadow preserve layout and native pointer/selection behavior. Motion stops when inactive and respects reduced motion.
+
+Use `Positioned.fill(child: WantLightningBackground(paused: paused))` inside a bounded Stack. Its optional `colors` list contains exactly two colors; otherwise it uses primary and warning. The shader is bundled with the package. Loading failures and reduced motion use a static fallback; high contrast hides the decoration. The caller owns the pause control.
+
+`WantTableColumn.alignment` controls cell alignment and `sortLabel` provides a consumer-localized sort action name. Columns retain their minimum widths, expand proportionally on larger surfaces and scroll horizontally when necessary.
+
+The example groups components into seven categories. Its shared web header owns theme, language and RTL. The standalone example retains equivalent native controls. `sprung` is used for restrained feedback curves; drag positions and numeric values update directly.

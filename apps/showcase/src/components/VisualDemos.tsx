@@ -27,7 +27,7 @@ export function DemoTypography() {
 function DemoLoaders() {
   const t = useT();
   const [paused, setPaused] = useState(false);
-  return <Section title={t("Custom loaders")}><div className="demo-stack">
+  return <Section category="effects" title={t("Custom loaders")}><div className="demo-stack">
     <Button variant="secondary" onClick={() => setPaused(value => !value)}>{paused ? t("Resume loaders") : t("Pause loaders")}</Button>
     <div className="demo-loader-grid">{(['spinner', 'dots', 'bars', 'orbit'] as const).map(variant => <div className="demo-loader-cell" key={variant}><Loader label={t("Loading with ") + variant} variant={variant} size="lg" paused={paused} /><Typography variant="caption">{variant}</Typography></div>)}</div>
     <div className="demo-actions"><Loader label={t("Small loading indicator")} size="sm" paused={paused} /><Loader label={t("Medium loading indicator")} paused={paused} /><Loader label={t("Large loading indicator")} size="lg" paused={paused} /></div>
@@ -37,7 +37,7 @@ function DemoLoaders() {
 function DemoShimmers() {
   const t = useT();
   const [paused, setPaused] = useState(false);
-  return <Section title={t("Shimmer placeholders")}><div className="demo-stack">
+  return <Section category="effects" title={t("Shimmer placeholders")}><div className="demo-stack">
     <Button variant="secondary" onClick={() => setPaused(value => !value)}>{paused ? t("Resume shimmer") : t("Pause shimmer")}</Button>
     <div className="demo-shimmer-grid">{(['avatar', 'text', 'block', 'card'] as const).map(variant => <div className="demo-stack" key={variant}><Typography variant="caption">{variant}</Typography><Shimmer label={t("Loading ") + variant + t(" preview")} variant={variant} paused={paused} /></div>)}</div>
   </div></Section>;
@@ -47,7 +47,7 @@ function DemoAnimatedText() {
   const t = useT();
   const [index, setIndex] = useState(0);
   const messages = [t("Ready to explore"), t("Preparing the preview"), t("Everything is up to date")];
-  return <Section title={t("Animated text")}><div className="demo-stack">
+  return <Section category="effects" title={t("Animated text")}><div className="demo-stack">
     {(['fade', 'slide', 'blur'] as const).map(effect => <div key={effect}><Typography variant="caption" tone="muted">{effect}</Typography><Typography variant="lead"><AnimatedText text={messages[index]!} effect={effect} aria-live={effect === 'slide' ? 'polite' : 'off'} aria-atomic="true" /></Typography></div>)}
     <Button variant="secondary" onClick={() => setIndex(value => (value + 1) % messages.length)}>{t("Change example text")}</Button>
   </div></Section>;
@@ -57,7 +57,7 @@ function DemoGlow() {
   const t = useT();
   const [paused, setPaused] = useState(false);
   const [result, setResult] = useState('');
-  return <Section title={t("Reusable background glow")}><div className="demo-stack">
+  return <Section category="effects" title={t("Reusable background glow")}><div className="demo-stack">
     <Button variant="secondary" onClick={() => setPaused(value => !value)}>{paused ? t("Resume glow") : t("Pause glow")}</Button>
     <div className="glow-host demo-glow-surface"><Glow paused={paused} /><Typography variant="h3" as="h3">{t("A soft background")}</Typography><Typography>{t("Place the decorative layer behind any bounded surface.")}</Typography></div>
     <div className="demo-glow-cta-space"><span className="glow-host demo-glow-cta"><Glow paused={paused} /><Button onClick={() => setResult(t("CTA activated locally."))}>{t("Glowing CTA")}</Button></span></div>
@@ -80,7 +80,7 @@ function DemoSnackbars() {
   const [sequence, setSequence] = useState(0);
   const [result, setResult] = useState('');
   const copy = notifications[variant];
-  return <Section title={t("Semantic snackbars")}><SnackbarProvider label={t("Notification")}><div className="demo-stack">
+  return <Section category="feedback" title={t("Semantic snackbars")}><SnackbarProvider label={t("Notification")}><div className="demo-stack">
     <div className="demo-actions">{(['error', 'warning', 'info', 'success'] as const).map(kind => <Button key={kind} variant="secondary" onClick={() => { setVariant(kind); setSequence(value => value + 1); setOpen(true); }}>{t("Show ")}{locale === 'ru' ? t(kind[0]!.toUpperCase() + kind.slice(1)) : kind} {t("snackbar")}</Button>)}</div>
     <Typography variant="small" tone="muted">{t("Four semantic colors and icons. Errors stay visible until dismissed. Hover or focus pauses timed messages.")}</Typography>
     <p className="demo-status" role="status">{result}</p>

@@ -24,5 +24,5 @@ const sitemap = await readFile(resolve(root, 'sitemap.xml'), 'utf8');
 assert.equal((sitemap.match(/<loc>/g) ?? []).length, 2);
 assert((await readFile(resolve(root, 'robots.txt'), 'utf8')).includes(new URL('/sitemap.xml', origin).href));
 assert((await readFile(resolve(root, '_flutter/index.html'), 'utf8')).includes('<base href="/_flutter/">'));
-for (const file of ['_flutter/flutter_bootstrap.js', '_flutter/main.dart.js', '_flutter/canvaskit/canvaskit.wasm', '_flutter/assets/packages/want_allure/shaders/shimmer.frag', '_flutter/assets/packages/want_allure/shaders/sphere.frag', 'favicon/favicon.svg', 'brand/github/social-preview-light.png']) assert((await stat(resolve(root, file))).size > 0, file);
+for (const file of ['_flutter/flutter_bootstrap.js', '_flutter/main.dart.js', '_flutter/canvaskit/canvaskit.wasm', '_flutter/assets/packages/want_allure/shaders/shimmer.frag', '_flutter/assets/packages/want_allure/shaders/sphere.frag', '_flutter/assets/packages/want_allure/shaders/lightning.frag', 'favicon/favicon.svg', 'brand/github/social-preview-light.png']) assert((await stat(resolve(root, file))).size > 0, file);
 console.log('Unified static web artifact passed route, metadata and runtime checks.');

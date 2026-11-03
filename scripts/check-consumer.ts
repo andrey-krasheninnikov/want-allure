@@ -33,7 +33,7 @@ try {
     "import assert from 'node:assert/strict';",
     "import React from 'react';",
     "import { renderToStaticMarkup } from 'react-dom/server';",
-    "import { Button, DateField, MediaCard, UrlField, Window, Checkbox, DropdownMenu, Toast, Tooltip, Combobox, Popover, Table, Pagination, FileUpload, Progress, Typography, Prose, Loader, Shimmer, AnimatedText, Glow, Snackbar } from '@want-foundation/allure-react';",
+    "import { Button, DateField, MediaCard, UrlField, Window, Checkbox, DropdownMenu, Toast, Tooltip, Combobox, Popover, Table, Pagination, FileUpload, Progress, Typography, Prose, Loader, Shimmer, AnimatedText, Glow, Snackbar, Slider, RangeSlider, LightningBackground } from '@want-foundation/allure-react';",
     "import { tokens, initInteractionEffects, initBackgroundMotion, burstConfetti } from '@want-foundation/allure';",
     "assert.equal(typeof document, 'undefined');",
     "assert.equal(tokens.themes.wallpapers.dark.primary, '#5962F0');",
@@ -49,7 +49,7 @@ try {
     "assert.match(renderToStaticMarkup(React.createElement(Loader, {label:'Loading',variant:'bars'})), /Loading/);",
     "assert.match(renderToStaticMarkup(React.createElement(AnimatedText, {text:'Ready'})), /Ready/);",
     "assert.match(renderToStaticMarkup(React.createElement(Glow, {paused:true})), /aria-hidden/);",
-    "for (const component of [Checkbox, DropdownMenu, Toast, Tooltip, Combobox, Popover, Table, Pagination, FileUpload, Progress, Typography, Prose, Loader, Shimmer, AnimatedText, Glow, Snackbar]) assert(component);",
+    "for (const component of [Checkbox, DropdownMenu, Toast, Tooltip, Combobox, Popover, Table, Pagination, FileUpload, Progress, Typography, Prose, Loader, Shimmer, AnimatedText, Glow, Snackbar, Slider, RangeSlider, LightningBackground]) assert(component);",
     "assert.match(renderToStaticMarkup(React.createElement(Checkbox, { checked: 'indeterminate', 'aria-label': 'Select all' })), /aria-checked/);",
     "assert.match(renderToStaticMarkup(React.createElement(Progress, { label: 'Upload', value: 50 })), /aria-valuenow/);",
     "assert.match(renderToStaticMarkup(React.createElement(Combobox, { label: 'Project', value: 'demo', options: [{value:'demo',label:'Demo'}], emptyLabel: 'Empty', onValueChange() {} })), /combobox/);"

@@ -1186,6 +1186,84 @@ abstract class CatalogueLocalizations {
   /// In en, this message translates to:
   /// **'Component preview'**
   String get componentPreview;
+
+  /// No description provided for @categoryFoundation.
+  ///
+  /// In en, this message translates to:
+  /// **'Foundation'**
+  String get categoryFoundation;
+
+  /// No description provided for @categoryInputs.
+  ///
+  /// In en, this message translates to:
+  /// **'Inputs'**
+  String get categoryInputs;
+
+  /// No description provided for @categoryNavigation.
+  ///
+  /// In en, this message translates to:
+  /// **'Navigation'**
+  String get categoryNavigation;
+
+  /// No description provided for @categoryData.
+  ///
+  /// In en, this message translates to:
+  /// **'Data'**
+  String get categoryData;
+
+  /// No description provided for @categoryFeedback.
+  ///
+  /// In en, this message translates to:
+  /// **'Feedback'**
+  String get categoryFeedback;
+
+  /// No description provided for @categoryEffects.
+  ///
+  /// In en, this message translates to:
+  /// **'Effects'**
+  String get categoryEffects;
+
+  /// No description provided for @categoryCompositions.
+  ///
+  /// In en, this message translates to:
+  /// **'Compositions'**
+  String get categoryCompositions;
+
+  /// No description provided for @componentsInAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Components in action'**
+  String get componentsInAction;
+
+  /// No description provided for @sliders.
+  ///
+  /// In en, this message translates to:
+  /// **'Sliders'**
+  String get sliders;
+
+  /// No description provided for @intensity.
+  ///
+  /// In en, this message translates to:
+  /// **'Intensity'**
+  String get intensity;
+
+  /// No description provided for @range.
+  ///
+  /// In en, this message translates to:
+  /// **'Range'**
+  String get range;
+
+  /// No description provided for @backgroundLightning.
+  ///
+  /// In en, this message translates to:
+  /// **'Background lightning'**
+  String get backgroundLightning;
+
+  /// No description provided for @lightAndSpace.
+  ///
+  /// In en, this message translates to:
+  /// **'Light and space'**
+  String get lightAndSpace;
 }
 
 class _CatalogueLocalizationsDelegate

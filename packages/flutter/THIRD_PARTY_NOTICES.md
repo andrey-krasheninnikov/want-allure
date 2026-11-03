@@ -7,3 +7,5 @@ Days One, Manrope, Noto Sans JP and Noto Sans Arabic are distributed under the S
 Phosphor Icons v2.1 and phosphoricons_flutter retain their MIT licenses. toastification, smooth_sheets and find_in_page retain their upstream MIT licenses. These packages are resolved as dependencies; their source and assets remain governed by their published notices.
 
 visibility_detector retains its BSD-3-Clause license and is resolved as a dependency.
+
+Sprung 3.0.1 is resolved as a dependency under its MIT license. The complete upstream notice is included in `licenses/sprung-MIT.txt`.
