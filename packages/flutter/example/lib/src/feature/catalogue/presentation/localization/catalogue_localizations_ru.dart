@@ -98,6 +98,15 @@ class CatalogueLocalizationsRu extends CatalogueLocalizations {
   String get fieldsInputAndTextarea => 'Поля, ввод и текстовая область';
 
   @override
+  String get password => 'Пароль';
+
+  @override
+  String get showPassword => 'Показать пароль';
+
+  @override
+  String get hidePassword => 'Скрыть пароль';
+
+  @override
   String get localExample => 'Локальный пример';
 
   @override

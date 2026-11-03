@@ -98,6 +98,15 @@ class CatalogueLocalizationsPt extends CatalogueLocalizations {
   String get fieldsInputAndTextarea => 'Campos, entrada e área de texto';
 
   @override
+  String get password => 'Senha';
+
+  @override
+  String get showPassword => 'Mostrar senha';
+
+  @override
+  String get hidePassword => 'Ocultar senha';
+
+  @override
   String get localExample => 'Exemplo local';
 
   @override
@@ -744,6 +753,15 @@ class CatalogueLocalizationsPtBr extends CatalogueLocalizationsPt {
 
   @override
   String get fieldsInputAndTextarea => 'Campos, entrada e área de texto';
+
+  @override
+  String get password => 'Senha';
+
+  @override
+  String get showPassword => 'Mostrar senha';
+
+  @override
+  String get hidePassword => 'Ocultar senha';
 
   @override
   String get localExample => 'Exemplo local';

@@ -98,6 +98,15 @@ class CatalogueLocalizationsFr extends CatalogueLocalizations {
   String get fieldsInputAndTextarea => 'Champs, saisie et zone de texte';
 
   @override
+  String get password => 'Mot de passe';
+
+  @override
+  String get showPassword => 'Afficher le mot de passe';
+
+  @override
+  String get hidePassword => 'Masquer le mot de passe';
+
+  @override
   String get localExample => 'Exemple local';
 
   @override

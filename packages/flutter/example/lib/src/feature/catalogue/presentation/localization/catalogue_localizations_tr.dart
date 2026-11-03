@@ -98,6 +98,15 @@ class CatalogueLocalizationsTr extends CatalogueLocalizations {
   String get fieldsInputAndTextarea => 'Alanlar, giriş ve metin alanı';
 
   @override
+  String get password => 'Parola';
+
+  @override
+  String get showPassword => 'Parolayı göster';
+
+  @override
+  String get hidePassword => 'Parolayı gizle';
+
+  @override
   String get localExample => 'Yerel örnek';
 
   @override

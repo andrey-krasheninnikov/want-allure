@@ -98,6 +98,15 @@ class CatalogueLocalizationsZh extends CatalogueLocalizations {
   String get fieldsInputAndTextarea => '字段、输入和文本区域';
 
   @override
+  String get password => '密码';
+
+  @override
+  String get showPassword => '显示密码';
+
+  @override
+  String get hidePassword => '隐藏密码';
+
+  @override
   String get localExample => '本地示例';
 
   @override
@@ -728,6 +737,15 @@ class CatalogueLocalizationsZhHans extends CatalogueLocalizationsZh {
 
   @override
   String get fieldsInputAndTextarea => '字段、输入和文本区域';
+
+  @override
+  String get password => '密码';
+
+  @override
+  String get showPassword => '显示密码';
+
+  @override
+  String get hidePassword => '隐藏密码';
 
   @override
   String get localExample => '本地示例';

@@ -15,6 +15,8 @@ abstract final class WantIcons {
   static const circleCheck = PhosphorIconsRegular.checkCircle;
   static const circleX = PhosphorIconsRegular.xCircle;
   static const download = PhosphorIconsRegular.downloadSimple;
+  static const eye = PhosphorIconsRegular.eye;
+  static const eyeClosed = PhosphorIconsRegular.eyeClosed;
   static const file = PhosphorIconsRegular.file;
   static const info = PhosphorIconsRegular.info;
   static const question = PhosphorIconsRegular.question;

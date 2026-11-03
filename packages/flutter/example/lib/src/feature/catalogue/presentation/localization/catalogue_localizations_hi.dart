@@ -98,6 +98,15 @@ class CatalogueLocalizationsHi extends CatalogueLocalizations {
   String get fieldsInputAndTextarea => 'फ़ील्ड्स, इनपुट और टेक्स्टएरिया';
 
   @override
+  String get password => 'पासवर्ड';
+
+  @override
+  String get showPassword => 'पासवर्ड दिखाएँ';
+
+  @override
+  String get hidePassword => 'पासवर्ड छिपाएँ';
+
+  @override
   String get localExample => 'स्थानीय उदाहरण';
 
   @override

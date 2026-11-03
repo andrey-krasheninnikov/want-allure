@@ -1,6 +1,6 @@
 # Flutter component parity
 
-The 1.2.1 Flutter adapter covers every family exported by the React adapter. Flutter uses native widget composition and callbacks. React-only trigger, portal and content parts map to builders, slots and the framework overlay system.
+The 1.3.0 Flutter adapter covers every family exported by the React adapter. Flutter uses native widget composition and callbacks. React-only trigger, portal and content parts map to builders, slots and the framework overlay system.
 
 | Web family | Flutter API | Example section |
 | --- | --- | --- |

@@ -285,6 +285,24 @@ abstract class CatalogueLocalizations {
   /// **'Fields, input and textarea'**
   String get fieldsInputAndTextarea;
 
+  /// No description provided for @password.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get password;
+
+  /// No description provided for @showPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Show password'**
+  String get showPassword;
+
+  /// No description provided for @hidePassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Hide password'**
+  String get hidePassword;
+
   /// No description provided for @localExample.
   ///
   /// In en, this message translates to:
