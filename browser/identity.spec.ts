@@ -35,3 +35,11 @@ test('feather introduction settles and manual rotation stays available', async (
   await logo.press('ArrowRight');
   expect((await canvas.screenshot()).equals(settled)).toBe(false);
 });
+
+
+test('semantic link overrides still reach link buttons', async ({ page }) => {
+  await page.goto('/react/?section=inputs');
+  await expect(page.locator('astro-island[ssr]')).toHaveCount(0);
+  await page.evaluate(() => document.documentElement.style.setProperty('--link','#276B53'));
+  await expect(page.getByRole('button',{name:'link',exact:true})).toHaveCSS('color','rgb(39, 107, 83)');
+});

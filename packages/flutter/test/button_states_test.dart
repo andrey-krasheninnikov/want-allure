@@ -6,6 +6,55 @@ import 'package:want_allure/want_allure.dart';
 import 'helpers.dart';
 
 void main() {
+  testWidgets(
+    'legacy themes retain link overrides and resolve added material roles',
+    (tester) async {
+      final modern = WantThemeData.light();
+      const customLink = Color(0xFF276B53);
+      final legacy = Map<String, Color>.from(modern.colors)
+        ..removeWhere(
+          (key, _) => [
+            'surface-highlight',
+            'surface-shadow',
+            'primary-text',
+            'primary-soft',
+          ].contains(key),
+        )
+        ..['link'] = customLink;
+      final data = WantThemeData(colors: legacy, forui: modern.forui);
+      await tester.pumpWidget(
+        harness(
+          WantTheme(
+            data: data,
+            child: Column(
+              children: [
+                WantButton(onPressed: () {}, child: const Text('Action')),
+                WantButton(
+                  variant: WantButtonVariant.link,
+                  onPressed: () {},
+                  child: const Text('Custom link'),
+                ),
+                WantToast(
+                  title: const Text('Saved'),
+                  closeLabel: 'Dismiss',
+                  onClose: () {},
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
+      expect(tester.takeException(), isNull);
+      expect(
+        DefaultTextStyle.of(tester.element(find.text('Custom link')))
+            .style
+            .color,
+        customLink,
+      );
+      expect(data.color('primary-text'), customLink);
+      expect(() => data.color('unknown'), throwsArgumentError);
+    },
+  );
   for (final brightness in Brightness.values) {
     for (final variant in [
       WantButtonVariant.primary,

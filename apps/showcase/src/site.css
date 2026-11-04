@@ -243,3 +243,5 @@ a:focus-visible,.motion-control:focus-visible,.logo-stage:focus-visible { outlin
   .kit-section > h2 { gap:12px; }
 }
 @media(forced-colors:active) { .hero-slate::before { display:none; }.slate-mark { background:Highlight; }.slate-color { outline:1px solid CanvasText; }.journey-progress > [aria-current] { outline:2px solid Highlight; } }
+:lang(ar) .hero-heading h1 { line-height:1.65; letter-spacing:normal; }
+:where(:lang(hi),:lang(he),:lang(zh),:lang(ja)) .hero-heading h1 { line-height:1.4; letter-spacing:normal; }

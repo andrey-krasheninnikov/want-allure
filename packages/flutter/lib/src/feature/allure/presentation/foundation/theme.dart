@@ -238,9 +238,19 @@ class WantThemeData {
     );
   }
 
-  Color color(String role) =>
-      colors[role] ??
-      (throw ArgumentError.value(role, 'role', 'Unknown Want color'));
+  Color color(String role) {
+    if (colors[role] case final value?) return value;
+    final defaults = forui.colors.brightness == Brightness.dark
+        ? WantTokens.dark
+        : WantTokens.light;
+    return switch (role) {
+      'surface-highlight' => colors['glass-highlight'] ?? defaults[role]!,
+      'surface-shadow' => defaults[role]!,
+      'primary-text' => colors['link'] ?? forui.colors.primary,
+      'primary-soft' => forui.colors.secondary,
+      _ => throw ArgumentError.value(role, 'role', 'Unknown Want color'),
+    };
+  }
 }
 
 /// Applies Want and ForUI styles without owning navigation or saved preferences.

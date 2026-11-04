@@ -37,13 +37,13 @@ export default function LogoStage({locale,framework,paused=false}:{locale:Locale
         model.position.copy(center.negate());pivot.add(model);pivot.scale.setScalar(3.1/Math.max(size.x,size.y));scene.add(pivot);pivot.rotation.set(.08,-.25,0);
         const render=(now:number)=>{
           frame=0;if(disposed||!visible||document.hidden||renderer.getContext().isContextLost())return;
-          const elapsed=last?Math.min((now-last)/1000,.06):0;last=now;
+          const elapsed=last?(now-last)/1000:0;last=now;
           const autoplay=!motion.matches&&!pausedState.current&&!framework&&autoplayElapsed<4.4&&!manual.current&&!drag.current&&!host.current?.matches(':focus-within');
-          if(autoplay&&!drag.current&&!host.current?.matches(':focus-within')){autoplayElapsed=Math.min(4.4,autoplayElapsed+elapsed);const progress=autoplayElapsed/4.4;pivot.rotation.y=-.25+Math.PI*2*(progress*progress*(3-2*progress));}
+          if(autoplay){autoplayElapsed=Math.min(4.4,autoplayElapsed+elapsed);const progress=autoplayElapsed/4.4;pivot.rotation.y=-.25+Math.PI*2*(progress*progress*(3-2*progress));}
           renderer.render(scene,camera);if(!painted){painted=true;setReady(true);}
           if(autoplay)frame=requestAnimationFrame(render);
         };
-        const schedule=()=>{last=0;if(!frame&&visible&&!document.hidden)frame=requestAnimationFrame(render);};
+        const schedule=()=>{if(!frame&&visible&&!document.hidden){last=0;frame=requestAnimationFrame(render);}};
         refresh.current=schedule;
         const resize=new ResizeObserver(()=>{if(!host.current)return;const {width,height}=host.current.getBoundingClientRect();if(width&&height){renderer.setSize(width,height);camera.aspect=width/height;camera.updateProjectionMatrix();schedule();}});
         const intersection=new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;if(visible)schedule();else{cancelAnimationFrame(frame);frame=0;last=0;}});

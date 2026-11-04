@@ -361,7 +361,7 @@ html[data-background-motion="running"] .page-background > div::after{ animation-
   .ui-button-default::after { content:""; position:absolute; inset:4px 10px auto auto; width:16px; height:8px; pointer-events:none; background:var(--primary-foreground); opacity:.22; clip-path:polygon(0 0,100% 0,100% 50%,75% 50%,75% 100%,50% 100%,50% 50%,0 50%); }
   .ui-button-base:disabled { box-shadow:none; }
   .ui-button-base:disabled::after { opacity:0; }
-  .ui-button-link { color:var(--primary-text); }
+  .ui-button-link { color:var(--link); }
   .ui-input, .ui-textarea, .ui-select-trigger, .ui-date-trigger, .ui-date-year, .ui-date-time input { box-shadow:inset 0 0 0 1px var(--input); }
   :is(.ui-input,.ui-textarea,.ui-select-trigger,.ui-date-trigger):is(:hover,:focus-visible):not(:disabled) { background:var(--card); }
   :is(.ui-input,.ui-textarea)[aria-invalid="true"] { box-shadow:inset 0 0 0 1px var(--error-text); }

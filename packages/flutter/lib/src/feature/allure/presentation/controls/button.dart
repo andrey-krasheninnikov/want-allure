@@ -54,7 +54,7 @@ class WantButton extends StatelessWidget {
         ? const Color(0x00000000)
         : theme.color(role);
     final foreground = theme.color(
-      variant == WantButtonVariant.link ? 'primary-text' : '$role-foreground',
+      variant == WantButtonVariant.link ? 'link' : '$role-foreground',
     );
     final iconOnly = size.name.startsWith('icon');
     final style = theme.forui.buttonStyles.resolve({mapped}).resolve({
