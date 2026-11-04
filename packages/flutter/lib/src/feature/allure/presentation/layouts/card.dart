@@ -169,6 +169,24 @@ class _CardHighlight extends CustomPainter {
         ..strokeWidth = 5
         ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 12),
     );
+    final step = WantTokens.material['stepPx']!;
+    final x = size.width - 5 * step, y = 4 * step;
+    final facet = Path()
+      ..moveTo(x - 2 * step, y)
+      ..lineTo(x + 2 * step, y)
+      ..lineTo(x + 2 * step, y + step)
+      ..lineTo(x + step, y + step)
+      ..lineTo(x + step, y + 2 * step)
+      ..lineTo(x, y + 2 * step)
+      ..lineTo(x, y + 3 * step)
+      ..lineTo(x - step, y + 3 * step)
+      ..lineTo(x - step, y + step)
+      ..lineTo(x - 2 * step, y + step)
+      ..close();
+    canvas.drawPath(
+      facet,
+      Paint()..color = color.withValues(alpha: .6 * strength),
+    );
     final path = Path()..addRRect(rect);
     canvas.drawPath(
       path,

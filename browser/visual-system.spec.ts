@@ -26,7 +26,8 @@ for (const width of [320, 768, 1024, 1440]) test('visual system works at ' + wid
       await expect(control).toHaveCSS('justify-content', 'center');
       await expect(control).toHaveCSS('align-items', 'center');
       await expect(control).toHaveCSS('text-align', 'center');
-      expect((await control.boundingBox())!.height).toBeGreaterThanOrEqual(44);
+      expect(await control.evaluate(element => parseFloat(getComputedStyle(element).minHeight))).toBeGreaterThanOrEqual(44);
+      expect(Math.round((await control.boundingBox())!.height * 100) / 100).toBeGreaterThanOrEqual(44);
     }
   }
   await category(page,'foundation');

@@ -29,3 +29,7 @@ The background sphere is opt-in and has an explicit pause/resume control. It sto
 Keep these effects outside administration and reading surfaces. Dispose timers, listeners, observers, and temporary object URLs when the owning view unmounts. Never make decoration a prerequisite for a native link, download, selection, or form action.
 
 Flutter consumers may hide the background pause control with `showPauseControl: false`. `alternateWithLightning: true` switches effects every 30 seconds with a 1200 ms crossfade; `switchInterval` and `transitionDuration` configure that timing. Hidden effects pause, inactive applications retain their phase, reduced motion keeps a static sphere, and high contrast removes decoration. `WantDialog` accepts `constraints` and `showTitle: false`; the required title remains its accessible name.
+
+## Landing choreography
+
+Use one automatic visual accent per viewport. The local feather has a 4.4-second introduction and then rests; retain manual drag and keyboard rotation. Framework cards stay still. Other highlights respond to input. Keep the existing reduced-motion, visibility and lifecycle guards, and do not add a global animation loop to a product screen.

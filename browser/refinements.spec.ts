@@ -45,14 +45,15 @@ test('home guides framework selection, installation and advice',async({page})=>{
   expect(errors).toEqual([]);
 });
 
-test('lightning follows system motion and viewport visibility',async({page})=>{
-  await page.emulateMedia({reducedMotion:'no-preference'});await page.goto('/');
-  const effect=page.locator('.landing-hero [data-slot=lightning-background]');
+test('catalogue lightning follows system motion and viewport visibility',async({page})=>{
+  await page.emulateMedia({reducedMotion:'no-preference'});await page.goto('/react/?section=effects');
+  const effect=page.locator('.lightning-preview [data-slot=lightning-background]');
+  await effect.scrollIntoViewIfNeeded();
   await expect(effect).toHaveAttribute('data-paused','false');
   await expect(effect).toHaveCSS('pointer-events','none');
-  await expect(effect.locator('.lightning-primary')).toHaveCSS('animation-duration','3s');
-  await page.emulateMedia({reducedMotion:'reduce'});await expect(effect).toHaveAttribute('data-paused','true');
-  await page.emulateMedia({reducedMotion:'no-preference'});await expect(effect).toHaveAttribute('data-paused','false');
+  await expect(effect.locator('.lightning-primary')).toHaveCSS('animation-duration','9s');
+  await page.emulateMedia({reducedMotion:'reduce'});await expect(effect.locator('.lightning-primary')).toHaveCSS('animation-name','none');
+  await page.emulateMedia({reducedMotion:'no-preference'});await expect(effect.locator('.lightning-primary')).toHaveCSS('animation-name','want-lightning');
   await page.locator('.site-footer').scrollIntoViewIfNeeded();await expect(effect).toHaveAttribute('data-paused','true');
 });
 

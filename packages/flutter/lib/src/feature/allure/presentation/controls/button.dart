@@ -63,17 +63,37 @@ class WantButton extends StatelessWidget {
     final decoration = BoxDecoration(
       color: base,
       borderRadius: BorderRadius.circular(pill ? 100 : 12),
+      border:
+          variant == WantButtonVariant.ghost ||
+              variant == WantButtonVariant.link
+          ? null
+          : Border.all(color: theme.color('surface-highlight')),
+      boxShadow: onPressed == null || variant != WantButtonVariant.primary
+          ? null
+          : [
+              BoxShadow(
+                color: theme.color('surface-shadow'),
+                blurRadius: 12,
+                offset: const Offset(0, 4),
+              ),
+            ],
     );
     final buttonStyle = style.copyWith(
       decoration: FVariants.from(
         decoration,
         variants: {
-          [
-            FTappableVariant.hovered,
-            FTappableVariant.pressed,
-          ]: DecorationDelta.boxDelta(
+          [FTappableVariant.hovered]: DecorationDelta.boxDelta(
             color: variant == WantButtonVariant.primary
                 ? theme.color('primary-hover')
+                : variant == WantButtonVariant.destructive
+                ? base
+                : theme.color('accent'),
+          ),
+          [FTappableVariant.pressed]: DecorationDelta.boxDelta(
+            color: variant == WantButtonVariant.primary
+                ? theme.color('primary-active')
+                : variant == WantButtonVariant.destructive
+                ? base
                 : theme.color('accent'),
           ),
           [FTappableVariant.disabled]: DecorationDelta.boxDelta(

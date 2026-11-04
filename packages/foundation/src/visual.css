@@ -4,7 +4,7 @@
   .ui-typography[data-align="center"] { text-align:center; }
   .ui-typography[data-align="end"] { text-align:end; }
   .ui-typography[data-tone="muted"] { color:var(--muted-foreground); }
-  .ui-typography[data-tone="primary"] { color:var(--primary); }
+  .ui-typography[data-tone="primary"] { color:var(--primary-text); }
   .ui-typography[data-tone="error"] { color:var(--error-text); }
   .ui-typography[data-tone="warning"] { color:var(--warning-text); }
   .ui-typography[data-tone="info"] { color:var(--info-text); }

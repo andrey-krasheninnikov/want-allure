@@ -15,7 +15,7 @@ function contrast(first: string, second: string) {
 }
 
 test('feedback accents match the reference in both themes and keep text readable', () => {
-  const reference = { primary: '#5962F0', success: '#7DF04A', info: '#28D7F5', warning: '#FFD43B', error: '#FF526D' };
+  const reference = { primary: '#5962F0', success: '#69B99B', info: '#86ACDE', warning: '#D8B477', error: '#E58A96' };
   for (const mode of ['light', 'dark'] as const) {
     const palette = tokens.themes.wallpapers[mode];
     for (const [kind, color] of Object.entries(reference)) expect(palette[kind as keyof typeof palette]).toBe(color);
@@ -24,6 +24,13 @@ test('feedback accents match the reference in both themes and keep text readable
       expect(contrast(palette[kind + '-text' as keyof typeof palette], palette.background)).toBeGreaterThanOrEqual(4.5);
     }
     expect(contrast(palette['destructive-foreground'], palette.destructive)).toBeGreaterThanOrEqual(4.5);
+    for (const surface of ['background', 'card', 'popover', 'secondary'] as const) {
+      for (const text of ['foreground', 'muted-foreground', 'primary-text', 'error-text', 'warning-text', 'info-text', 'success-text'] as const) {
+        expect(contrast(palette[text], palette[surface]), `${mode}: ${text} on ${surface}`).toBeGreaterThanOrEqual(4.5);
+      }
+    }
+    expect(contrast(palette.input, palette.secondary)).toBeGreaterThanOrEqual(3);
+    expect(contrast(palette.ring, palette.background)).toBeGreaterThanOrEqual(3);
   }
 });
 

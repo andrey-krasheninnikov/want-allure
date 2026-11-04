@@ -2,12 +2,14 @@ import React, { useEffect, useRef, useState } from 'react';
 import { siteText, type Locale } from '../site';
 import { FrameworkLogo } from './FrameworkLogo';
 
-export default function LogoStage({locale,framework}:{locale:Locale;framework?:'react'|'flutter'}): React.JSX.Element {
+export default function LogoStage({locale,framework,paused=false}:{locale:Locale;framework?:'react'|'flutter';paused?:boolean}): React.JSX.Element {
   const host=useRef<HTMLDivElement>(null),canvas=useRef<HTMLDivElement>(null);
   const rotate=useRef<(x:number,y:number)=>void>(()=>{}),drag=useRef<{x:number;y:number}|null>(null);
   const [ready,setReady]=useState(false);
+  const pausedState=useRef(paused),manual=useRef(false),refresh=useRef<()=>void>(()=>{});
+  useEffect(()=>{pausedState.current=paused;refresh.current();},[paused]);
   useEffect(()=>{
-    let disposed=false,visible=false,frame=0,last=0,painted=false;
+    let disposed=false,visible=false,frame=0,last=0,painted=false,autoplayElapsed=0;
     const abort=new AbortController(),motion=matchMedia('(prefers-reduced-motion: reduce)');
     let cleanup=()=>{};
     async function load(){
@@ -23,11 +25,11 @@ export default function LogoStage({locale,framework}:{locale:Locale;framework?:'
         const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(34,1,.1,100);camera.position.z=5.8;
         scene.add(new THREE.HemisphereLight(0xffffff,0x5962f0,2));
         const light=new THREE.DirectionalLight(0xffffff,2.5);light.position.set(-3,4,5);scene.add(light);
-        const side=new THREE.MeshStandardMaterial({color:0x5962f0,roughness:.3,metalness:.4});
+        const side=new THREE.MeshStandardMaterial({color:0x5962f0,roughness:.24,metalness:.72});
         const model=new THREE.Group(),pivot=new THREE.Group(),geometries:InstanceType<typeof THREE.ExtrudeGeometry>[]=[],materials:InstanceType<typeof THREE.MeshStandardMaterial>[]=[side];
         for(const path of new SVGLoader().parse(source).paths)for(const shape of path.toShapes()){
           const geometry=new THREE.ExtrudeGeometry(shape,{depth,bevelEnabled:false,steps:1,curveSegments:framework?32:1});
-          const face=new THREE.MeshStandardMaterial({color:path.color,roughness:.3,metalness:.3,emissive:path.color,emissiveIntensity:.12});
+          const face=new THREE.MeshStandardMaterial({color:path.color,roughness:.27,metalness:.48,emissive:path.color,emissiveIntensity:.06});
           materials.push(face);geometries.push(geometry);model.add(new THREE.Mesh(geometry,[face,side]));
         }
         model.scale.y=-1;
@@ -35,12 +37,14 @@ export default function LogoStage({locale,framework}:{locale:Locale;framework?:'
         model.position.copy(center.negate());pivot.add(model);pivot.scale.setScalar(3.1/Math.max(size.x,size.y));scene.add(pivot);pivot.rotation.set(.08,-.25,0);
         const render=(now:number)=>{
           frame=0;if(disposed||!visible||document.hidden||renderer.getContext().isContextLost())return;
-          const elapsed=last?Math.min((now-last)/1000,.06):0;last=now;
-          if(!motion.matches&&!drag.current&&!host.current?.matches(':focus-within'))pivot.rotation.y+=elapsed*(.28+.12*Math.sin(now*.00031)+.05*Math.sin(now*.00083));
+          const elapsed=last?(now-last)/1000:0;last=now;
+          const autoplay=!motion.matches&&!pausedState.current&&!framework&&autoplayElapsed<4.4&&!manual.current&&!drag.current&&!host.current?.matches(':focus-within');
+          if(autoplay){autoplayElapsed=Math.min(4.4,autoplayElapsed+elapsed);const progress=autoplayElapsed/4.4;pivot.rotation.y=-.25+Math.PI*2*(progress*progress*(3-2*progress));}
           renderer.render(scene,camera);if(!painted){painted=true;setReady(true);}
-          if(!motion.matches)frame=requestAnimationFrame(render);
+          if(autoplay)frame=requestAnimationFrame(render);
         };
-        const schedule=()=>{last=0;if(!frame&&visible&&!document.hidden)frame=requestAnimationFrame(render);};
+        const schedule=()=>{if(!frame&&visible&&!document.hidden){last=0;frame=requestAnimationFrame(render);}};
+        refresh.current=schedule;
         const resize=new ResizeObserver(()=>{if(!host.current)return;const {width,height}=host.current.getBoundingClientRect();if(width&&height){renderer.setSize(width,height);camera.aspect=width/height;camera.updateProjectionMatrix();schedule();}});
         const intersection=new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;if(visible)schedule();else{cancelAnimationFrame(frame);frame=0;last=0;}});
         const visibility=()=>{if(document.hidden){cancelAnimationFrame(frame);frame=0;}else schedule();};
@@ -53,13 +57,13 @@ export default function LogoStage({locale,framework}:{locale:Locale;framework?:'
         schedule();
       }catch{if(!disposed)setReady(false);}
     }
-    load();return()=>{disposed=true;abort.abort();cancelAnimationFrame(frame);rotate.current=()=>{};cleanup();};
+    load();return()=>{disposed=true;abort.abort();cancelAnimationFrame(frame);rotate.current=()=>{};refresh.current=()=>{};cleanup();};
   },[framework]);
   return <div className={`logo-stage-wrap ${framework?'framework-model':''}`}><div className="logo-stage" ref={host} tabIndex={ready&&!framework?0:undefined} role={framework?'img':'group'} aria-label={framework??siteText(locale,'3D logo. Drag or use arrow keys to rotate.')} data-ready={ready}
-    onPointerDown={event=>{if(!ready||framework)return;drag.current={x:event.clientX,y:event.clientY};event.currentTarget.setPointerCapture(event.pointerId);}}
+    onPointerDown={event=>{if(!ready||framework)return;manual.current=true;drag.current={x:event.clientX,y:event.clientY};event.currentTarget.setPointerCapture(event.pointerId);}}
     onPointerMove={event=>{if(!drag.current)return;rotate.current((event.clientX-drag.current.x)*.009,(event.clientY-drag.current.y)*.006);drag.current={x:event.clientX,y:event.clientY};}}
     onPointerUp={()=>{drag.current=null;}} onPointerCancel={()=>{drag.current=null;}}
-    onKeyDown={event=>{const delta:Record<string,[number,number]>={ArrowLeft:[-.15,0],ArrowRight:[.15,0],ArrowUp:[0,-.12],ArrowDown:[0,.12]};if(delta[event.key]){event.preventDefault();rotate.current(...delta[event.key]);}}}>
+    onKeyDown={event=>{const delta:Record<string,[number,number]>={ArrowLeft:[-.15,0],ArrowRight:[.15,0],ArrowUp:[0,-.12],ArrowDown:[0,.12]};if(delta[event.key]){event.preventDefault();manual.current=true;rotate.current(...delta[event.key]);}}}>
     <div className="logo-stage-fallback">{framework?<FrameworkLogo framework={framework} size={180}/>:<img src="/brand/logos/dark/transparent.svg" width="480" height="480" alt="" fetchPriority="high"/>}</div><div className="logo-stage-canvas" ref={canvas}/>
   </div></div>;
 }

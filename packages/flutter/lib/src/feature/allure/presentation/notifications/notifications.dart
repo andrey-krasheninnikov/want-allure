@@ -139,14 +139,12 @@ class WantToast extends StatelessWidget {
         decoration: BoxDecoration(
           color: theme.color('popover'),
           borderRadius: BorderRadius.circular(18),
-          border: Border.all(
-            color: theme.color('foreground').withValues(alpha: .08),
-          ),
+          border: Border.all(color: theme.color('surface-highlight')),
           boxShadow: [
             BoxShadow(
-              color: const Color(0xff000000).withValues(alpha: .20),
-              blurRadius: 28,
-              offset: const Offset(0, 8),
+              color: theme.color('surface-shadow'),
+              blurRadius: WantTokens.material['overlayBlurPx']!,
+              offset: Offset(0, WantTokens.material['overlayOffsetYPx']!),
             ),
           ],
         ),
@@ -160,7 +158,7 @@ class WantToast extends StatelessWidget {
               children: [
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  spacing: 10,
+                  spacing: 12,
                   children: [
                     if (icon != null)
                       Padding(
@@ -203,7 +201,7 @@ class WantToast extends StatelessWidget {
                         child: DefaultTextStyle.merge(
                           style: TextStyle(
                             color: theme.color('popover-foreground'),
-                            fontSize: 14,
+                            fontSize: 16,
                             height: 1.4,
                           ),
                           child: Column(
@@ -221,6 +219,8 @@ class WantToast extends StatelessWidget {
                                 DefaultTextStyle.merge(
                                   style: TextStyle(
                                     color: theme.color('muted-foreground'),
+                                    fontSize: 14,
+                                    height: 1.55,
                                   ),
                                   child: description!,
                                 ),

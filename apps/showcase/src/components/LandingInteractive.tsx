@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { ArrowLeft, ArrowRight, ArrowUp, Check, Copy } from 'lucide-react';
-import { Button, Glow, LightningBackground } from '@want-foundation/allure-react';
-import { copy, siteText, version, type Locale } from '../site';
+import { Button, Glow, Slider, Tabs, TabsList, TabsTrigger, TabsContent, Table, TableCaption, TableHeader, TableHead, TableRow, TableBody, TableCell } from '@want-foundation/allure-react';
+import { copy, route, siteText, version, type Locale } from '../site';
 import { FrameworkLogo } from './FrameworkLogo';
 import LogoStage from './LogoStage';
 
@@ -80,8 +80,36 @@ function FireHeadline({locale}:{locale:Locale}) {
   return <h1 ref={host} className="fire-headline">{siteText(locale,'One language.')}<br/><span>{siteText(locale,'Every interface.')}</span><canvas ref={canvas} width="160" height="160" hidden aria-hidden="true"/></h1>;
 }
 export function HeroExperience({locale}:{locale:Locale}) {
-  const host=useRef<HTMLElement>(null),paused=useMotion(host),c=copy[locale];
-  return <section className="landing-hero" ref={host}><LightningBackground paused={paused} style={{'--lightning-period':'3s','--lightning-delay':'1.5s'} as React.CSSProperties}/><div className="hero-heading"><p className="eyebrow">DESIGN SYSTEM / REACT + FLUTTER</p><FireHeadline locale={locale}/></div><LogoStage locale={locale}/><div className="hero-note"><p>{c.intro}</p></div><div className="hero-spec"><span>Days One × Manrope</span><span>primary + warning</span><span>React / Flutter</span></div></section>;
+  const host = useRef<HTMLElement>(null);
+  const inactive = useMotion(host);
+  const [light, setLight] = useState(60);
+  const [framework, setFramework] = useState('react');
+  const t = (text:string) => siteText(locale,text);
+  const c = copy[locale];
+  return <section className="landing-hero" ref={host}>
+    <div className="hero-heading"><p className="eyebrow">DESIGN SYSTEM / REACT + FLUTTER</p><FireHeadline locale={locale}/></div>
+    <LogoStage locale={locale} paused={inactive}/>
+    <div className="hero-note"><p>{c.intro}</p><span className="hero-signature">Days One × Manrope <span aria-hidden="true">·</span> #5962F0</span></div>
+    <div className="hero-slate" style={{'--slate-light':light / 100} as React.CSSProperties}>
+      <div className="slate-heading"><span className="slate-mark" aria-hidden="true"/><p className="eyebrow">{t('Component preview')}</p><span className="slate-edition">01 / 46</span></div>
+      <div className="slate-records">
+        <Tabs value={framework} onValueChange={setFramework}>
+          <TabsList aria-label={c.choose}><TabsTrigger value="react">React</TabsTrigger><TabsTrigger value="flutter">Flutter</TabsTrigger></TabsList>
+          <TabsContent value={framework}><Table><TableCaption className="sr-only">{t('One palette, two frameworks')}</TableCaption><TableHeader><TableRow><TableHead>{t('Foundation')}</TableHead><TableHead>{t('Data')}</TableHead></TableRow></TableHeader><TableBody>
+          <TableRow><TableCell>{t('Design tokens')}</TableCell><TableCell><code>#5962F0</code><span className="slate-color" aria-hidden="true"/></TableCell></TableRow>
+          <TableRow><TableCell>{t('Navigation')}</TableCell><TableCell><code>{framework === 'react' ? 'Radix' : 'ForUI'}</code></TableCell></TableRow>
+          <TableRow><TableCell>{t('Motion with a purpose')}</TableCell><TableCell><code>120 / 180 ms</code></TableCell></TableRow>
+        </TableBody></Table></TabsContent>
+        </Tabs>
+      </div>
+      <div className="slate-controls">
+        <div><span className="eyebrow">{t('Light and space')}</span><div className="slate-reading"><span>{String(light).padStart(2,'0')}</span><span>%</span></div></div>
+        <Slider label={t('Light and space')} value={light} onValueChange={setLight} formatValue={value=>`${value}%`}/>
+        <div className="slate-palette" aria-hidden="true">{['primary','success','info','warning','error'].map(role=><span key={role} style={{background:`var(--${role})`}}/>)}</div>
+        <Button asChild><a href={route(locale,framework === 'react' ? 'react' : 'flutter')}>{c.catalogue}<ArrowRight size={16} aria-hidden="true"/></a></Button>
+      </div>
+    </div>
+  </section>;
 }
 export function CopyCommand({command,locale}:{command:string;locale:Locale}) {
   const [state,setState]=useState<'idle'|'copied'|'failed'>('idle'),timer=useRef<ReturnType<typeof setTimeout>|undefined>(undefined);
@@ -101,7 +129,7 @@ export function FrameworkJourney({locale}:{locale:Locale}) {
     <h2 ref={heading} tabIndex={-1}>{step==='choose'?c.choose:step==='install'?`${c.install} · ${framework==='react'?'React':'Flutter'}`:c.faq}</h2>
     <div className="journey-pane journey-chooser" hidden={enhanced&&step!=='choose'}>
       <p>{c.overviewText}</p><div className="framework-orbit" data-paused={paused||engaged} onPointerEnter={()=>setEngaged(true)} onPointerLeave={()=>setEngaged(false)} onFocusCapture={()=>setEngaged(true)} onBlurCapture={event=>{if(!event.currentTarget.contains(event.relatedTarget))setEngaged(false);}}>
-      {(['react','flutter'] as const).map(item=><div className={`orbit-slot orbit-${item}`} key={item}><button className="framework-choice" onClick={()=>choose(item)} aria-label={`${c.choose}: ${item==='react'?'React':'Flutter'}`}><LogoStage locale={locale} framework={item}/><span className="framework-choice-title">{item==='react'?'React':'Flutter'}</span><span className="framework-choice-copy">{item==='react'?c.reactText:c.flutterText}</span><ArrowRight size={20} aria-hidden="true"/></button></div>)}</div>
+      {(['react','flutter'] as const).map(item=><div className={`orbit-slot orbit-${item}`} key={item}><button className="framework-choice" onClick={()=>choose(item)} aria-label={`${c.choose}: ${item==='react'?'React':'Flutter'}`}><LogoStage locale={locale} framework={item} paused/><span className="framework-choice-title">{item==='react'?'React':'Flutter'}</span><span className="framework-choice-copy">{item==='react'?c.reactText:c.flutterText}</span><ArrowRight size={20} aria-hidden="true"/></button></div>)}</div>
     </div>
     <div className="journey-pane journey-install" id="install" hidden={enhanced&&step!=='install'}>
       <p>{c.installText}</p><div className="install-grid">
@@ -113,6 +141,5 @@ export function FrameworkJourney({locale}:{locale:Locale}) {
   </section>;
 }
 export function BackToTop({locale}:{locale:Locale}) {
-  const host=useRef<HTMLDivElement>(null),paused=useMotion(host);
-  return <div ref={host} className="glow-host back-to-top-glow"><Glow paused={paused}/><Button asChild className="back-to-top"><a href="#main" aria-describedby="back-to-top-description"><ArrowUp size={20} aria-hidden="true"/>{copy[locale].final}</a></Button><span id="back-to-top-description" className="sr-only">{siteText(locale,'Back to top')}</span></div>;
+  return <div className="glow-host back-to-top-glow"><Glow paused/><Button asChild className="back-to-top"><a href="#main" aria-describedby="back-to-top-description"><ArrowUp size={20} aria-hidden="true"/>{copy[locale].final}</a></Button><span id="back-to-top-description" className="sr-only">{siteText(locale,'Back to top')}</span></div>;
 }

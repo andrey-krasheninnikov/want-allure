@@ -1,7 +1,7 @@
 import 'package:want_allure/src/feature/allure/presentation/_barrel.dart';
 import 'package:flutter/widgets.dart';
 import 'package:forui/forui.dart';
-import 'package:material_ui/material_ui.dart' show Theme;
+import 'package:material_ui/material_ui.dart' show Theme, OutlineInputBorder;
 
 /// Semantic Want colors and the corresponding ForUI theme.
 @immutable
@@ -49,7 +49,7 @@ class WantThemeData {
       error: values['error-text'],
       errorForeground: values['error-foreground'],
       card: values['card'],
-      border: values['border'],
+      border: values['input'],
     );
     final preferred = switch (locale?.languageCode) {
       'zh' => 'Noto Sans SC',
@@ -121,9 +121,90 @@ class WantThemeData {
       style: style,
       touch: true,
     );
+    BoxDecoration surface(String role, {bool overlay = false}) => BoxDecoration(
+      color: values[role],
+      borderRadius: BorderRadius.circular(
+        WantTokens.geometry['panelRadiusPx']!,
+      ),
+      border: Border.all(color: values['surface-highlight']!),
+      boxShadow: [
+        BoxShadow(
+          color: values['surface-shadow']!,
+          blurRadius:
+              WantTokens.material[overlay ? 'overlayBlurPx' : 'shadowBlurPx']!,
+          offset: Offset(
+            0,
+            WantTokens.material[overlay
+                ? 'overlayOffsetYPx'
+                : 'shadowOffsetYPx']!,
+          ),
+        ),
+      ],
+    );
+    FTextFieldStyle field(FTextFieldStyle original) => original.copyWith(
+      color: FVariants(
+        colors.secondary,
+        variants: {
+          [FTextFieldVariant.hovered]: colors.card,
+          [FTextFieldVariant.focused]: colors.card,
+          [FTextFieldVariant.disabled]: colors.disable(colors.secondary),
+        },
+      ),
+      contentPadding: const EdgeInsetsGeometryDelta.value(
+        EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      ),
+      border: FVariants(
+        OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide(color: values['input']!),
+        ),
+        variants: {
+          [FTextFieldVariant.focused]: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: BorderSide(color: colors.primary, width: 2),
+          ),
+          [FTextFieldVariant.error]: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: BorderSide(color: values['error-text']!),
+          ),
+          [FTextFieldVariant.disabled]: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: BorderSide(color: colors.border),
+          ),
+        },
+      ),
+    );
     return WantThemeData(
       colors: Map.unmodifiable(values),
       forui: theme.copyWith(
+        textFieldStyles: FTextFieldSizeStyles(
+          FVariants(
+            field(theme.textFieldStyles.md),
+            variants: {
+              [FTextFieldSizeVariant.sm]: field(theme.textFieldStyles.sm),
+              [FTextFieldSizeVariant.lg]: field(theme.textFieldStyles.lg),
+            },
+          ),
+        ),
+        dialogStyle: theme.dialogStyle.copyWith(
+          decoration: DecorationDelta.value(surface('popover', overlay: true)),
+        ),
+        tabsStyle: theme.tabsStyle.copyWith(
+          minHeight: 44,
+          decoration: DecorationDelta.value(
+            BoxDecoration(
+              color: colors.secondary,
+              borderRadius: BorderRadius.circular(12),
+            ),
+          ),
+          indicatorDecoration: DecorationDelta.value(
+            BoxDecoration(
+              color: colors.card,
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(color: values['surface-highlight']!),
+            ),
+          ),
+        ),
         accordionStyle: theme.accordionStyle.copyWith(
           motion: FAccordionMotion(
             expandDuration: const Duration(milliseconds: 280),
@@ -144,26 +225,32 @@ class WantThemeData {
           ),
         ),
         popoverStyle: theme.popoverStyle.copyWith(
+          decoration: DecorationDelta.value(surface('popover', overlay: true)),
           motion: FPopoverMotion(
             entranceDuration: WantTokens.motion['transitionMs']!,
             exitDuration: WantTokens.motion['transitionMs']!,
           ),
         ),
         cardStyle: theme.cardStyle.copyWith(
-          decoration: DecorationDelta.value(
-            BoxDecoration(
-              color: colors.card,
-              borderRadius: BorderRadius.circular(24),
-            ),
-          ),
+          decoration: DecorationDelta.value(surface('card')),
         ),
       ),
     );
   }
 
-  Color color(String role) =>
-      colors[role] ??
-      (throw ArgumentError.value(role, 'role', 'Unknown Want color'));
+  Color color(String role) {
+    if (colors[role] case final value?) return value;
+    final defaults = forui.colors.brightness == Brightness.dark
+        ? WantTokens.dark
+        : WantTokens.light;
+    return switch (role) {
+      'surface-highlight' => colors['glass-highlight'] ?? defaults[role]!,
+      'surface-shadow' => defaults[role]!,
+      'primary-text' => colors['link'] ?? forui.colors.primary,
+      'primary-soft' => forui.colors.secondary,
+      _ => throw ArgumentError.value(role, 'role', 'Unknown Want color'),
+    };
+  }
 }
 
 /// Applies Want and ForUI styles without owning navigation or saved preferences.

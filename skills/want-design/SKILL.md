@@ -26,7 +26,7 @@ Exact values come from the foundation tokens for the product's installed version
 
 ## Shared decisions
 
-Use Days One for display and Manrope for body text, with the supplied locale fonts. Keep readable copy, generous control targets, filled neutral surfaces, and a clear primary action. The primary accent is #5962F0. Success #7DF04A, info #28D7F5, warning #FFD43B, and error #FF526D remain identical in light and dark themes. Use their readable text roles for inline copy, not the bright accent on a light canvas.
+Use Days One for display and Manrope for body text, with the supplied locale fonts. Keep readable copy, generous control targets, filled neutral surfaces, and a clear primary action. The primary accent is #5962F0. Success #69B99B, info #86ACDE, warning #D8B477, and error #E58A96 remain identical in light and dark themes. Use their readable text roles for inline copy, not the bright accent on a light canvas.
 
 Keep UI copy calm, concrete, and useful. Describe the state and the next available action. Do not promise success before it is confirmed, blame the user, or substitute sales language for an explanation.
 
