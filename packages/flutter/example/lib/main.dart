@@ -231,15 +231,11 @@ class _GalleryState extends State<_Gallery> {
           enabled: active,
           child: Padding(
             key: ValueKey(id),
-            padding: const EdgeInsets.only(bottom: 40),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              mainAxisSize: MainAxisSize.min,
-              spacing: 20,
-              children: [
-                WantTypography(title, variant: WantTypographyVariant.h2),
-                child,
-              ],
+            padding: const EdgeInsets.only(bottom: 24),
+            child: WantCard(
+              hoverEffect: false,
+              title: WantTypography(title, variant: WantTypographyVariant.h2),
+              child: child,
             ),
           ),
         ),
@@ -1030,10 +1026,13 @@ class _GalleryState extends State<_Gallery> {
                       imageLabel: l.violetGradient,
                       index: 1,
                       onPressed: () => _message(l.previewSelected),
-                      image: const DecoratedBox(
+                      image: DecoratedBox(
                         decoration: BoxDecoration(
                           gradient: LinearGradient(
-                            colors: [Color(0xFF5962F0), Color(0xFF141414)],
+                            colors: [
+                              WantTheme.of(context).color('primary'),
+                              WantTheme.of(context).color('background'),
+                            ],
                           ),
                         ),
                       ),

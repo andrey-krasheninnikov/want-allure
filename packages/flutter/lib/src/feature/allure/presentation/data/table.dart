@@ -62,7 +62,8 @@ class WantTable<T> extends StatelessWidget {
               style: TextStyle(
                 fontSize: header ? 14 : 16,
                 fontWeight: header ? FontWeight.w600 : FontWeight.normal,
-                color: theme.color(header ? 'muted-foreground' : 'foreground'),
+                color: theme.color('foreground'),
+                fontFeatures: const [FontFeature.tabularFigures()],
               ),
               child: child,
             ),
@@ -113,9 +114,7 @@ class WantTable<T> extends StatelessWidget {
                       },
                       children: [
                         TableRow(
-                          decoration: BoxDecoration(
-                            color: theme.color('secondary'),
-                          ),
+                          decoration: BoxDecoration(color: theme.color('card')),
                           children: [
                             for (final column in columns)
                               cell(
@@ -168,11 +167,6 @@ class WantTable<T> extends StatelessWidget {
                         ),
                         for (var index = 0; index < rows.length; index++)
                           TableRow(
-                            decoration: BoxDecoration(
-                              color: theme.color(
-                                index.isEven ? 'card' : 'secondary',
-                              ),
-                            ),
                             children: [
                               for (final column in columns)
                                 _WantTableReveal(
@@ -183,9 +177,40 @@ class WantTable<T> extends StatelessWidget {
                                   )),
                                   index: index,
                                   enabled: transitionKey != null,
-                                  child: cell(
-                                    column.cellBuilder(rows[index]),
-                                    column,
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      vertical: 3,
+                                    ),
+                                    child: DecoratedBox(
+                                      decoration: BoxDecoration(
+                                        color: theme.color(
+                                          index.isEven ? 'secondary' : 'muted',
+                                        ),
+                                        borderRadius:
+                                            BorderRadiusDirectional.only(
+                                              topStart: Radius.circular(
+                                                column == columns.first
+                                                    ? 12
+                                                    : 0,
+                                              ),
+                                              bottomStart: Radius.circular(
+                                                column == columns.first
+                                                    ? 12
+                                                    : 0,
+                                              ),
+                                              topEnd: Radius.circular(
+                                                column == columns.last ? 12 : 0,
+                                              ),
+                                              bottomEnd: Radius.circular(
+                                                column == columns.last ? 12 : 0,
+                                              ),
+                                            ),
+                                      ),
+                                      child: cell(
+                                        column.cellBuilder(rows[index]),
+                                        column,
+                                      ),
+                                    ),
                                   ),
                                 ),
                             ],

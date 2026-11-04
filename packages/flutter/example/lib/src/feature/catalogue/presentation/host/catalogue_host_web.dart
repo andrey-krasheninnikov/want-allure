@@ -1,6 +1,7 @@
 import 'dart:js_interop';
 
 import 'package:web/web.dart' as web;
+import 'package:want_allure/want_allure.dart';
 import 'package:want_allure_example/src/feature/catalogue/presentation/_barrel.dart';
 
 class CatalogueHost {
@@ -78,9 +79,11 @@ class CatalogueHost {
         ?.setAttribute('href', 'favicon/$theme/apple-touch-icon.png');
     web.document.documentElement?.setAttribute('lang', locale);
     web.document.documentElement?.setAttribute('dir', direction);
-    web.document.body?.style.backgroundColor = theme == 'light'
-        ? '#F6F5F3'
-        : '#141414';
+    final background = (theme == 'light'
+        ? WantTokens.light
+        : WantTokens.dark)['background']!;
+    web.document.body?.style.backgroundColor =
+        '#${(background.toARGB32() & 0xFFFFFF).toRadixString(16).padLeft(6, '0')}';
     onSettings(theme, locale, direction, section);
   }
 

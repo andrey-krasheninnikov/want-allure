@@ -54,7 +54,7 @@ class WantButton extends StatelessWidget {
         ? const Color(0x00000000)
         : theme.color(role);
     final foreground = theme.color(
-      variant == WantButtonVariant.link ? 'link' : '$role-foreground',
+      variant == WantButtonVariant.link ? 'primary-text' : '$role-foreground',
     );
     final iconOnly = size.name.startsWith('icon');
     final style = theme.forui.buttonStyles.resolve({mapped}).resolve({
@@ -63,17 +63,37 @@ class WantButton extends StatelessWidget {
     final decoration = BoxDecoration(
       color: base,
       borderRadius: BorderRadius.circular(pill ? 100 : 12),
+      border:
+          variant == WantButtonVariant.ghost ||
+              variant == WantButtonVariant.link
+          ? null
+          : Border.all(color: theme.color('surface-highlight')),
+      boxShadow: onPressed == null || variant != WantButtonVariant.primary
+          ? null
+          : [
+              BoxShadow(
+                color: theme.color('surface-shadow'),
+                blurRadius: 12,
+                offset: const Offset(0, 4),
+              ),
+            ],
     );
     final buttonStyle = style.copyWith(
       decoration: FVariants.from(
         decoration,
         variants: {
-          [
-            FTappableVariant.hovered,
-            FTappableVariant.pressed,
-          ]: DecorationDelta.boxDelta(
+          [FTappableVariant.hovered]: DecorationDelta.boxDelta(
             color: variant == WantButtonVariant.primary
                 ? theme.color('primary-hover')
+                : variant == WantButtonVariant.destructive
+                ? base
+                : theme.color('accent'),
+          ),
+          [FTappableVariant.pressed]: DecorationDelta.boxDelta(
+            color: variant == WantButtonVariant.primary
+                ? theme.color('primary-active')
+                : variant == WantButtonVariant.destructive
+                ? base
                 : theme.color('accent'),
           ),
           [FTappableVariant.disabled]: DecorationDelta.boxDelta(

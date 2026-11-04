@@ -1,8 +1,8 @@
 # Want Allure visual contract
 
-The first product theme preserves the approved Want Wallpapers presentation. Shared primitives use semantic tokens, filled neutral surfaces and compact typography. The source of truth is packages/foundation/tokens.json.
+Want Allure uses a technology-focused luxury identity: graphite and porcelain grounds, the pixel feather, expressive display type and restrained optical depth. The existing wallpapers theme identifier stays compatible. Shared primitives use semantic tokens, filled neutral surfaces and clear interaction states. The source of truth is packages/foundation/tokens.json.
 
-Graphite background is #141414, main text #E8E8E8 and the primary action #5962F0. Light and dark palettes retain the source values. Preserve the original SVG logo separately from semantic action colors.
+Graphite background is #111216, main text #F2F3F7 and the primary action #5962F0. Light and dark palettes retain the source values. Preserve the original SVG logo separately from semantic action colors.
 
 Days One is the display face and Manrope is the body face. Japanese uses Noto Sans JP, Arabic Noto Sans Arabic, simplified Chinese Noto Sans SC, Hindi Noto Sans Devanagari and Hebrew Noto Sans Hebrew. Fonts are local and optional through the fonts stylesheet. Body and inputs stay at least 16 px; labels stay at least 14 px. Controls retain 44 px touch targets.
 
@@ -20,7 +20,7 @@ Use logical spacing, document direction and isolated technical text. Mirror navi
 
 Typography has 17 presets backed by platform-neutral token values. Display headings keep Days One; body copy keeps Manrope, with the existing locale fonts. Body text remains at least 16 px and supporting text at least 14 px. The new scale is opt-in through Typography and Prose.
 
-Feedback accents are identical in both themes: primary #5962F0, success #7DF04A, info #28D7F5, warning #FFD43B and error #FF526D. Status surfaces use those colors with #141414 ink. Separate text roles preserve readable inline status text on the light and dark canvas.
+Feedback accents are identical in both themes: primary #5962F0, success #69B99B, info #86ACDE, warning #D8B477 and error #E58A96. Status surfaces use those colors with #15161A ink. Separate text roles preserve readable inline status text on the light and dark canvas.
 
 Toast and snackbar feedback form compact floating islands. The surface and copy follow the current theme; only the 32 px icon plate carries the status accent. Use an 18 px radius, a soft inset highlight and 44 px action targets. Desktop actions sit beside the message; narrow layouts move actions below it. Entry settles over 360 ms, the status icon follows over 420 ms, and exit takes 180 ms. Errors stay until dismissal unless the consumer supplies a duration.
 
@@ -36,16 +36,22 @@ Flutter feedback uses toastification for scoped delivery and custom Want islands
 
 Flutter web text supports selection and an application find bar through WantWebScope, with localized labels supplied by the consumer. Find is opt-in through `enableFind: true`, disabled by default. Interactive labels keep click priority and action cursors while participating in adjacent text selection. Continuous effects and indeterminate progress use repaint boundaries. The find bar follows Want surfaces, keyboard behavior and logical direction. Shader shimmer and the background sphere use Canvas fragment programs, with static fallbacks. Flutter text replacement settles over 360 ms with a short slide or blur and no outgoing text queue.
 
-The Allure landing stages an extrusion of the supplied dark transparent pixel feather SVG. Preserve its stepped front silhouette and holes. The local renderer rotates the object horizontally with smoothly varying speed and keeps the original SVG fallback. Automatic rotation stops for reduced motion and hidden surfaces. Header preferences reuse the Wallpapers theme switch and language Select in a sticky glass island. One header RTL switch controls the whole catalogue.
+The landing stages live public components beside an extrusion of the supplied transparent pixel feather SVG. Preserve its stepped front silhouette and holes. The local renderer uses a metallic side finish and a maximum 4.4-second automatic entrance, then rests. Drag and arrow-key rotation remain available. Keep the original SVG fallback. Reduced motion disables the entrance and hidden surfaces suspend rendering. Header preferences reuse the Wallpapers theme switch and language Select in a sticky glass island. One header RTL switch controls the whole catalogue.
 
-Catalogue examples use seven shared categories. Visited form values survive category switches; inactive panels stop their effects. Framework actions use recognizable React/Flutter silhouettes in Want colors and the public Glow. Landing lightning uses primary and warning without a full-screen flash. Flutter lightning uses a bounded fragment shader surface with static fallback and viewport/lifecycle pauses.
+Catalogue examples use seven shared categories. Visited form values survive category switches; inactive panels stop their effects. Framework actions use recognizable React/Flutter silhouettes in Want colors and the public Glow. The landing reserves automatic motion for the feather entrance. Lightning remains available in Effects, using primary and warning without a full-screen flash. Flutter lightning uses a bounded fragment shader surface with static fallback and viewport/lifecycle pauses.
 
 Flutter card hover may add the explicitly requested animated contour and soft shadow, without moving the card or changing its cursor. Disable it with hoverEffect for quiet surfaces. Tables use rounded filled surfaces, aligned cells and clear sort actions. Slider values follow input directly; spring curves are reserved for accent feedback and settling. FAQ disclosure takes 280 ms to open and 220 ms to close, with reduced-motion fallbacks.
 
-The landing uses one guided sequence: framework selection, installation, then a horizontal FAQ and tips carousel. Framework cards orbit with their own 3D logos and stop for hover or keyboard focus. Hovering a headline grapheme reveals a soft halo that cycles through primary, info, warning, error and success over eight seconds. Text uses the readable color roles; Arabic and Indic shaping remain intact. The fixed, bounded effect does not extend the page width and clears on scroll, resize or hidden documents.
+The landing uses one guided sequence: framework selection, installation, then a horizontal FAQ and tips carousel. Framework choices use stationary cards and static local 3D logos, with clear hover and focus states. Hovering a headline grapheme reveals a soft halo that cycles through primary, info, warning, error and success over eight seconds. Text uses the readable color roles; Arabic and Indic shaping remain intact. The fixed, bounded effect does not extend the page width and clears on scroll, resize or hidden documents.
 
 Flutter SVG extrusion preserves front, back, side faces and holes. Toast status plates and message blocks share their top edge; minimal status glyphs fade and settle on entry. Table rows enter in sequence when the consumer changes transitionKey, with stable row identity and reduced-motion support.
 
 Flutter password fields use WantPasswordInput with a labelled 44 px show/hide action. Initial content is concealed. Visibility changes preserve value and selection; input-assistance and autofill defaults remain disabled in both states. Consumers supply localized labels, validation and clipboard policy.
 
 Flutter consumers may set `showPauseControl: false` when the product omits that control. Reduced-motion and inactive-view suspension still apply. `WantDialog` supports consumer constraints and `showTitle: false`; its required title remains the accessible name.
+
+The visual signature is a short stepped highlight derived from the feather. Use it at an active action or surface edge; do not repeat the logo or add decorative rules. Material colors and depth values live in the canonical tokens. Cards have a quiet edge and shallow shadow; overlays use the deeper shared elevation. Reading surfaces remain opaque. Forms and data stay quieter than the landing.
+
+The Product UI Slate composition makes the public UI the main exhibit. The landing pairs the feather with live framework tabs, a token table and a light control, then continues through framework selection, installation and FAQ. Keep the existing headline and localized labels. Speak calmly and concretely; the interface demonstrates quality without calling itself luxurious.
+
+Display spans 32–64 px, h1 28–48 px and h2 24–36 px. Keep Days One at its available weight, Manrope for controls and prose, and the supplied locale fallbacks. Inline primary copy uses primary-text; primary remains the action fill and focus color. All readable status roles meet 4.5:1 on the shared reading surfaces.

@@ -24,10 +24,10 @@ void main() {
     () {
       const expected = {
         'primary': Color(0xFF5962F0),
-        'success': Color(0xFF7DF04A),
-        'info': Color(0xFF28D7F5),
-        'warning': Color(0xFFFFD43B),
-        'error': Color(0xFFFF526D),
+        'success': Color(0xFF69B99B),
+        'info': Color(0xFF86ACDE),
+        'warning': Color(0xFFD8B477),
+        'error': Color(0xFFE58A96),
       };
       final light = WantThemeData.light(), dark = WantThemeData.dark();
       for (final entry in expected.entries) {

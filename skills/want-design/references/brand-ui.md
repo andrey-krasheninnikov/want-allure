@@ -2,27 +2,27 @@
 
 ## Identity and color
 
-Want interfaces put the user's content first. Use the product's approved logo and images without stretching, recoloring, or replacing them with a drawing. Preserve the logo's own colors independently of semantic UI accents.
+Want interfaces put the user's content first. Allure combines precise graphite/porcelain surfaces with a stepped light detail taken from its pixel feather. Use the product's approved logo and images without stretching, recoloring, or replacing them with a drawing. Preserve the logo's own colors independently of semantic UI accents.
 
 The current shared theme uses these roles:
 
 | Role | Dark | Light |
 | --- | --- | --- |
-| Canvas | #141414 | #F6F5F3 |
-| Main text | #E8E8E8 | #242321 |
-| Card | #1C1C1C | #FFFFFF |
-| Popover and feedback | #252525 | #FFFFFF |
-| Secondary surface | #252525 | #ECEBE8 |
-| Muted text | #ADADAD | #5F5B58 |
+| Canvas | #111216 | #F7F7FA |
+| Main text | #F2F3F7 | #1B1C24 |
+| Card | #1A1B22 | #FFFFFF |
+| Popover and feedback | #242631 | #FFFFFF |
+| Secondary surface | #242631 | #ECEEF4 |
+| Muted text | #A2A4B2 | #606371 |
 | Primary | #5962F0 | #5962F0 |
-| Success | #7DF04A | #7DF04A |
-| Info | #28D7F5 | #28D7F5 |
-| Warning | #FFD43B | #FFD43B |
-| Error | #FF526D | #FF526D |
+| Success | #69B99B | #69B99B |
+| Info | #86ACDE | #86ACDE |
+| Warning | #D8B477 | #D8B477 |
+| Error | #E58A96 | #E58A96 |
 
-Bright status surfaces use #141414 ink. The `*-text` roles supply readable colored copy on ordinary surfaces. The `*-foreground` roles are ink on the corresponding bright status surfaces. Do not interchange these roles. Ordinary text needs at least 4.5:1 contrast; meaningful icons and control states need 3:1. Pair status color with an icon, label, or explanatory copy.
+Status surfaces use #15161A ink. The `*-text` roles supply readable colored copy on ordinary surfaces. The `*-foreground` roles are ink on the corresponding bright status surfaces. Do not interchange these roles. Ordinary text needs at least 4.5:1 contrast; meaningful icons and control states need 3:1. Pair status color with an icon, label, or explanatory copy.
 
-Use semantic variables and component variants. Do not scatter raw brand hex values through product components or substitute a different palette because a generic design reference suggests it.
+Use primary-text for colored inline copy, and primary for action fills and focus. Use semantic variables and component variants. Do not scatter raw brand hex values through product components or substitute a different palette because a generic design reference suggests it.
 
 ## Typography
 
@@ -35,7 +35,7 @@ Body text and inputs stay at least 16 px; supporting copy and labels stay at lea
 ## Geometry and composition
 
 - Use the 4 px spacing rhythm. Start with content, relationships, and the primary action, then choose a layout that serves them.
-- Fields use 12 px corners; panels and media use 24 px; prominent surfaces use 32 px; CTA buttons use capsule corners. Compact feedback islands use 18 px corners.
+- Use the canonical material highlight and shadow roles for depth. A small stepped highlight may mark an active surface; reading areas stay quiet. Fields use 12 px corners; panels and media use 24 px; prominent surfaces use 32 px; CTA buttons use capsule corners. Compact feedback islands use 18 px corners.
 - Group with fills, spacing, and type. Outline variants remain filled. Do not draw decorative divider rules or wrap every piece of text in a card.
 - Let reading surfaces stay opaque. Liquid glass is for suitable action surfaces: 68% neutral tint, 20 px blur, and 120% saturation. Reduced transparency, unsupported filtering, and forced colors use opaque surfaces.
 - Use one clear primary action in each decision area. Keep secondary and destructive actions distinct. Destructive labels name what will be removed or changed.
