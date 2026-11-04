@@ -245,3 +245,10 @@ a:focus-visible,.motion-control:focus-visible,.logo-stage:focus-visible { outlin
 @media(forced-colors:active) { .hero-slate::before { display:none; }.slate-mark { background:Highlight; }.slate-color { outline:1px solid CanvasText; }.journey-progress > [aria-current] { outline:2px solid Highlight; } }
 :lang(ar) .hero-heading h1 { line-height:1.65; letter-spacing:normal; }
 :where(:lang(hi),:lang(he),:lang(zh),:lang(ja)) .hero-heading h1 { line-height:1.4; letter-spacing:normal; }
+html { scroll-padding-top:max(110px,6rem); }
+.journey-actions .ui-button-base { max-width:100%; flex-shrink:1; }
+@media(max-width:760px) {
+  .header-bar { flex-wrap:wrap; border-radius:32px; }
+  .site-preferences { max-width:100%; margin-inline-start:auto; flex-wrap:wrap; justify-content:flex-end; }
+  .mobile-menu { width:44px; height:44px; flex:none; }
+}

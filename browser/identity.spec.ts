@@ -43,3 +43,25 @@ test('semantic link overrides still reach link buttons', async ({ page }) => {
   await page.evaluate(() => document.documentElement.style.setProperty('--link','#276B53'));
   await expect(page.getByRole('button',{name:'link',exact:true})).toHaveCSS('color','rgb(39, 107, 83)');
 });
+
+test('enlarged text keeps header actions and every journey step within 375px', async ({ page }) => {
+  await page.setViewportSize({width:375,height:1000});
+  await page.goto('/ru/');
+  const journey = page.locator('.journey');
+  await expect(journey).toHaveAttribute('data-enhanced','true');
+  await page.evaluate(() => { document.documentElement.style.fontSize='200%'; });
+  await page.evaluate(() => document.fonts.ready);
+  const fits = () => page.evaluate(() => document.documentElement.scrollWidth <= innerWidth);
+  await expect.poll(fits).toBe(true);
+  const menu = page.getByRole('button',{name:'Основная навигация',exact:true});
+  await expect(menu).toBeVisible();
+  const box = await menu.boundingBox();
+  expect(box!.width).toBeGreaterThanOrEqual(44);
+  expect(box!.x + box!.width).toBeLessThanOrEqual(375);
+  await page.getByRole('button',{name:'Выберите фреймворк: React',exact:true}).click();
+  await expect(journey).toHaveAttribute('data-step','install');
+  await expect.poll(fits).toBe(true);
+  await page.getByRole('button',{name:'Я установил',exact:true}).click();
+  await expect(journey).toHaveAttribute('data-step','learn');
+  await expect.poll(fits).toBe(true);
+});
