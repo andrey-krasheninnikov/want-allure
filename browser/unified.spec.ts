@@ -1,4 +1,4 @@
-import { chooseTheme } from './helpers';
+import { chooseTheme, themeMenu } from './helpers';
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
@@ -26,6 +26,40 @@ for (const locale of ['en', 'ru']) for (const width of [320, 1440]) {
     }
     expect(runtime).toEqual([]);
     expect(errors).toEqual([]);
+  });
+}
+
+for (const activation of ['click', 'Enter', 'ArrowDown', 'hold', 'cancel'] as const) {
+  test(`cold header theme menu respects the first ${activation}`, async ({ page }) => {
+    await page.setViewportSize({ width: 320, height: 900 });
+    let loadHeader!: () => void;
+    const gate = new Promise<void>(resolve => { loadHeader = resolve; });
+    await page.route('**/_astro/SiteHeader.*.js', async route => {
+      await gate;
+      await route.continue();
+    });
+    await page.goto('/', { waitUntil: 'commit' });
+    const trigger = themeMenu(page);
+    try {
+      await expect(page.locator('astro-island[ssr] .site-header')).toBeVisible();
+      if (activation === 'hold') {
+        await trigger.hover();
+        await page.mouse.down();
+      } else if (activation === 'Enter' || activation === 'ArrowDown') await trigger.press(activation);
+      else await trigger.click();
+      if (activation === 'cancel') await page.keyboard.press('Escape');
+    } finally {
+      loadHeader();
+    }
+    await expect(page.locator('astro-island[ssr] .site-header')).toHaveCount(0);
+    if (activation === 'hold') await page.mouse.up();
+    if (activation === 'cancel') {
+      await expect(trigger).toHaveAttribute('aria-expanded', 'false');
+      await trigger.click();
+    }
+    await page.getByRole('menuitem', { name: 'Dark theme', exact: true }).click();
+    await expect(page.locator('html')).toHaveAttribute('data-theme-mode', 'dark');
+    await expect(trigger).toBeFocused();
   });
 }
 
