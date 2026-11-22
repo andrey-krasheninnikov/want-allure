@@ -155,7 +155,9 @@ class WantStepIndicator extends StatelessWidget {
                     height: 6,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(3),
-                      color: theme.color(i < current ? 'primary-edge' : 'secondary'),
+                      color: theme.color(
+                        i < current ? 'primary-edge' : 'secondary',
+                      ),
                     ),
                   ),
                 ),

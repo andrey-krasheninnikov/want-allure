@@ -132,9 +132,7 @@ class CatalogueHost {
       );
     }
     final overrideColors = theme == 'light' ? profile?.light : profile?.dark;
-    final background =
-        overrideColors?['background'] ??
-        defaults['background']!;
+    final background = overrideColors?['background'] ?? defaults['background']!;
     web.document.body?.style.backgroundColor =
         '#${(background.toARGB32() & 0xFFFFFF).toRadixString(16).padLeft(6, '0')}';
     onSettings(theme, locale, direction, section);

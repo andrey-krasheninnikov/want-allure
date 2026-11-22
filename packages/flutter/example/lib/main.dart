@@ -45,7 +45,10 @@ class _WantCatalogueState extends State<WantCatalogue>
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
       if (!_host.embedded) {
-        _host.chooseTheme(_brightness.name, system: _mode == WantThemeMode.system);
+        _host.chooseTheme(
+          _brightness.name,
+          system: _mode == WantThemeMode.system,
+        );
       }
       _host.ready();
     });
