@@ -10,7 +10,8 @@ class WantCard extends StatelessWidget {
   final bool hoverEffect;
   final Widget child;
   final Widget? title, description, actions, footer;
-  final EdgeInsetsGeometry padding;
+  final EdgeInsetsGeometry? _padding;
+  EdgeInsetsGeometry get padding => _padding ?? const EdgeInsets.all(24);
   const WantCard({
     super.key,
     required this.child,
@@ -18,19 +19,35 @@ class WantCard extends StatelessWidget {
     this.description,
     this.actions,
     this.footer,
-    this.padding = const EdgeInsets.all(24),
+    this._padding,
     this.hoverEffect = true,
   });
   @override
   Widget build(BuildContext context) => _CardSurface(
     enabled: hoverEffect,
     child: FCard(
+      style:
+          WantTheme.of(context).profile.surface == WantSurface.glass &&
+              !WantTheme.reducedTransparencyOf(context) &&
+              !MediaQuery.highContrastOf(context)
+          ? FCardStyleDelta.delta(
+              decoration: DecorationDelta.value(
+                BoxDecoration(
+                  color: const Color(0x00000000),
+                  borderRadius: BorderRadius.circular(
+                    WantTheme.of(context).panelRadius,
+                  ),
+                ),
+              ),
+            )
+          : const FCardStyleDelta.context(),
       child: Padding(
-        padding: padding,
+        padding:
+            _padding ?? EdgeInsets.all(WantTheme.of(context).compact ? 16 : 24),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
-          spacing: 16,
+          spacing: WantTheme.of(context).compact ? 12 : 16,
           children: [
             if (title != null || description != null || actions != null)
               LayoutBuilder(
@@ -77,7 +94,7 @@ class WantCard extends StatelessWidget {
                   }
                   return Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    spacing: 16,
+                    spacing: WantTheme.of(context).compact ? 12 : 16,
                     children: [
                       if (title != null || description != null)
                         Expanded(child: heading),
@@ -115,7 +132,19 @@ class _CardSurfaceState extends State<_CardSurface> {
   bool _hovered = false, _focused = false;
   @override
   Widget build(BuildContext context) {
-    final child = RepaintBoundary(child: widget.child);
+    final theme = WantTheme.of(context);
+    final glass =
+        theme.profile.surface == WantSurface.glass &&
+        !WantTheme.reducedTransparencyOf(context) &&
+        !MediaQuery.highContrastOf(context);
+    final child = RepaintBoundary(
+      child: glass
+          ? WantGlass(
+              borderRadius: BorderRadius.circular(theme.panelRadius),
+              child: widget.child,
+            )
+          : widget.child,
+    );
     if (!widget.enabled || MediaQuery.highContrastOf(context)) return child;
     final reduced = WantTheme.reducedMotionOf(context);
     return WantViewportMotion(
@@ -139,6 +168,7 @@ class _CardSurfaceState extends State<_CardSurface> {
                   strength,
                   reduced ? 0 : phase,
                   WantTheme.of(context).color('primary'),
+                  WantTheme.of(context).panelRadius,
                 ),
                 child: child,
               ),
@@ -151,15 +181,15 @@ class _CardSurfaceState extends State<_CardSurface> {
 }
 
 class _CardHighlight extends CustomPainter {
-  final double strength, phase;
+  final double strength, phase, radius;
   final Color color;
-  _CardHighlight(this.strength, this.phase, this.color);
+  _CardHighlight(this.strength, this.phase, this.color, this.radius);
   @override
   void paint(Canvas canvas, Size size) {
     if (strength <= 0 || size.isEmpty) return;
     final rect = RRect.fromRectAndRadius(
       (Offset.zero & size).deflate(1),
-      const Radius.circular(24),
+      Radius.circular(radius),
     );
     canvas.drawRRect(
       rect,
@@ -216,5 +246,8 @@ class _CardHighlight extends CustomPainter {
 
   @override
   bool shouldRepaint(_CardHighlight old) =>
-      old.strength != strength || old.phase != phase || old.color != color;
+      old.radius != radius ||
+      old.strength != strength ||
+      old.phase != phase ||
+      old.color != color;
 }

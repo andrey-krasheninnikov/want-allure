@@ -1,3 +1,4 @@
+import { chooseTheme } from './helpers';
 import { test, expect } from '@playwright/test';
 
 test('live slate changes framework and light through public controls', async ({ page }) => {
@@ -5,7 +6,7 @@ test('live slate changes framework and light through public controls', async ({ 
   await expect(page.locator('astro-island[ssr]')).toHaveCount(0);
   const slate = page.locator('.hero-slate');
   for (const theme of ['light', 'dark']) {
-    await page.getByRole('switch', { name:'Dark theme', exact:true }).setChecked(theme === 'dark');
+    await chooseTheme(page, theme);
     await slate.getByRole('tab', { name:'Flutter', exact:true }).click();
     await expect(slate.getByRole('tabpanel')).toContainText('ForUI');
     await expect(slate.getByRole('link', { name:'Component catalogue' })).toHaveAttribute('href','/flutter/');
@@ -18,7 +19,7 @@ test('live slate changes framework and light through public controls', async ({ 
   await slider.press('ArrowRight');
   await expect(slider).toHaveAttribute('aria-valuenow','61');
   await expect(slate.locator('.slate-reading')).toHaveText('61%');
-  await expect(page.locator('.landing-hero [data-slot="lightning-background"]')).toHaveCount(0);
+  await expect(page.locator('.landing-hero [data-slot="lightning-background"]')).toHaveCount(1);
 });
 
 test('feather introduction settles and manual rotation stays available', async ({ page }) => {
@@ -27,6 +28,7 @@ test('feather introduction settles and manual rotation stays available', async (
   const logo = page.locator('.landing-hero .logo-stage');
   await expect(logo).toHaveAttribute('data-ready','true');
   await page.waitForTimeout(5200);
+  await page.addStyleTag({ content: '.landing-hero .ui-lightning-background, .fire-headline canvas { visibility:hidden; }' });
   const canvas = logo.locator('canvas');
   const settled = await canvas.screenshot();
   await page.waitForTimeout(300);
@@ -40,7 +42,7 @@ test('feather introduction settles and manual rotation stays available', async (
 test('semantic link overrides still reach link buttons', async ({ page }) => {
   await page.goto('/react/?section=inputs');
   await expect(page.locator('astro-island[ssr]')).toHaveCount(0);
-  await page.evaluate(() => document.documentElement.style.setProperty('--link','#276B53'));
+  await page.evaluate(() => document.querySelector<HTMLElement>('[data-allure-scope]')!.style.setProperty('--link','#276B53'));
   await expect(page.getByRole('button',{name:'link',exact:true})).toHaveCSS('color','rgb(39, 107, 83)');
 });
 

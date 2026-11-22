@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Info, X } from 'lucide-react';
 import { Button, Checkbox, Combobox, DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem,
   FileUpload, Pagination, Popover, PopoverTrigger, PopoverContent, PopoverClose, Progress,
-  Table, TableCaption, TableHeader, TableBody, TableRow, TableHead, TableCell, Skeleton,
+  Table, TableCaption, TableHeader, TableBody, TableRow, TableHead, TableCell, TableSortHead, type TableSortDirection, Skeleton,
   ToastProvider, Toast, ToastTitle, ToastDescription, ToastAction, ToastClose, ToastViewport,
   TooltipProvider, Tooltip, TooltipTrigger, TooltipContent, Input, Slider, RangeSlider } from '@want-foundation/allure-react';
 import { Section } from './Section';
@@ -64,10 +64,12 @@ function DemoTable() {
   const [pageSize, setPageSize] = useState(5);
   const [loading, setLoading] = useState(false);
   const [selected, setSelected] = useState<number[]>([]);
+  const [sort, setSort] = useState<TableSortDirection>('none');
   const rows = Array.from({ length: 23 }, (_, index) => ({ id: index + 1, name: t("Example ") + (index + 1), status: index % 2 ? t("Draft") : t("Ready") }));
+  if (sort === 'descending') rows.reverse();
   return <div className="demo-stack"><Button type="button" variant="secondary" onClick={() => setLoading(value => !value)}>{t("Toggle table loading")}</Button>
-    <Table aria-busy={loading}><TableCaption>{t("Local project examples")}</TableCaption><TableHeader><TableRow><TableHead>{t("Select")}</TableHead><TableHead>{t("Project")}</TableHead><TableHead>{t("Status")}</TableHead></TableRow></TableHeader>
-      <TableBody>{loading ? <TableRow><TableCell colSpan={3}><Skeleton className="h-11 w-full" /><span role="status" className="sr-only">{t("Loading table preview")}</span></TableCell></TableRow> : rows.slice((page - 1) * pageSize, page * pageSize).map(row => <TableRow key={row.id} data-state={selected.includes(row.id) ? 'selected' : undefined}><TableCell><Checkbox aria-label={t("Select example ") + row.id} checked={selected.includes(row.id)} onCheckedChange={value => setSelected(current => value ? [...current, row.id] : current.filter(id => id !== row.id))} /></TableCell><TableHead scope="row">{row.name}</TableHead><TableCell>{t(row.status)}</TableCell></TableRow>)}</TableBody>
+    <Table aria-busy={loading}><TableCaption>{t("Local project examples")}</TableCaption><TableHeader><TableRow><TableHead>{t("Select")}</TableHead><TableSortHead numeric sort={sort} onSortChange={value=>{setSort(value);setPage(1);}}>ID</TableSortHead><TableHead>{t("Project")}</TableHead><TableHead>{t("Status")}</TableHead></TableRow></TableHeader>
+      <TableBody>{loading ? <TableRow><TableCell colSpan={4}><Skeleton className="h-11 w-full" /><span role="status" className="sr-only">{t("Loading table preview")}</span></TableCell></TableRow> : rows.slice((page - 1) * pageSize, page * pageSize).map(row => <TableRow key={row.id} data-state={selected.includes(row.id) ? 'selected' : undefined}><TableCell><Checkbox aria-label={t("Select example ") + row.id} checked={selected.includes(row.id)} onCheckedChange={value => setSelected(current => value ? [...current, row.id] : current.filter(id => id !== row.id))} /></TableCell><TableCell numeric>{new Intl.NumberFormat(locale).format(row.id)}</TableCell><TableHead scope="row">{row.name}</TableHead><TableCell>{t(row.status)}</TableCell></TableRow>)}</TableBody>
     </Table>
     <Pagination page={page} pageSize={pageSize} totalItems={rows.length} pageSizeOptions={[5, 10, 20]} onChange={(nextPage, nextSize) => { setPage(nextPage); setPageSize(nextSize); }}
       labels={{ navigation: t("Project pages"), previous: t("Previous page"), next: t("Next page"), pageSize: t("Rows per page"), page: value => t('Page {page}').replace('{page}',new Intl.NumberFormat(locale).format(value)), results: (from,to,total) => t('$from–$to of $total').replace('$from',new Intl.NumberFormat(locale).format(from)).replace('$to',new Intl.NumberFormat(locale).format(to)).replace('$total',new Intl.NumberFormat(locale).format(total)) }} />
@@ -84,7 +86,7 @@ function DemoFiles() {
 function DemoSliders() {
   const [value,setValue]=useState(42),[range,setRange]=useState<[number,number]>([25,75]);
   const t=useT(),label=t('Intensity'),rangeLabel=t('Range');
-  return <Section category="inputs" title={t('Sliders')}><div className="demo-stack">
+  return <Section category="inputs" guide="Slider" title={t('Sliders')}><div className="demo-stack">
     <label>{label}: <output>{value}%</output><Slider label={label} value={value} onValueChange={setValue} formatValue={value=>`${value}%`}/></label>
     <label>{rangeLabel}: <output>{range.join(' – ')}</output><RangeSlider label={rangeLabel} value={range} onValueChange={setRange} thumbLabels={[t('Range start'),t('Range end')]}/></label>
     <Slider label={t('Disabled slider')} value={60} onValueChange={()=>{}} disabled/>
@@ -95,11 +97,11 @@ export function AdditionalDemos() {
   const t = useT();
   return <>
     <DemoSliders />
-    <Section category="inputs" title={t("Checkboxes")}><DemoCheckbox /></Section>
-    <Section category="navigation" title={t("Menus, tooltips and popovers")}><DemoOverlays /></Section>
-    <Section category="feedback" title={t("Notifications and progress")}><DemoFeedback /></Section>
-    <Section category="inputs" title={t("Searchable combobox")}><DemoCombobox /></Section>
-    <Section category="data" title={t("Table and pagination")}><DemoTable /></Section>
-    <Section category="data" title={t("File selection")}><DemoFiles /></Section>
+    <Section category="inputs" guide="Checkbox" title={t("Checkboxes")}><DemoCheckbox /></Section>
+    <Section category="navigation" guide="DropdownMenu" title={t("Menus, tooltips and popovers")}><DemoOverlays /></Section>
+    <Section category="feedback" guide="Toast" title={t("Notifications and progress")}><DemoFeedback /></Section>
+    <Section category="inputs" guide="Combobox" title={t("Searchable combobox")}><DemoCombobox /></Section>
+    <Section category="data" guide="Table" title={t("Table and pagination")}><DemoTable /></Section>
+    <Section category="data" guide="FileUpload" title={t("File selection")}><DemoFiles /></Section>
   </>;
 }

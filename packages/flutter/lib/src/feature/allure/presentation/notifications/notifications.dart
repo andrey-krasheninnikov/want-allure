@@ -62,10 +62,11 @@ class _ToasterScope extends InheritedWidget {
 
 class _ToastHandle with FToasterEntry {
   final _WantToasterState owner;
+  final Object? operationKey;
   ToastificationItem? item;
   VoidCallback? animateClose;
   bool _showing = true, _removed = false;
-  _ToastHandle(this.owner);
+  _ToastHandle(this.owner, this.operationKey);
   @override
   bool get showing => _showing && !_removed;
   @override
@@ -277,6 +278,7 @@ class WantSnackbar extends WantToast {
 }
 
 WantToastHandle _showToast({
+  Object? operationKey,
   required BuildContext context,
   required Duration? duration,
   required Widget Function(VoidCallback dismiss) builder,
@@ -291,9 +293,19 @@ WantToastHandle _showToast({
     throw FlutterError('Notifications require a WantToaster ancestor.');
   }
   final overlay = Navigator.of(context).overlay!;
-  final handle = _ToastHandle(owner);
+  if (operationKey != null) {
+    for (final prior
+        in owner._handles
+            .where((h) => h.operationKey == operationKey)
+            .toList()) {
+      prior._remove();
+    }
+  }
+  final handle = _ToastHandle(owner, operationKey);
   owner._handles.add(handle);
   final themes = InheritedTheme.capture(from: context, to: overlay.context);
+  final environment = captureWantOverlayEnvironment(context, overlay.context);
+  final forui = FTheme.capture(from: context, to: overlay.context);
   handle.item = owner._toasts.showCustom(
     context: context,
     overlayState: overlay,
@@ -301,27 +313,36 @@ WantToastHandle _showToast({
     autoCloseDuration: null,
     animationDuration: Duration.zero,
     animationBuilder: (context, animation, alignment, child) => child,
-    builder: (context, item) => themes.wrap(
-      ConstrainedBox(
-        constraints: BoxConstraints(
-          maxWidth: (MediaQuery.sizeOf(context).width - 32).clamp(0, 400),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.only(bottom: 8),
-          child: _ToastTransition(
-            handle: handle,
-            child: _TimedToast(
-              duration: duration,
-              onDismiss: handle.dismiss,
-              child: _SwipeToast(
-                handle: handle,
-                child: builder(handle.dismiss),
+    builder: (context, item) => handle._removed
+        ? const SizedBox.shrink()
+        : environment(
+            forui.wrap(
+              themes.wrap(
+                ConstrainedBox(
+                  constraints: BoxConstraints(
+                    maxWidth: (MediaQuery.sizeOf(context).width - 32).clamp(
+                      0,
+                      400,
+                    ),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 8),
+                    child: _ToastTransition(
+                      handle: handle,
+                      child: _TimedToast(
+                        duration: duration,
+                        onDismiss: handle.dismiss,
+                        child: _SwipeToast(
+                          handle: handle,
+                          child: builder(handle.dismiss),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
               ),
             ),
           ),
-        ),
-      ),
-    ),
   );
   // Reconcile this batch after its deferred manager admission.
   final handles = owner._handles.toList();
@@ -440,6 +461,7 @@ class _ToastTransitionState extends State<_ToastTransition>
 }
 
 WantToastHandle showWantToast({
+  Object? operationKey,
   required BuildContext context,
   required Widget title,
   required String closeLabel,
@@ -449,6 +471,7 @@ WantToastHandle showWantToast({
   Duration? duration = const Duration(seconds: 5),
 }) => _showToast(
   context: context,
+  operationKey: operationKey,
   duration: duration,
   builder: (dismiss) => WantToast(
     title: title,
@@ -461,6 +484,7 @@ WantToastHandle showWantToast({
 );
 
 WantToastHandle showWantSnackbar({
+  Object? operationKey,
   required BuildContext context,
   required WantSnackbarVariant variant,
   required String variantLabel,
@@ -482,6 +506,7 @@ WantToastHandle showWantSnackbar({
   return _showToast(
     context: context,
     duration: resolved,
+    operationKey: operationKey,
     builder: (dismiss) => WantSnackbar(
       variant: variant,
       variantLabel: variantLabel,

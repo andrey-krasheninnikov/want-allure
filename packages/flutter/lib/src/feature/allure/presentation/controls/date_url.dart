@@ -7,7 +7,8 @@ enum WantDateFieldMode { date, dateTime }
 bool isWantDateInRange(DateTime value) => value.year >= 1 && value.year <= 9999;
 
 class WantDateField extends StatefulWidget {
-  final DateTime? value, today;
+  final DateTime? value, today, minDate, maxDate;
+  final int? firstDayOfWeek;
   final ValueChanged<DateTime?> onChanged;
   final ValueChanged<DateTime?>? onCommit;
   final WantDateFieldMode mode;
@@ -23,6 +24,9 @@ class WantDateField extends StatefulWidget {
     this.mode = WantDateFieldMode.date,
     this.onCommit,
     this.today,
+    this.minDate,
+    this.maxDate,
+    this.firstDayOfWeek,
     this.todayLabel,
     this.timeLabel,
     this.hint,
@@ -79,6 +83,23 @@ class _WantDateFieldState extends State<WantDateField> {
         'Date must be within years 0001–9999',
       );
     }
+    DateTime day(DateTime value) =>
+        DateTime.utc(value.year, value.month, value.day);
+    final min = day(widget.minDate ?? DateTime.utc(1)),
+        max = day(widget.maxDate ?? DateTime.utc(9999, 12, 31));
+    bool allowed(DateTime date) =>
+        !day(date).isBefore(min) && !day(date).isAfter(max);
+    if (!isWantDateInRange(min) ||
+        !isWantDateInRange(max) ||
+        min.isAfter(max) ||
+        (value != null && !allowed(value))) {
+      throw ArgumentError('Invalid calendar range or selected date');
+    }
+    final weekday = widget.firstDayOfWeek;
+    if (weekday != null && (weekday < 1 || weekday > 7)) {
+      throw RangeError.range(weekday, 1, 7, 'firstDayOfWeek');
+    }
+    final initial = day(value ?? today);
     return Focus(
       onFocusChange: (focused) {
         if (!focused) _commit();
@@ -89,14 +110,27 @@ class _WantDateFieldState extends State<WantDateField> {
         spacing: 12,
         children: [
           FDateField.calendar(
+            style: FDateFieldStyleDelta.delta(
+              calendarStyle: FCalendarStyleDelta.delta(
+                dayPickerStyle: FCalendarDayPickerStyleDelta.delta(
+                  firstDayOfWeek: weekday == null ? null : () => weekday,
+                ),
+              ),
+            ),
             label: widget.label,
             hint: widget.hint,
             enabled: widget.enabled,
             calendar: FDateFieldGridCalendarProperties(
               control: FGridCalendarControl(
-                start: DateTime.utc(1),
-                end: DateTime.utc(9999, 12, 31),
-                initial: value ?? today,
+                // ForUI requires today within its navigation bounds. Selection uses the requested interval.
+                start: day(today).isBefore(min) ? day(today) : min,
+                end: day(today).isAfter(max) ? day(today) : max,
+                initial: initial.isBefore(min)
+                    ? min
+                    : initial.isAfter(max)
+                    ? max
+                    : initial,
+                selectable: allowed,
                 today: today,
               ),
             ),
@@ -137,7 +171,7 @@ class _WantDateFieldState extends State<WantDateField> {
           if (widget.mode == WantDateFieldMode.dateTime)
             FTimeField(
               label: widget.timeLabel,
-              enabled: widget.enabled,
+              enabled: widget.enabled && (value != null || allowed(today)),
               hour24: true,
               control: FTimeFieldControl.lifted(
                 time: value == null ? null : FTime(value.hour, value.minute),
@@ -160,7 +194,7 @@ class _WantDateFieldState extends State<WantDateField> {
           if (widget.todayLabel != null)
             WantButton(
               variant: WantButtonVariant.secondary,
-              onPressed: !widget.enabled
+              onPressed: !widget.enabled || !allowed(today)
                   ? null
                   : () {
                       _change(

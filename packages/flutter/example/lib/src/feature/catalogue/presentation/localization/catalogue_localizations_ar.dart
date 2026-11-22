@@ -655,4 +655,278 @@ class CatalogueLocalizationsAr extends CatalogueLocalizations {
 
   @override
   String get changeLanguage => 'اللغة';
+
+  @override
+  String get passAllItems => 'كل العناصر';
+
+  @override
+  String get passWork => 'العمل';
+
+  @override
+  String get passPinned => 'مثبّت';
+
+  @override
+  String get passDesignNotes => 'ملاحظات التصميم';
+
+  @override
+  String get passReadingList => 'قائمة القراءة';
+
+  @override
+  String get passReleaseChecklist => 'قائمة تحقق الإصدار';
+
+  @override
+  String get passGroups => 'المجموعات';
+
+  @override
+  String get passItems => 'العناصر';
+
+  @override
+  String get passPreview => 'معاينة';
+
+  @override
+  String get passCopyItemName => 'نسخ اسم العنصر';
+
+  @override
+  String get passCopied => 'منقول';
+
+  @override
+  String get passCopyFailed => 'تعذّر النسخ';
+
+  @override
+  String get passWorkspace => 'مساحة العمل';
+
+  @override
+  String get passToggleMenu => 'فتح القائمة أو إغلاقها';
+
+  @override
+  String get passCloseMenu => 'إغلاق القائمة';
+
+  @override
+  String get passSearchItems => 'البحث في العناصر';
+
+  @override
+  String get passRemovePinnedFilter => 'إزالة مرشح المثبّت';
+
+  @override
+  String get passFilter => 'تصفية';
+
+  @override
+  String get passResizeGroups => 'تغيير عرض المجموعات';
+
+  @override
+  String get passResizeItems => 'تغيير عرض القائمة';
+
+  @override
+  String get passResizePreview => 'تغيير عرض المعاينة';
+
+  @override
+  String get passBack => 'رجوع';
+
+  @override
+  String get passSensitiveField => 'حقل بيانات حساسة';
+
+  @override
+  String get passExamplePassword => 'كلمة مرور تجريبية';
+
+  @override
+  String get passShowPassword => 'إظهار كلمة المرور';
+
+  @override
+  String get passHidePassword => 'إخفاء كلمة المرور';
+
+  @override
+  String get passShowHint => 'إظهار التلميح';
+
+  @override
+  String get passCopyHint => 'نسخ التلميح';
+
+  @override
+  String get passVerify => 'تحقّق';
+
+  @override
+  String get passExampleAccepted => 'قُبل المثال';
+
+  @override
+  String get passNameAndIcon => 'الاسم والأيقونة';
+
+  @override
+  String get passRequirements => 'المتطلبات';
+
+  @override
+  String get passChooseAndExport => 'اختيار وتصدير';
+
+  @override
+  String get passAtLeastEightCharacters => 'ثمانية محارف على الأقل';
+
+  @override
+  String get passIncludesANumber => 'يتضمّن رقماً';
+
+  @override
+  String get passValuesMatch => 'القيم متطابقة';
+
+  @override
+  String get passUploadedImage => 'صورة مرفوعة';
+
+  @override
+  String get passPrimary => 'الابتدائية';
+
+  @override
+  String get passGreen => 'أخضر';
+
+  @override
+  String get passBlue => 'أزرق';
+
+  @override
+  String get passAmber => 'كهرماني';
+
+  @override
+  String get passRose => 'وردي';
+
+  @override
+  String get passInk => 'حبري';
+
+  @override
+  String get passMuted => 'خافت';
+
+  @override
+  String get passGuidedSetup => 'الإعداد الموجّه';
+
+  @override
+  String get passChooseIconAndColor => 'اختيار الأيقونة واللون';
+
+  @override
+  String get passIcons => 'الأيقونات';
+
+  @override
+  String get passColors => 'الألوان';
+
+  @override
+  String get passUploadImage => 'رفع صورة';
+
+  @override
+  String get passName => 'الاسم';
+
+  @override
+  String get passPassword => 'كلمة المرور';
+
+  @override
+  String get passShowBothPasswords => 'إظهار كلمتي المرور';
+
+  @override
+  String get passHideBothPasswords => 'إخفاء كلمتي المرور';
+
+  @override
+  String get passRepeatPassword => 'إعادة كلمة المرور';
+
+  @override
+  String get passChoice => 'خيار';
+
+  @override
+  String get passCopyJSON => 'نسخ JSON';
+
+  @override
+  String get passDownloadJSON => 'تنزيل JSON';
+
+  @override
+  String get passShowQR => 'إظهار رمز QR';
+
+  @override
+  String get passNext => 'التالي';
+
+  @override
+  String get passResetExample => 'إعادة ضبط المثال';
+
+  @override
+  String get passClose => 'إغلاق';
+
+  @override
+  String get passSampleQR => 'رمز QR تجريبي';
+
+  @override
+  String get passISavedIt => 'حفظته';
+
+  @override
+  String get passDeleteLocalSampleData => 'حذف بيانات المثال المحلية';
+
+  @override
+  String get passThisClearsTheNameAndChoicesEnteredInThisExample =>
+      'يُحذف الاسم والخيارات المدخلة في هذا المثال.';
+
+  @override
+  String get passEnterDELETEToConfirm => 'اكتب DELETE للتأكيد';
+
+  @override
+  String get passEnterDELETEExactly => 'اكتب DELETE كما هي.';
+
+  @override
+  String get passCancel => 'إلغاء';
+
+  @override
+  String get passDeleteLocalData => 'حذف البيانات المحلية';
+
+  @override
+  String get passSavingFile => 'جارٍ حفظ الملف…';
+
+  @override
+  String get passFileSaved => 'حُفظ الملف';
+
+  @override
+  String get passDownloadStarted => 'بدأ التنزيل';
+
+  @override
+  String get passSaveFailed => 'تعذّر الحفظ';
+
+  @override
+  String get passExport => 'تصدير';
+
+  @override
+  String get passInteractiveScenes => 'مشاهد تفاعلية';
+
+  @override
+  String get passActivateFeather => 'تفعيل الريشة';
+
+  @override
+  String get passToggleLock => 'فتح القفل أو إغلاقه';
+
+  @override
+  String get passResume => 'استئناف';
+
+  @override
+  String get passPause => 'وقفة';
+
+  @override
+  String get passSphereAndLightning => 'الكرة والبرق';
+
+  @override
+  String get passLightThreads => 'خيوط الضوء';
+
+  @override
+  String get passPreviewTheIntro => 'معاينة المقدمة';
+
+  @override
+  String get passReady => 'جاهز';
+
+  @override
+  String get passFile => 'ملف';
+
+  @override
+  String get passLink => 'رابط';
+
+  @override
+  String get passSearch => 'بحث';
+
+  @override
+  String get passImage => 'صورة';
+
+  @override
+  String get passCheck => 'تحقق';
+
+  @override
+  String get passInfo => 'معلومات';
+
+  @override
+  String get sortAscending => 'تصاعدي';
+
+  @override
+  String get sortDescending => 'تنازلي';
 }

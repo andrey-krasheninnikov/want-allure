@@ -1,10 +1,17 @@
 ---
+import { CatalogueFinder } from './CatalogueGuide';
+import { catalogueMessages } from '../i18n/load-catalogue';
+import { CatalogueStudio } from './BrandStudio';
 import { copy, type Locale } from '../site';
 interface Props { locale: Locale; }
 const { locale } = Astro.props;
 const c = copy[locale];
 ---
+<div class="flutter-tools">
 <div class="flutter-intro"><h1>Flutter · {c.catalogue}</h1><p>{c.flutterIntro}</p></div>
+<CatalogueFinder framework="flutter" locale={locale} messages={await catalogueMessages(locale)} client:load/>
+<CatalogueStudio framework="flutter" locale={locale} client:load/>
+</div>
 <div class="flutter-stage" data-flutter-stage data-state="loading" data-locale={locale}>
   <iframe data-flutter-frame title={`Flutter · ${c.catalogue}`} referrerpolicy="same-origin"></iframe>
   <div class="flutter-loading" role="status"><span class="flutter-loader" aria-hidden="true"></span><p>{c.loading}</p></div>
@@ -12,12 +19,29 @@ const c = copy[locale];
 </div>
 <script>
   import { categoryOf, categories } from '../catalogue';
+  import { documentAppearance, documentProfile } from '../appearance';
   const stage = document.querySelector<HTMLElement>('[data-flutter-stage]')!;
   const frame = stage.querySelector<HTMLIFrameElement>('iframe')!;
   let timeout: ReturnType<typeof setTimeout>;
+  function values() {
+    return {
+      locale: stage.dataset.locale!,
+      theme: document.documentElement.dataset.theme ?? 'dark',
+      direction: document.documentElement.dir,
+      section: categoryOf(new URLSearchParams(location.search).get('section')),
+      component: new URLSearchParams(location.search).get('component') ?? '',
+      ...documentAppearance(),
+    };
+  }
+  function catalogueUrl(options: ReturnType<typeof values>) {
+    const url = new URL('/_flutter/', location.origin);
+    for (const [key, value] of Object.entries(options)) url.searchParams.set(key, value);
+    return url;
+  }
   function settings() {
-    const standalone = new URL('/_flutter/',location.origin);for(const [key,value] of Object.entries({locale:stage.dataset.locale!,theme:document.documentElement.dataset.theme!,direction:document.documentElement.dir,section:categoryOf(new URLSearchParams(location.search).get('section'))})) standalone.searchParams.set(key,value);stage.querySelector<HTMLAnchorElement>('[data-flutter-standalone]')!.href=standalone.href;
-    frame.contentWindow?.postMessage({ type: 'want-allure:settings', theme: document.documentElement.dataset.theme, locale: stage.dataset.locale, direction:document.documentElement.dir, section:categoryOf(new URLSearchParams(location.search).get('section')) }, location.origin);
+    const options = values();
+    stage.querySelector<HTMLAnchorElement>('[data-flutter-standalone]')!.href = catalogueUrl(options).href;
+    frame.contentWindow?.postMessage({ type: 'want-allure:settings', ...options, profile: documentProfile() }, location.origin);
   }
   function armTimeout() {
     clearTimeout(timeout);
@@ -25,12 +49,8 @@ const c = copy[locale];
   }
   function load() {
     clearTimeout(timeout); stage.dataset.state = 'loading';
-    const url = new URL('/_flutter/', location.origin);
-    url.searchParams.set('locale', stage.dataset.locale!);
-    url.searchParams.set('theme', document.documentElement.dataset.theme ?? 'dark');
+    const url = catalogueUrl(values());
     url.searchParams.set('embedded', '1');
-    url.searchParams.set('direction',document.documentElement.dir);
-    url.searchParams.set('section',categoryOf(new URLSearchParams(location.search).get('section')));
     frame.src = url.href;
     armTimeout();
   }
@@ -43,11 +63,11 @@ const c = copy[locale];
     if (event.data?.type === 'want-allure:error') { clearTimeout(timeout); stage.dataset.state = 'error'; }
   }
   addEventListener('message', message);
-  for(const event of ['want:theme','want:direction','want:section']) addEventListener(event,settings);
+  for(const event of ['want:theme','want:direction','want:section','want:appearance']) addEventListener(event,settings);
   stage.querySelector('[data-flutter-retry]')!.addEventListener('click', load);
   window.addEventListener('pagehide', event => {
     clearTimeout(timeout);
-    if (!event.persisted) { removeEventListener('message', message); for(const type of ['want:theme','want:direction','want:section']) removeEventListener(type,settings); }
+    if (!event.persisted) { removeEventListener('message', message); for(const type of ['want:theme','want:direction','want:section','want:appearance']) removeEventListener(type,settings); }
   });
   window.addEventListener('pageshow', event => {
     if (!event.persisted) return;

@@ -21,6 +21,7 @@ class WantPaginationLabels {
 class WantPagination extends StatelessWidget {
   final int page, pageSize, totalItems;
   final List<int> pageSizeOptions;
+  final bool compact;
   final void Function(int page, int pageSize) onChanged;
   final WantPaginationLabels labels;
   const WantPagination({
@@ -30,6 +31,7 @@ class WantPagination extends StatelessWidget {
     required this.totalItems,
     required this.onChanged,
     required this.labels,
+    this.compact = false,
     this.pageSizeOptions = const [10, 25, 50],
   });
   @override
@@ -42,83 +44,101 @@ class WantPagination extends StatelessWidget {
       size,
       ...pageSizeOptions.where((value) => value > 0),
     }.toList()..sort();
-    return Semantics(
-      container: true,
-      label: labels.navigation,
-      child: Wrap(
-        spacing: 16,
-        runSpacing: 12,
-        crossAxisAlignment: WrapCrossAlignment.center,
-        children: [
-          Semantics(
-            liveRegion: true,
-            child: Text(
-              labels.results(
-                total == 0 ? 0 : (current - 1) * size + 1,
-                math.min(current * size, total),
-                total,
-              ),
-            ),
-          ),
-          Wrap(
-            spacing: 4,
-            runSpacing: 4,
+    return LayoutBuilder(
+      builder: (context, bounds) {
+        final condensed =
+            compact || WantTheme.of(context).compact || bounds.maxWidth < 480;
+        return Semantics(
+          container: true,
+          label: labels.navigation,
+          child: Wrap(
+            spacing: 16,
+            runSpacing: 12,
             crossAxisAlignment: WrapCrossAlignment.center,
             children: [
-              WantButton(
-                size: WantButtonSize.icon,
-                semanticsLabel: labels.previous,
-                variant: WantButtonVariant.secondary,
-                onPressed: current == 1
-                    ? null
-                    : () => onChanged(current - 1, size),
-                child: Icon(WantIcons.chevronLeft),
-              ),
-              for (
-                var value = start;
-                value < start + math.min(5, count);
-                value++
-              )
-                Semantics(
-                  selected: value == current,
-                  child: WantButton(
-                    variant: value == current
-                        ? WantButtonVariant.primary
-                        : WantButtonVariant.secondary,
-                    semanticsLabel: labels.page(value),
-                    onPressed: () {
-                      if (value != current) onChanged(value, size);
-                    },
-                    child: Text('$value'),
+              Semantics(
+                liveRegion: true,
+                child: Text(
+                  labels.results(
+                    total == 0 ? 0 : (current - 1) * size + 1,
+                    math.min(current * size, total),
+                    total,
                   ),
                 ),
-              WantButton(
-                size: WantButtonSize.icon,
-                semanticsLabel: labels.next,
-                variant: WantButtonVariant.secondary,
-                onPressed: current == count
-                    ? null
-                    : () => onChanged(current + 1, size),
-                child: Icon(WantIcons.chevronRight),
               ),
+              Wrap(
+                spacing: 4,
+                runSpacing: 4,
+                crossAxisAlignment: WrapCrossAlignment.center,
+                children: [
+                  WantButton(
+                    size: WantButtonSize.icon,
+                    semanticsLabel: labels.previous,
+                    variant: WantButtonVariant.secondary,
+                    onPressed: current == 1
+                        ? null
+                        : () => onChanged(current - 1, size),
+                    child: WantIcon(
+                      Directionality.of(context) == TextDirection.rtl
+                          ? WantIcons.chevronRight
+                          : WantIcons.chevronLeft,
+                    ),
+                  ),
+                  if (condensed)
+                    Text(labels.page(current))
+                  else
+                    for (
+                      var value = start;
+                      value < start + math.min(5, count);
+                      value++
+                    )
+                      Semantics(
+                        selected: value == current,
+                        child: WantButton(
+                          variant: value == current
+                              ? WantButtonVariant.primary
+                              : WantButtonVariant.secondary,
+                          semanticsLabel: labels.page(value),
+                          onPressed: () {
+                            if (value != current) onChanged(value, size);
+                          },
+                          child: Text('$value'),
+                        ),
+                      ),
+                  WantButton(
+                    size: WantButtonSize.icon,
+                    semanticsLabel: labels.next,
+                    variant: WantButtonVariant.secondary,
+                    onPressed: current == count
+                        ? null
+                        : () => onChanged(current + 1, size),
+                    child: WantIcon(
+                      Directionality.of(context) == TextDirection.rtl
+                          ? WantIcons.chevronLeft
+                          : WantIcons.chevronRight,
+                    ),
+                  ),
+                ],
+              ),
+              if (!condensed)
+                SizedBox(
+                  width: 160,
+                  child: WantSelect<int>(
+                    value: size,
+                    label: Text(labels.pageSize),
+                    options: [
+                      for (final value in sizes)
+                        WantOption(value: value, label: '$value'),
+                    ],
+                    onChanged: (next) {
+                      if (next != null) onChanged(1, next);
+                    },
+                  ),
+                ),
             ],
           ),
-          SizedBox(
-            width: 160,
-            child: WantSelect<int>(
-              value: size,
-              label: Text(labels.pageSize),
-              options: [
-                for (final value in sizes)
-                  WantOption(value: value, label: '$value'),
-              ],
-              onChanged: (next) {
-                if (next != null) onChanged(1, next);
-              },
-            ),
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 }

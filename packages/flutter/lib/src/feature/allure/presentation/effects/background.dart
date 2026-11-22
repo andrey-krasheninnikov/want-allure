@@ -135,6 +135,7 @@ class _WantBackgroundMotionState extends State<WantBackgroundMotion>
         !widget.controller.paused &&
         TickerMode.valuesOf(context).enabled &&
         !WantTheme.reducedMotionOf(context) &&
+        WantTheme.maybeOf(context)?.profile.motion != WantMotion.quiet &&
         !MediaQuery.highContrastOf(context);
     _running = running;
     if (running && widget.alternateWithLightning) {
@@ -236,6 +237,7 @@ class _WantBackgroundMotionState extends State<WantBackgroundMotion>
           : MediaQuery.sizeOf(context).height;
       final available =
           !WantTheme.reducedMotionOf(context) &&
+          WantTheme.maybeOf(context)?.profile.motion != WantMotion.quiet &&
           !MediaQuery.highContrastOf(context);
       return Stack(
         clipBehavior: Clip.hardEdge,

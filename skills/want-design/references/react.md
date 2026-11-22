@@ -48,10 +48,14 @@ export function PreviewAction({ title, label, pauseLabel, resumeLabel, onPreview
 
 The example leaves application effects and localized copy in the consumer. Use the product's layout styles and semantic surfaces around it.
 
+## Product appearance
+
+On the themed root, apply the CSS variables from `createThemeVariables({ theme: 'dark', primaryColor: '#29C38F', paletteStyle: 'neon' })` from `@want-foundation/allure`. Set `data-theme="dark"` and the chosen `data-typography` preset, for example `pixel`. Use the document root when overlays portal to the body. Use `isSupportedPrimaryColor` to validate input before calling the generator. It resolves accessible primary and status tokens for each mode and runs during SSR. The consumer holds the settings.
+
 ## Integration boundaries
 
-Use `data-theme="light"` or `data-theme="dark"` on the document root for an explicit theme, and keep the `dark` class in sync for class-based utilities. Without an explicit theme, foundation styles follow the system preference. ThemeToggle is controlled; the consumer owns persistence and system subscriptions.
+Use `data-theme="light"` or `data-theme="dark"` on the document root for an explicit theme, and keep the `dark` class in sync for class-based utilities. Without an explicit theme, foundation styles follow the system preference. `ThemePicker` takes the chosen `value`, a separate `resolved` light or dark mode, localized `labels` and `onChange`. `LanguagePicker` receives option values, native names, short codes and emoji flags. The consumer owns persistence, routing and system subscriptions. Use `ThemeIcon` for shared icons. The typography preset can change the stroke and select an optional alternate glyph.
 
 Respect logical direction and technical LTR isolation. Pass prepared, localized dates and labels so SSR and hydration agree. Keep routes, APIs, telemetry, advertising, authentication, storage, and localization dictionaries outside the public packages.
 
-Slider accepts a numeric value and RangeSlider a pair of values, with consumer callbacks, labels and optional value formatting. RangeSlider requires two localized thumbLabels. LightningBackground is a decorative bounded layer with paused and optional color-pair props. It defaults to primary and warning, pauses outside the viewport or in hidden documents, and leaves input and text selection untouched.
+Slider accepts a numeric value and RangeSlider a pair of values, with consumer callbacks, labels and optional value formatting. RangeSlider requires two localized thumbLabels. LightningBackground is a decorative bounded layer with paused and optional color-pair props. It defaults to primary and warning and accepts a `colorPool` for a random color per discharge. It pauses outside the viewport or in hidden documents, and leaves input and text selection untouched.

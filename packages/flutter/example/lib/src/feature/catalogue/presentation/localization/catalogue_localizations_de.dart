@@ -661,4 +661,279 @@ class CatalogueLocalizationsDe extends CatalogueLocalizations {
 
   @override
   String get changeLanguage => 'Sprache';
+
+  @override
+  String get passAllItems => 'Alle Einträge';
+
+  @override
+  String get passWork => 'Arbeit';
+
+  @override
+  String get passPinned => 'Angeheftet';
+
+  @override
+  String get passDesignNotes => 'Designnotizen';
+
+  @override
+  String get passReadingList => 'Leseliste';
+
+  @override
+  String get passReleaseChecklist => 'Release-Checkliste';
+
+  @override
+  String get passGroups => 'Gruppen';
+
+  @override
+  String get passItems => 'Einträge';
+
+  @override
+  String get passPreview => 'Vorschau';
+
+  @override
+  String get passCopyItemName => 'Eintragsnamen kopieren';
+
+  @override
+  String get passCopied => 'Kopiert';
+
+  @override
+  String get passCopyFailed => 'Kopieren fehlgeschlagen';
+
+  @override
+  String get passWorkspace => 'Arbeitsbereich';
+
+  @override
+  String get passToggleMenu => 'Menü umschalten';
+
+  @override
+  String get passCloseMenu => 'Menü schließen';
+
+  @override
+  String get passSearchItems => 'Einträge suchen';
+
+  @override
+  String get passRemovePinnedFilter =>
+      'Filter für angeheftete Einträge entfernen';
+
+  @override
+  String get passFilter => 'Filtern';
+
+  @override
+  String get passResizeGroups => 'Gruppenbreite ändern';
+
+  @override
+  String get passResizeItems => 'Listenbreite ändern';
+
+  @override
+  String get passResizePreview => 'Vorschaubreite ändern';
+
+  @override
+  String get passBack => 'Zurück';
+
+  @override
+  String get passSensitiveField => 'Feld für sensible Daten';
+
+  @override
+  String get passExamplePassword => 'Beispielpasswort';
+
+  @override
+  String get passShowPassword => 'Passwort anzeigen';
+
+  @override
+  String get passHidePassword => 'Passwort ausblenden';
+
+  @override
+  String get passShowHint => 'Hinweis anzeigen';
+
+  @override
+  String get passCopyHint => 'Hinweis kopieren';
+
+  @override
+  String get passVerify => 'Prüfen';
+
+  @override
+  String get passExampleAccepted => 'Beispiel akzeptiert';
+
+  @override
+  String get passNameAndIcon => 'Name und Symbol';
+
+  @override
+  String get passRequirements => 'Anforderungen';
+
+  @override
+  String get passChooseAndExport => 'Auswählen und exportieren';
+
+  @override
+  String get passAtLeastEightCharacters => 'Mindestens acht Zeichen';
+
+  @override
+  String get passIncludesANumber => 'Enthält eine Zahl';
+
+  @override
+  String get passValuesMatch => 'Werte stimmen überein';
+
+  @override
+  String get passUploadedImage => 'Hochgeladenes Bild';
+
+  @override
+  String get passPrimary => 'Primär';
+
+  @override
+  String get passGreen => 'Grün';
+
+  @override
+  String get passBlue => 'Blau';
+
+  @override
+  String get passAmber => 'Bernstein';
+
+  @override
+  String get passRose => 'Rosa';
+
+  @override
+  String get passInk => 'Tinte';
+
+  @override
+  String get passMuted => 'Gedämpft';
+
+  @override
+  String get passGuidedSetup => 'Geführte Einrichtung';
+
+  @override
+  String get passChooseIconAndColor => 'Symbol und Farbe wählen';
+
+  @override
+  String get passIcons => 'Symbole';
+
+  @override
+  String get passColors => 'Farben';
+
+  @override
+  String get passUploadImage => 'Bild hochladen';
+
+  @override
+  String get passName => 'Name';
+
+  @override
+  String get passPassword => 'Passwort';
+
+  @override
+  String get passShowBothPasswords => 'Beide Passwörter anzeigen';
+
+  @override
+  String get passHideBothPasswords => 'Beide Passwörter ausblenden';
+
+  @override
+  String get passRepeatPassword => 'Passwort wiederholen';
+
+  @override
+  String get passChoice => 'Auswahl';
+
+  @override
+  String get passCopyJSON => 'JSON kopieren';
+
+  @override
+  String get passDownloadJSON => 'JSON herunterladen';
+
+  @override
+  String get passShowQR => 'QR-Code anzeigen';
+
+  @override
+  String get passNext => 'Weiter';
+
+  @override
+  String get passResetExample => 'Beispiel zurücksetzen';
+
+  @override
+  String get passClose => 'Schließen';
+
+  @override
+  String get passSampleQR => 'Beispiel-QR-Code';
+
+  @override
+  String get passISavedIt => 'Gespeichert';
+
+  @override
+  String get passDeleteLocalSampleData => 'Lokale Beispieldaten löschen';
+
+  @override
+  String get passThisClearsTheNameAndChoicesEnteredInThisExample =>
+      'Name und Auswahl in diesem Beispiel werden gelöscht.';
+
+  @override
+  String get passEnterDELETEToConfirm => 'Zur Bestätigung DELETE eingeben';
+
+  @override
+  String get passEnterDELETEExactly => 'Genau DELETE eingeben.';
+
+  @override
+  String get passCancel => 'Abbrechen';
+
+  @override
+  String get passDeleteLocalData => 'Lokale Daten löschen';
+
+  @override
+  String get passSavingFile => 'Datei wird gespeichert…';
+
+  @override
+  String get passFileSaved => 'Datei gespeichert';
+
+  @override
+  String get passDownloadStarted => 'Download gestartet';
+
+  @override
+  String get passSaveFailed => 'Speichern fehlgeschlagen';
+
+  @override
+  String get passExport => 'Exportieren';
+
+  @override
+  String get passInteractiveScenes => 'Interaktive Szenen';
+
+  @override
+  String get passActivateFeather => 'Feder aktivieren';
+
+  @override
+  String get passToggleLock => 'Sperre umschalten';
+
+  @override
+  String get passResume => 'Lebenslauf';
+
+  @override
+  String get passPause => 'Pause';
+
+  @override
+  String get passSphereAndLightning => 'Kugel und Blitze';
+
+  @override
+  String get passLightThreads => 'Lichtfäden';
+
+  @override
+  String get passPreviewTheIntro => 'Einleitung ansehen';
+
+  @override
+  String get passReady => 'Bereit';
+
+  @override
+  String get passFile => 'Datei';
+
+  @override
+  String get passLink => 'Link';
+
+  @override
+  String get passSearch => 'Suchen';
+
+  @override
+  String get passImage => 'Bild';
+
+  @override
+  String get passCheck => 'Prüfen';
+
+  @override
+  String get passInfo => 'Information';
+
+  @override
+  String get sortAscending => 'Aufsteigend';
+
+  @override
+  String get sortDescending => 'Absteigend';
 }

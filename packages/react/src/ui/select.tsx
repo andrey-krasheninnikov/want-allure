@@ -1,6 +1,8 @@
+import { usePortalHost } from '../brand-profile.js';
 import * as React from "react"
 import { cn } from "../utils.js"
 import { CheckIcon, ChevronDownIcon, ChevronUpIcon } from "lucide-react"
+import { ThemeIcon } from '../theme-icon.js';
 import { Select as SelectPrimitive } from "radix-ui"
 
 function Select({
@@ -41,7 +43,7 @@ function SelectTrigger({
     >
       {children}
       <SelectPrimitive.Icon asChild>
-        <ChevronDownIcon className="size-4 opacity-50" />
+        <ThemeIcon iconRole="expand" icon={ChevronDownIcon} className="size-4 opacity-50" />
       </SelectPrimitive.Icon>
     </SelectPrimitive.Trigger>
   )
@@ -54,8 +56,9 @@ function SelectContent({
   align = "center",
   ...props
 }: React.ComponentProps<typeof SelectPrimitive.Content>) {
+  const portalHost = usePortalHost();
   return (
-    <SelectPrimitive.Portal>
+    <SelectPrimitive.Portal container={portalHost}>
       <SelectPrimitive.Content
         data-slot="select-content"
         className={cn(
@@ -116,7 +119,7 @@ function SelectItem({
         className="absolute end-2 flex size-3.5 items-center justify-center"
       >
         <SelectPrimitive.ItemIndicator>
-          <CheckIcon className="size-4" />
+          <ThemeIcon iconRole="check" icon={CheckIcon} className="size-4" />
         </SelectPrimitive.ItemIndicator>
       </span>
       <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
@@ -150,7 +153,7 @@ function SelectScrollUpButton({
       )}
       {...props}
     >
-      <ChevronUpIcon className="size-4" />
+      <ThemeIcon iconRole="collapse" icon={ChevronUpIcon} className="size-4" />
     </SelectPrimitive.ScrollUpButton>
   )
 }
@@ -168,7 +171,7 @@ function SelectScrollDownButton({
       )}
       {...props}
     >
-      <ChevronDownIcon className="size-4" />
+      <ThemeIcon iconRole="expand" icon={ChevronDownIcon} className="size-4" />
     </SelectPrimitive.ScrollDownButton>
   )
 }

@@ -660,4 +660,278 @@ class CatalogueLocalizationsEs extends CatalogueLocalizations {
 
   @override
   String get changeLanguage => 'Idioma';
+
+  @override
+  String get passAllItems => 'Todos los elementos';
+
+  @override
+  String get passWork => 'Trabajo';
+
+  @override
+  String get passPinned => 'Fijados';
+
+  @override
+  String get passDesignNotes => 'Notas de diseño';
+
+  @override
+  String get passReadingList => 'Lista de lectura';
+
+  @override
+  String get passReleaseChecklist => 'Lista de publicación';
+
+  @override
+  String get passGroups => 'Grupos';
+
+  @override
+  String get passItems => 'Elementos';
+
+  @override
+  String get passPreview => 'Vista previa';
+
+  @override
+  String get passCopyItemName => 'Copiar nombre';
+
+  @override
+  String get passCopied => 'Copiado';
+
+  @override
+  String get passCopyFailed => 'No se pudo copiar';
+
+  @override
+  String get passWorkspace => 'Espacio de trabajo';
+
+  @override
+  String get passToggleMenu => 'Alternar menú';
+
+  @override
+  String get passCloseMenu => 'Cerrar menú';
+
+  @override
+  String get passSearchItems => 'Buscar elementos';
+
+  @override
+  String get passRemovePinnedFilter => 'Quitar filtro de fijados';
+
+  @override
+  String get passFilter => 'Filtrar';
+
+  @override
+  String get passResizeGroups => 'Ajustar ancho de grupos';
+
+  @override
+  String get passResizeItems => 'Ajustar ancho de la lista';
+
+  @override
+  String get passResizePreview => 'Ajustar ancho de vista previa';
+
+  @override
+  String get passBack => 'Atrás';
+
+  @override
+  String get passSensitiveField => 'Campo de datos sensibles';
+
+  @override
+  String get passExamplePassword => 'Contraseña de ejemplo';
+
+  @override
+  String get passShowPassword => 'Mostrar contraseña';
+
+  @override
+  String get passHidePassword => 'Ocultar contraseña';
+
+  @override
+  String get passShowHint => 'Mostrar pista';
+
+  @override
+  String get passCopyHint => 'Copiar pista';
+
+  @override
+  String get passVerify => 'Verificar';
+
+  @override
+  String get passExampleAccepted => 'Ejemplo aceptado';
+
+  @override
+  String get passNameAndIcon => 'Nombre e icono';
+
+  @override
+  String get passRequirements => 'Requisitos';
+
+  @override
+  String get passChooseAndExport => 'Elegir y exportar';
+
+  @override
+  String get passAtLeastEightCharacters => 'Al menos ocho caracteres';
+
+  @override
+  String get passIncludesANumber => 'Incluye un número';
+
+  @override
+  String get passValuesMatch => 'Los valores coinciden';
+
+  @override
+  String get passUploadedImage => 'Imagen cargada';
+
+  @override
+  String get passPrimary => 'Primaria';
+
+  @override
+  String get passGreen => 'Verde';
+
+  @override
+  String get passBlue => 'Azul';
+
+  @override
+  String get passAmber => 'Ámbar';
+
+  @override
+  String get passRose => 'Rosa';
+
+  @override
+  String get passInk => 'Tinta';
+
+  @override
+  String get passMuted => 'Atenuado';
+
+  @override
+  String get passGuidedSetup => 'Configuración guiada';
+
+  @override
+  String get passChooseIconAndColor => 'Elegir icono y color';
+
+  @override
+  String get passIcons => 'Iconos';
+
+  @override
+  String get passColors => 'Colores';
+
+  @override
+  String get passUploadImage => 'Cargar imagen';
+
+  @override
+  String get passName => 'Nombre';
+
+  @override
+  String get passPassword => 'Contraseña';
+
+  @override
+  String get passShowBothPasswords => 'Mostrar ambas contraseñas';
+
+  @override
+  String get passHideBothPasswords => 'Ocultar ambas contraseñas';
+
+  @override
+  String get passRepeatPassword => 'Repetir contraseña';
+
+  @override
+  String get passChoice => 'Opción';
+
+  @override
+  String get passCopyJSON => 'Copiar JSON';
+
+  @override
+  String get passDownloadJSON => 'Descargar JSON';
+
+  @override
+  String get passShowQR => 'Mostrar QR';
+
+  @override
+  String get passNext => 'Siguiente';
+
+  @override
+  String get passResetExample => 'Restablecer ejemplo';
+
+  @override
+  String get passClose => 'Cerrar';
+
+  @override
+  String get passSampleQR => 'QR de ejemplo';
+
+  @override
+  String get passISavedIt => 'Ya lo guardé';
+
+  @override
+  String get passDeleteLocalSampleData => 'Eliminar datos locales de ejemplo';
+
+  @override
+  String get passThisClearsTheNameAndChoicesEnteredInThisExample =>
+      'Se borrarán el nombre y las opciones de este ejemplo.';
+
+  @override
+  String get passEnterDELETEToConfirm => 'Escribe DELETE para confirmar';
+
+  @override
+  String get passEnterDELETEExactly => 'Escribe exactamente DELETE.';
+
+  @override
+  String get passCancel => 'Cancelar';
+
+  @override
+  String get passDeleteLocalData => 'Eliminar datos locales';
+
+  @override
+  String get passSavingFile => 'Guardando archivo…';
+
+  @override
+  String get passFileSaved => 'Archivo guardado';
+
+  @override
+  String get passDownloadStarted => 'Descarga iniciada';
+
+  @override
+  String get passSaveFailed => 'No se pudo guardar';
+
+  @override
+  String get passExport => 'Exportar';
+
+  @override
+  String get passInteractiveScenes => 'Escenas interactivas';
+
+  @override
+  String get passActivateFeather => 'Activar pluma';
+
+  @override
+  String get passToggleLock => 'Alternar bloqueo';
+
+  @override
+  String get passResume => 'Currículum';
+
+  @override
+  String get passPause => 'Pausa';
+
+  @override
+  String get passSphereAndLightning => 'Esfera y rayos';
+
+  @override
+  String get passLightThreads => 'Hilos de luz';
+
+  @override
+  String get passPreviewTheIntro => 'Ver la introducción';
+
+  @override
+  String get passReady => 'Listo';
+
+  @override
+  String get passFile => 'Archivo';
+
+  @override
+  String get passLink => 'Enlace';
+
+  @override
+  String get passSearch => 'Buscar';
+
+  @override
+  String get passImage => 'Imagen';
+
+  @override
+  String get passCheck => 'Verificar';
+
+  @override
+  String get passInfo => 'Información';
+
+  @override
+  String get sortAscending => 'Ascendente';
+
+  @override
+  String get sortDescending => 'Descendente';
 }

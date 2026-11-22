@@ -657,4 +657,278 @@ class CatalogueLocalizationsTr extends CatalogueLocalizations {
 
   @override
   String get changeLanguage => 'Dil';
+
+  @override
+  String get passAllItems => 'Tüm öğeler';
+
+  @override
+  String get passWork => 'İş';
+
+  @override
+  String get passPinned => 'Sabitlenenler';
+
+  @override
+  String get passDesignNotes => 'Tasarım notları';
+
+  @override
+  String get passReadingList => 'Okuma listesi';
+
+  @override
+  String get passReleaseChecklist => 'Sürüm kontrol listesi';
+
+  @override
+  String get passGroups => 'Gruplar';
+
+  @override
+  String get passItems => 'Öğeler';
+
+  @override
+  String get passPreview => 'Önizleme';
+
+  @override
+  String get passCopyItemName => 'Öğe adını kopyala';
+
+  @override
+  String get passCopied => 'Kopyalandı';
+
+  @override
+  String get passCopyFailed => 'Kopyalanamadı';
+
+  @override
+  String get passWorkspace => 'Çalışma alanı';
+
+  @override
+  String get passToggleMenu => 'Menüyü aç veya kapat';
+
+  @override
+  String get passCloseMenu => 'Menüyü kapat';
+
+  @override
+  String get passSearchItems => 'Öğe ara';
+
+  @override
+  String get passRemovePinnedFilter => 'Sabitlenenler filtresini kaldır';
+
+  @override
+  String get passFilter => 'Filtrele';
+
+  @override
+  String get passResizeGroups => 'Grup genişliğini ayarla';
+
+  @override
+  String get passResizeItems => 'Liste genişliğini ayarla';
+
+  @override
+  String get passResizePreview => 'Önizleme genişliğini ayarla';
+
+  @override
+  String get passBack => 'Geri';
+
+  @override
+  String get passSensitiveField => 'Hassas veri alanı';
+
+  @override
+  String get passExamplePassword => 'Örnek parola';
+
+  @override
+  String get passShowPassword => 'Parolayı göster';
+
+  @override
+  String get passHidePassword => 'Parolayı gizle';
+
+  @override
+  String get passShowHint => 'İpucunu göster';
+
+  @override
+  String get passCopyHint => 'İpucunu kopyala';
+
+  @override
+  String get passVerify => 'Doğrula';
+
+  @override
+  String get passExampleAccepted => 'Örnek kabul edildi';
+
+  @override
+  String get passNameAndIcon => 'Ad ve simge';
+
+  @override
+  String get passRequirements => 'Gereksinimler';
+
+  @override
+  String get passChooseAndExport => 'Seç ve dışa aktar';
+
+  @override
+  String get passAtLeastEightCharacters => 'En az sekiz karakter';
+
+  @override
+  String get passIncludesANumber => 'Bir rakam içerir';
+
+  @override
+  String get passValuesMatch => 'Değerler eşleşiyor';
+
+  @override
+  String get passUploadedImage => 'Yüklenen görsel';
+
+  @override
+  String get passPrimary => 'Birincil';
+
+  @override
+  String get passGreen => 'Yeşil';
+
+  @override
+  String get passBlue => 'Mavi';
+
+  @override
+  String get passAmber => 'Kehribar';
+
+  @override
+  String get passRose => 'Pembe';
+
+  @override
+  String get passInk => 'Mürekkep';
+
+  @override
+  String get passMuted => 'Soluk';
+
+  @override
+  String get passGuidedSetup => 'Adım adım kurulum';
+
+  @override
+  String get passChooseIconAndColor => 'Simge ve renk seç';
+
+  @override
+  String get passIcons => 'Simgeler';
+
+  @override
+  String get passColors => 'Renkler';
+
+  @override
+  String get passUploadImage => 'Görsel yükle';
+
+  @override
+  String get passName => 'İsim';
+
+  @override
+  String get passPassword => 'Parola';
+
+  @override
+  String get passShowBothPasswords => 'İki parolayı göster';
+
+  @override
+  String get passHideBothPasswords => 'İki parolayı gizle';
+
+  @override
+  String get passRepeatPassword => 'Parolayı tekrarla';
+
+  @override
+  String get passChoice => 'Seçim';
+
+  @override
+  String get passCopyJSON => 'JSON kopyala';
+
+  @override
+  String get passDownloadJSON => 'JSON indir';
+
+  @override
+  String get passShowQR => 'QR göster';
+
+  @override
+  String get passNext => 'İleri';
+
+  @override
+  String get passResetExample => 'Örneği sıfırla';
+
+  @override
+  String get passClose => 'Kapat';
+
+  @override
+  String get passSampleQR => 'Örnek QR';
+
+  @override
+  String get passISavedIt => 'Kaydettim';
+
+  @override
+  String get passDeleteLocalSampleData => 'Yerel örnek verileri sil';
+
+  @override
+  String get passThisClearsTheNameAndChoicesEnteredInThisExample =>
+      'Bu örnekteki ad ve seçimler silinir.';
+
+  @override
+  String get passEnterDELETEToConfirm => 'Onaylamak için DELETE yazın';
+
+  @override
+  String get passEnterDELETEExactly => 'Tam olarak DELETE yazın.';
+
+  @override
+  String get passCancel => 'Vazgeç';
+
+  @override
+  String get passDeleteLocalData => 'Yerel verileri sil';
+
+  @override
+  String get passSavingFile => 'Dosya kaydediliyor…';
+
+  @override
+  String get passFileSaved => 'Dosya kaydedildi';
+
+  @override
+  String get passDownloadStarted => 'İndirme başladı';
+
+  @override
+  String get passSaveFailed => 'Kaydedilemedi';
+
+  @override
+  String get passExport => 'Dışa aktar';
+
+  @override
+  String get passInteractiveScenes => 'Etkileşimli sahneler';
+
+  @override
+  String get passActivateFeather => 'Tüyü etkinleştir';
+
+  @override
+  String get passToggleLock => 'Kilidi aç veya kapat';
+
+  @override
+  String get passResume => 'Devam et';
+
+  @override
+  String get passPause => 'Duraklat';
+
+  @override
+  String get passSphereAndLightning => 'Küre ve şimşek';
+
+  @override
+  String get passLightThreads => 'Işık iplikleri';
+
+  @override
+  String get passPreviewTheIntro => 'Girişi önizle';
+
+  @override
+  String get passReady => 'Hazır';
+
+  @override
+  String get passFile => 'Dosya';
+
+  @override
+  String get passLink => 'Bağlantı';
+
+  @override
+  String get passSearch => 'Ara';
+
+  @override
+  String get passImage => 'Görsel';
+
+  @override
+  String get passCheck => 'Kontrol';
+
+  @override
+  String get passInfo => 'Bilgi';
+
+  @override
+  String get sortAscending => 'Artan';
+
+  @override
+  String get sortDescending => 'Azalan';
 }

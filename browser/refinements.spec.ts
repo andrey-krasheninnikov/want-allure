@@ -1,5 +1,6 @@
+import { resolveBrandProfile } from '../packages/foundation/dist/index.js';
 import { test, expect } from '@playwright/test';
-import { category } from './helpers';
+import { category, chooseTheme } from './helpers';
 
 test('category navigation keeps form edits, slider values and history',async({page})=>{
   await page.goto('/react/?section=inputs');
@@ -20,7 +21,8 @@ test('category navigation keeps form edits, slider values and history',async({pa
 test('home guides framework selection, installation and advice',async({page})=>{
   const errors:string[]=[];page.on('pageerror',error=>errors.push(error.message));
   await page.goto('/');
-  await expect(page.locator('.landing-hero .logo-stage')).toHaveAttribute('data-ready','true');
+  await expect(page.locator('.landing-hero .logo-stage-fallback')).toBeVisible();
+  await expect(page.locator('.landing-hero .logo-stage')).toHaveAttribute('data-ready','false');
   await expect(page.locator('.hero-note a')).toHaveCount(0);
   await expect(page.getByRole('button',{name:'Reset rotation',exact:true})).toHaveCount(0);
   await expect(page.getByRole('button',{name:'Pause effects',exact:true})).toHaveCount(0);
@@ -28,18 +30,13 @@ test('home guides framework selection, installation and advice',async({page})=>{
   await page.getByRole('button',{name:'Choose your framework: React',exact:true}).click();
   await expect(page.locator('.journey')).toHaveAttribute('data-step','install');
   await expect(page.locator('.journey-install')).toContainText('want-design-install');
-  await expect(page.locator('.journey-install')).toContainText('npm install @want-foundation/allure@1.3.0');
+  await expect(page.locator('.journey-install')).toContainText('npm install @want-foundation/allure@1.4.0');
   await page.getByRole('button',{name:'I have installed it',exact:true}).click();
   await expect(page.locator('.journey')).toHaveAttribute('data-step','learn');
   await expect(page.locator('.tips-track')).toBeVisible();
   await page.getByRole('button',{name:'Next tip',exact:true}).click();
   await expect(page.locator('.tip-count')).toHaveText('2 / 7');
-  await expect(page.locator('.landing-final a')).toHaveCount(1);
-  await expect(page.locator('.landing-final h2, .landing-final p')).toHaveCount(0);
-  const back=page.getByRole('link',{name:'See the details in action',exact:true});
-  await expect(back).toHaveAttribute('href','#main');
-  await expect(back).toHaveAccessibleDescription('Back to top');
-  await expect(page.locator('.landing-final .ui-glow')).toHaveCount(1);
+  await expect(page.locator('.landing-final')).toHaveCount(0);
   await expect(page.locator('.footer-credit')).toContainText('2026 ©');
   await expect(page.locator('.footer-credit')).toHaveAttribute('href','https://t.me/andrey_krasheninnikov');
   expect(errors).toEqual([]);
@@ -83,6 +80,7 @@ for(const locale of ['ru','ar'])test(`headline glow stays inside the viewport in
   await page.goto(`/${locale}/`);await page.evaluate(()=>document.fonts.ready);
   await expect(page.locator('astro-island[ssr]')).toHaveCount(0);
   const surface=page.locator('.fire-headline canvas');
+  const hoverInk = () => surface.evaluate(element => (element.parentElement as HTMLElement).style.getPropertyValue('--fire-letter-color'));
   for(const width of [320,360,390,768,1440])for(const theme of ['light','dark']){
     await page.setViewportSize({width,height:1000});
     await page.evaluate(theme=>{document.documentElement.dataset.theme=theme;},theme);
@@ -101,31 +99,44 @@ for(const locale of ['ru','ar'])test(`headline glow stays inside the viewport in
       return [rects.reduce((a,b)=>a.x<b.x?a:b),rects.reduce((a,b)=>a.x>b.x?a:b)];
     });
     for(const letter of letters){
-      await page.mouse.move(letter.x,letter.y);await expect(surface).toBeVisible();
+      await page.mouse.move(letter.x,letter.y);await expect.poll(hoverInk).not.toBe('');
+      await expect(surface).toBeVisible();
       expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBe(width);
-      await page.mouse.move(0,0);await expect(surface).toBeHidden();
+      await page.mouse.move(0,0);await expect.poll(hoverInk).toBe('');
       expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBe(width);
     }
   }
   await page.locator('.fire-headline').evaluate(element=>element.dispatchEvent(new PointerEvent('pointermove',{clientX:element.getBoundingClientRect().left,clientY:element.getBoundingClientRect().top})));
-  await page.evaluate(()=>dispatchEvent(new Event('scroll')));await expect(surface).toBeHidden();
+  expect(await surface.evaluate(element=>{dispatchEvent(new Event('scroll'));return (element as HTMLElement).hidden;})).toBe(true);
 });
 
 test('headline colors follow a theme change during hover and respect motion preferences',async({page})=>{
   await page.emulateMedia({reducedMotion:'no-preference'});await page.goto('/');
   await expect(page.locator('astro-island[ssr]')).toHaveCount(0);await page.evaluate(()=>document.fonts.ready);
-  await page.getByRole('switch',{name:'Dark theme',exact:true}).check();
+  await chooseTheme(page, 'dark');
   const point=await page.locator('.fire-headline').evaluate(element=>{
     const node=element.firstChild!,range=document.createRange();range.setStart(node,1);range.setEnd(node,2);
     const rect=range.getBoundingClientRect();return{x:rect.left+rect.width*.25,y:rect.top+rect.height*.5};
   });
   const surface=page.locator('.fire-headline canvas'),heading=page.locator('.fire-headline');
   await page.mouse.move(point.x,point.y);await expect(surface).toBeVisible();
-  await expect.poll(()=>heading.evaluate(el=>parseInt(el.style.getPropertyValue('--fire-letter-color').match(/\d+/g)?.[0]??'0'))).toBeGreaterThan(200);
+  const matchesTheme = async (theme: 'dark'|'light') => {
+    const vars = resolveBrandProfile({schemaVersion:1},theme);
+    const colors = ['primary','info','warning','error','success'].map(role=>vars['--'+role+'-text'].slice(1).match(/../g)!.map(pair=>parseInt(pair,16)));
+    const ink = await heading.evaluate(el=>el.style.getPropertyValue('--fire-letter-color').match(/\d+/g)?.map(Number));
+    if (!ink?.length) return false;
+    return colors.some((a,i)=>{
+      const b=colors[(i+1)%colors.length], delta=b.map((value,j)=>value-a[j]);
+      const longest=delta.reduce((best,value,j)=>Math.abs(value)>Math.abs(delta[best])?j:best,0);
+      const fraction=delta[longest]?(ink[longest]-a[longest])/delta[longest]:0;
+      return fraction>=-.02 && fraction<=1.02 && a.every((value,j)=>Math.abs(value+delta[j]*fraction-ink[j])<2);
+    });
+  };
+  await expect.poll(()=>matchesTheme('dark')).toBe(true);
   await page.evaluate(()=>dispatchEvent(new CustomEvent('want:choose-theme',{detail:'light'})));
-  await expect.poll(()=>heading.evaluate(el=>parseInt(el.style.getPropertyValue('--fire-letter-color').match(/\d+/g)?.[0]??'255'))).toBeLessThan(180);
+  await expect.poll(()=>matchesTheme('light')).toBe(true);
   await expect(surface).toBeVisible();
-  await page.evaluate(()=>dispatchEvent(new Event('scroll')));await expect(surface).toBeHidden();
+  expect(await surface.evaluate(element=>{dispatchEvent(new Event('scroll'));return (element as HTMLElement).hidden;})).toBe(true);
   await page.mouse.move(point.x+1,point.y);await expect(surface).toBeVisible();
   await page.emulateMedia({reducedMotion:'reduce'});await expect(surface).toBeHidden();
 });

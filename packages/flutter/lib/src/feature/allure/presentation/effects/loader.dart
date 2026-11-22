@@ -13,12 +13,14 @@ class WantLoader extends StatelessWidget {
   final WantLoaderVariant variant;
   final WantLoaderSize size;
   final bool paused;
+  final Color? color;
   const WantLoader({
     super.key,
     required this.label,
     this.variant = WantLoaderVariant.spinner,
     this.size = WantLoaderSize.medium,
     this.paused = false,
+    this.color,
   });
   @override
   Widget build(BuildContext context) => WantViewportMotion(
@@ -39,7 +41,7 @@ class WantLoader extends StatelessWidget {
               painter: _LoaderPainter(
                 value,
                 variant,
-                WantTheme.of(context).color('primary'),
+                color ?? WantTheme.of(context).color('primary-edge'),
               ),
             ),
           ),

@@ -21,12 +21,14 @@ class WantRadioGroup<T> extends StatefulWidget {
   final List<WantOption<T>> options;
   final ValueChanged<T>? onChanged;
   final String semanticsLabel;
+  final bool wrap;
   const WantRadioGroup({
     super.key,
     required this.value,
     required this.options,
     required this.onChanged,
     required this.semanticsLabel,
+    this.wrap = false,
   });
   @override
   State<WantRadioGroup<T>> createState() => _WantRadioGroupState<T>();
@@ -103,45 +105,43 @@ class _WantRadioGroupState<T> extends State<WantRadioGroup<T>> {
     for (var index = 0; index < _nodes.length; index++) {
       _nodes[index].skipTraversal = index != tabIndex;
     }
+    final choices = <Widget>[
+      for (var index = 0; index < widget.options.length; index++)
+        Focus(
+          canRequestFocus: false,
+          skipTraversal: true,
+          onKeyEvent: (_, event) => _key(index, event),
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(minHeight: 44),
+            child: FRadio(
+              // Recreate ForUI's zero-duration AnimatedSize when selection changes.
+              key: WantTheme.reducedMotionOf(context)
+                  ? ValueKey(widget.options[index].value == widget.value)
+                  : null,
+              focusNode: _nodes[index],
+              label: WantSelectable(
+                enabled:
+                    !widget.options[index].disabled && widget.onChanged != null,
+                child: Text(widget.options[index].label),
+              ),
+              value: widget.options[index].value == widget.value,
+              enabled:
+                  !widget.options[index].disabled && widget.onChanged != null,
+              onChange: (selected) {
+                if (selected) {
+                  widget.onChanged?.call(widget.options[index].value);
+                }
+              },
+            ),
+          ),
+        ),
+    ];
     return Semantics(
       label: widget.semanticsLabel,
       container: true,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          for (var index = 0; index < widget.options.length; index++)
-            Focus(
-              canRequestFocus: false,
-              skipTraversal: true,
-              onKeyEvent: (_, event) => _key(index, event),
-              child: ConstrainedBox(
-                constraints: const BoxConstraints(minHeight: 44),
-                child: FRadio(
-                  // Recreate ForUI's zero-duration AnimatedSize when selection changes.
-                  key: WantTheme.reducedMotionOf(context)
-                      ? ValueKey(widget.options[index].value == widget.value)
-                      : null,
-                  focusNode: _nodes[index],
-                  label: WantSelectable(
-                    enabled:
-                        !widget.options[index].disabled &&
-                        widget.onChanged != null,
-                    child: Text(widget.options[index].label),
-                  ),
-                  value: widget.options[index].value == widget.value,
-                  enabled:
-                      !widget.options[index].disabled &&
-                      widget.onChanged != null,
-                  onChange: (selected) {
-                    if (selected) {
-                      widget.onChanged?.call(widget.options[index].value);
-                    }
-                  },
-                ),
-              ),
-            ),
-        ],
-      ),
+      child: widget.wrap
+          ? Wrap(spacing: 12, runSpacing: 4, children: choices)
+          : Column(mainAxisSize: MainAxisSize.min, children: choices),
     );
   }
 }

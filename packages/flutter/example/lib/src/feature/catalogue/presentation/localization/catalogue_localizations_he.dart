@@ -652,4 +652,278 @@ class CatalogueLocalizationsHe extends CatalogueLocalizations {
 
   @override
   String get changeLanguage => 'שפה';
+
+  @override
+  String get passAllItems => 'כל הפריטים';
+
+  @override
+  String get passWork => 'עבודה';
+
+  @override
+  String get passPinned => 'נעוצים';
+
+  @override
+  String get passDesignNotes => 'הערות עיצוב';
+
+  @override
+  String get passReadingList => 'רשימת קריאה';
+
+  @override
+  String get passReleaseChecklist => 'רשימת בדיקות לפרסום';
+
+  @override
+  String get passGroups => 'קבוצות';
+
+  @override
+  String get passItems => 'פריטים';
+
+  @override
+  String get passPreview => 'תצוגה מקדימה';
+
+  @override
+  String get passCopyItemName => 'העתקת שם הפריט';
+
+  @override
+  String get passCopied => 'הועתק';
+
+  @override
+  String get passCopyFailed => 'ההעתקה נכשלה';
+
+  @override
+  String get passWorkspace => 'סביבת עבודה';
+
+  @override
+  String get passToggleMenu => 'פתיחה או סגירה של התפריט';
+
+  @override
+  String get passCloseMenu => 'סגירת התפריט';
+
+  @override
+  String get passSearchItems => 'חיפוש פריטים';
+
+  @override
+  String get passRemovePinnedFilter => 'הסרת מסנן הנעוצים';
+
+  @override
+  String get passFilter => 'סינון';
+
+  @override
+  String get passResizeGroups => 'שינוי רוחב הקבוצות';
+
+  @override
+  String get passResizeItems => 'שינוי רוחב הרשימה';
+
+  @override
+  String get passResizePreview => 'שינוי רוחב התצוגה המקדימה';
+
+  @override
+  String get passBack => 'חזרה';
+
+  @override
+  String get passSensitiveField => 'שדה לנתונים רגישים';
+
+  @override
+  String get passExamplePassword => 'סיסמה לדוגמה';
+
+  @override
+  String get passShowPassword => 'הצגת הסיסמה';
+
+  @override
+  String get passHidePassword => 'הסתרת הסיסמה';
+
+  @override
+  String get passShowHint => 'הצגת רמז';
+
+  @override
+  String get passCopyHint => 'העתקת רמז';
+
+  @override
+  String get passVerify => 'בדיקה';
+
+  @override
+  String get passExampleAccepted => 'הדוגמה התקבלה';
+
+  @override
+  String get passNameAndIcon => 'שם וסמל';
+
+  @override
+  String get passRequirements => 'דרישות';
+
+  @override
+  String get passChooseAndExport => 'בחירה וייצוא';
+
+  @override
+  String get passAtLeastEightCharacters => 'שמונה תווים לפחות';
+
+  @override
+  String get passIncludesANumber => 'כולל ספרה';
+
+  @override
+  String get passValuesMatch => 'הערכים תואמים';
+
+  @override
+  String get passUploadedImage => 'תמונה שהועלתה';
+
+  @override
+  String get passPrimary => 'ראשוני';
+
+  @override
+  String get passGreen => 'ירוק';
+
+  @override
+  String get passBlue => 'כחול';
+
+  @override
+  String get passAmber => 'ענבר';
+
+  @override
+  String get passRose => 'ורוד';
+
+  @override
+  String get passInk => 'דיו';
+
+  @override
+  String get passMuted => 'עמום';
+
+  @override
+  String get passGuidedSetup => 'הגדרה מודרכת';
+
+  @override
+  String get passChooseIconAndColor => 'בחירת סמל וצבע';
+
+  @override
+  String get passIcons => 'סמלים';
+
+  @override
+  String get passColors => 'צבעים';
+
+  @override
+  String get passUploadImage => 'העלאת תמונה';
+
+  @override
+  String get passName => 'שם';
+
+  @override
+  String get passPassword => 'סיסמה';
+
+  @override
+  String get passShowBothPasswords => 'הצגת שתי הסיסמאות';
+
+  @override
+  String get passHideBothPasswords => 'הסתרת שתי הסיסמאות';
+
+  @override
+  String get passRepeatPassword => 'הזנת הסיסמה שוב';
+
+  @override
+  String get passChoice => 'אפשרות';
+
+  @override
+  String get passCopyJSON => 'העתקת JSON';
+
+  @override
+  String get passDownloadJSON => 'הורדת JSON';
+
+  @override
+  String get passShowQR => 'הצגת QR';
+
+  @override
+  String get passNext => 'הבא';
+
+  @override
+  String get passResetExample => 'איפוס הדוגמה';
+
+  @override
+  String get passClose => 'סגור';
+
+  @override
+  String get passSampleQR => 'QR לדוגמה';
+
+  @override
+  String get passISavedIt => 'שמרתי';
+
+  @override
+  String get passDeleteLocalSampleData => 'מחיקת נתוני הדוגמה המקומיים';
+
+  @override
+  String get passThisClearsTheNameAndChoicesEnteredInThisExample =>
+      'השם והבחירות שהוזנו בדוגמה יימחקו.';
+
+  @override
+  String get passEnterDELETEToConfirm => 'הקלידו DELETE לאישור';
+
+  @override
+  String get passEnterDELETEExactly => 'הקלידו DELETE בדיוק.';
+
+  @override
+  String get passCancel => 'ביטול';
+
+  @override
+  String get passDeleteLocalData => 'מחיקת נתונים מקומיים';
+
+  @override
+  String get passSavingFile => 'הקובץ נשמר כעת…';
+
+  @override
+  String get passFileSaved => 'הקובץ נשמר';
+
+  @override
+  String get passDownloadStarted => 'ההורדה התחילה';
+
+  @override
+  String get passSaveFailed => 'השמירה נכשלה';
+
+  @override
+  String get passExport => 'ייצוא';
+
+  @override
+  String get passInteractiveScenes => 'סצנות אינטראקטיביות';
+
+  @override
+  String get passActivateFeather => 'הפעלת הנוצה';
+
+  @override
+  String get passToggleLock => 'פתיחת המנעול או סגירתו';
+
+  @override
+  String get passResume => 'קורות חיים';
+
+  @override
+  String get passPause => 'השהה';
+
+  @override
+  String get passSphereAndLightning => 'כדור וברקים';
+
+  @override
+  String get passLightThreads => 'חוטי אור';
+
+  @override
+  String get passPreviewTheIntro => 'תצוגה מקדימה של הפתיח';
+
+  @override
+  String get passReady => 'מוכן';
+
+  @override
+  String get passFile => 'קובץ';
+
+  @override
+  String get passLink => 'קישור';
+
+  @override
+  String get passSearch => 'חיפוש';
+
+  @override
+  String get passImage => 'תמונה';
+
+  @override
+  String get passCheck => 'בדיקה';
+
+  @override
+  String get passInfo => 'מידע';
+
+  @override
+  String get sortAscending => 'סדר עולה';
+
+  @override
+  String get sortDescending => 'סדר יורד';
 }

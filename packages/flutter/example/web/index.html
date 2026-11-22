@@ -30,8 +30,15 @@
   <!-- Favicon -->
   <link rel="icon" data-theme-icon="favicon-512.svg" type="image/svg+xml" href="favicon/dark/favicon-512.svg"/>
 
+  <style>
+    html[data-theme="light"] { color-scheme: light; }
+    html[data-theme="dark"] { color-scheme: dark; }
+  </style>
   <script>
-    const theme = new URLSearchParams(location.search).get('theme') === 'light' ? 'light' : 'dark';
+    const requested = new URLSearchParams(location.search).get('theme');
+    const theme = requested === 'light' || requested === 'dark'
+      ? requested : matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    document.documentElement.dataset.theme = theme;
     for (const icon of document.querySelectorAll('link[data-theme-icon]')) icon.href = `favicon/${theme}/${icon.dataset.themeIcon}`;
   </script>
   <title>Want Allure · Flutter</title>

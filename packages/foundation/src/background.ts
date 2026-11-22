@@ -5,7 +5,7 @@ export function initBackgroundMotion({ background, control, storageKey = 'want-b
   if (!Number.isFinite(minimum) || !Number.isFinite(maximum) || minimum < 0 || maximum < minimum || maximum > 2147483647) {
     throw new RangeError('shimmerDelayMs must contain ordered finite delays between 0 and 2147483647 ms');
   }
-  const root = document.documentElement;
+  const root = background.closest<HTMLElement>('[data-allure-scope]') ?? background.ownerDocument.documentElement;
   const sphere = background?.firstElementChild;
   if (!sphere) return () => {};
 
@@ -16,7 +16,7 @@ export function initBackgroundMotion({ background, control, storageKey = 'want-b
   try { paused = localStorage.getItem(storageKey) === 'paused'; } catch {}
   const stop = () => { clearTimeout(timer); timer = undefined; };
   const shimmer = () => {
-    if (disposed || root.dataset.backgroundMotion !== 'running') return;
+    if (disposed || background.dataset.backgroundMotion !== 'running') return;
     stop();
     background.dataset.backgroundShimmer = '';
     const wave = sphere.getAnimations({ subtree: true }).find(item => (item as CSSAnimation).animationName === 'want-gradient-shimmer');
@@ -24,7 +24,7 @@ export function initBackgroundMotion({ background, control, storageKey = 'want-b
   };
   const schedule = () => {
     stop();
-    if (!disposed && root.dataset.backgroundMotion === 'running' && !background.hasAttribute('data-background-shimmer')) {
+    if (!disposed && background.dataset.backgroundMotion === 'running' && !background.hasAttribute('data-background-shimmer')) {
       timer = setTimeout(shimmer, minimum + Math.random() * (maximum - minimum));
     }
   };
@@ -45,11 +45,12 @@ export function initBackgroundMotion({ background, control, storageKey = 'want-b
   const observer = new ResizeObserver(resize);
   const update = () => {
     if (disposed) return;
-    const allowed = !reduced.matches && !forced.matches;
-    root.dataset.backgroundMotion = allowed && !paused && !document.hidden ? 'running' : 'paused';
+    const allowed = !reduced.matches && !forced.matches && !['quiet', 'off'].includes(root.dataset.motion ?? '');
+    const state = allowed && !paused && !document.hidden ? 'running' : 'paused';
+    background.dataset.backgroundMotion = root.dataset.backgroundMotion = state;
     control.hidden = !allowed;
     control.textContent = paused ? control.dataset.playLabel! : control.dataset.pauseLabel!;
-    if (!allowed) background.removeAttribute('data-background-shimmer');
+    if (state === 'paused') background.removeAttribute('data-background-shimmer');
     schedule();
   };
   const finish = (event: AnimationEvent) => {
@@ -62,6 +63,8 @@ export function initBackgroundMotion({ background, control, storageKey = 'want-b
     try { localStorage.setItem(storageKey, paused ? 'paused' : 'running'); } catch {}
     update();
   };
+  const preferences = new MutationObserver(update);
+  preferences.observe(root, { attributes: true, attributeFilter: ['data-motion'] });
   control.addEventListener('click', toggle);
   background.addEventListener('animationend', finish);
   background.addEventListener('want:background-shimmer', shimmer);
@@ -75,10 +78,11 @@ export function initBackgroundMotion({ background, control, storageKey = 'want-b
     if (disposed) return;
     disposed = true;
     stop();
-    root.dataset.backgroundMotion = 'paused';
+    background.dataset.backgroundMotion = root.dataset.backgroundMotion = 'paused';
     background.removeAttribute('data-background-shimmer');
     control.hidden = true;
     observer.disconnect();
+    preferences.disconnect();
     control.removeEventListener('click', toggle);
     background.removeEventListener('animationend', finish);
     background.removeEventListener('want:background-shimmer', shimmer);

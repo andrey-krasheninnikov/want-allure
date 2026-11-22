@@ -1,7 +1,7 @@
 @layer components {
   .ui-checkbox { position:relative; display:inline-grid; place-items:center; flex-shrink:0; width:44px; height:44px; border-radius:var(--radius); }
   .ui-checkbox::before { content:""; position:absolute; width:20px; height:20px; border-radius:6px; background:var(--input); }
-  .ui-checkbox:is([data-state="checked"], [data-state="indeterminate"])::before { background:var(--primary); }
+  .ui-checkbox:is([data-state="checked"], [data-state="indeterminate"])::before { background:var(--primary); box-shadow:inset 0 0 0 1px var(--primary-edge); }
   .ui-checkbox:disabled { opacity:.5; cursor:not-allowed; }
   .ui-checkbox-indicator { position:relative; display:grid; place-items:center; color:var(--primary-foreground); }
   .ui-checkbox-indicator svg { width:16px; height:16px; }
@@ -32,7 +32,7 @@
   .ui-toast[data-swipe="move"] { translate:var(--radix-toast-swipe-move-x) var(--radix-toast-swipe-move-y); }
   .ui-toast[data-swipe="cancel"] { translate:0 0; }
   .ui-progress { position:relative; height:8px; overflow:hidden; border-radius:999px; background:var(--secondary); }
-  .ui-progress-indicator { width:100%; height:100%; border-radius:inherit; background:var(--primary); transform-origin:left; }
+  .ui-progress-indicator { width:100%; height:100%; border-radius:inherit; background:var(--primary-edge); transform-origin:left; }
   .ui-progress-indicator[data-state="indeterminate"] { width:40%; }
   .ui-table-scroll { min-width:0; overflow-x:auto; border-radius:var(--radius); }
   .ui-table-scroll:focus-visible { outline:2px solid var(--ring); outline-offset:3px; }

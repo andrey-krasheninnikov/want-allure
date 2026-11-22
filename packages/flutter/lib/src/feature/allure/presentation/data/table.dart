@@ -9,19 +9,24 @@ import 'package:want_allure/src/feature/allure/presentation/_barrel.dart';
 
 class WantTableColumn<T> {
   final String label;
-  final String? sortLabel;
+  final String? sortLabel, sortValue;
   final AlignmentGeometry alignment;
   final Widget Function(T row) cellBuilder;
   final double width;
   final VoidCallback? onSort;
+  final ValueChanged<bool>? onSortChanged;
+  final bool rowHeader;
   final bool? ascending;
   const WantTableColumn({
     required this.label,
     required this.cellBuilder,
     this.sortLabel,
+    this.sortValue,
     this.alignment = AlignmentDirectional.centerStart,
     this.width = 180,
     this.onSort,
+    this.onSortChanged,
+    this.rowHeader = false,
     this.ascending,
   });
 }
@@ -33,6 +38,7 @@ class WantTable<T> extends StatelessWidget {
   final Widget? footer;
   final Object Function(T row)? rowKey;
   final Object? transitionKey;
+  final String Function(T row)? rowLabel;
   const WantTable({
     super.key,
     required this.rows,
@@ -42,6 +48,7 @@ class WantTable<T> extends StatelessWidget {
     this.footer,
     this.rowKey,
     this.transitionKey,
+    this.rowLabel,
   });
   @override
   Widget build(BuildContext context) {
@@ -50,19 +57,29 @@ class WantTable<T> extends StatelessWidget {
       Widget child,
       WantTableColumn<T> column, {
       bool header = false,
+      String? label,
     }) => Semantics(
+      label: label,
+      header: !header && column.rowHeader,
       role: header ? SemanticsRole.columnHeader : SemanticsRole.cell,
       child: ConstrainedBox(
-        constraints: const BoxConstraints(minHeight: 60),
+        constraints: BoxConstraints(minHeight: theme.compact ? 44 : 60),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+          padding: EdgeInsets.symmetric(
+            horizontal: theme.compact ? 12 : 20,
+            vertical: theme.compact ? 6 : 12,
+          ),
           child: Align(
             alignment: column.alignment,
             child: DefaultTextStyle.merge(
               style: TextStyle(
                 fontSize: header ? 14 : 16,
-                fontWeight: header ? FontWeight.w600 : FontWeight.normal,
-                color: theme.color('foreground'),
+                fontWeight: header || column.rowHeader
+                    ? FontWeight.w600
+                    : FontWeight.normal,
+                color: theme.color(
+                  header ? 'secondary-foreground' : 'foreground',
+                ),
                 fontFeatures: const [FontFeature.tabularFigures()],
               ),
               child: child,
@@ -86,14 +103,14 @@ class WantTable<T> extends StatelessWidget {
             WantTypography(
               caption,
               variant: WantTypographyVariant.small,
-              colorRole: 'muted-foreground',
+              colorRole: 'foreground',
             ),
             if (rows.isEmpty)
               Text(emptyLabel)
             else
               WantViewportMotion(
                 child: ClipRRect(
-                  borderRadius: BorderRadius.circular(24),
+                  borderRadius: BorderRadius.circular(theme.panelRadius),
                   child: SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Table(
@@ -114,17 +131,25 @@ class WantTable<T> extends StatelessWidget {
                       },
                       children: [
                         TableRow(
-                          decoration: BoxDecoration(color: theme.color('card')),
+                          decoration: BoxDecoration(
+                            color: theme.color('secondary'),
+                          ),
                           children: [
                             for (final column in columns)
                               cell(
-                                column.onSort == null
+                                column.onSort == null &&
+                                        column.onSortChanged == null
                                     ? Text(column.label)
                                     : Semantics(
                                         button: true,
+                                        value: column.sortValue,
                                         label: column.sortLabel ?? column.label,
                                         child: FTappable(
-                                          onPress: column.onSort,
+                                          onPress: column.onSortChanged == null
+                                              ? column.onSort
+                                              : () => column.onSortChanged!(
+                                                  column.ascending != true,
+                                                ),
                                           selectable:
                                               kIsWeb ||
                                               WantWebScope.enabledOf(context),
@@ -149,11 +174,14 @@ class WantTable<T> extends StatelessWidget {
                                                     child: Text(column.label),
                                                   ),
                                                 ),
-                                                Icon(
+                                                WantIcon(
                                                   column.ascending == false
                                                       ? WantIcons.arrowDown
                                                       : WantIcons.arrowUp,
                                                   size: 16,
+                                                  color: theme.color(
+                                                    'secondary-foreground',
+                                                  ),
                                                 ),
                                               ],
                                             ),
@@ -190,25 +218,32 @@ class WantTable<T> extends StatelessWidget {
                                             BorderRadiusDirectional.only(
                                               topStart: Radius.circular(
                                                 column == columns.first
-                                                    ? 12
+                                                    ? theme.fieldRadius
                                                     : 0,
                                               ),
                                               bottomStart: Radius.circular(
                                                 column == columns.first
-                                                    ? 12
+                                                    ? theme.fieldRadius
                                                     : 0,
                                               ),
                                               topEnd: Radius.circular(
-                                                column == columns.last ? 12 : 0,
+                                                column == columns.last
+                                                    ? theme.fieldRadius
+                                                    : 0,
                                               ),
                                               bottomEnd: Radius.circular(
-                                                column == columns.last ? 12 : 0,
+                                                column == columns.last
+                                                    ? theme.fieldRadius
+                                                    : 0,
                                               ),
                                             ),
                                       ),
                                       child: cell(
                                         column.cellBuilder(rows[index]),
                                         column,
+                                        label: column == columns.first
+                                            ? rowLabel?.call(rows[index])
+                                            : null,
                                       ),
                                     ),
                                   ),

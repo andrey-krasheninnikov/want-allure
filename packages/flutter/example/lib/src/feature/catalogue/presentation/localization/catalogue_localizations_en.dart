@@ -655,4 +655,278 @@ class CatalogueLocalizationsEn extends CatalogueLocalizations {
 
   @override
   String get changeLanguage => 'Language';
+
+  @override
+  String get passAllItems => 'All items';
+
+  @override
+  String get passWork => 'Work';
+
+  @override
+  String get passPinned => 'Pinned';
+
+  @override
+  String get passDesignNotes => 'Design notes';
+
+  @override
+  String get passReadingList => 'Reading list';
+
+  @override
+  String get passReleaseChecklist => 'Release checklist';
+
+  @override
+  String get passGroups => 'Groups';
+
+  @override
+  String get passItems => 'Items';
+
+  @override
+  String get passPreview => 'Preview';
+
+  @override
+  String get passCopyItemName => 'Copy item name';
+
+  @override
+  String get passCopied => 'Copied';
+
+  @override
+  String get passCopyFailed => 'Copy failed';
+
+  @override
+  String get passWorkspace => 'Workspace';
+
+  @override
+  String get passToggleMenu => 'Toggle menu';
+
+  @override
+  String get passCloseMenu => 'Close menu';
+
+  @override
+  String get passSearchItems => 'Search items';
+
+  @override
+  String get passRemovePinnedFilter => 'Remove pinned filter';
+
+  @override
+  String get passFilter => 'Filter';
+
+  @override
+  String get passResizeGroups => 'Resize groups';
+
+  @override
+  String get passResizeItems => 'Resize items';
+
+  @override
+  String get passResizePreview => 'Resize preview';
+
+  @override
+  String get passBack => 'Back';
+
+  @override
+  String get passSensitiveField => 'Sensitive field';
+
+  @override
+  String get passExamplePassword => 'Example password';
+
+  @override
+  String get passShowPassword => 'Show password';
+
+  @override
+  String get passHidePassword => 'Hide password';
+
+  @override
+  String get passShowHint => 'Show hint';
+
+  @override
+  String get passCopyHint => 'Copy hint';
+
+  @override
+  String get passVerify => 'Verify';
+
+  @override
+  String get passExampleAccepted => 'Example accepted';
+
+  @override
+  String get passNameAndIcon => 'Name and icon';
+
+  @override
+  String get passRequirements => 'Requirements';
+
+  @override
+  String get passChooseAndExport => 'Choose and export';
+
+  @override
+  String get passAtLeastEightCharacters => 'At least eight characters';
+
+  @override
+  String get passIncludesANumber => 'Includes a number';
+
+  @override
+  String get passValuesMatch => 'Values match';
+
+  @override
+  String get passUploadedImage => 'Uploaded image';
+
+  @override
+  String get passPrimary => 'Primary';
+
+  @override
+  String get passGreen => 'Green';
+
+  @override
+  String get passBlue => 'Blue';
+
+  @override
+  String get passAmber => 'Amber';
+
+  @override
+  String get passRose => 'Rose';
+
+  @override
+  String get passInk => 'Ink';
+
+  @override
+  String get passMuted => 'Muted';
+
+  @override
+  String get passGuidedSetup => 'Guided setup';
+
+  @override
+  String get passChooseIconAndColor => 'Choose icon and color';
+
+  @override
+  String get passIcons => 'Icons';
+
+  @override
+  String get passColors => 'Colors';
+
+  @override
+  String get passUploadImage => 'Upload image';
+
+  @override
+  String get passName => 'Name';
+
+  @override
+  String get passPassword => 'Password';
+
+  @override
+  String get passShowBothPasswords => 'Show both passwords';
+
+  @override
+  String get passHideBothPasswords => 'Hide both passwords';
+
+  @override
+  String get passRepeatPassword => 'Repeat password';
+
+  @override
+  String get passChoice => 'Choice';
+
+  @override
+  String get passCopyJSON => 'Copy JSON';
+
+  @override
+  String get passDownloadJSON => 'Download JSON';
+
+  @override
+  String get passShowQR => 'Show QR';
+
+  @override
+  String get passNext => 'Next';
+
+  @override
+  String get passResetExample => 'Reset example';
+
+  @override
+  String get passClose => 'Close';
+
+  @override
+  String get passSampleQR => 'Sample QR';
+
+  @override
+  String get passISavedIt => 'I saved it';
+
+  @override
+  String get passDeleteLocalSampleData => 'Delete local sample data';
+
+  @override
+  String get passThisClearsTheNameAndChoicesEnteredInThisExample =>
+      'This clears the name and choices entered in this example.';
+
+  @override
+  String get passEnterDELETEToConfirm => 'Enter DELETE to confirm';
+
+  @override
+  String get passEnterDELETEExactly => 'Enter DELETE exactly.';
+
+  @override
+  String get passCancel => 'Cancel';
+
+  @override
+  String get passDeleteLocalData => 'Delete local data';
+
+  @override
+  String get passSavingFile => 'Saving file…';
+
+  @override
+  String get passFileSaved => 'File saved';
+
+  @override
+  String get passDownloadStarted => 'Download started';
+
+  @override
+  String get passSaveFailed => 'Save failed';
+
+  @override
+  String get passExport => 'Export';
+
+  @override
+  String get passInteractiveScenes => 'Interactive scenes';
+
+  @override
+  String get passActivateFeather => 'Activate feather';
+
+  @override
+  String get passToggleLock => 'Toggle lock';
+
+  @override
+  String get passResume => 'Resume';
+
+  @override
+  String get passPause => 'Pause';
+
+  @override
+  String get passSphereAndLightning => 'Sphere and lightning';
+
+  @override
+  String get passLightThreads => 'Light threads';
+
+  @override
+  String get passPreviewTheIntro => 'Preview the intro';
+
+  @override
+  String get passReady => 'Ready';
+
+  @override
+  String get passFile => 'File';
+
+  @override
+  String get passLink => 'Link';
+
+  @override
+  String get passSearch => 'Search';
+
+  @override
+  String get passImage => 'Image';
+
+  @override
+  String get passCheck => 'Check';
+
+  @override
+  String get passInfo => 'Info';
+
+  @override
+  String get sortAscending => 'Ascending';
+
+  @override
+  String get sortDescending => 'Descending';
 }

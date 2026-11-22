@@ -10,3 +10,4 @@ export 'shimmer.dart';
 export 'viewport_motion.dart';
 export 'wand.dart';
 export 'svg_3d.dart';
+export 'scene.dart';

@@ -1,11 +1,12 @@
+import { chooseTheme } from './helpers';
 import { test, expect } from '@playwright/test';
 
 test('restores current theme across history and persisted lifecycle events', async ({ page }) => {
   await page.goto('/react/');
   await expect(page.locator('astro-island[ssr]')).toHaveCount(0);
-  await page.getByRole('switch', { name: 'Dark theme', exact: true }).check();
+  await chooseTheme(page, 'dark');
   await page.getByRole('navigation', { name: 'Main navigation' }).getByRole('link', { name: 'Overview', exact: true }).click();
-  await page.getByRole('switch', { name: 'Dark theme', exact: true }).uncheck();
+  await chooseTheme(page, 'light');
   await page.goBack();
   await expect(page).toHaveURL(/\/react\/$/);
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');

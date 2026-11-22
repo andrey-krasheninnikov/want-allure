@@ -28,7 +28,7 @@ Days One is display, Manrope is body and the existing system monospace stack is 
 
 A short stepped glint is the shared visual detail. Primary actions use a clear fill and a small highlight. Cards and overlays use separate elevations. Filled, hovered, pressed, focused, disabled and invalid states remain distinguishable.
 
-The feather entrance lasts at most 4.4 seconds. It then rests and accepts manual rotation. The framework choices do not orbit. A slider changes the slate light immediately, tabs change its framework record, and the catalogue action follows the selected framework. Other page motion follows interaction. Ordinary feedback uses 120/180 ms and the guided sequence uses 360 ms. Keep transforms and opacity local, and pause hidden effects.
+Two lightning strokes finish in 1.2 seconds. The feather then turns for up to 3.2 seconds before resting. Drag and keyboard rotation remain available. The framework cards stay still, and their 3D logos rotate on mouse hover. A slider changes the slate light immediately, tabs change its framework record, and the catalogue action follows the selected framework. Other page motion follows interaction. Ordinary feedback uses 120/180 ms and the guided sequence uses 360 ms. Keep transforms and opacity local, and pause hidden effects.
 
 ## Acceptance scenarios
 

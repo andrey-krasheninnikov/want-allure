@@ -42,3 +42,32 @@ const catalogueLocaleNames = {
 
 String catalogueDirection(String tag) =>
     tag == 'ar' || tag == 'he' ? 'rtl' : 'ltr';
+
+const catalogueLocaleFlags = {
+  'en': '🇬🇧',
+  'zh-Hans': '🇨🇳',
+  'hi': '🇮🇳',
+  'es': '🇪🇸',
+  'ar': '🇸🇦',
+  'fr': '🇫🇷',
+  'pt-BR': '🇧🇷',
+  'ru': '🇷🇺',
+  'de': '🇩🇪',
+  'ja': '🇯🇵',
+  'tr': '🇹🇷',
+  'he': '🇮🇱',
+};
+const catalogueSystemThemeTag = {
+  'en': 'System theme',
+  'zh-Hans': '系统主题',
+  'hi': 'सिस्टम थीम',
+  'es': 'Tema del sistema',
+  'ar': 'سمة النظام',
+  'fr': 'Thème système',
+  'pt-BR': 'Tema do sistema',
+  'ru': 'Системная тема',
+  'de': 'Systemdesign',
+  'ja': 'システムテーマ',
+  'tr': 'Sistem teması',
+  'he': 'ערכת נושא של המערכת',
+};

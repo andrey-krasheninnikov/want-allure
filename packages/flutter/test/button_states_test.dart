@@ -56,6 +56,53 @@ void main() {
     },
   );
   for (final brightness in Brightness.values) {
+    testWidgets(
+      '${brightness.name} status badges and transparent actions use reading colors',
+      (tester) async {
+        final theme = WantThemeData.fromProfile(
+          WantBrandProfileV1.fromJson({
+            'schemaVersion': 1,
+            'paletteStyle': 'acid',
+          }),
+          brightness: brightness,
+        );
+        await tester.pumpWidget(
+          harness(
+            WantTheme(
+              data: theme,
+              child: Column(
+                children: [
+                  for (final status in WantSnackbarVariant.values)
+                    WantBadge(status: status, child: Text(status.name)),
+                  for (final variant in [
+                    WantButtonVariant.primary,
+                    WantButtonVariant.destructive,
+                  ])
+                    WantButton(
+                      transparent: true,
+                      variant: variant,
+                      onPressed: () {},
+                      child: Text(variant.name),
+                    ),
+                ],
+              ),
+            ),
+            brightness: brightness,
+          ),
+        );
+        for (final role in [
+          ...WantSnackbarVariant.values.map((s) => s.name),
+          'primary',
+          'destructive',
+        ]) {
+          expect(
+            DefaultTextStyle.of(tester.element(find.text(role))).style.color,
+            theme.color('$role-text'),
+          );
+        }
+      },
+    );
+
     for (final variant in [
       WantButtonVariant.primary,
       WantButtonVariant.destructive,

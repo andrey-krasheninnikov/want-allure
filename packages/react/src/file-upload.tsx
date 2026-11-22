@@ -11,24 +11,26 @@ export type FileUploadProps = {
   accept?: string;
   multiple?: boolean;
   maxSize?: number;
+  previewMaxSize?: number;
   maxFiles?: number;
   disabled?: boolean;
   id?: string;
   className?: string;
 };
 
-function FilePreview({ file }: { file: File }) {
-  const [url, setUrl] = useState<string>();
+function FilePreview({ file, limit }: { file: File; limit: number }) {
+  const [preview, setPreview] = useState<{ file: File; url: string }>();
+  const permitted = file.type.startsWith('image/') && file.size <= limit;
   useEffect(() => {
-    if (!file.type.startsWith('image/')) return;
+    if (!permitted || typeof URL.createObjectURL !== 'function') return;
     const next = URL.createObjectURL(file);
-    setUrl(next);
+    setPreview({ file, url: next });
     return () => URL.revokeObjectURL(next);
-  }, [file]);
-  return url ? <img className="ui-file-preview" src={url} alt="" /> : <FileIcon className="ui-file-preview" aria-hidden="true" />;
+  }, [file, permitted]);
+  return permitted && preview?.file === file ? <img className="ui-file-preview" src={preview.url} alt="" onError={() => setPreview(undefined)} /> : <FileIcon className="ui-file-preview" aria-hidden="true" />;
 }
 
-export function FileUpload({ label, files, onFilesChange, labels, accept, multiple = true, maxSize, maxFiles, disabled, id, className }: FileUploadProps) {
+export function FileUpload({ label, files, onFilesChange, labels, accept, multiple = true, maxSize, previewMaxSize = 10 * 1024 * 1024, maxFiles, disabled, id, className }: FileUploadProps) {
   const generatedId = useId();
   const inputId = id ?? generatedId;
   const input = useRef<HTMLInputElement>(null);
@@ -62,7 +64,7 @@ export function FileUpload({ label, files, onFilesChange, labels, accept, multip
     </div>
     {error && <p id={inputId + '-error'} className="ui-file-error" role="alert">{error}</p>}
     {files.length > 0 && <ul className="ui-file-list">{files.map((file, index) => <li key={file.name + ':' + file.size + ':' + file.lastModified + ':' + file.type + ':' + index}>
-      <FilePreview file={file} /><span className="ui-file-name">{file.name}</span>
+      <FilePreview file={file} limit={previewMaxSize} /><span className="ui-file-name">{file.name}</span>
       <Button type="button" variant="ghost" size="icon" disabled={disabled} aria-label={labels.remove(file.name)} onClick={() => { setError(''); onFilesChange(files.filter((_, at) => at !== index)); }}><X aria-hidden="true" /></Button>
     </li>)}</ul>}
   </div>;

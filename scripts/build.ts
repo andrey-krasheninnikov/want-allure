@@ -2,6 +2,7 @@ import { build } from 'vite';
 import tailwindcss from '@tailwindcss/vite';
 import { mkdir, copyFile, cp, readFile, rm, chmod } from 'node:fs/promises';
 import { resolve, dirname, basename } from 'node:path';
+import { scopedCss } from './scoped-css';
 import { themeCss } from './theme-css';
 
 const root = process.cwd();
@@ -15,6 +16,9 @@ await build({
   build: { emptyOutDir: false, cssCodeSplit: true, lib: { entry: { index: foundation + '/src/index.ts' }, formats: ['es'], fileName: (_, name) => name + '.js' },
     rollupOptions: { output: { assetFileNames: asset => asset.names.some(name => name.endsWith('.css')) ? '[name][extname]' : 'assets/[name][extname]' } } }
 });
+await Bun.write(foundation + '/dist/scoped.css', scopedCss(await readFile(foundation + '/dist/index.css', 'utf8')));
+await copyFile(foundation + '/brand-profile.schema.json', foundation + '/dist/brand-profile.schema.json');
+await mkdir(foundation + '/dist/fonts', { recursive: true });
 await cp(foundation + '/src/assets', foundation + '/dist/assets', { recursive: true });
 await copyFile(foundation + '/src/tailwind.css', foundation + '/dist/tailwind.css');
 await cp(resolve(root, 'skills/want-design'), foundation + '/dist/skill', { recursive: true });
@@ -22,7 +26,8 @@ await copyFile(foundation + '/tokens.json', foundation + '/dist/skill/references
 await copyFile(resolve(root, 'scripts/install-skill.mjs'), foundation + '/dist/install-skill.js');
 await chmod(foundation + '/dist/install-skill.js', 0o755);
 let fontCss = '';
-for (const name of ['@fontsource-variable/manrope', '@fontsource/days-one', '@fontsource-variable/noto-sans-jp', '@fontsource-variable/noto-sans-arabic', '@fontsource-variable/noto-sans-sc', '@fontsource-variable/noto-sans-devanagari', '@fontsource-variable/noto-sans-hebrew']) {
+const manifest = JSON.parse(await readFile(foundation + '/package.json', 'utf8')) as { devDependencies: Record<string, string> };
+for (const name of Object.keys(manifest.devDependencies).filter(name => /^@fontsource(?:-variable)?\//.test(name))) {
   const entry = Bun.resolveSync(name, foundation);
   const directory = dirname(entry);
   const family = name.split('/').at(-1)!;
@@ -30,7 +35,9 @@ for (const name of ['@fontsource-variable/manrope', '@fontsource/days-one', '@fo
   const assets = [...css.matchAll(/url\((['"]?)(\.\/files\/[^)'"]+)\1\)/g)];
   await mkdir(foundation + '/dist/assets/fonts/' + family, { recursive: true });
   for (const match of assets) await copyFile(resolve(directory, match[2]!), foundation + '/dist/assets/fonts/' + family + '/' + basename(match[2]!));
-  fontCss += css.replace(/url\((['"]?)(\.\/files\/[^)'"]+)\1\)/g, (_, quote, file) => 'url("./assets/fonts/' + family + '/' + basename(file) + '")') + '\n';
+  const familyCss = css.replace(/url\((['"]?)(\.\/files\/[^)'"]+)\1\)/g, (_, quote, file) => 'url("./assets/fonts/' + family + '/' + basename(file) + '")') + '\n';
+  fontCss += familyCss;
+  await Bun.write(foundation + '/dist/fonts/' + family + '.css', familyCss.replaceAll('url("./assets/', 'url("../assets/'));
   await mkdir(foundation + '/dist/licenses', { recursive: true });
   await copyFile(directory + '/LICENSE', foundation + '/dist/licenses/' + family + '.txt');
 }

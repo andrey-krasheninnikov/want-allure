@@ -3,7 +3,7 @@ import tokens from '../packages/foundation/tokens.json';
 
 test('the shared theme preserves primary and the graphite/porcelain grounds', () => {
   expect(tokens.themes.wallpapers.dark.primary).toBe('#5962F0');
-  expect(tokens.themes.wallpapers.dark.background).toBe('#111216');
+  expect(tokens.themes.wallpapers.dark.background).toBe('#0D0D0F');
   expect(tokens.themes.wallpapers.light.background).toBe('#F7F7FA');
 });
 
