@@ -656,4 +656,278 @@ class CatalogueLocalizationsRu extends CatalogueLocalizations {
 
   @override
   String get changeLanguage => 'Язык';
+
+  @override
+  String get passAllItems => 'Все записи';
+
+  @override
+  String get passWork => 'Работа';
+
+  @override
+  String get passPinned => 'Закреплённые';
+
+  @override
+  String get passDesignNotes => 'Заметки о дизайне';
+
+  @override
+  String get passReadingList => 'Список для чтения';
+
+  @override
+  String get passReleaseChecklist => 'Проверки релиза';
+
+  @override
+  String get passGroups => 'Группы';
+
+  @override
+  String get passItems => 'Записи';
+
+  @override
+  String get passPreview => 'Просмотр';
+
+  @override
+  String get passCopyItemName => 'Скопировать название';
+
+  @override
+  String get passCopied => 'Скопировано';
+
+  @override
+  String get passCopyFailed => 'Не удалось скопировать';
+
+  @override
+  String get passWorkspace => 'Рабочая область';
+
+  @override
+  String get passToggleMenu => 'Свернуть или раскрыть меню';
+
+  @override
+  String get passCloseMenu => 'Закрыть меню';
+
+  @override
+  String get passSearchItems => 'Поиск записей';
+
+  @override
+  String get passRemovePinnedFilter => 'Снять фильтр';
+
+  @override
+  String get passFilter => 'Фильтр';
+
+  @override
+  String get passResizeGroups => 'Изменить ширину групп';
+
+  @override
+  String get passResizeItems => 'Изменить ширину списка';
+
+  @override
+  String get passResizePreview => 'Изменить ширину просмотра';
+
+  @override
+  String get passBack => 'Назад';
+
+  @override
+  String get passSensitiveField => 'Поле для чувствительных данных';
+
+  @override
+  String get passExamplePassword => 'Пароль для примера';
+
+  @override
+  String get passShowPassword => 'Показать пароль';
+
+  @override
+  String get passHidePassword => 'Скрыть пароль';
+
+  @override
+  String get passShowHint => 'Показать подсказку';
+
+  @override
+  String get passCopyHint => 'Скопировать подсказку';
+
+  @override
+  String get passVerify => 'Проверить';
+
+  @override
+  String get passExampleAccepted => 'Пример принят';
+
+  @override
+  String get passNameAndIcon => 'Имя и иконка';
+
+  @override
+  String get passRequirements => 'Требования';
+
+  @override
+  String get passChooseAndExport => 'Выбор и экспорт';
+
+  @override
+  String get passAtLeastEightCharacters => 'Не менее восьми символов';
+
+  @override
+  String get passIncludesANumber => 'Есть цифра';
+
+  @override
+  String get passValuesMatch => 'Значения совпадают';
+
+  @override
+  String get passUploadedImage => 'Загруженное изображение';
+
+  @override
+  String get passPrimary => 'Основной';
+
+  @override
+  String get passGreen => 'Зелёный';
+
+  @override
+  String get passBlue => 'Синий';
+
+  @override
+  String get passAmber => 'Янтарный';
+
+  @override
+  String get passRose => 'Розовый';
+
+  @override
+  String get passInk => 'Текст';
+
+  @override
+  String get passMuted => 'Приглушённый';
+
+  @override
+  String get passGuidedSetup => 'Пошаговая настройка';
+
+  @override
+  String get passChooseIconAndColor => 'Выбрать иконку и цвет';
+
+  @override
+  String get passIcons => 'Иконки';
+
+  @override
+  String get passColors => 'Цвета';
+
+  @override
+  String get passUploadImage => 'Загрузить изображение';
+
+  @override
+  String get passName => 'Имя';
+
+  @override
+  String get passPassword => 'Пароль';
+
+  @override
+  String get passShowBothPasswords => 'Показать оба пароля';
+
+  @override
+  String get passHideBothPasswords => 'Скрыть оба пароля';
+
+  @override
+  String get passRepeatPassword => 'Повторите пароль';
+
+  @override
+  String get passChoice => 'Выбор';
+
+  @override
+  String get passCopyJSON => 'Скопировать JSON';
+
+  @override
+  String get passDownloadJSON => 'Скачать JSON';
+
+  @override
+  String get passShowQR => 'Показать QR';
+
+  @override
+  String get passNext => 'Далее';
+
+  @override
+  String get passResetExample => 'Сбросить пример';
+
+  @override
+  String get passClose => 'Закрыть';
+
+  @override
+  String get passSampleQR => 'QR для примера';
+
+  @override
+  String get passISavedIt => 'Я сохранил';
+
+  @override
+  String get passDeleteLocalSampleData => 'Удалить локальные данные примера';
+
+  @override
+  String get passThisClearsTheNameAndChoicesEnteredInThisExample =>
+      'Имя и выбранные значения этого примера будут удалены.';
+
+  @override
+  String get passEnterDELETEToConfirm => 'Введите DELETE для подтверждения';
+
+  @override
+  String get passEnterDELETEExactly => 'Введите DELETE без изменений.';
+
+  @override
+  String get passCancel => 'Отмена';
+
+  @override
+  String get passDeleteLocalData => 'Удалить локальные данные';
+
+  @override
+  String get passSavingFile => 'Сохраняем файл…';
+
+  @override
+  String get passFileSaved => 'Файл сохранён';
+
+  @override
+  String get passDownloadStarted => 'Скачивание началось';
+
+  @override
+  String get passSaveFailed => 'Не удалось сохранить файл';
+
+  @override
+  String get passExport => 'Экспорт';
+
+  @override
+  String get passInteractiveScenes => 'Интерактивные сцены';
+
+  @override
+  String get passActivateFeather => 'Активировать перо';
+
+  @override
+  String get passToggleLock => 'Открыть или закрыть замок';
+
+  @override
+  String get passResume => 'Продолжить';
+
+  @override
+  String get passPause => 'Пауза';
+
+  @override
+  String get passSphereAndLightning => 'Сфера и молнии';
+
+  @override
+  String get passLightThreads => 'Светящиеся нити';
+
+  @override
+  String get passPreviewTheIntro => 'Показать заставку';
+
+  @override
+  String get passReady => 'Готово';
+
+  @override
+  String get passFile => 'Файл';
+
+  @override
+  String get passLink => 'Ссылка';
+
+  @override
+  String get passSearch => 'Поиск';
+
+  @override
+  String get passImage => 'Изображение';
+
+  @override
+  String get passCheck => 'Проверка';
+
+  @override
+  String get passInfo => 'Информация';
+
+  @override
+  String get sortAscending => 'По возрастанию';
+
+  @override
+  String get sortDescending => 'По убыванию';
 }

@@ -78,6 +78,8 @@ class WantFileUpload extends StatefulWidget {
   final List<String> extensions, mimeTypes;
   final int? maxSize, maxFiles;
   final bool multiple, enabled;
+  final int previewByteLimit;
+  final Widget Function(BuildContext, String)? errorBuilder;
   const WantFileUpload({
     super.key,
     required this.files,
@@ -90,7 +92,9 @@ class WantFileUpload extends StatefulWidget {
     this.maxFiles,
     this.multiple = true,
     this.enabled = true,
-  });
+    this.previewByteLimit = 10 * 1024 * 1024,
+    this.errorBuilder,
+  }) : assert(previewByteLimit >= 0);
   @override
   State<WantFileUpload> createState() => _WantFileUploadState();
 }
@@ -169,7 +173,9 @@ class _WantFileUploadState extends State<WantFileUpload> {
         TickerMode.valuesOf(context).enabled;
     return WantField(
       label: widget.label,
-      error: _error == null ? null : Text(_error!),
+      error: _error == null
+          ? null
+          : widget.errorBuilder?.call(context, _error!) ?? Text(_error!),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -297,7 +303,10 @@ class _WantFileUploadState extends State<WantFileUpload> {
                             borderRadius: BorderRadius.circular(12),
                             child: ColoredBox(
                               color: WantTheme.of(context).color('secondary'),
-                              child: _FilePreview(file: widget.files[index]),
+                              child: _FilePreview(
+                                file: widget.files[index],
+                                limit: widget.previewByteLimit,
+                              ),
                             ),
                           ),
                           Expanded(
@@ -368,7 +377,8 @@ class _WantFileUploadState extends State<WantFileUpload> {
 
 class _FilePreview extends StatefulWidget {
   final XFile file;
-  const _FilePreview({required this.file});
+  final int limit;
+  const _FilePreview({required this.file, required this.limit});
   @override
   State<_FilePreview> createState() => _FilePreviewState();
 }
@@ -378,11 +388,16 @@ class _FilePreviewState extends State<_FilePreview> {
   Future<Uint8List?> _read() async {
     final file = widget.file;
     final mime = file.mimeType ?? lookupMimeType(file.name) ?? '';
-    // shortcut: previews above 10 MiB use an icon; add thumbnail decoding if larger previews are needed.
-    if (!mime.startsWith('image/') || await file.length() > 10 * 1024 * 1024) {
+    if (!mime.startsWith('image/') || await file.length() > widget.limit) {
       return null;
     }
-    return file.readAsBytes();
+    final output = BytesBuilder(copy: false);
+    final limit = widget.limit;
+    await for (final chunk in file.openRead()) {
+      if (!mounted || output.length + chunk.length > limit) return null;
+      output.add(chunk);
+    }
+    return output.takeBytes();
   }
 
   @override
@@ -394,7 +409,7 @@ class _FilePreviewState extends State<_FilePreview> {
   @override
   void didUpdateWidget(_FilePreview old) {
     super.didUpdateWidget(old);
-    if (old.file != widget.file) _bytes = _read();
+    if (old.file != widget.file || old.limit != widget.limit) _bytes = _read();
   }
 
   @override

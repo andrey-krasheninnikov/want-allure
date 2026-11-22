@@ -1,3 +1,10 @@
+## 1.4.0
+
+- Share versioned brand profiles, four palette styles and six typography presets across React and Flutter. Bright Neon fills retain their hue while controls use a separate contrasting edge.
+- Add collapsible navigation, resizable panes, responsive search, sensitive fields, inline copy feedback and setup compositions.
+- Update the component catalogues, palette editor, motion previews and local fonts.
+- Apply product colors, type and assets through WantThemeData.fromProfile and WantBrandResources.
+
 ## 1.3.0
 
 - Add WantPasswordInput with localized show/hide actions, keyboard access and consumer-owned validation.

@@ -8,11 +8,15 @@ const badgeVariants = cva(
   {
     variants: {
       variant: {
+        success: "ui-status-success",
+        warning: "ui-status-warning",
+        info: "ui-status-info",
+        error: "ui-status-error",
         default: "ui-badge-default",
         secondary:
           "ui-badge-secondary",
         destructive:
-          "ui-badge-destructive",
+          "ui-badge-destructive ui-status-error",
         outline:
           "ui-badge-outline",
         ghost: "ui-badge-ghost",

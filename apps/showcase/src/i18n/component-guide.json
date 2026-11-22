@@ -1,0 +1,667 @@
+[
+  {
+    "id": "Accordion",
+    "section": "navigation",
+    "title": "Tabs and accordion",
+    "flutter": [
+      "WantAccordion",
+      "WantAccordionItem"
+    ],
+    "example": "disclosure",
+    "react": "<Accordion type=\"single\" collapsible>{items}</Accordion>",
+    "dart": "WantAccordion(items: items)",
+    "states": "open · closed"
+  },
+  {
+    "id": "Alert",
+    "section": "feedback",
+    "title": "Badges and alerts",
+    "flutter": [
+      "WantAlert"
+    ],
+    "example": "feedback",
+    "react": "<Alert variant=\"warning\"><AlertTitle>{title}</AlertTitle></Alert>",
+    "dart": "WantAlert(title: title)",
+    "states": "success · warning · info · error"
+  },
+  {
+    "id": "Badge",
+    "section": "feedback",
+    "title": "Badges and alerts",
+    "flutter": [
+      "WantBadge"
+    ],
+    "example": "feedback",
+    "react": "<Badge variant=\"success\">{label}</Badge>",
+    "dart": "WantBadge(child: child)",
+    "states": "success · warning · info · error"
+  },
+  {
+    "id": "Breadcrumb",
+    "section": "navigation",
+    "title": "Navigation menu and breadcrumbs",
+    "flutter": [
+      "WantBreadcrumb",
+      "WantBreadcrumbItem"
+    ],
+    "example": "navigation",
+    "react": "<Breadcrumb aria-label={label}><BreadcrumbList>{items}</BreadcrumbList></Breadcrumb>",
+    "dart": "WantBreadcrumb(items: items, semanticsLabel: semanticsLabel)",
+    "states": "link · current"
+  },
+  {
+    "id": "Button",
+    "section": "inputs",
+    "title": "Buttons",
+    "flutter": [
+      "WantButton"
+    ],
+    "example": "buttons",
+    "react": "<Button busy={saving} onClick={save}>{label}</Button>",
+    "dart": "WantButton(child: child, onPressed: onPressed)",
+    "states": "default · focus · disabled · busy"
+  },
+  {
+    "id": "Card",
+    "section": "compositions",
+    "title": "Cards and gallery",
+    "flutter": [
+      "WantCard"
+    ],
+    "example": "cards",
+    "react": "<Card><CardContent>{content}</CardContent></Card>",
+    "dart": "WantCard(child: child)",
+    "states": "default · hover"
+  },
+  {
+    "id": "Dialog",
+    "section": "navigation",
+    "title": "Dialog and sheet",
+    "flutter": [
+      "WantDialog"
+    ],
+    "example": "overlays",
+    "react": "<Dialog open={open} onOpenChange={setOpen}><DialogContent closeLabel={closeLabel}><DialogTitle>{title}</DialogTitle>{content}</DialogContent></Dialog>",
+    "dart": "WantDialog(title: title, child: child)",
+    "states": "open · closed"
+  },
+  {
+    "id": "Field",
+    "section": "inputs",
+    "title": "Fields, input and textarea",
+    "flutter": [
+      "WantField",
+      "WantFieldGroup"
+    ],
+    "example": "fields",
+    "react": "<Field><FieldLabel>{label}</FieldLabel><Input /><FieldDescription>{hint}</FieldDescription></Field>",
+    "dart": "WantField(child: child)",
+    "states": "default · invalid · disabled"
+  },
+  {
+    "id": "Input",
+    "section": "inputs",
+    "title": "Fields, input and textarea",
+    "flutter": [
+      "WantInput",
+      "WantPasswordInput"
+    ],
+    "example": "fields",
+    "react": "<Input aria-label={label} defaultValue={name} />",
+    "dart": "WantInput(label: label, onChanged: setName)",
+    "states": "empty · filled · invalid · disabled"
+  },
+  {
+    "id": "Label",
+    "section": "inputs",
+    "title": "Fields, input and textarea",
+    "flutter": [
+      "WantLabel"
+    ],
+    "example": "fields",
+    "react": "<Label htmlFor=\"title\">{label}</Label>",
+    "dart": "WantLabel(child: child)",
+    "states": "default · disabled control"
+  },
+  {
+    "id": "NavigationMenu",
+    "section": "navigation",
+    "title": "Navigation menu and breadcrumbs",
+    "flutter": [
+      "WantNavigationMenu",
+      "WantNavigationItem"
+    ],
+    "example": "navigation",
+    "react": "<NavigationMenu aria-label={label}><NavigationMenuList>{items}</NavigationMenuList></NavigationMenu>",
+    "dart": "WantNavigationMenu(semanticsLabel: semanticsLabel, items: items)",
+    "states": "current · focus"
+  },
+  {
+    "id": "RadioGroup",
+    "section": "inputs",
+    "title": "Select, radio group, label and switch",
+    "flutter": [
+      "WantRadioGroup"
+    ],
+    "example": "selection",
+    "react": "<RadioGroup value={value} onValueChange={setValue} aria-label={label}>{options}</RadioGroup>",
+    "dart": "WantRadioGroup(value: value, options: options, onChanged: onChanged, semanticsLabel: semanticsLabel)",
+    "states": "checked · unchecked · disabled"
+  },
+  {
+    "id": "Select",
+    "section": "inputs",
+    "title": "Select, radio group, label and switch",
+    "flutter": [
+      "WantSelect",
+      "WantOption"
+    ],
+    "example": "selection",
+    "react": "<Select value={value} onValueChange={setValue}><SelectTrigger aria-label={label}><SelectValue /></SelectTrigger><SelectContent>{options}</SelectContent></Select>",
+    "dart": "WantSelect(value: value, options: options, onChanged: onChanged)",
+    "states": "open · selected · disabled"
+  },
+  {
+    "id": "Separator",
+    "section": "feedback",
+    "title": "Notifications and progress",
+    "flutter": [
+      "WantSeparator"
+    ],
+    "example": "feedback",
+    "react": "<Separator decorative />",
+    "dart": "WantSeparator()",
+    "states": "horizontal · vertical"
+  },
+  {
+    "id": "Sheet",
+    "section": "navigation",
+    "title": "Dialog and sheet",
+    "flutter": [
+      "WantSheet"
+    ],
+    "example": "overlays",
+    "react": "<Sheet open={open} onOpenChange={setOpen}><SheetContent closeLabel={closeLabel}><SheetTitle>{title}</SheetTitle>{content}</SheetContent></Sheet>",
+    "dart": "WantSheet(title: title, child: child)",
+    "states": "open · closed"
+  },
+  {
+    "id": "Skeleton",
+    "section": "feedback",
+    "title": "Loading and empty states",
+    "flutter": [
+      "WantSkeleton"
+    ],
+    "example": "feedback",
+    "react": "<Skeleton aria-hidden=\"true\" style={{ height:24 }} />",
+    "dart": "WantSkeleton()",
+    "states": "loading"
+  },
+  {
+    "id": "Switch",
+    "section": "inputs",
+    "title": "Select, radio group, label and switch",
+    "flutter": [
+      "WantSwitch"
+    ],
+    "example": "selection",
+    "react": "<Switch checked={enabled} onCheckedChange={setEnabled} aria-label={label} />",
+    "dart": "WantSwitch(value: value, onChanged: onChanged)",
+    "states": "on · off · disabled"
+  },
+  {
+    "id": "Tabs",
+    "section": "navigation",
+    "title": "Tabs and accordion",
+    "flutter": [
+      "WantTabs",
+      "WantTab"
+    ],
+    "example": "disclosure",
+    "react": "<Tabs value={tab} onValueChange={setTab}><TabsList>{triggers}</TabsList>{panels}</Tabs>",
+    "dart": "WantTabs(value: value, onChanged: onChanged, tabs: tabs)",
+    "states": "selected · focus"
+  },
+  {
+    "id": "Textarea",
+    "section": "inputs",
+    "title": "Fields, input and textarea",
+    "flutter": [
+      "WantTextarea"
+    ],
+    "example": "fields",
+    "react": "<Textarea aria-label={label} defaultValue={notes} />",
+    "dart": "WantTextarea(label: label, onChanged: setNote)",
+    "states": "empty · filled · invalid · disabled"
+  },
+  {
+    "id": "BrandLogo",
+    "section": "foundation",
+    "title": "Brand and theme",
+    "flutter": [
+      "WantBrandLogo",
+      "WantBrandLockup"
+    ],
+    "example": "palette",
+    "react": "<BrandLogo src={logoUrl} alt={name} />",
+    "dart": "WantBrandLogo(image: image, label: label)",
+    "states": "light · dark · mark"
+  },
+  {
+    "id": "MediaCard",
+    "section": "compositions",
+    "title": "Cards and gallery",
+    "flutter": [
+      "WantMediaCard"
+    ],
+    "example": "cards",
+    "react": "<MediaCard href={url} title={title} image={image} />",
+    "dart": "WantMediaCard(image: image, title: title, imageLabel: imageLabel)",
+    "states": "image · fallback"
+  },
+  {
+    "id": "ContactCard",
+    "section": "compositions",
+    "title": "Contact card",
+    "flutter": [
+      "WantContactCard",
+      "WantContactAction"
+    ],
+    "example": "contact",
+    "react": "<ContactCard name={name} avatarSrc={photo} actions={actions} />",
+    "dart": "WantContactCard(name: name, actions: actions)",
+    "states": "image · initials"
+  },
+  {
+    "id": "ThemeToggle",
+    "section": "foundation",
+    "title": "Brand and theme",
+    "flutter": [
+      "WantThemeToggle"
+    ],
+    "example": "palette",
+    "react": "<ThemeToggle theme={mode} onThemeChange={setMode} label={label} />",
+    "dart": "WantThemeToggle(brightness: brightness, onChanged: onChanged, lightLabel: lightLabel, darkLabel: darkLabel)",
+    "states": "light · dark"
+  },
+  {
+    "id": "CommentFeed",
+    "section": "compositions",
+    "title": "Comment carousel",
+    "flutter": [
+      "WantCommentFeed",
+      "WantComment",
+      "WantCommentAction"
+    ],
+    "example": "comments",
+    "react": "<CommentFeed comments={comments} labels={labels} onAction={handleAction} />",
+    "dart": "WantCommentFeed(comments: comments, labels: labels, onAction: onAction)",
+    "states": "empty · populated · busy"
+  },
+  {
+    "id": "DirectionProvider",
+    "section": "navigation",
+    "title": "Navigation menu and breadcrumbs",
+    "flutter": [
+      "WantDirectionProvider"
+    ],
+    "example": "navigation",
+    "react": "<DirectionProvider dir=\"rtl\">{children}</DirectionProvider>",
+    "dart": "WantDirectionProvider(direction: direction, child: child)",
+    "states": "ltr · rtl"
+  },
+  {
+    "id": "DateField",
+    "section": "compositions",
+    "title": "Date, URL and page layout",
+    "flutter": [
+      "WantDateField"
+    ],
+    "example": "date-url-window",
+    "react": "<DateField mode=\"date\" locale={locale} value={day} labels={labels} onChange={setDay} />",
+    "dart": "WantDateField(value: value, onChanged: onChanged, label: label)",
+    "states": "empty · selected · disabled"
+  },
+  {
+    "id": "UrlField",
+    "section": "compositions",
+    "title": "Date, URL and page layout",
+    "flutter": [
+      "WantUrlField",
+      "WantOpenUrl"
+    ],
+    "example": "date-url-window",
+    "react": "<UrlField label={label} openLabel={openLabel} value={url} onChange={setUrl} />",
+    "dart": "WantUrlField(controller: controller, label: label, openLabel: openLabel, onOpen: onOpen)",
+    "states": "empty · valid · invalid"
+  },
+  {
+    "id": "Window",
+    "section": "compositions",
+    "title": "Date, URL and page layout",
+    "flutter": [
+      "WantWindow"
+    ],
+    "example": "date-url-window",
+    "react": "<Window title={title} actions={actions}>{content}</Window>",
+    "dart": "WantWindow(title: title, child: child)",
+    "states": "content · actions"
+  },
+  {
+    "id": "Checkbox",
+    "section": "inputs",
+    "title": "Checkboxes",
+    "flutter": [
+      "WantCheckbox"
+    ],
+    "example": "selection",
+    "react": "<Checkbox checked={checked} onCheckedChange={setChecked} aria-label={label} />",
+    "dart": "WantCheckbox(value: value, onChanged: onChanged)",
+    "states": "checked · unchecked · indeterminate"
+  },
+  {
+    "id": "DropdownMenu",
+    "section": "navigation",
+    "title": "Menus, tooltips and popovers",
+    "flutter": [
+      "WantDropdownMenu",
+      "WantMenuItem"
+    ],
+    "example": "overlays",
+    "react": "<DropdownMenu><DropdownMenuTrigger>{label}</DropdownMenuTrigger><DropdownMenuContent>{items}</DropdownMenuContent></DropdownMenu>",
+    "dart": "WantDropdownMenu(label: label, items: items)",
+    "states": "open · closed · disabled item"
+  },
+  {
+    "id": "Tooltip",
+    "section": "navigation",
+    "title": "Menus, tooltips and popovers",
+    "flutter": [
+      "WantTooltip"
+    ],
+    "example": "overlays",
+    "react": "<TooltipProvider><Tooltip><TooltipTrigger>{label}</TooltipTrigger><TooltipContent>{hint}</TooltipContent></Tooltip></TooltipProvider>",
+    "dart": "WantTooltip(message: message, child: child)",
+    "states": "open · closed"
+  },
+  {
+    "id": "Popover",
+    "section": "navigation",
+    "title": "Menus, tooltips and popovers",
+    "flutter": [
+      "WantPopover"
+    ],
+    "example": "overlays",
+    "react": "<Popover><PopoverTrigger>{label}</PopoverTrigger><PopoverContent>{content}</PopoverContent></Popover>",
+    "dart": "WantPopover(child: child, contentBuilder: contentBuilder, triggerBuilder: triggerBuilder)",
+    "states": "open · closed"
+  },
+  {
+    "id": "Toast",
+    "section": "feedback",
+    "title": "Notifications and progress",
+    "flutter": [
+      "WantToast",
+      "WantToaster"
+    ],
+    "example": "notifications",
+    "react": "<ToastProvider><Toast open={open} onOpenChange={setOpen}><ToastTitle>{title}</ToastTitle></Toast><ToastViewport /></ToastProvider>",
+    "dart": "WantToast(title: title, closeLabel: closeLabel, onClose: onClose)",
+    "states": "open · dismissed"
+  },
+  {
+    "id": "Progress",
+    "section": "feedback",
+    "title": "Notifications and progress",
+    "flutter": [
+      "WantProgress"
+    ],
+    "example": "feedback",
+    "react": "<Progress label={label} value={percent} />",
+    "dart": "WantProgress(label: label)",
+    "states": "determinate · indeterminate"
+  },
+  {
+    "id": "Table",
+    "section": "data",
+    "title": "Table and pagination",
+    "flutter": [
+      "WantTable",
+      "WantTableColumn"
+    ],
+    "example": "table",
+    "react": "<Table aria-label={label}><TableHeader>{headers}</TableHeader><TableBody>{rows}</TableBody></Table>",
+    "dart": "WantTable(rows: rows, columns: columns, caption: caption, emptyLabel: emptyLabel)",
+    "states": "default · selected · sorted"
+  },
+  {
+    "id": "Combobox",
+    "section": "inputs",
+    "title": "Searchable combobox",
+    "flutter": [
+      "WantCombobox"
+    ],
+    "example": "search",
+    "react": "<Combobox label={label} emptyLabel={emptyLabel} options={options} value={value} onValueChange={setValue} />",
+    "dart": "WantCombobox(value: value, options: options, onChanged: onChanged, label: label, emptyLabel: emptyLabel, searchHint: searchHint)",
+    "states": "search · selected · empty · loading"
+  },
+  {
+    "id": "Pagination",
+    "section": "data",
+    "title": "Table and pagination",
+    "flutter": [
+      "WantPagination"
+    ],
+    "example": "table",
+    "react": "<Pagination page={page} pageSize={size} totalItems={total} labels={labels} onChange={setPageAndSize} />",
+    "dart": "WantPagination(page: page, pageSize: pageSize, totalItems: totalItems, onChanged: onChanged, labels: labels)",
+    "states": "first · last"
+  },
+  {
+    "id": "FileUpload",
+    "section": "data",
+    "title": "File selection",
+    "flutter": [
+      "WantFileUpload"
+    ],
+    "example": "files",
+    "react": "<FileUpload label={label} labels={labels} files={files} onFilesChange={setFiles} />",
+    "dart": "WantFileUpload(files: files, onChanged: onChanged, label: label, labels: labels)",
+    "states": "empty · selected · rejected"
+  },
+  {
+    "id": "Typography",
+    "section": "foundation",
+    "title": "Typography",
+    "flutter": [
+      "WantTypography",
+      "WantProse"
+    ],
+    "example": "typography",
+    "react": "<Typography variant=\"h2\" as=\"h2\">{heading}</Typography>",
+    "dart": "WantTypography(heading, variant: WantTypographyVariant.h2)",
+    "states": "display · body · label · mono"
+  },
+  {
+    "id": "Loader",
+    "section": "effects",
+    "title": "Custom loaders",
+    "flutter": [
+      "WantLoader"
+    ],
+    "example": "loaders",
+    "react": "<Loader label={label} variant=\"dots\" paused={paused} />",
+    "dart": "WantLoader(label: label)",
+    "states": "running · paused"
+  },
+  {
+    "id": "Shimmer",
+    "section": "effects",
+    "title": "Shimmer placeholders",
+    "flutter": [
+      "WantShimmer"
+    ],
+    "example": "shimmer",
+    "react": "<Shimmer label={label} variant=\"card\" paused={paused} />",
+    "dart": "WantShimmer(label: label)",
+    "states": "running · paused"
+  },
+  {
+    "id": "AnimatedText",
+    "section": "effects",
+    "title": "Animated text",
+    "flutter": [
+      "WantAnimatedText"
+    ],
+    "example": "animated-text",
+    "react": "<AnimatedText text={message} effect=\"fade\" />",
+    "dart": "WantAnimatedText(message, effect: WantTextEffect.fade)",
+    "states": "fade · slide · blur"
+  },
+  {
+    "id": "Glow",
+    "section": "effects",
+    "title": "Reusable background glow",
+    "flutter": [
+      "WantGlow"
+    ],
+    "example": "glow",
+    "react": "<div className=\"glow-host\"><Glow paused={paused} />{content}</div>",
+    "dart": "WantGlow(child: child)",
+    "states": "running · paused"
+  },
+  {
+    "id": "Snackbar",
+    "section": "feedback",
+    "title": "Semantic snackbars",
+    "flutter": [
+      "WantSnackbar"
+    ],
+    "example": "notifications",
+    "react": "<SnackbarProvider><Snackbar variant=\"info\" variantLabel={infoLabel} title={title} closeLabel={closeLabel} /><SnackbarViewport /></SnackbarProvider>",
+    "dart": "WantSnackbar(variant: variant, variantLabel: variantLabel, title: title, closeLabel: closeLabel, onClose: onClose)",
+    "states": "pending · success · warning · error"
+  },
+  {
+    "id": "LightningBackground",
+    "section": "effects",
+    "title": "Background lightning",
+    "flutter": [
+      "WantLightningBackground"
+    ],
+    "example": "lightning",
+    "react": "<LightningBackground paused={paused} />",
+    "dart": "WantLightningBackground()",
+    "states": "running · paused"
+  },
+  {
+    "id": "Slider",
+    "section": "inputs",
+    "title": "Sliders",
+    "flutter": [
+      "WantSlider",
+      "WantRangeSlider"
+    ],
+    "example": "sliders",
+    "react": "<Slider value={value} onValueChange={setValue} label={label} />",
+    "dart": "WantSlider(value: value, onChanged: onChanged, label: label)",
+    "states": "default · dragging · disabled"
+  },
+  {
+    "id": "ThemePicker",
+    "section": "foundation",
+    "title": "Brand and theme",
+    "flutter": [
+      "WantThemePicker",
+      "WantLanguagePicker"
+    ],
+    "example": "palette",
+    "react": "<ThemePicker label={label} value={mode} resolved={resolved} labels={labels} onChange={setMode} />",
+    "dart": "WantThemePicker(value: value, brightness: brightness, label: label, labels: labels, onChanged: onChanged)",
+    "states": "system · light · dark"
+  },
+  {
+    "id": "ThemeIcon",
+    "section": "foundation",
+    "title": "Brand and theme",
+    "flutter": [
+      "WantIcon"
+    ],
+    "example": "palette",
+    "react": "<ThemeIcon icon={Check} iconRole=\"confirm\" />",
+    "dart": "WantIcon(WantIcons.check)",
+    "states": "default · custom"
+  },
+  {
+    "id": "Sidebar",
+    "section": "compositions",
+    "title": "Workspace",
+    "flutter": [
+      "WantSidebar",
+      "WantListRow",
+      "WantSplitPane",
+      "WantSearchToolbar"
+    ],
+    "example": "pass-workspace",
+    "react": "<Sidebar {...menu} selected={item} expanded={expanded} onSelect={select} onExpandedChange={expand}>{content}</Sidebar>",
+    "dart": "WantSidebar(label: label, toggleLabel: toggleLabel, closeLabel: closeLabel, items: items, selected: selected, onSelected: onSelected, expanded: expanded, onExpandedChanged: onExpandedChanged, child: child)",
+    "states": "rail · expanded · overlay"
+  },
+  {
+    "id": "PasswordInput",
+    "section": "inputs",
+    "title": "Sensitive field",
+    "flutter": [
+      "WantPasswordInput",
+      "WantIconButton",
+      "WantCopyAction"
+    ],
+    "example": "pass-field",
+    "react": "<PasswordInput aria-label={label} showLabel={showLabel} hideLabel={hideLabel} />",
+    "dart": "WantPasswordInput(showPasswordLabel: showPasswordLabel, hidePasswordLabel: hidePasswordLabel)",
+    "states": "hidden · visible · invalid"
+  },
+  {
+    "id": "IconColorPicker",
+    "section": "compositions",
+    "title": "Guided setup",
+    "flutter": [
+      "WantIconColorPicker",
+      "WantStepIndicator",
+      "WantScreenTransition",
+      "WantStateGlow"
+    ],
+    "example": "pass-setup",
+    "react": "<IconColorPicker {...labels} icons={icons} colors={colors} value={choice} onChange={setChoice} />",
+    "dart": "WantIconColorPicker(label: label, iconLabel: iconLabel, colorLabel: colorLabel, icon: icon, color: color, icons: icons, colors: colors, onChanged: onChanged)",
+    "states": "open · selected"
+  },
+  {
+    "id": "Svg3DIcon",
+    "section": "effects",
+    "title": "Interactive scenes",
+    "flutter": [
+      "WantSvg3D",
+      "WantThreadsBackground",
+      "WantLogoWave",
+      "WantBackgroundMotion"
+    ],
+    "example": "pass-motion",
+    "react": "<Svg3DIcon source={svg} fallback={fallback} label={label} onActivate={activate} />",
+    "dart": "WantSvg3D.asset(asset, semanticsLabel: label)",
+    "states": "fallback · ready · active"
+  },
+  {
+    "id": "StateView",
+    "section": "feedback",
+    "title": "Loading and empty states",
+    "flutter": [
+      "WantContentState"
+    ],
+    "example": "feedback",
+    "react": "<StateView state=\"empty\" title={title} action={{label, onClick:reset}} />",
+    "dart": "WantContentState(status: WantContentStatus.empty, title: title)",
+    "states": "empty · loading · error"
+  }
+]

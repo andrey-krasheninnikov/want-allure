@@ -2,6 +2,7 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "declaration": true,
+    "paths": { "@want-foundation/allure": ["./packages/foundation/src/index.ts"] },
     "emitDeclarationOnly": true,
     "outDir": ".types",
     "rootDir": "packages"

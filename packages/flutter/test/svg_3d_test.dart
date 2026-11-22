@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:ui' as ui;
 
 import 'package:flutter/widgets.dart';
 import 'package:flutter/services.dart';
@@ -201,23 +202,40 @@ void main() {
       final source = await rootBundle.loadString(
         'packages/want_allure/assets/brand/allure/logos/dark/transparent.svg',
       );
-      final rectangles = RegExp(
-        r'M([0-9]+) ([0-9]+)\s*H([0-9]+)\s*V([0-9]+)\s*H',
-      ).allMatches(source);
       final box = RegExp(r'viewBox="0 0 ([0-9]+) ([0-9]+)"')
           .firstMatch(source)!;
-      final width = double.parse(box[1]!), height = double.parse(box[2]!);
+      final width = int.parse(box[1]!), height = int.parse(box[2]!);
+      expect((width, height), (64, 64));
       final scale = 2 / (width > height ? width : height);
-      var expected = 0.0;
-      for (final rect in rectangles) {
-        expected +=
-            (double.parse(rect[3]!) - double.parse(rect[1]!)) *
-            (double.parse(rect[4]!) - double.parse(rect[2]!)) *
-            scale *
-            scale;
-      }
-      expect(rectangles.length, 39);
-      expect(expected, closeTo(.82421875, .0001));
+
+      // The approved transparent PNG supplies an independent silhouette for every grid cell.
+      final bytes = await rootBundle.load(
+        'packages/want_allure/assets/brand/allure/logos/dark/transparent.png',
+      );
+      final expected = (await tester.runAsync(() async {
+        final codec = await ui.instantiateImageCodec(
+          bytes.buffer.asUint8List(bytes.offsetInBytes, bytes.lengthInBytes),
+          targetWidth: width,
+          targetHeight: height,
+        );
+        try {
+          final image = (await codec.getNextFrame()).image;
+          try {
+            final pixels = (await image.toByteData(
+              format: ui.ImageByteFormat.rawRgba,
+            ))!;
+            return {
+              for (int i = 0; i < width * height; i++)
+                if (pixels.getUint8(i * 4 + 3) >= 128) i,
+            };
+          } finally {
+            image.dispose();
+          }
+        } finally {
+          codec.dispose();
+        }
+      }))!;
+      expect(expected.length, 836);
       await tester.pumpWidget(
         harness(
           SizedBox(
@@ -232,7 +250,8 @@ void main() {
         ),
       );
       await tester.pump();
-      var actual = 0.0;
+      var actualArea = 0.0;
+      final front = Path();
       for (final face
           in tester
               .widget<DiTreDi>(find.byType(DiTreDi))
@@ -242,11 +261,28 @@ void main() {
             b = face.triangle.point1,
             c = face.triangle.point2;
         if ([a, b, c].every((point) => (point.z - .12).abs() < .0001)) {
-          actual +=
+          front.addPolygon([
+            Offset(a.x, a.y),
+            Offset(b.x, b.y),
+            Offset(c.x, c.y),
+          ], true);
+          actualArea +=
               ((b.x - a.x) * (c.y - a.y) - (b.y - a.y) * (c.x - a.x)).abs() / 2;
         }
       }
-      expect(actual, closeTo(expected, .001));
+      expect(actualArea, closeTo(expected.length * scale * scale, .00001));
+      final occupied = {
+        for (var y = 0; y < height; y++)
+          for (var x = 0; x < width; x++)
+            if (front.contains(
+              Offset(
+                (x + .5 - width / 2) * scale,
+                (height / 2 - y - .5) * scale,
+              ),
+            ))
+              y * width + x,
+      };
+      expect(occupied, expected);
       await tester.pumpWidget(const SizedBox.shrink());
       await tester.pump(const Duration(seconds: 1));
     },

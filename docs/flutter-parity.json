@@ -5,21 +5,24 @@
       "WantAccordion",
       "WantAccordionItem"
     ],
-    "example": "disclosure"
+    "example": "disclosure",
+    "react": "Accordion"
   },
   {
     "web": "ui/alert",
     "flutter": [
       "WantAlert"
     ],
-    "example": "feedback"
+    "example": "feedback",
+    "react": "Alert"
   },
   {
     "web": "ui/badge",
     "flutter": [
       "WantBadge"
     ],
-    "example": "feedback"
+    "example": "feedback",
+    "react": "Badge"
   },
   {
     "web": "ui/breadcrumb",
@@ -27,28 +30,32 @@
       "WantBreadcrumb",
       "WantBreadcrumbItem"
     ],
-    "example": "navigation"
+    "example": "navigation",
+    "react": "Breadcrumb"
   },
   {
     "web": "ui/button",
     "flutter": [
       "WantButton"
     ],
-    "example": "buttons"
+    "example": "buttons",
+    "react": "Button"
   },
   {
     "web": "ui/card",
     "flutter": [
       "WantCard"
     ],
-    "example": "cards"
+    "example": "cards",
+    "react": "Card"
   },
   {
     "web": "ui/dialog",
     "flutter": [
       "WantDialog"
     ],
-    "example": "overlays"
+    "example": "overlays",
+    "react": "Dialog"
   },
   {
     "web": "ui/field",
@@ -56,7 +63,8 @@
       "WantField",
       "WantFieldGroup"
     ],
-    "example": "fields"
+    "example": "fields",
+    "react": "Field"
   },
   {
     "web": "ui/input",
@@ -64,14 +72,16 @@
       "WantInput",
       "WantPasswordInput"
     ],
-    "example": "fields"
+    "example": "fields",
+    "react": "Input"
   },
   {
     "web": "ui/label",
     "flutter": [
       "WantLabel"
     ],
-    "example": "fields"
+    "example": "fields",
+    "react": "Label"
   },
   {
     "web": "ui/navigation-menu",
@@ -79,14 +89,16 @@
       "WantNavigationMenu",
       "WantNavigationItem"
     ],
-    "example": "navigation"
+    "example": "navigation",
+    "react": "NavigationMenu"
   },
   {
     "web": "ui/radio-group",
     "flutter": [
       "WantRadioGroup"
     ],
-    "example": "selection"
+    "example": "selection",
+    "react": "RadioGroup"
   },
   {
     "web": "ui/select",
@@ -94,35 +106,40 @@
       "WantSelect",
       "WantOption"
     ],
-    "example": "selection"
+    "example": "selection",
+    "react": "Select"
   },
   {
     "web": "ui/separator",
     "flutter": [
       "WantSeparator"
     ],
-    "example": "feedback"
+    "example": "feedback",
+    "react": "Separator"
   },
   {
     "web": "ui/sheet",
     "flutter": [
       "WantSheet"
     ],
-    "example": "overlays"
+    "example": "overlays",
+    "react": "Sheet"
   },
   {
     "web": "ui/skeleton",
     "flutter": [
       "WantSkeleton"
     ],
-    "example": "feedback"
+    "example": "feedback",
+    "react": "Skeleton"
   },
   {
     "web": "ui/switch",
     "flutter": [
       "WantSwitch"
     ],
-    "example": "selection"
+    "example": "selection",
+    "react": "Switch"
   },
   {
     "web": "ui/tabs",
@@ -130,14 +147,16 @@
       "WantTabs",
       "WantTab"
     ],
-    "example": "disclosure"
+    "example": "disclosure",
+    "react": "Tabs"
   },
   {
     "web": "ui/textarea",
     "flutter": [
       "WantTextarea"
     ],
-    "example": "fields"
+    "example": "fields",
+    "react": "Textarea"
   },
   {
     "web": "brand",
@@ -145,14 +164,16 @@
       "WantBrandLogo",
       "WantBrandLockup"
     ],
-    "example": "palette"
+    "example": "palette",
+    "react": "BrandLogo"
   },
   {
     "web": "media-card",
     "flutter": [
       "WantMediaCard"
     ],
-    "example": "cards"
+    "example": "cards",
+    "react": "MediaCard"
   },
   {
     "web": "contact-card",
@@ -160,14 +181,16 @@
       "WantContactCard",
       "WantContactAction"
     ],
-    "example": "contact"
+    "example": "contact",
+    "react": "ContactCard"
   },
   {
     "web": "theme-toggle",
     "flutter": [
       "WantThemeToggle"
     ],
-    "example": "palette"
+    "example": "palette",
+    "react": "ThemeToggle"
   },
   {
     "web": "comment-feed",
@@ -176,21 +199,24 @@
       "WantComment",
       "WantCommentAction"
     ],
-    "example": "comments"
+    "example": "comments",
+    "react": "CommentFeed"
   },
   {
     "web": "direction-provider",
     "flutter": [
       "WantDirectionProvider"
     ],
-    "example": "navigation"
+    "example": "navigation",
+    "react": "DirectionProvider"
   },
   {
     "web": "date-field",
     "flutter": [
       "WantDateField"
     ],
-    "example": "date-url-window"
+    "example": "date-url-window",
+    "react": "DateField"
   },
   {
     "web": "url-field",
@@ -198,21 +224,24 @@
       "WantUrlField",
       "WantOpenUrl"
     ],
-    "example": "date-url-window"
+    "example": "date-url-window",
+    "react": "UrlField"
   },
   {
     "web": "window",
     "flutter": [
       "WantWindow"
     ],
-    "example": "date-url-window"
+    "example": "date-url-window",
+    "react": "Window"
   },
   {
     "web": "ui/checkbox",
     "flutter": [
       "WantCheckbox"
     ],
-    "example": "selection"
+    "example": "selection",
+    "react": "Checkbox"
   },
   {
     "web": "ui/dropdown-menu",
@@ -220,21 +249,24 @@
       "WantDropdownMenu",
       "WantMenuItem"
     ],
-    "example": "overlays"
+    "example": "overlays",
+    "react": "DropdownMenu"
   },
   {
     "web": "ui/tooltip",
     "flutter": [
       "WantTooltip"
     ],
-    "example": "overlays"
+    "example": "overlays",
+    "react": "Tooltip"
   },
   {
     "web": "ui/popover",
     "flutter": [
       "WantPopover"
     ],
-    "example": "overlays"
+    "example": "overlays",
+    "react": "Popover"
   },
   {
     "web": "ui/toast",
@@ -242,14 +274,16 @@
       "WantToast",
       "WantToaster"
     ],
-    "example": "notifications"
+    "example": "notifications",
+    "react": "Toast"
   },
   {
     "web": "ui/progress",
     "flutter": [
       "WantProgress"
     ],
-    "example": "feedback"
+    "example": "feedback",
+    "react": "Progress"
   },
   {
     "web": "ui/table",
@@ -257,28 +291,32 @@
       "WantTable",
       "WantTableColumn"
     ],
-    "example": "table"
+    "example": "table",
+    "react": "Table"
   },
   {
     "web": "combobox",
     "flutter": [
       "WantCombobox"
     ],
-    "example": "search"
+    "example": "search",
+    "react": "Combobox"
   },
   {
     "web": "pagination",
     "flutter": [
       "WantPagination"
     ],
-    "example": "table"
+    "example": "table",
+    "react": "Pagination"
   },
   {
     "web": "file-upload",
     "flutter": [
       "WantFileUpload"
     ],
-    "example": "files"
+    "example": "files",
+    "react": "FileUpload"
   },
   {
     "web": "typography",
@@ -286,49 +324,56 @@
       "WantTypography",
       "WantProse"
     ],
-    "example": "typography"
+    "example": "typography",
+    "react": "Typography"
   },
   {
     "web": "loader",
     "flutter": [
       "WantLoader"
     ],
-    "example": "loaders"
+    "example": "loaders",
+    "react": "Loader"
   },
   {
     "web": "shimmer",
     "flutter": [
       "WantShimmer"
     ],
-    "example": "shimmer"
+    "example": "shimmer",
+    "react": "Shimmer"
   },
   {
     "web": "animated-text",
     "flutter": [
       "WantAnimatedText"
     ],
-    "example": "animated-text"
+    "example": "animated-text",
+    "react": "AnimatedText"
   },
   {
     "web": "glow",
     "flutter": [
       "WantGlow"
     ],
-    "example": "glow"
+    "example": "glow",
+    "react": "Glow"
   },
   {
     "web": "snackbar",
     "flutter": [
       "WantSnackbar"
     ],
-    "example": "notifications"
+    "example": "notifications",
+    "react": "Snackbar"
   },
   {
     "web": "lightning-background",
     "flutter": [
       "WantLightningBackground"
     ],
-    "example": "lightning"
+    "example": "lightning",
+    "react": "LightningBackground"
   },
   {
     "web": "ui/slider",
@@ -336,6 +381,67 @@
       "WantSlider",
       "WantRangeSlider"
     ],
-    "example": "sliders"
+    "example": "sliders",
+    "react": "Slider"
+  },
+  {
+    "web": "appearance-picker",
+    "flutter": [
+      "WantThemePicker",
+      "WantLanguagePicker"
+    ],
+    "example": "palette",
+    "react": "ThemePicker"
+  },
+  {
+    "web": "theme-icon",
+    "flutter": [
+      "WantIcon"
+    ],
+    "example": "palette",
+    "react": "ThemeIcon"
+  },
+  {
+    "web": "workspace",
+    "flutter": [
+      "WantSidebar",
+      "WantListRow",
+      "WantSplitPane",
+      "WantSearchToolbar"
+    ],
+    "example": "pass-workspace",
+    "react": "Sidebar"
+  },
+  {
+    "web": "field-actions",
+    "flutter": [
+      "WantPasswordInput",
+      "WantIconButton",
+      "WantCopyAction"
+    ],
+    "example": "pass-field",
+    "react": "CopyAction"
+  },
+  {
+    "web": "setup",
+    "flutter": [
+      "WantIconColorPicker",
+      "WantStepIndicator",
+      "WantScreenTransition",
+      "WantStateGlow"
+    ],
+    "example": "pass-setup",
+    "react": "StepIndicator"
+  },
+  {
+    "web": "scene",
+    "flutter": [
+      "WantSvg3D",
+      "WantThreadsBackground",
+      "WantLogoWave",
+      "WantBackgroundMotion"
+    ],
+    "example": "pass-motion",
+    "react": "Svg3DIcon"
   }
 ]

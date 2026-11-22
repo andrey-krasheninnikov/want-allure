@@ -1,6 +1,11 @@
 import tokens from '../tokens.json';
 import './styles.css';
 export { tokens };
+export { parseBrandProfile, resolveBrandProfile } from './brand-profile.js';
+export type { AllureBrandProfileV1, BrandColorRole } from './brand-profile.js';
 export type Theme = 'light' | 'dark';
 export { initInteractionEffects, burstConfetti } from './effects.js';
 export { initBackgroundMotion } from './background.js';
+export { transitionTheme } from './theme-transition.js';
+export { colorContrast, createThemeVariables, isSupportedPrimaryColor } from './appearance.js';
+export type { PaletteStyle, ThemeOptions, TypographyPreset } from './appearance.js';

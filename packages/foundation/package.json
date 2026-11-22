@@ -1,5 +1,5 @@
 {
-  "version": "1.3.0",
+  "version": "1.4.0",
   "type": "module",
   "license": "MIT",
   "repository": {
@@ -28,18 +28,30 @@
     },
     "./tokens.json": "./tokens.json",
     "./styles.css": "./dist/index.css",
+    "./scoped.css": "./dist/scoped.css",
+    "./brand-profile.schema.json": "./dist/brand-profile.schema.json",
+    "./fonts/*.css": "./dist/fonts/*.css",
     "./fonts.css": "./dist/fonts.css",
     "./assets/*": "./dist/assets/*",
     "./tailwind.css": "./dist/tailwind.css"
   },
   "devDependencies": {
+    "@fontsource-variable/atkinson-hyperlegible-next": "5.3.0",
+    "@fontsource-variable/ibm-plex-sans": "5.3.0",
+    "@fontsource-variable/literata": "5.3.0",
     "@fontsource-variable/manrope": "5.2.8",
+    "@fontsource-variable/noto-kufi-arabic": "5.3.0",
     "@fontsource-variable/noto-sans-arabic": "5.3.0",
     "@fontsource-variable/noto-sans-devanagari": "5.3.0",
     "@fontsource-variable/noto-sans-hebrew": "5.3.0",
     "@fontsource-variable/noto-sans-jp": "5.3.1",
     "@fontsource-variable/noto-sans-sc": "5.3.1",
-    "@fontsource/days-one": "5.3.0"
+    "@fontsource-variable/pixelify-sans": "5.3.0",
+    "@fontsource-variable/unbounded": "5.3.0",
+    "@fontsource/days-one": "5.3.0",
+    "@fontsource/dotgothic16": "5.3.1",
+    "@fontsource/ibm-plex-mono": "5.3.0",
+    "@fontsource/zcool-xiaowei": "5.3.0"
   },
   "bin": {
     "want-design-install": "./dist/install-skill.js"

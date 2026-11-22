@@ -4,7 +4,7 @@
   .ui-typography[data-align="center"] { text-align:center; }
   .ui-typography[data-align="end"] { text-align:end; }
   .ui-typography[data-tone="muted"] { color:var(--muted-foreground); }
-  .ui-typography[data-tone="primary"] { color:var(--primary); }
+  .ui-typography[data-tone="primary"] { color:var(--primary-text); }
   .ui-typography[data-tone="error"] { color:var(--error-text); }
   .ui-typography[data-tone="warning"] { color:var(--warning-text); }
   .ui-typography[data-tone="info"] { color:var(--info-text); }
@@ -25,7 +25,8 @@
   .ui-prose :is(strong, b) { font-weight:700; }
   .ui-prose em { font-weight:600; }
   .ui-typography:lang(ar) { line-height:1.65; letter-spacing:normal; }
-  .ui-loader { --loader-size:28px; display:inline-flex; flex-shrink:0; align-items:center; justify-content:center; width:var(--loader-size); height:var(--loader-size); color:var(--primary); vertical-align:middle; }
+  .ui-loader { --loader-size:28px; display:inline-flex; flex-shrink:0; align-items:center; justify-content:center; width:var(--loader-size); height:var(--loader-size); color:var(--primary-edge); vertical-align:middle; }
+  [data-slot="button"] .ui-loader { color:inherit; }
   .ui-loader[data-size="sm"] { --loader-size:16px; }
   .ui-loader[data-size="lg"] { --loader-size:44px; }
   .ui-loader-art { position:relative; display:flex; align-items:center; justify-content:space-between; width:100%; height:100%; }
@@ -62,6 +63,7 @@
   .ui-snackbar-icon { display:grid; place-items:center; width:32px; height:32px; border-radius:11px; background:var(--snackbar-accent); color:var(--snackbar-ink); box-shadow:inset 0 1px 0 #ffffff40; }
   .ui-snackbar-icon svg { width:20px; height:20px; }
   .ui-snackbar-body { min-width:0; overflow-wrap:anywhere; }
+  .ui-snackbar :is(.ui-snackbar-icon,.ui-snackbar-body) { align-self:start; }
   .ui-snackbar-title { font-size:16px; line-height:1.4; font-weight:650; letter-spacing:-.015em; }
   .ui-snackbar-description { margin-top:.125rem; font-size:14px; line-height:1.45; }
   .ui-snackbar-close { grid-column:4; grid-row:1; }

@@ -23,7 +23,7 @@ class WantSheet extends StatelessWidget {
     child: DecoratedBox(
       decoration: BoxDecoration(
         color: WantTheme.of(context).color('popover'),
-        borderRadius: BorderRadius.circular(24),
+        borderRadius: BorderRadius.circular(WantTheme.of(context).panelRadius),
       ),
       child: Padding(
         padding: const EdgeInsets.all(24),
@@ -52,24 +52,18 @@ Future<T?> showWantSheet<T>({
 }) {
   final navigator = Navigator.of(context);
   final focus = FocusManager.instance.primaryFocus;
+  final environment = captureWantOverlayEnvironment(context, navigator.context);
   final themes = InheritedTheme.capture(from: context, to: navigator.context);
   final label = barrierLabel ?? FLocalizations.of(context)?.barrierLabel;
   final vertical = side == WantSheetSide.bottom || side == WantSheetSide.top;
   Widget surface(BuildContext context) {
     final media = MediaQuery.of(context);
+    final corner = Radius.circular(WantTheme.of(context).panelRadius);
     final radius = switch (side) {
-      WantSheetSide.bottom => const BorderRadius.vertical(
-        top: Radius.circular(24),
-      ),
-      WantSheetSide.top => const BorderRadius.vertical(
-        bottom: Radius.circular(24),
-      ),
-      WantSheetSide.left => const BorderRadius.horizontal(
-        right: Radius.circular(24),
-      ),
-      WantSheetSide.right => const BorderRadius.horizontal(
-        left: Radius.circular(24),
-      ),
+      WantSheetSide.bottom => BorderRadius.vertical(top: corner),
+      WantSheetSide.top => BorderRadius.vertical(bottom: corner),
+      WantSheetSide.left => BorderRadius.horizontal(right: corner),
+      WantSheetSide.right => BorderRadius.horizontal(left: corner),
     };
     return Padding(
       padding: EdgeInsets.only(bottom: media.viewInsets.bottom),
@@ -102,6 +96,7 @@ Future<T?> showWantSheet<T>({
 
   final Future<T?> result;
   if (side == WantSheetSide.bottom) {
+    final forui = FTheme.capture(from: context, to: navigator.context);
     result = navigator.push<T>(
       ModalSheetRoute<T>(
         barrierLabel: label,
@@ -120,16 +115,18 @@ Future<T?> showWantSheet<T>({
           ),
           child: child,
         ),
-        builder: (context) => themes.wrap(
-          Sheet(
-            scrollConfiguration: const SheetScrollConfiguration(
-              scrollSyncMode: SheetScrollHandlingBehavior.onlyFromTop,
+        builder: (context) => forui.wrap(
+          themes.wrap(
+            Sheet(
+              scrollConfiguration: const SheetScrollConfiguration(
+                scrollSyncMode: SheetScrollHandlingBehavior.onlyFromTop,
+              ),
+              decoration: const SheetDecorationBuilder(
+                size: SheetSize.fit,
+                builder: _sheetDecoration,
+              ),
+              child: environment(Builder(builder: surface)),
             ),
-            decoration: const SheetDecorationBuilder(
-              size: SheetSize.fit,
-              builder: _sheetDecoration,
-            ),
-            child: Builder(builder: surface),
           ),
         ),
       ),
@@ -137,7 +134,7 @@ Future<T?> showWantSheet<T>({
   } else {
     result = showFSheet<T>(
       context: context,
-      builder: (context) => themes.wrap(Builder(builder: surface)),
+      builder: (context) => themes.wrap(environment(Builder(builder: surface))),
       useSafeArea: true,
       constraints: BoxConstraints(maxWidth: vertical ? 640 : 400),
       barrierLabel: label,

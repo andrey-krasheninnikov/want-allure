@@ -15,10 +15,11 @@ for (const locale of ['zh-Hans','hi','ar','he']) {
 }
 test('language chooser keeps category and lists all twelve locales in speaker order',async({page})=>{
   await page.goto('/react/?section=inputs');await expect(page.locator('astro-island[ssr]')).toHaveCount(0);
-  await page.getByRole('combobox',{name:'Language',exact:true}).click();
-  const labels=await page.getByRole('option').allTextContents();
+  await page.getByRole('button',{name:'Language',exact:true}).click();
+  const labels=await page.getByRole('menuitem').locator('[lang]').allTextContents();
+  expect(await page.getByRole('menuitem').locator('[aria-hidden="true"]').filter({hasText:/🇬🇧|🇨🇳/u}).count()).toBe(2);
   expect(labels).toEqual(['English','简体中文','हिन्दी','Español','العربية','Français','Português (Brasil)','Русский','Deutsch','日本語','Türkçe','עברית']);
-  await page.getByRole('option',{name:'العربية',exact:true}).click();
+  await page.getByRole('menuitem',{name:'العربية',exact:true}).click();
   await expect(page).toHaveURL('/ar/react/?section=inputs');await expect(page.locator('html')).toHaveAttribute('dir','rtl');
   await expect(page.getByRole('slider').first()).toBeVisible();
 });

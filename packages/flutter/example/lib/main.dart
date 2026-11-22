@@ -11,8 +11,10 @@ class WantCatalogue extends StatefulWidget {
   State<WantCatalogue> createState() => _WantCatalogueState();
 }
 
-class _WantCatalogueState extends State<WantCatalogue> {
+class _WantCatalogueState extends State<WantCatalogue>
+    with WidgetsBindingObserver {
   late final CatalogueHost _host;
+  late WantThemeMode _mode;
   String _category = 'foundation';
   Locale _locale = const Locale('en');
   CatalogueLocalizations get l => lookupCatalogueLocalizations(_locale);
@@ -30,28 +32,78 @@ class _WantCatalogueState extends State<WantCatalogue> {
         });
       },
     );
-    _brightness = _host.theme == 'light' ? Brightness.light : Brightness.dark;
+    _mode =
+        WantThemeMode.values
+            .where((mode) => mode.name == Uri.base.queryParameters['theme'])
+            .firstOrNull ??
+        WantThemeMode.system;
+    WidgetsBinding.instance.addObserver(this);
+    _brightness = _resolveBrightness(_mode);
     _locale = catalogueLocale(_host.locale);
     _rtl = _host.direction == 'rtl';
     _category = _host.section;
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (mounted) _host.ready();
+      if (!mounted) return;
+      if (!_host.embedded) {
+        _host.chooseTheme(
+          _brightness.name,
+          system: _mode == WantThemeMode.system,
+        );
+      }
+      _host.ready();
     });
   }
 
   @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
     _host.dispose();
     super.dispose();
   }
 
-  Brightness _brightness = Brightness.dark;
+  @override
+  void didChangePlatformBrightness() {
+    if (!_host.embedded && _mode == WantThemeMode.system) _chooseMode(_mode);
+  }
+
+  Brightness _resolveBrightness(WantThemeMode mode) => switch (mode) {
+    WantThemeMode.system =>
+      WidgetsBinding.instance.platformDispatcher.platformBrightness,
+    WantThemeMode.light => Brightness.light,
+    WantThemeMode.dark => Brightness.dark,
+  };
+
+  void _chooseMode(WantThemeMode mode) {
+    final value = _resolveBrightness(mode);
+    setState(() {
+      _mode = mode;
+      _brightness = value;
+    });
+    _host.chooseTheme(value.name, system: mode == WantThemeMode.system);
+  }
+
+  late Brightness _brightness;
   bool _rtl = false, _reduced = false, _opaque = false;
   @override
   Widget build(BuildContext context) {
-    final theme = _brightness == Brightness.dark
-        ? WantThemeData.dark(locale: _locale)
-        : WantThemeData.light(locale: _locale);
+    final appearance = _host.appearance;
+    final themeFor = _brightness == Brightness.dark
+        ? WantThemeData.dark
+        : WantThemeData.light;
+    final profile = _host.profile;
+    final theme = profile == null
+        ? themeFor(
+            locale: _locale,
+            primaryColor: appearance.primaryColor,
+            paletteStyle: appearance.paletteStyle,
+            typographyPreset: appearance.typographyPreset,
+          )
+        : WantThemeData.fromProfile(
+            profile,
+            brightness: _brightness,
+            locale: _locale,
+            resources: catalogueBrandResources,
+          );
     return MaterialApp(
       title: 'Want Allure · Flutter',
       debugShowCheckedModeBanner: false,
@@ -63,6 +115,7 @@ class _WantCatalogueState extends State<WantCatalogue> {
       supportedLocales: catalogueLocaleTags.map(catalogueLocale).toList(),
       builder: (context, child) => WantTheme(
         data: theme,
+        animateTransitions: true,
         reduceMotion: _reduced ? true : null,
         reduceTransparency: _opaque,
         child: WantDirectionProvider(
@@ -92,6 +145,9 @@ class _WantCatalogueState extends State<WantCatalogue> {
                 child: _Gallery(
                   brightness: _brightness,
                   embedded: _host.embedded,
+                  component: _host.component,
+                  themeMode: _mode,
+                  onThemeMode: _chooseMode,
                   localeTag: _locale.toLanguageTag(),
                   onLocale: (tag) {
                     setState(() {
@@ -109,9 +165,10 @@ class _WantCatalogueState extends State<WantCatalogue> {
                   reduced: _reduced,
                   opaque: _opaque,
                   onBrightness: (value) {
-                    setState(() => _brightness = value);
-                    _host.chooseTheme(
-                      value == Brightness.light ? 'light' : 'dark',
+                    _chooseMode(
+                      value == Brightness.light
+                          ? WantThemeMode.light
+                          : WantThemeMode.dark,
                     );
                   },
                   onRtl: (value) {
@@ -136,6 +193,9 @@ class _Gallery extends StatefulWidget {
   final Brightness brightness;
   final bool rtl, reduced, opaque;
   final bool embedded;
+  final String? component;
+  final WantThemeMode themeMode;
+  final ValueChanged<WantThemeMode> onThemeMode;
   final ValueChanged<String> onLocale;
   final String localeTag;
   final ValueChanged<Brightness> onBrightness;
@@ -145,6 +205,9 @@ class _Gallery extends StatefulWidget {
     required this.onCategory,
     required this.brightness,
     required this.embedded,
+    this.component,
+    required this.themeMode,
+    required this.onThemeMode,
     required this.onLocale,
     required this.localeTag,
     required this.rtl,
@@ -170,6 +233,9 @@ class _GalleryState extends State<_Gallery> {
 
   final _background = WantBackgroundController();
   final _visitedSections = <String>{};
+  final _anchor = GlobalKey();
+  String? _revealed;
+
   double _slider = 42;
   bool _ascending = true;
   ({double start, double end}) _range = (start: 25, end: 75);
@@ -221,6 +287,18 @@ class _GalleryState extends State<_Gallery> {
   );
   Widget _section(String id, String title, Widget child) {
     final active = catalogueSectionCategories[id] == widget.category;
+    final selected = widget.component == null
+        ? null
+        : catalogueComponentSections[widget.component];
+    final anchored = active && selected == id;
+    if (anchored && _revealed != widget.component) {
+      _revealed = widget.component;
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        final target = _anchor.currentContext;
+        if (mounted && target != null) Scrollable.ensureVisible(target);
+      });
+    }
+    if (widget.component == null) _revealed = null;
     if (active) _visitedSections.add(id);
     if (!_visitedSections.contains(id)) return const SizedBox.shrink();
     return ExcludeFocus(
@@ -230,16 +308,12 @@ class _GalleryState extends State<_Gallery> {
         child: TickerMode(
           enabled: active,
           child: Padding(
-            key: ValueKey(id),
-            padding: const EdgeInsets.only(bottom: 40),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              mainAxisSize: MainAxisSize.min,
-              spacing: 20,
-              children: [
-                WantTypography(title, variant: WantTypographyVariant.h2),
-                child,
-              ],
+            key: anchored ? _anchor : ValueKey(id),
+            padding: const EdgeInsets.only(bottom: 24),
+            child: WantCard(
+              hoverEffect: false,
+              title: WantTypography(title, variant: WantTypographyVariant.h2),
+              child: child,
             ),
           ),
         ),
@@ -272,13 +346,16 @@ class _GalleryState extends State<_Gallery> {
               if (!widget.embedded)
                 WantBrandLockup(
                   name: 'Want Allure',
-                  subtitle: 'Flutter · ForUI · 1.3.0',
-                  logo: WantBrandLogo.asset(
-                    widget.brightness == Brightness.dark
-                        ? 'assets/brand/allure/logos/dark/transparent.svg'
-                        : 'assets/brand/allure/logos/light/transparent.svg',
-                    package: 'want_allure',
+                  subtitle: 'Flutter · ForUI · 1.4.0',
+                  logo: WantBrandLogo.fromTheme(
                     label: 'Want Allure',
+                    fallback: WantBrandLogo.asset(
+                      widget.brightness == Brightness.dark
+                          ? 'assets/brand/allure/logos/dark/transparent.svg'
+                          : 'assets/brand/allure/logos/light/transparent.svg',
+                      package: 'want_allure',
+                      label: 'Want Allure',
+                    ),
                   ),
                   onPressed: () => _scroll.animateTo(
                     0,
@@ -286,16 +363,18 @@ class _GalleryState extends State<_Gallery> {
                     curve: Curves.easeOut,
                   ),
                 ),
-              const SizedBox(height: 32),
-              WantTypography(
-                l.componentsInAction,
-                variant: WantTypographyVariant.h1,
-              ),
-              const SizedBox(height: 16),
-              WantProse(
-                child: Text(l.theSameWantColorsControlsAndMotionAcrossWeb),
-              ),
-              const SizedBox(height: 24),
+              if (!widget.embedded) ...[
+                const SizedBox(height: 32),
+                WantTypography(
+                  l.componentsInAction,
+                  variant: WantTypographyVariant.h1,
+                ),
+                const SizedBox(height: 16),
+                WantProse(
+                  child: Text(l.theSameWantColorsControlsAndMotionAcrossWeb),
+                ),
+                const SizedBox(height: 24),
+              ],
               _buttons([
                 if (WantWebScope.findEnabledOf(context))
                   WantButton(
@@ -307,24 +386,35 @@ class _GalleryState extends State<_Gallery> {
                       children: [WantIcon(WantIcons.search), Text(l.findCtrlF)],
                     ),
                   ),
-                if (!widget.embedded)
-                  SizedBox(
-                    width: 200,
-                    child: WantSelect<String>(
-                      label: Text(l.changeLanguage),
-                      value: widget.localeTag,
-                      options: [
-                        for (final tag in catalogueLocaleTags)
-                          WantOption(
-                            value: tag,
-                            label: catalogueLocaleNames[tag]!,
-                          ),
-                      ],
-                      onChanged: (tag) {
-                        if (tag != null) widget.onLocale(tag);
-                      },
-                    ),
+                if (!widget.embedded) ...[
+                  WantThemePicker(
+                    value: widget.themeMode,
+                    brightness: widget.brightness,
+                    label: l.brandAndTheme,
+                    labels: {
+                      WantThemeMode.light: l.useLightTheme,
+                      WantThemeMode.dark: l.useDarkTheme,
+                      WantThemeMode.system:
+                          catalogueSystemThemeTag[widget.localeTag] ??
+                          'System theme',
+                    },
+                    onChanged: widget.onThemeMode,
                   ),
+                  WantLanguagePicker<String>(
+                    label: l.changeLanguage,
+                    value: widget.localeTag,
+                    options: [
+                      for (final tag in catalogueLocaleTags)
+                        (
+                          value: tag,
+                          name: catalogueLocaleNames[tag]!,
+                          code: tag.split('-').first.toUpperCase(),
+                          flag: catalogueLocaleFlags[tag]!,
+                        ),
+                    ],
+                    onChanged: widget.onLocale,
+                  ),
+                ],
                 if (!widget.embedded)
                   WantSwitch(
                     value: widget.rtl,
@@ -455,6 +545,22 @@ class _GalleryState extends State<_Gallery> {
                 ),
               ),
               _section(
+                'pass-workspace',
+                l.passWorkspace,
+                const WorkspaceDemo(),
+              ),
+              _section('pass-setup', l.passGuidedSetup, const SetupDemo()),
+              _section(
+                'pass-field',
+                l.passSensitiveField,
+                const SensitiveFieldDemo(),
+              ),
+              _section(
+                'pass-motion',
+                l.passInteractiveScenes,
+                const PassMotionDemo(),
+              ),
+              _section(
                 'brand',
                 l.brandAndTheme,
                 WantFieldGroup(
@@ -462,12 +568,15 @@ class _GalleryState extends State<_Gallery> {
                     WantBrandLockup(
                       name: 'Want Allure',
                       subtitle: l.componentPreview,
-                      logo: WantBrandLogo.asset(
-                        widget.brightness == Brightness.dark
-                            ? 'assets/brand/allure/logos/dark/transparent.svg'
-                            : 'assets/brand/allure/logos/light/transparent.svg',
-                        package: 'want_allure',
+                      logo: WantBrandLogo.fromTheme(
                         label: 'Want Allure',
+                        fallback: WantBrandLogo.asset(
+                          widget.brightness == Brightness.dark
+                              ? 'assets/brand/allure/logos/dark/transparent.svg'
+                              : 'assets/brand/allure/logos/light/transparent.svg',
+                          package: 'want_allure',
+                          label: 'Want Allure',
+                        ),
                       ),
                       onPressed: () => _scroll.animateTo(
                         0,
@@ -844,6 +953,11 @@ class _GalleryState extends State<_Gallery> {
                   children: [
                     _buttons([
                       WantBadge(child: Text(l.primary)),
+                      for (final status in WantSnackbarVariant.values)
+                        WantBadge(
+                          status: status,
+                          child: Text(_statusLabel(status)),
+                        ),
                       WantBadge(
                         variant: WantButtonVariant.secondary,
                         child: Text(l.desktop),
@@ -860,7 +974,16 @@ class _GalleryState extends State<_Gallery> {
                     WantAlert(
                       title: Text(l.couldNotLoadPreview),
                       description: Text(l.tryAgain),
-                      destructive: true,
+                      status: WantSnackbarVariant.error,
+                    ),
+                    WantContentState(
+                      status: WantContentStatus.empty,
+                      title: Text(l.noMatches),
+                      action: WantButton(
+                        variant: WantButtonVariant.secondary,
+                        onPressed: () => widget.onCategory('inputs'),
+                        child: Text(l.search),
+                      ),
                     ),
                     WantProgress(label: l.exampleProgress, value: 64),
                     WantProgress(label: l.loadingPreview),
@@ -937,7 +1060,12 @@ class _GalleryState extends State<_Gallery> {
                       label: l.name,
                       width: 320,
                       ascending: _ascending,
-                      onSort: () => setState(() => _ascending = !_ascending),
+                      sortValue: _ascending
+                          ? l.sortAscending
+                          : l.sortDescending,
+                      rowHeader: true,
+                      onSortChanged: (next) =>
+                          setState(() => _ascending = next),
                       cellBuilder: (value) => Text(l.previewValue(value)),
                     ),
                     WantTableColumn(
@@ -1030,10 +1158,13 @@ class _GalleryState extends State<_Gallery> {
                       imageLabel: l.violetGradient,
                       index: 1,
                       onPressed: () => _message(l.previewSelected),
-                      image: const DecoratedBox(
+                      image: DecoratedBox(
                         decoration: BoxDecoration(
                           gradient: LinearGradient(
-                            colors: [Color(0xFF5962F0), Color(0xFF141414)],
+                            colors: [
+                              WantTheme.of(context).color('primary'),
+                              WantTheme.of(context).color('background'),
+                            ],
                           ),
                         ),
                       ),

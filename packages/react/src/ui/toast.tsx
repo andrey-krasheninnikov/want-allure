@@ -1,8 +1,12 @@
 import type { ComponentProps } from 'react';
 import { Toast as ToastPrimitive } from 'radix-ui';
+import { usePortalHost } from '../brand-profile.js';
 import { cn } from '../utils.js';
 
-export const ToastProvider = ToastPrimitive.Provider;
+export function ToastProvider(props: ComponentProps<typeof ToastPrimitive.Provider>) {
+  const host = usePortalHost();
+  return <ToastPrimitive.Provider announcerContainer={host ?? undefined} {...props} />;
+}
 export function ToastTitle({ className, ...props }: ComponentProps<typeof ToastPrimitive.Title>) {
   return <ToastPrimitive.Title data-slot="toast-title" className={cn('ui-toast-title', className)} {...props} />;
 }

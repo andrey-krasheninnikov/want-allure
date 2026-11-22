@@ -1,4 +1,10 @@
-import { useMemo } from "react"
+import { Children, cloneElement, isValidElement, useId, useMemo, type ReactElement, type ReactNode } from "react"
+import { Input } from "./input.js"
+import { Textarea } from "./textarea.js"
+import { SelectTrigger } from "./select.js"
+import { Checkbox } from "./checkbox.js"
+import { Switch } from "./switch.js"
+import { PasswordInput } from "../field-actions.js"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "../utils.js"
 
@@ -76,11 +82,59 @@ const fieldVariants = cva(
   }
 )
 
+type FieldPart = ReactElement<{
+  children?: ReactNode; id?: string; htmlFor?: string; errors?: Array<{ message?: string } | undefined>;
+  invalid?: boolean; "aria-describedby"?: string; "aria-invalid"?: React.AriaAttributes["aria-invalid"];
+}>
+const controls = new Set<unknown>([Input, Textarea, PasswordInput, SelectTrigger, Switch, Checkbox, "input", "textarea", "select"])
+
+// Preserve consumer IDs and ARIA overrides when binding the first control in a composed field.
+function bindField(children: ReactNode, base: string) {
+  let control: FieldPart | undefined, label: FieldPart | undefined
+  const hints: FieldPart[] = [], errors: FieldPart[] = []
+  function inspect(nodes: ReactNode) {
+    Children.forEach(nodes, child => {
+      if (!isValidElement<FieldPart["props"]>(child) || child.type === Field) return
+      if (controls.has(child.type)) { control ??= child; return }
+      if (child.type === FieldLabel) label ??= child
+      if (child.type === FieldDescription) hints.push(child)
+      if (child.type === FieldError && (child.props.children || child.props.errors?.some(error => error?.message))) errors.push(child)
+      inspect(child.props.children)
+    })
+  }
+  inspect(children)
+  if (!control) return children
+  const id = control.props.id ?? label?.props.htmlFor ?? base
+  const bound = new Map<FieldPart, Partial<FieldPart["props"]>>()
+  if (label) bound.set(label, { htmlFor: label.props.htmlFor ?? id })
+  const descriptions = [...hints, ...errors].map((part, index) => {
+    const partId = part.props.id ?? base + "-message-" + index
+    bound.set(part, { id: partId })
+    return partId
+  })
+  bound.set(control, {
+    id, "aria-describedby": control.props["aria-describedby"] ?? (descriptions.join(" ") || undefined),
+    "aria-invalid": control.props["aria-invalid"] ?? (errors.length > 0 || undefined),
+  })
+  function bind(nodes: ReactNode): ReactNode {
+    if (nodes == null || typeof nodes !== "object") return nodes
+    if (!isValidElement<FieldPart["props"]>(nodes)) return Symbol.iterator in nodes ? Children.map(nodes, bind) : nodes
+    if (nodes.type === Field) return nodes
+    const attrs = bound.get(nodes)
+    const nested = bind(nodes.props.children)
+    if (nested !== nodes.props.children) return cloneElement(nodes, attrs, nested)
+    return attrs ? cloneElement(nodes, attrs) : nodes
+  }
+  return bind(children)
+}
+
 function Field({
   className,
   orientation = "vertical",
+  children,
   ...props
 }: React.ComponentProps<"div"> & VariantProps<typeof fieldVariants>) {
+  const base = useId()
   return (
     <div
       role="group"
@@ -88,7 +142,7 @@ function Field({
       data-orientation={orientation}
       className={cn(fieldVariants({ orientation }), className)}
       {...props}
-    />
+    >{bindField(children, base)}</div>
   )
 }
 
@@ -141,7 +195,7 @@ function FieldDescription({ className, ...props }: React.ComponentProps<"p">) {
       className={cn(
         "text-sm leading-normal font-normal text-muted-foreground group-has-[[data-orientation=horizontal]]/field:text-balance",
         "last:mt-0 nth-last-2:-mt-1 [[data-variant=legend]+&]:-mt-1.5",
-        "[&>a]:underline [&>a]:underline-offset-4 [&>a:hover]:text-primary",
+        "[&>a]:underline [&>a]:underline-offset-4 [&>a:hover]:text-link",
         className
       )}
       {...props}

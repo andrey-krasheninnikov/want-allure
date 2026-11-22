@@ -1,6 +1,7 @@
 import * as React from "react"
 import { cn } from "../utils.js"
 import { ChevronDownIcon } from "lucide-react"
+import { ThemeIcon } from '../theme-icon.js';
 import { Accordion as AccordionPrimitive } from "radix-ui"
 
 function Accordion({
@@ -38,7 +39,7 @@ function AccordionTrigger({
         {...props}
       >
         {children}
-        <ChevronDownIcon className="pointer-events-none size-4 shrink-0 translate-y-0.5 text-muted-foreground" />
+        <ThemeIcon icon={ChevronDownIcon} className="pointer-events-none size-4 shrink-0 translate-y-0.5 text-muted-foreground" />
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>
   )

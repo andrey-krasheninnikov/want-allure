@@ -20,6 +20,30 @@ class WantMediaCard extends StatelessWidget {
     this.aspectRatio = 16 / 9,
     this.onPressed,
   });
+  factory WantMediaCard.provider({
+    Key? key,
+    required ImageProvider image,
+    required String title,
+    required String imageLabel,
+    required WidgetBuilder fallback,
+    String? caption,
+    int? index,
+    double aspectRatio = 16 / 9,
+    VoidCallback? onPressed,
+  }) => WantMediaCard(
+    key: key,
+    image: Image(
+      image: image,
+      fit: BoxFit.cover,
+      errorBuilder: (context, error, stack) => fallback(context),
+    ),
+    title: title,
+    imageLabel: imageLabel,
+    caption: caption,
+    index: index,
+    aspectRatio: aspectRatio,
+    onPressed: onPressed,
+  );
   @override
   Widget build(BuildContext context) => FTappable(
     selectable: WantWebScope.enabledOf(context),
@@ -34,7 +58,9 @@ class WantMediaCard extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             ClipRRect(
-              borderRadius: const BorderRadius.all(Radius.circular(24)),
+              borderRadius: BorderRadius.circular(
+                WantTheme.of(context).mediaRadius,
+              ),
               child: AspectRatio(
                 aspectRatio: aspectRatio,
                 child: Semantics(

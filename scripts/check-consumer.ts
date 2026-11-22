@@ -34,7 +34,14 @@ try {
     "import React from 'react';",
     "import { renderToStaticMarkup } from 'react-dom/server';",
     "import { Button, DateField, MediaCard, UrlField, Window, Checkbox, DropdownMenu, Toast, Tooltip, Combobox, Popover, Table, Pagination, FileUpload, Progress, Typography, Prose, Loader, Shimmer, AnimatedText, Glow, Snackbar, Slider, RangeSlider, LightningBackground } from '@want-foundation/allure-react';",
-    "import { tokens, initInteractionEffects, initBackgroundMotion, burstConfetti } from '@want-foundation/allure';",
+    "import { tokens, initInteractionEffects, initBackgroundMotion, burstConfetti, createThemeVariables } from '@want-foundation/allure';",
+    "import { AllureProvider } from '@want-foundation/allure-react';",
+    "import { parseBrandProfile, resolveBrandProfile } from '@want-foundation/allure';",
+    "const profile = parseBrandProfile({ schemaVersion: 1, brandColor: '#FFFFBB' });",
+    "assert.equal(resolveBrandProfile(profile, 'light')['--brand-color'], '#FFFFBB');",
+    "assert.match(renderToStaticMarkup(React.createElement(AllureProvider, { profile, mode: 'dark' }, 'Scoped')), /data-allure-scope/);",
+    "const appearance = createThemeVariables({ theme: 'dark', primaryColor: '#22DD88', paletteStyle: 'acid' });",
+    "assert.match(renderToStaticMarkup(React.createElement('div', { style: appearance, 'data-typography': 'pixel' })), /--primary:/);",
     "assert.equal(typeof document, 'undefined');",
     "assert.equal(tokens.themes.wallpapers.dark.primary, '#5962F0');",
     "assert.equal(typeof initInteractionEffects, 'function');",
@@ -57,7 +64,9 @@ try {
   run('node', ['check.mjs']);
   await writeFile(join(directory, 'check.tsx'), [
     "import { Button, DateField, UrlField, Window, ThemeToggle, MediaCard, type DateFieldLabels, type ThemeToggleProps } from '@want-foundation/allure-react';",
-    "import { initBackgroundMotion } from '@want-foundation/allure';",
+    "import { initBackgroundMotion, createThemeVariables, type TypographyPreset } from '@want-foundation/allure';",
+    "const preset: TypographyPreset = 'pixel';",
+    "const page = <html data-typography={preset} style={createThemeVariables({ theme: 'dark', primaryColor: '#22DD88', paletteStyle: 'acid' })} />;",
     "const configureBackground = (background: HTMLElement, control: HTMLButtonElement) => initBackgroundMotion({ background, control, shimmerDelayMs: [5000, 10000] });",
     "const theme: ThemeToggleProps = { theme: 'dark', label: 'Theme', onThemeChange: value => console.log(value) };",
     "const control = <Button variant='secondary' onClick={event => { event.currentTarget.disabled = true; }}>Continue</Button>;",
@@ -76,7 +85,10 @@ try {
     "// @ts-expect-error Unsupported variants must remain a type error.",
     "const invalid = <Button variant='unknown-variant'>Invalid</Button>;"
   ].join('\n'));
-  run('node', ['node_modules/typescript/bin/tsc', '--noEmit', '--strict', '--skipLibCheck', '--jsx', 'react-jsx', '--module', 'ESNext', '--moduleResolution', 'Bundler', '--target', 'ES2022', '--resolveJsonModule', 'check.tsx']);
+  const matrix = JSON.parse(await readFile(resolve(root, 'docs/flutter-parity.json'), 'utf8')) as { react: string }[];
+  const names = [...new Set(matrix.map(entry => entry.react))];
+  await writeFile(join(directory, 'families.ts'), "import { " + names.join(', ') + " } from '@want-foundation/allure-react';\nexport const families = [" + names.join(', ') + "];\n");
+  run('node', ['node_modules/typescript/bin/tsc', '--noEmit', '--strict', '--skipLibCheck', '--jsx', 'react-jsx', '--module', 'ESNext', '--moduleResolution', 'Bundler', '--target', 'ES2022', '--resolveJsonModule', 'check.tsx', 'families.ts']);
   const foundation = join(directory, 'node_modules/@want-foundation/allure');
   for (const theme of ['light', 'dark']) {
     const asset = join(foundation, `dist/assets/allure/logos/${theme}/transparent.svg`);
@@ -95,6 +107,9 @@ try {
   for (const name of ['brand-ui', 'voice', 'motion', 'react']) assert((await stat(join(installedSkill, 'references/' + name + '.md'))).size > 0);
   const css = await readFile(join(foundation, 'dist/index.css'), 'utf8');
   assert(css.includes(':focus-visible') && css.includes('.ui-date-popover') && css.includes('.ui-open-url') && css.includes('.ui-window') && ['.ui-checkbox', '.ui-dropdown-menu', '.ui-tooltip', '.ui-popover', '.ui-toast', '.ui-combobox', '.ui-table', '.ui-pagination', '.ui-file-upload', '.ui-progress', '.ui-typography', '.ui-prose', '.ui-loader', '.ui-shimmer', '.ui-animated-text', '.ui-glow', '.ui-snackbar'].every(selector => css.includes(selector)) && /#5962f0/i.test(css) && !css.includes('@apply'));
+  const schema = JSON.parse(await readFile(join(foundation, 'dist/brand-profile.schema.json'), 'utf8'));
+  assert.equal(schema.properties.schemaVersion.const, 1);
+  assert(run('npx', [...installCommand, '--dest', skillDestination, '--check']).includes('Already installed:'));
   const fonts = await readFile(join(foundation, 'dist/fonts.css'), 'utf8');
   const assets = [...fonts.matchAll(/url\(["']?([^)"']+)/g)];
   assert(assets.length > 4 && !fonts.includes('data:') && !fonts.includes('https:'));
@@ -107,7 +122,7 @@ try {
     "import React from 'react'; import { createRoot } from 'react-dom/client';",
     "import logo from '@want-foundation/allure/assets/allure/logos/light/transparent.svg?url';",
     "import { Button, DateField, UrlField, Window } from '@want-foundation/allure-react';",
-    "import '@want-foundation/allure/styles.css'; import '@want-foundation/allure/fonts.css';",
+    "import '@want-foundation/allure/scoped.css'; import '@want-foundation/allure/fonts/manrope.css';",
     "const labels = { date: 'Date', datetime: 'Date and time', calendar: 'Calendar', year: 'Year', previousYear: 'Previous year', previousMonth: 'Previous month', nextMonth: 'Next month', nextYear: 'Next year', hours: 'Hours', minutes: 'Minutes', today: 'Today', clear: 'Clear', apply: 'Apply' };",
     "createRoot(document.getElementById('root')!).render(<Window title='Consumer window'><img src={logo} alt='Allure' /><DateField mode='date' value='2026-10-28' onChange={() => {}} locale='en-GB' labels={labels} /><UrlField label='URL' value='https://example.com' onChange={() => {}} openLabel='Open URL' /><Button>Independent consumer</Button></Window>);"
   ].join('\n'));

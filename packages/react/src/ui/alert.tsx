@@ -1,5 +1,7 @@
 import * as React from "react"
 import { cva, type VariantProps } from "class-variance-authority"
+import { Button } from "./button.js"
+import { Loader } from "../loader.js"
 import { cn } from "../utils.js"
 
 const alertVariants = cva(
@@ -7,6 +9,10 @@ const alertVariants = cva(
   {
     variants: {
       variant: {
+        success: "ui-status-success",
+        warning: "ui-status-warning",
+        info: "ui-status-info",
+        error: "ui-status-error",
         default: "bg-card text-card-foreground",
         destructive:
           "bg-card text-destructive-text *:data-[slot=alert-description]:text-destructive-text [&>svg]:text-current",
@@ -20,13 +26,14 @@ const alertVariants = cva(
 
 function Alert({
   className,
-  variant,
+  variant = "default",
   ...props
 }: React.ComponentProps<"div"> & VariantProps<typeof alertVariants>) {
   return (
     <div
       data-slot="alert"
-      role="alert"
+      data-variant={variant}
+      role={variant === "info" || variant === "success" ? "status" : "alert"}
       className={cn(alertVariants({ variant }), className)}
       {...props}
     />
@@ -38,7 +45,7 @@ function AlertTitle({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="alert-title"
       className={cn(
-        "col-start-2 line-clamp-1 min-h-4 font-medium tracking-tight",
+        "col-start-2 min-w-0 break-words min-h-4 font-medium tracking-tight",
         className
       )}
       {...props}
@@ -60,6 +67,23 @@ function AlertDescription({
       {...props}
     />
   )
+}
+
+export type StateViewProps = {
+  state: "empty" | "loading" | "error"
+  title: React.ReactNode
+  description?: React.ReactNode
+  action?: { label: string; onClick: () => void }
+  className?: string
+}
+export function StateView({ state, title, description, action, className }: StateViewProps) {
+  return <div data-slot="state-view" data-state={state} className={cn("ui-state-view", className)}>
+    <div role={state === "error" ? "alert" : "status"} aria-atomic="true">
+      {state === "loading" && <Loader label="" aria-hidden="true" size="sm" />}
+      <strong>{title}</strong>{description != null && <p>{description}</p>}
+    </div>
+    {action && <Button type="button" variant="secondary" onClick={action.onClick}>{action.label}</Button>}
+  </div>
 }
 
 export { Alert, AlertTitle, AlertDescription }

@@ -29,3 +29,11 @@ The background sphere is opt-in and has an explicit pause/resume control. It sto
 Keep these effects outside administration and reading surfaces. Dispose timers, listeners, observers, and temporary object URLs when the owning view unmounts. Never make decoration a prerequisite for a native link, download, selection, or form action.
 
 Flutter consumers may hide the background pause control with `showPauseControl: false`. `alternateWithLightning: true` switches effects every 30 seconds with a 1200 ms crossfade; `switchInterval` and `transitionDuration` configure that timing. Hidden effects pause, inactive applications retain their phase, reduced motion keeps a static sphere, and high contrast removes decoration. `WantDialog` accepts `constraints` and `showTitle: false`; the required title remains its accessible name.
+
+## Workspace and setup motion
+
+Screen changes enter over 320 ms with a 5 px shift. Theme transitions use 360 ms and follow the same color progress across Want, Material and ForUI. State glow animates the shadow color alpha from zero to 25% over 180 ms. Keep the shadow geometry static. Rotate 3D controls with drag or arrow keys and activate them by a separate click or key action.
+
+## Landing choreography
+
+The landing staggers lightning strokes and chooses a semantic palette color for each discharge. The headline enters once, then pulses a background glow behind one character per second. Automatic pulses leave the text color intact. Manual hover takes priority. Retain manual drag and keyboard rotation on the feather. After hover, a framework logo accelerates to complete its turn and returns to its resting angle. Suspend decorative effects when hidden or when the user requests reduced motion. Keep motion local to the surface that renders it.

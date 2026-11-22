@@ -13,7 +13,7 @@ Shared design foundations and UI kits for Want products across web and mobile.
 - @want-foundation/allure-react: React 19 primitives and generic product compositions built on Radix.
 - want_allure: Flutter themes, controls, compositions and motion built on ForUI, for Android, iOS, web, macOS, Windows and Linux.
 
-Foundation, React and Flutter use version 1.3.0. The Flutter adapter is published as `want_allure` on pub.dev and uses ForUI with the same Want tokens and component families.
+Foundation, React and Flutter use version 1.4.0. The Flutter adapter is published as `want_allure` on pub.dev and uses ForUI with the same Want tokens and component families.
 
 Upgrading from the previous package names? Follow the [1.0.0 migration guide](docs/migration-1.0.0.md).
 
@@ -22,7 +22,7 @@ Upgrading from the previous package names? Follow the [1.0.0 migration guide](do
 For a published release, install the matching versions:
 
 ```sh
-npm install @want-foundation/allure@1.3.0 @want-foundation/allure-react@1.3.0
+npm install @want-foundation/allure@1.4.0 @want-foundation/allure-react@1.4.0
 ```
 
 Import the stylesheet once in the application's entry point. The font stylesheet is optional and serves its font files locally.
@@ -43,13 +43,19 @@ export function Example() {
 
 No stylesheet copying, source aliases or scanning library sources with Tailwind is required. Consumers may bring their own layout styles through className and override semantic variables intentionally. React and React DOM are peers and are not bundled. A consumer that also uses Tailwind 4 can import @want-foundation/allure/tailwind.css after Tailwind to register the same semantic utilities for its own source files. This integration is optional; library components already have compiled CSS.
 
+## Embed a second brand
+
+React and Flutter accept the same versioned brand profile. The minimal JSON document is `{"schemaVersion":1}`. Import it with `parseBrandProfile` or `WantBrandProfileV1.fromJson`. In React, wrap the interface in `AllureProvider` and import `@want-foundation/allure/scoped.css`. In Flutter, pass `WantThemeData.fromProfile` to `WantTheme`. Use `fonts/manrope.css` or another family entry when only one bundled font is needed.
+
+The [React and Flutter quick starts](skills/want-design/references/white-label.md) include working imports, local resource maps and fields for both appearances. See the [52 component families](docs/flutter-parity.md), [composition recipes](skills/want-design/references/recipes.md) and [50 improvements](docs/improvements-50.md).
+
 ## Flutter
 
 ```sh
-flutter pub add want_allure:^1.3.0
+flutter pub add want_allure:^1.4.0
 ```
 
-Import `package:want_allure/want_allure.dart` and wrap the application content with `WantTheme`. The package includes local fonts, its SVG asset and all 46 web component families. See [Flutter documentation](packages/flutter/README.md) and [component parity](docs/flutter-parity.md).
+Import `package:want_allure/want_allure.dart` and wrap the application content with `WantTheme`. The package includes local fonts, SVG assets and Flutter counterparts for the shared component families. See [Flutter documentation](packages/flutter/README.md) and [component parity](docs/flutter-parity.md).
 
 From this checkout, use FVM with Flutter 3.47.7 and Dart 3.13.5:
 
@@ -63,6 +69,63 @@ bun run flutter:example
 ```
 
 The example supports six platforms and demonstrates themes, RTL, accessibility settings and controlled state. Build and device evidence remain separate.
+
+## Appearance
+
+The landing editor and the header's Appearance menu share settings with both catalogues. Choose a primary color, palette style and typography preset. Scroll the landing preview to see the selection on typography, form feedback and a table. Reset restores `#5962F0`, Contrast and Days One × Manrope. Choose the system, light or dark mode separately.
+
+| Style | Treatment |
+| --- | --- |
+| Smooth | Sage, mist blue, sand and dusty rose with soft field outlines |
+| Contrast | Jade, azure, amber and watermelon on crisp neutral surfaces |
+| Neon | Electric mint, cyan, apricot and hot pink |
+| Acid | Lime, turquoise, citron and vermilion with a shifted focus hue |
+
+The legacy primary-color API accepts opaque sRGB with HSL saturation from 45% to 90% and lightness from 40% to 70%, inclusive. A v1 profile accepts any opaque `#RRGGBB` brand color and derives accessible UI roles for each appearance. Validate profiles before storing them.
+
+Each style has a palette for violet, warm and teal brand colors. Other hues blend between their neighbors. For a teal primary in Contrast, success is leaf green, info is cornflower blue, warning is apricot and error is rose. Gray seeds keep the style’s original status colors. Each status keeps its color family and uses the same fill in both modes. The SDK resolves separate colors for inline status text and text on a colored fill. Neon preserves bright, saturated seeds such as `#0FFFE3` in both modes. Use `primary-foreground` for text and icons on the action fill and `primary-edge` for thin control marks. The edge stays visible on light surfaces without darkening the entire button.
+
+| Typography preset | Display / body |
+| --- | --- |
+| Brand | Days One / Manrope |
+| Geometric | Unbounded / Manrope |
+| Editorial | Literata / Manrope |
+| Technical | IBM Plex Mono / IBM Plex Sans |
+| Humanist | Atkinson Hyperlegible Next |
+| Pixel | Pixelify Sans / Manrope |
+
+Built-in icon variants follow the typography preset. Locale fallbacks cover Japanese, simplified Chinese, Arabic, Hindi and Hebrew. Fonts ship locally with their licenses.
+
+The examples below use the 1.4.0 APIs.
+
+For React, import the styles and fonts as above, then set CSS variables on the themed root. For document-wide themes, set these on the document element so overlays rendered in portals inherit the variables.
+
+```tsx
+import { createThemeVariables } from '@want-foundation/allure';
+
+const style = createThemeVariables({
+  theme: 'dark',
+  primaryColor: '#29C38F',
+  paletteStyle: 'neon',
+});
+
+// On the application's document root:
+<html data-theme="dark" data-typography="pixel" style={style}>…</html>
+```
+
+For Flutter, configure the data passed to `WantTheme`. Reuse the same options with `WantThemeData.light` for the other mode.
+
+```dart
+final theme = WantThemeData.dark(
+  primaryColor: const Color(0xFF29C38F),
+  paletteStyle: WantPaletteStyle.neon,
+  typographyPreset: WantTypographyPreset.pixel,
+);
+```
+
+Your application owns the chosen settings and their persistence. The foundation generator runs during SSR. Explicit Flutter color overrides take precedence.
+
+Use the controlled `ThemePicker` and `LanguagePicker` in React, or `WantThemePicker` and `WantLanguagePicker` in Flutter. Pass the saved theme mode and the resolved light or dark appearance separately. Supply localized labels, language names, short codes and emoji flags. See the [React package guide](packages/react/README.md) and [Flutter package guide](packages/flutter/README.md).
 
 ## Want design skill
 
@@ -80,7 +143,7 @@ Use `bun run skill:install` for this checkout, or add `--dest /path/to/project/.
 From a consumer project's root, install the published skill with Node.js and npm:
 
 ```sh
-npx --yes --package=@want-foundation/allure@1.3.0 want-design-install
+npx --yes --package=@want-foundation/allure@1.4.0 want-design-install
 ```
 
 This creates `.agents/skills/want-design` in the current directory. The published skill includes its references and a token snapshot, so it does not need this repository afterward.
@@ -88,14 +151,14 @@ This creates `.agents/skills/want-design` in the current directory. The publishe
 For a personal installation shared across projects:
 
 ```sh
-npx --yes --package=@want-foundation/allure@1.3.0 want-design-install --global
+npx --yes --package=@want-foundation/allure@1.4.0 want-design-install --global
 ```
 
 This uses `~/.agents/skills/want-design`. Use `--dest PATH` instead of `--global` to select another parent skills directory; `want-design` is appended to that path. Quote paths containing spaces. `--help` lists the options. The installer does not change project configuration or install UI dependencies.
 
 Invoke `$want-design` when working on a Want interface. Discovery also uses the skill's Want-specific description. If the current session has already loaded its skill catalog, start a new session after installation.
 
-Matching installations are unchanged, including extra local files. Different installations and symlink destinations are never overwritten. To update, move the existing `want-design` directory to a backup outside the skills directory, run the version-pinned command again, and review any local changes before removing that backup.
+From outside this workspace, add `--global --update` to the published installer command to upgrade a personal installation, then use `--global --check` to verify it. In this checkout, `bun run skill:install --check` lists changed resources without writing. `bun run skill:install --update` upgrades a verified installation, retains additional files and stops on local edits. Both flags accept `--global` and `--dest`. For a locally edited or unrecognized installation, keep a backup and review the differences.
 
 ## Upgrade
 
@@ -115,11 +178,17 @@ Additional controls are Checkbox, DropdownMenu, Toast, Tooltip, Combobox, Popove
 
 Set data-theme="light" or data-theme="dark" on the document root for explicit selection. Also toggle the dark class for class-based Tailwind states. Without an explicit choice, the stylesheet follows the system color preference.
 
+## Workspace and guided setup
+
+React and Flutter include a controlled sidebar, resizable panes, search toolbar, list rows, sensitive fields and inline copy feedback. Pass values, labels and callbacks from the application. The catalogue stores its example pane proportions locally and demonstrates setup, JSON export, QR and deletion confirmation with sample data.
+
+Theme changes can opt in to a 360 ms transition through `transitionTheme` on the web and `WantTheme(animateTransitions: true)` in Flutter. The Effects section demonstrates pointer and keyboard rotation, an animated lock shackle, background scenes and a logo wave. Each effect has a reduced-motion fallback.
+
 ## Component showcases
 
 The React and Flutter catalogues share seven categories: Foundation, Inputs, Navigation, Data, Feedback, Effects and Compositions. A `section` query parameter opens a category directly. Browser history, language changes and the common theme/RTL controls preserve catalogue context. Visited examples keep edited values; hidden panels pause their motion.
 
-The landing page includes a rotatable extrusion of the supplied transparent logo, installation commands and animated FAQ. Its Three.js renderer loads only on the landing page and renders on demand. The SVG remains visible if rendering is unavailable.
+The landing pairs a rotatable feather extrusion with an appearance editor and component previews. Framework selection opens installation commands, then FAQ and tips in the same section. Three.js loads on demand for interactive artwork. The supplied SVG shape remains available as a static fallback.
 
 ## Optional effects
 
@@ -147,7 +216,7 @@ Effects do not subscribe to application download events or start downloads. Call
 
 The Astro application serves English at `/` and localized pages under `/zh-Hans/`, `/hi/`, `/es/`, `/ar/`, `/fr/`, `/pt-BR/`, `/ru/`, `/de/`, `/ja/`, `/tr/` and `/he/`. Each locale has `/react/` and `/flutter/` catalogues. Language choices follow total first- and second-language speakers; Mandarin represents `zh-Hans` and Portuguese represents `pt-BR`. Navigation preserves the selected category and theme. Arabic and Hebrew default to RTL, with a direction override stored per locale. Flutter initializes only on its catalogue route.
 
-The landing guides framework selection, package and skill installation, then a horizontal FAQ and tips carousel. Logo rotation and the orbital selector follow system reduced-motion settings. Hidden effects pause automatically. The supplied SVG remains visible if 3D rendering is unavailable.
+Landing lightning picks a color from the active palette for each stroke. The headline fades in and pulses a background glow behind a character every second. The feather and framework marks use the resolved primary. When the pointer leaves a framework mark, it speeds up to finish the turn and returns to its resting angle. Reduced motion and hidden views stop decorative movement.
 
 Use Bun 1.3.14 and the pinned FVM SDK:
 
@@ -173,7 +242,7 @@ The source artwork lives in `assets/brand`. Logo variants, backgrounds, favicon,
 
 Run `bun run assets:sync` after changing the source artwork. `bun run assets:check` verifies the package and Flutter web copies. Runtime logos and backgrounds are distributed under `@want-foundation/allure/assets/allure/` and Flutter's `assets/brand/allure/`. The existing Wallpapers asset remains available. Product applications choose their own approved identity.
 
-LightningBackground (React) and WantLightningBackground (Flutter) add primary/warning discharges to a bounded decorative surface. Both accept `paused` and an optional pair of colors. Flutter uses the bundled lightning fragment shader with a static fallback. Effects pause outside the viewport and when the document/application is inactive. Reduced motion keeps a static drawing; forced/high-contrast modes remove the decoration.
+`LightningBackground` (React) and `WantLightningBackground` (Flutter) show primary and warning discharges by default. Both accept a pause flag and a custom color pair. React also accepts a `colorPool` of CSS colors, including semantic variables. Flutter uses a bundled fragment shader with a static fallback. Effects pause outside the viewport and when the document or application is inactive. Reduced motion keeps a static drawing.
 
 ## Develop and verify
 
@@ -188,11 +257,11 @@ bun run test:consumer
 bun run flutter:consumer
 ```
 
-Checks run locally. Browser checks use the combined production artifact and cover both landing locales, navigation, themes, Flutter initialization and existing React controls. Reports and screenshots stay outside the source tree. Consumer checks install separate distributions and remove their temporary projects afterward. Production, physical-device and local test evidence remain distinct.
+Checks run locally. Browser checks use the combined production artifact and cover localized landing pages, navigation, themes, Flutter initialization and existing React controls. Reports and screenshots stay outside the source tree. Consumer checks install separate distributions and remove their temporary projects afterward. Production, physical-device and local test evidence remain distinct.
 
 ## Release
 
-Build and verify the final candidate before publishing. Inspect both tarballs, keep only distribution files and license notices, and publish foundation before React with public access. The shared release uses the v1.3.0 tag. Never overwrite a published version; reconcile a registry response before retrying a timed-out publish.
+Build and verify the final candidate before publishing. Inspect both tarballs, keep only distribution files and license notices, and publish foundation before React with public access. The shared release uses the v1.4.0 tag. Never overwrite a published version; reconcile a registry response before retrying a timed-out publish.
 
 The npm organization is want-foundation. Publishing requires a signed-in owner with the required npm authentication. Credentials never belong in source files. Registry availability is confirmed as part of release, separately from the source merge.
 

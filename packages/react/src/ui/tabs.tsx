@@ -37,14 +37,40 @@ const tabsListVariants = cva(
   }
 )
 
+function revealTab(tab: HTMLElement) {
+  const list = tab.closest<HTMLElement>('[role="tablist"]')
+  if (!list || list.scrollWidth <= list.clientWidth) return
+  const item = tab.getBoundingClientRect(), bounds = list.getBoundingClientRect()
+  const delta = item.left < bounds.left ? item.left - bounds.left : item.right > bounds.right ? item.right - bounds.right : 0
+  if (delta) list.scrollBy({ left: delta, behavior: "instant" })
+}
+
 function TabsList({
   className,
+  ref,
   variant = "default",
   ...props
 }: React.ComponentProps<typeof TabsPrimitive.List> &
   VariantProps<typeof tabsListVariants>) {
+  const list = React.useRef<HTMLDivElement>(null)
+  React.useImperativeHandle(ref, () => list.current!, [])
+  React.useEffect(() => {
+    const element = list.current
+    if (!element) return
+    const revealActive = () => {
+      const active = element.querySelector<HTMLElement>('[role="tab"][aria-selected="true"]')
+      if (active) revealTab(active)
+    }
+    revealActive()
+    const changes = new MutationObserver(revealActive)
+    changes.observe(element, { subtree:true, childList:true, attributes:true, attributeFilter:["aria-selected"] })
+    const size = new ResizeObserver(revealActive)
+    size.observe(element)
+    return () => { changes.disconnect(); size.disconnect() }
+  }, [])
   return (
     <TabsPrimitive.List
+      ref={list}
       data-slot="tabs-list"
       data-variant={variant}
       className={cn(tabsListVariants({ variant }), className)}
@@ -55,11 +81,16 @@ function TabsList({
 
 function TabsTrigger({
   className,
+  onFocus,
   ...props
 }: React.ComponentProps<typeof TabsPrimitive.Trigger>) {
   return (
     <TabsPrimitive.Trigger
       data-slot="tabs-trigger"
+      onFocus={event => {
+        onFocus?.(event)
+        if (!event.defaultPrevented) revealTab(event.currentTarget)
+      }}
       className={cn(
         "ui-tabs-trigger",
         className

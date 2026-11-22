@@ -23,6 +23,27 @@ class WantBrandLogo extends StatelessWidget {
   }) : image = asset.toLowerCase().endsWith('.svg')
            ? SvgPicture.asset(asset, package: package, fit: BoxFit.contain)
            : Image.asset(asset, package: package, fit: BoxFit.contain);
+  factory WantBrandLogo.fromTheme({
+    Key? key,
+    required String label,
+    required Widget fallback,
+    double size = 32,
+    bool mark = false,
+  }) => WantBrandLogo(
+    key: key,
+    label: label,
+    size: size,
+    image: Builder(
+      builder: (context) {
+        final theme = WantTheme.of(context);
+        final roles = theme.profile.logos;
+        final id = mark
+            ? roles['mark']
+            : roles[theme.forui.colors.brightness.name] ?? roles['mark'];
+        return theme.resources.logos[id]?.call(context) ?? fallback;
+      },
+    ),
+  );
   @override
   Widget build(BuildContext context) => Semantics(
     image: true,

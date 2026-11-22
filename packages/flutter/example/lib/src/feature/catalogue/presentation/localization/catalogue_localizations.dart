@@ -1322,6 +1322,552 @@ abstract class CatalogueLocalizations {
   /// In en, this message translates to:
   /// **'Language'**
   String get changeLanguage;
+
+  /// No description provided for @passAllItems.
+  ///
+  /// In en, this message translates to:
+  /// **'All items'**
+  String get passAllItems;
+
+  /// No description provided for @passWork.
+  ///
+  /// In en, this message translates to:
+  /// **'Work'**
+  String get passWork;
+
+  /// No description provided for @passPinned.
+  ///
+  /// In en, this message translates to:
+  /// **'Pinned'**
+  String get passPinned;
+
+  /// No description provided for @passDesignNotes.
+  ///
+  /// In en, this message translates to:
+  /// **'Design notes'**
+  String get passDesignNotes;
+
+  /// No description provided for @passReadingList.
+  ///
+  /// In en, this message translates to:
+  /// **'Reading list'**
+  String get passReadingList;
+
+  /// No description provided for @passReleaseChecklist.
+  ///
+  /// In en, this message translates to:
+  /// **'Release checklist'**
+  String get passReleaseChecklist;
+
+  /// No description provided for @passGroups.
+  ///
+  /// In en, this message translates to:
+  /// **'Groups'**
+  String get passGroups;
+
+  /// No description provided for @passItems.
+  ///
+  /// In en, this message translates to:
+  /// **'Items'**
+  String get passItems;
+
+  /// No description provided for @passPreview.
+  ///
+  /// In en, this message translates to:
+  /// **'Preview'**
+  String get passPreview;
+
+  /// No description provided for @passCopyItemName.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy item name'**
+  String get passCopyItemName;
+
+  /// No description provided for @passCopied.
+  ///
+  /// In en, this message translates to:
+  /// **'Copied'**
+  String get passCopied;
+
+  /// No description provided for @passCopyFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy failed'**
+  String get passCopyFailed;
+
+  /// No description provided for @passWorkspace.
+  ///
+  /// In en, this message translates to:
+  /// **'Workspace'**
+  String get passWorkspace;
+
+  /// No description provided for @passToggleMenu.
+  ///
+  /// In en, this message translates to:
+  /// **'Toggle menu'**
+  String get passToggleMenu;
+
+  /// No description provided for @passCloseMenu.
+  ///
+  /// In en, this message translates to:
+  /// **'Close menu'**
+  String get passCloseMenu;
+
+  /// No description provided for @passSearchItems.
+  ///
+  /// In en, this message translates to:
+  /// **'Search items'**
+  String get passSearchItems;
+
+  /// No description provided for @passRemovePinnedFilter.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove pinned filter'**
+  String get passRemovePinnedFilter;
+
+  /// No description provided for @passFilter.
+  ///
+  /// In en, this message translates to:
+  /// **'Filter'**
+  String get passFilter;
+
+  /// No description provided for @passResizeGroups.
+  ///
+  /// In en, this message translates to:
+  /// **'Resize groups'**
+  String get passResizeGroups;
+
+  /// No description provided for @passResizeItems.
+  ///
+  /// In en, this message translates to:
+  /// **'Resize items'**
+  String get passResizeItems;
+
+  /// No description provided for @passResizePreview.
+  ///
+  /// In en, this message translates to:
+  /// **'Resize preview'**
+  String get passResizePreview;
+
+  /// No description provided for @passBack.
+  ///
+  /// In en, this message translates to:
+  /// **'Back'**
+  String get passBack;
+
+  /// No description provided for @passSensitiveField.
+  ///
+  /// In en, this message translates to:
+  /// **'Sensitive field'**
+  String get passSensitiveField;
+
+  /// No description provided for @passExamplePassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Example password'**
+  String get passExamplePassword;
+
+  /// No description provided for @passShowPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Show password'**
+  String get passShowPassword;
+
+  /// No description provided for @passHidePassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Hide password'**
+  String get passHidePassword;
+
+  /// No description provided for @passShowHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Show hint'**
+  String get passShowHint;
+
+  /// No description provided for @passCopyHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy hint'**
+  String get passCopyHint;
+
+  /// No description provided for @passVerify.
+  ///
+  /// In en, this message translates to:
+  /// **'Verify'**
+  String get passVerify;
+
+  /// No description provided for @passExampleAccepted.
+  ///
+  /// In en, this message translates to:
+  /// **'Example accepted'**
+  String get passExampleAccepted;
+
+  /// No description provided for @passNameAndIcon.
+  ///
+  /// In en, this message translates to:
+  /// **'Name and icon'**
+  String get passNameAndIcon;
+
+  /// No description provided for @passRequirements.
+  ///
+  /// In en, this message translates to:
+  /// **'Requirements'**
+  String get passRequirements;
+
+  /// No description provided for @passChooseAndExport.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose and export'**
+  String get passChooseAndExport;
+
+  /// No description provided for @passAtLeastEightCharacters.
+  ///
+  /// In en, this message translates to:
+  /// **'At least eight characters'**
+  String get passAtLeastEightCharacters;
+
+  /// No description provided for @passIncludesANumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Includes a number'**
+  String get passIncludesANumber;
+
+  /// No description provided for @passValuesMatch.
+  ///
+  /// In en, this message translates to:
+  /// **'Values match'**
+  String get passValuesMatch;
+
+  /// No description provided for @passUploadedImage.
+  ///
+  /// In en, this message translates to:
+  /// **'Uploaded image'**
+  String get passUploadedImage;
+
+  /// No description provided for @passPrimary.
+  ///
+  /// In en, this message translates to:
+  /// **'Primary'**
+  String get passPrimary;
+
+  /// No description provided for @passGreen.
+  ///
+  /// In en, this message translates to:
+  /// **'Green'**
+  String get passGreen;
+
+  /// No description provided for @passBlue.
+  ///
+  /// In en, this message translates to:
+  /// **'Blue'**
+  String get passBlue;
+
+  /// No description provided for @passAmber.
+  ///
+  /// In en, this message translates to:
+  /// **'Amber'**
+  String get passAmber;
+
+  /// No description provided for @passRose.
+  ///
+  /// In en, this message translates to:
+  /// **'Rose'**
+  String get passRose;
+
+  /// No description provided for @passInk.
+  ///
+  /// In en, this message translates to:
+  /// **'Ink'**
+  String get passInk;
+
+  /// No description provided for @passMuted.
+  ///
+  /// In en, this message translates to:
+  /// **'Muted'**
+  String get passMuted;
+
+  /// No description provided for @passGuidedSetup.
+  ///
+  /// In en, this message translates to:
+  /// **'Guided setup'**
+  String get passGuidedSetup;
+
+  /// No description provided for @passChooseIconAndColor.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose icon and color'**
+  String get passChooseIconAndColor;
+
+  /// No description provided for @passIcons.
+  ///
+  /// In en, this message translates to:
+  /// **'Icons'**
+  String get passIcons;
+
+  /// No description provided for @passColors.
+  ///
+  /// In en, this message translates to:
+  /// **'Colors'**
+  String get passColors;
+
+  /// No description provided for @passUploadImage.
+  ///
+  /// In en, this message translates to:
+  /// **'Upload image'**
+  String get passUploadImage;
+
+  /// No description provided for @passName.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get passName;
+
+  /// No description provided for @passPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get passPassword;
+
+  /// No description provided for @passShowBothPasswords.
+  ///
+  /// In en, this message translates to:
+  /// **'Show both passwords'**
+  String get passShowBothPasswords;
+
+  /// No description provided for @passHideBothPasswords.
+  ///
+  /// In en, this message translates to:
+  /// **'Hide both passwords'**
+  String get passHideBothPasswords;
+
+  /// No description provided for @passRepeatPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Repeat password'**
+  String get passRepeatPassword;
+
+  /// No description provided for @passChoice.
+  ///
+  /// In en, this message translates to:
+  /// **'Choice'**
+  String get passChoice;
+
+  /// No description provided for @passCopyJSON.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy JSON'**
+  String get passCopyJSON;
+
+  /// No description provided for @passDownloadJSON.
+  ///
+  /// In en, this message translates to:
+  /// **'Download JSON'**
+  String get passDownloadJSON;
+
+  /// No description provided for @passShowQR.
+  ///
+  /// In en, this message translates to:
+  /// **'Show QR'**
+  String get passShowQR;
+
+  /// No description provided for @passNext.
+  ///
+  /// In en, this message translates to:
+  /// **'Next'**
+  String get passNext;
+
+  /// No description provided for @passResetExample.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset example'**
+  String get passResetExample;
+
+  /// No description provided for @passClose.
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get passClose;
+
+  /// No description provided for @passSampleQR.
+  ///
+  /// In en, this message translates to:
+  /// **'Sample QR'**
+  String get passSampleQR;
+
+  /// No description provided for @passISavedIt.
+  ///
+  /// In en, this message translates to:
+  /// **'I saved it'**
+  String get passISavedIt;
+
+  /// No description provided for @passDeleteLocalSampleData.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete local sample data'**
+  String get passDeleteLocalSampleData;
+
+  /// No description provided for @passThisClearsTheNameAndChoicesEnteredInThisExample.
+  ///
+  /// In en, this message translates to:
+  /// **'This clears the name and choices entered in this example.'**
+  String get passThisClearsTheNameAndChoicesEnteredInThisExample;
+
+  /// No description provided for @passEnterDELETEToConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter DELETE to confirm'**
+  String get passEnterDELETEToConfirm;
+
+  /// No description provided for @passEnterDELETEExactly.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter DELETE exactly.'**
+  String get passEnterDELETEExactly;
+
+  /// No description provided for @passCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get passCancel;
+
+  /// No description provided for @passDeleteLocalData.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete local data'**
+  String get passDeleteLocalData;
+
+  /// No description provided for @passSavingFile.
+  ///
+  /// In en, this message translates to:
+  /// **'Saving file…'**
+  String get passSavingFile;
+
+  /// No description provided for @passFileSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'File saved'**
+  String get passFileSaved;
+
+  /// No description provided for @passDownloadStarted.
+  ///
+  /// In en, this message translates to:
+  /// **'Download started'**
+  String get passDownloadStarted;
+
+  /// No description provided for @passSaveFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Save failed'**
+  String get passSaveFailed;
+
+  /// No description provided for @passExport.
+  ///
+  /// In en, this message translates to:
+  /// **'Export'**
+  String get passExport;
+
+  /// No description provided for @passInteractiveScenes.
+  ///
+  /// In en, this message translates to:
+  /// **'Interactive scenes'**
+  String get passInteractiveScenes;
+
+  /// No description provided for @passActivateFeather.
+  ///
+  /// In en, this message translates to:
+  /// **'Activate feather'**
+  String get passActivateFeather;
+
+  /// No description provided for @passToggleLock.
+  ///
+  /// In en, this message translates to:
+  /// **'Toggle lock'**
+  String get passToggleLock;
+
+  /// No description provided for @passResume.
+  ///
+  /// In en, this message translates to:
+  /// **'Resume'**
+  String get passResume;
+
+  /// No description provided for @passPause.
+  ///
+  /// In en, this message translates to:
+  /// **'Pause'**
+  String get passPause;
+
+  /// No description provided for @passSphereAndLightning.
+  ///
+  /// In en, this message translates to:
+  /// **'Sphere and lightning'**
+  String get passSphereAndLightning;
+
+  /// No description provided for @passLightThreads.
+  ///
+  /// In en, this message translates to:
+  /// **'Light threads'**
+  String get passLightThreads;
+
+  /// No description provided for @passPreviewTheIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Preview the intro'**
+  String get passPreviewTheIntro;
+
+  /// No description provided for @passReady.
+  ///
+  /// In en, this message translates to:
+  /// **'Ready'**
+  String get passReady;
+
+  /// No description provided for @passFile.
+  ///
+  /// In en, this message translates to:
+  /// **'File'**
+  String get passFile;
+
+  /// No description provided for @passLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Link'**
+  String get passLink;
+
+  /// No description provided for @passSearch.
+  ///
+  /// In en, this message translates to:
+  /// **'Search'**
+  String get passSearch;
+
+  /// No description provided for @passImage.
+  ///
+  /// In en, this message translates to:
+  /// **'Image'**
+  String get passImage;
+
+  /// No description provided for @passCheck.
+  ///
+  /// In en, this message translates to:
+  /// **'Check'**
+  String get passCheck;
+
+  /// No description provided for @passInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Info'**
+  String get passInfo;
+
+  /// No description provided for @sortAscending.
+  ///
+  /// In en, this message translates to:
+  /// **'Ascending'**
+  String get sortAscending;
+
+  /// No description provided for @sortDescending.
+  ///
+  /// In en, this message translates to:
+  /// **'Descending'**
+  String get sortDescending;
 }
 
 class _CatalogueLocalizationsDelegate

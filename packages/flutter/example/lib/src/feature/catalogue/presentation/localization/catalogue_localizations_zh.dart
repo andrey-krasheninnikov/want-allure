@@ -644,6 +644,280 @@ class CatalogueLocalizationsZh extends CatalogueLocalizations {
 
   @override
   String get changeLanguage => '语言';
+
+  @override
+  String get passAllItems => '所有项目';
+
+  @override
+  String get passWork => '工作';
+
+  @override
+  String get passPinned => '已固定';
+
+  @override
+  String get passDesignNotes => '设计笔记';
+
+  @override
+  String get passReadingList => '阅读清单';
+
+  @override
+  String get passReleaseChecklist => '发布清单';
+
+  @override
+  String get passGroups => '分组';
+
+  @override
+  String get passItems => '项目';
+
+  @override
+  String get passPreview => '预览';
+
+  @override
+  String get passCopyItemName => '复制项目名称';
+
+  @override
+  String get passCopied => '已复制';
+
+  @override
+  String get passCopyFailed => '复制失败';
+
+  @override
+  String get passWorkspace => '工作区';
+
+  @override
+  String get passToggleMenu => '展开或收起菜单';
+
+  @override
+  String get passCloseMenu => '关闭菜单';
+
+  @override
+  String get passSearchItems => '搜索项目';
+
+  @override
+  String get passRemovePinnedFilter => '移除固定筛选条件';
+
+  @override
+  String get passFilter => '筛选';
+
+  @override
+  String get passResizeGroups => '调整分组面板宽度';
+
+  @override
+  String get passResizeItems => '调整列表宽度';
+
+  @override
+  String get passResizePreview => '调整预览宽度';
+
+  @override
+  String get passBack => '返回';
+
+  @override
+  String get passSensitiveField => '敏感信息字段';
+
+  @override
+  String get passExamplePassword => '示例密码';
+
+  @override
+  String get passShowPassword => '显示密码';
+
+  @override
+  String get passHidePassword => '隐藏密码';
+
+  @override
+  String get passShowHint => '显示提示';
+
+  @override
+  String get passCopyHint => '复制提示';
+
+  @override
+  String get passVerify => '验证';
+
+  @override
+  String get passExampleAccepted => '示例已通过';
+
+  @override
+  String get passNameAndIcon => '名称和图标';
+
+  @override
+  String get passRequirements => '要求';
+
+  @override
+  String get passChooseAndExport => '选择并导出';
+
+  @override
+  String get passAtLeastEightCharacters => '至少八个字符';
+
+  @override
+  String get passIncludesANumber => '包含数字';
+
+  @override
+  String get passValuesMatch => '输入一致';
+
+  @override
+  String get passUploadedImage => '已上传图片';
+
+  @override
+  String get passPrimary => '小学';
+
+  @override
+  String get passGreen => '绿色';
+
+  @override
+  String get passBlue => '蓝色';
+
+  @override
+  String get passAmber => '琥珀色';
+
+  @override
+  String get passRose => '玫瑰色';
+
+  @override
+  String get passInk => '墨色';
+
+  @override
+  String get passMuted => '柔和色';
+
+  @override
+  String get passGuidedSetup => '引导设置';
+
+  @override
+  String get passChooseIconAndColor => '选择图标和颜色';
+
+  @override
+  String get passIcons => '图标';
+
+  @override
+  String get passColors => '颜色';
+
+  @override
+  String get passUploadImage => '上传图片';
+
+  @override
+  String get passName => '名称';
+
+  @override
+  String get passPassword => '密码';
+
+  @override
+  String get passShowBothPasswords => '显示两个密码';
+
+  @override
+  String get passHideBothPasswords => '隐藏两个密码';
+
+  @override
+  String get passRepeatPassword => '再次输入密码';
+
+  @override
+  String get passChoice => '选项';
+
+  @override
+  String get passCopyJSON => '复制 JSON';
+
+  @override
+  String get passDownloadJSON => '下载 JSON';
+
+  @override
+  String get passShowQR => '显示二维码';
+
+  @override
+  String get passNext => '下一步';
+
+  @override
+  String get passResetExample => '重置示例';
+
+  @override
+  String get passClose => '关闭';
+
+  @override
+  String get passSampleQR => '示例二维码';
+
+  @override
+  String get passISavedIt => '已保存';
+
+  @override
+  String get passDeleteLocalSampleData => '删除本地示例数据';
+
+  @override
+  String get passThisClearsTheNameAndChoicesEnteredInThisExample =>
+      '这会清除本示例的名称和选项。';
+
+  @override
+  String get passEnterDELETEToConfirm => '输入 DELETE 确认';
+
+  @override
+  String get passEnterDELETEExactly => '请准确输入 DELETE。';
+
+  @override
+  String get passCancel => '取消';
+
+  @override
+  String get passDeleteLocalData => '删除本地数据';
+
+  @override
+  String get passSavingFile => '正在保存文件…';
+
+  @override
+  String get passFileSaved => '文件已保存';
+
+  @override
+  String get passDownloadStarted => '已开始下载';
+
+  @override
+  String get passSaveFailed => '保存失败';
+
+  @override
+  String get passExport => '导出';
+
+  @override
+  String get passInteractiveScenes => '交互场景';
+
+  @override
+  String get passActivateFeather => '激活羽毛';
+
+  @override
+  String get passToggleLock => '切换锁定';
+
+  @override
+  String get passResume => '简历';
+
+  @override
+  String get passPause => '暂停';
+
+  @override
+  String get passSphereAndLightning => '球体与闪电';
+
+  @override
+  String get passLightThreads => '光丝';
+
+  @override
+  String get passPreviewTheIntro => '预览开场动画';
+
+  @override
+  String get passReady => '准备好';
+
+  @override
+  String get passFile => '文件';
+
+  @override
+  String get passLink => '链接';
+
+  @override
+  String get passSearch => '搜索';
+
+  @override
+  String get passImage => '图像';
+
+  @override
+  String get passCheck => '勾选';
+
+  @override
+  String get passInfo => '信息';
+
+  @override
+  String get sortAscending => '升序';
+
+  @override
+  String get sortDescending => '降序';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hans`).
@@ -1285,4 +1559,278 @@ class CatalogueLocalizationsZhHans extends CatalogueLocalizationsZh {
 
   @override
   String get changeLanguage => '语言';
+
+  @override
+  String get passAllItems => '所有项目';
+
+  @override
+  String get passWork => '工作';
+
+  @override
+  String get passPinned => '已固定';
+
+  @override
+  String get passDesignNotes => '设计笔记';
+
+  @override
+  String get passReadingList => '阅读清单';
+
+  @override
+  String get passReleaseChecklist => '发布清单';
+
+  @override
+  String get passGroups => '分组';
+
+  @override
+  String get passItems => '项目';
+
+  @override
+  String get passPreview => '预览';
+
+  @override
+  String get passCopyItemName => '复制项目名称';
+
+  @override
+  String get passCopied => '已复制';
+
+  @override
+  String get passCopyFailed => '复制失败';
+
+  @override
+  String get passWorkspace => '工作区';
+
+  @override
+  String get passToggleMenu => '展开或收起菜单';
+
+  @override
+  String get passCloseMenu => '关闭菜单';
+
+  @override
+  String get passSearchItems => '搜索项目';
+
+  @override
+  String get passRemovePinnedFilter => '移除固定筛选条件';
+
+  @override
+  String get passFilter => '筛选';
+
+  @override
+  String get passResizeGroups => '调整分组面板宽度';
+
+  @override
+  String get passResizeItems => '调整列表宽度';
+
+  @override
+  String get passResizePreview => '调整预览宽度';
+
+  @override
+  String get passBack => '返回';
+
+  @override
+  String get passSensitiveField => '敏感信息字段';
+
+  @override
+  String get passExamplePassword => '示例密码';
+
+  @override
+  String get passShowPassword => '显示密码';
+
+  @override
+  String get passHidePassword => '隐藏密码';
+
+  @override
+  String get passShowHint => '显示提示';
+
+  @override
+  String get passCopyHint => '复制提示';
+
+  @override
+  String get passVerify => '验证';
+
+  @override
+  String get passExampleAccepted => '示例已通过';
+
+  @override
+  String get passNameAndIcon => '名称和图标';
+
+  @override
+  String get passRequirements => '要求';
+
+  @override
+  String get passChooseAndExport => '选择并导出';
+
+  @override
+  String get passAtLeastEightCharacters => '至少八个字符';
+
+  @override
+  String get passIncludesANumber => '包含数字';
+
+  @override
+  String get passValuesMatch => '输入一致';
+
+  @override
+  String get passUploadedImage => '已上传图片';
+
+  @override
+  String get passPrimary => '小学';
+
+  @override
+  String get passGreen => '绿色';
+
+  @override
+  String get passBlue => '蓝色';
+
+  @override
+  String get passAmber => '琥珀色';
+
+  @override
+  String get passRose => '玫瑰色';
+
+  @override
+  String get passInk => '墨色';
+
+  @override
+  String get passMuted => '柔和色';
+
+  @override
+  String get passGuidedSetup => '引导设置';
+
+  @override
+  String get passChooseIconAndColor => '选择图标和颜色';
+
+  @override
+  String get passIcons => '图标';
+
+  @override
+  String get passColors => '颜色';
+
+  @override
+  String get passUploadImage => '上传图片';
+
+  @override
+  String get passName => '名称';
+
+  @override
+  String get passPassword => '密码';
+
+  @override
+  String get passShowBothPasswords => '显示两个密码';
+
+  @override
+  String get passHideBothPasswords => '隐藏两个密码';
+
+  @override
+  String get passRepeatPassword => '再次输入密码';
+
+  @override
+  String get passChoice => '选项';
+
+  @override
+  String get passCopyJSON => '复制 JSON';
+
+  @override
+  String get passDownloadJSON => '下载 JSON';
+
+  @override
+  String get passShowQR => '显示二维码';
+
+  @override
+  String get passNext => '下一步';
+
+  @override
+  String get passResetExample => '重置示例';
+
+  @override
+  String get passClose => '关闭';
+
+  @override
+  String get passSampleQR => '示例二维码';
+
+  @override
+  String get passISavedIt => '已保存';
+
+  @override
+  String get passDeleteLocalSampleData => '删除本地示例数据';
+
+  @override
+  String get passThisClearsTheNameAndChoicesEnteredInThisExample =>
+      '这会清除本示例的名称和选项。';
+
+  @override
+  String get passEnterDELETEToConfirm => '输入 DELETE 确认';
+
+  @override
+  String get passEnterDELETEExactly => '请准确输入 DELETE。';
+
+  @override
+  String get passCancel => '取消';
+
+  @override
+  String get passDeleteLocalData => '删除本地数据';
+
+  @override
+  String get passSavingFile => '正在保存文件…';
+
+  @override
+  String get passFileSaved => '文件已保存';
+
+  @override
+  String get passDownloadStarted => '已开始下载';
+
+  @override
+  String get passSaveFailed => '保存失败';
+
+  @override
+  String get passExport => '导出';
+
+  @override
+  String get passInteractiveScenes => '交互场景';
+
+  @override
+  String get passActivateFeather => '激活羽毛';
+
+  @override
+  String get passToggleLock => '切换锁定';
+
+  @override
+  String get passResume => '简历';
+
+  @override
+  String get passPause => '暂停';
+
+  @override
+  String get passSphereAndLightning => '球体与闪电';
+
+  @override
+  String get passLightThreads => '光丝';
+
+  @override
+  String get passPreviewTheIntro => '预览开场动画';
+
+  @override
+  String get passReady => '准备好';
+
+  @override
+  String get passFile => '文件';
+
+  @override
+  String get passLink => '链接';
+
+  @override
+  String get passSearch => '搜索';
+
+  @override
+  String get passImage => '图像';
+
+  @override
+  String get passCheck => '勾选';
+
+  @override
+  String get passInfo => '信息';
+
+  @override
+  String get sortAscending => '升序';
+
+  @override
+  String get sortDescending => '降序';
 }

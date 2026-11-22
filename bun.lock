@@ -12,6 +12,7 @@
         "@types/bun": "^1.2.0",
         "@types/react": "^19",
         "@types/react-dom": "^19",
+        "postcss": "8.5.32",
         "react": "^19",
         "react-dom": "^19",
         "tailwindcss": "^4",
@@ -37,30 +38,43 @@
     },
     "packages/foundation": {
       "name": "@want-foundation/allure",
-      "version": "1.2.0",
+      "version": "1.4.0",
       "bin": {
         "want-design-install": "./dist/install-skill.js",
       },
       "devDependencies": {
+        "@fontsource-variable/atkinson-hyperlegible-next": "5.3.0",
+        "@fontsource-variable/ibm-plex-sans": "5.3.0",
+        "@fontsource-variable/literata": "5.3.0",
         "@fontsource-variable/manrope": "5.2.8",
+        "@fontsource-variable/noto-kufi-arabic": "5.3.0",
         "@fontsource-variable/noto-sans-arabic": "5.3.0",
         "@fontsource-variable/noto-sans-devanagari": "5.3.0",
         "@fontsource-variable/noto-sans-hebrew": "5.3.0",
         "@fontsource-variable/noto-sans-jp": "5.3.1",
         "@fontsource-variable/noto-sans-sc": "5.3.1",
+        "@fontsource-variable/pixelify-sans": "5.3.0",
+        "@fontsource-variable/unbounded": "5.3.0",
         "@fontsource/days-one": "5.3.0",
+        "@fontsource/dotgothic16": "5.3.1",
+        "@fontsource/ibm-plex-mono": "5.3.0",
+        "@fontsource/zcool-xiaowei": "5.3.0",
       },
     },
     "packages/react": {
       "name": "@want-foundation/allure-react",
-      "version": "1.2.0",
+      "version": "1.4.0",
       "dependencies": {
-        "@want-foundation/allure": "1.2.0",
+        "@want-foundation/allure": "1.4.0",
         "class-variance-authority": "0.7.1",
         "clsx": "2.1.1",
         "lucide-react": "1.50.0",
         "radix-ui": "1.6.7",
         "tailwind-merge": "3.7.0",
+        "three": "0.187.0",
+      },
+      "devDependencies": {
+        "@types/three": "0.187.0",
       },
       "peerDependencies": {
         "react": "^19.0.0",
@@ -213,7 +227,15 @@
 
     "@floating-ui/utils": ["@floating-ui/utils@0.2.12", "", {}, "sha512-HpCo8tmWzLVad5s2d19EhAz5zqrrQ6s69qd6moPMQvkOuSwDT1YgRfWSVuc4ennqrgv3OHppiOGMQ7oC13yIww=="],
 
+    "@fontsource-variable/atkinson-hyperlegible-next": ["@fontsource-variable/atkinson-hyperlegible-next@5.3.0", "", {}, "sha512-UnLzNUy1RWoLDfydAatP4NaRm99X/WbQEph7q/PymJnCFIOOwKOx3pBmp5ys8trO0dM+CKGuJgeZP9fAR4mQpA=="],
+
+    "@fontsource-variable/ibm-plex-sans": ["@fontsource-variable/ibm-plex-sans@5.3.0", "", {}, "sha512-agG8tXFEo0hD9+J7npa4vbbWult52eMLVaQ6WQRlhs/iCAojrMAoejru85W9HTVXHfyUj96KM7gp/KGAS87XaQ=="],
+
+    "@fontsource-variable/literata": ["@fontsource-variable/literata@5.3.0", "", {}, "sha512-1Jw7xvOcoGyB83lxB2nG4bfNbqtX2/TTbdh9sHAOmU064SvmSdulDtA5RBu5JYWf64fdaKX7xU+z3GO1T2bCHA=="],
+
     "@fontsource-variable/manrope": ["@fontsource-variable/manrope@5.2.8", "", {}, "sha512-nc9lOuCRz73UHnovDE2bwXUdghE2SEOc7Aii0qGe3CLyE03W1a7VnY5Z6euRiapiKbCkGS+eXbY3s/kvWeGeSw=="],
+
+    "@fontsource-variable/noto-kufi-arabic": ["@fontsource-variable/noto-kufi-arabic@5.3.0", "", {}, "sha512-I2VKOHPcXg2ltFjSnVY7tfhI/gpWl+kuKzDdC8mv9lSlNQOgbSZBbKSrARDNVJ/d4tWS5ma1POH6OczJV9HL5w=="],
 
     "@fontsource-variable/noto-sans-arabic": ["@fontsource-variable/noto-sans-arabic@5.3.0", "", {}, "sha512-Rz8+DBzza3//cmN+DBQajJhx3x+Dx12eUgnQsTOgPWbOT0+In6APmE8z4I/QQnUWfAx+s8l93+60qDT5vJH1sA=="],
 
@@ -225,7 +247,17 @@
 
     "@fontsource-variable/noto-sans-sc": ["@fontsource-variable/noto-sans-sc@5.3.1", "", {}, "sha512-UB96JJ17HyD5ehEU7Em0hDdh7fvTMB4B4Hzmq5c4QaNwwSLqTrdM2S+coySeBqCkXwh0DxqXT0b0wMrmzorFpQ=="],
 
+    "@fontsource-variable/pixelify-sans": ["@fontsource-variable/pixelify-sans@5.3.0", "", {}, "sha512-rOF07QCyHg9xb4UZF3lpXOM4UO+zo3y8tXvO7T+vy40GVt/GU8HL+/YWE029CMsbhOwk4plRDY9G8BU5cWs1ig=="],
+
+    "@fontsource-variable/unbounded": ["@fontsource-variable/unbounded@5.3.0", "", {}, "sha512-ea565Ncn4r7gPdBEHcmaF31V11hDfkL7b/JCklLobQbMfbu2ZZQrVWNgdeEFWFLqNh36yhieZWOgxdAnMTzrLg=="],
+
     "@fontsource/days-one": ["@fontsource/days-one@5.3.0", "", {}, "sha512-rxw3xOvjQqEOAq8Yoqr5UJwjCK5ScJuAL1fgcHmdxoBrvIlS09GkeMEmSvPFtTEEV5xfVOgN5vOYDTUomCXQHQ=="],
+
+    "@fontsource/dotgothic16": ["@fontsource/dotgothic16@5.3.1", "", {}, "sha512-alvxJchrFDFohce0s8YfHsFiRm2zUM+FrwEeWtLyc14WIl3heSG1/8BPD7Sm001YuVPL1bU14UmM5P2KO5/gnQ=="],
+
+    "@fontsource/ibm-plex-mono": ["@fontsource/ibm-plex-mono@5.3.0", "", {}, "sha512-eTgnZjZEGk1QtD3ZstF+Vclo2HLAni8YMy34/DxllwZvyz1lR/1RF/xTiAquOBO7MvqBx8D2Ig2WCPMVfdZu7Q=="],
+
+    "@fontsource/zcool-xiaowei": ["@fontsource/zcool-xiaowei@5.3.0", "", {}, "sha512-iRuUPl9ONFbYzi6JcEshpE4VedINyzQ4hv0Z5XEt0cB0pMPiQeqc2Qvv1NwJCNzkPwG02VCdcO+cF2K8ylYn2A=="],
 
     "@img/colour": ["@img/colour@1.1.0", "", {}, "sha512-Td76q7j57o/tLVdgS746cYARfSyxk8iEfRxewL9h4OMzYhbW4TAcppl0mT4eyqXddh6L/jwoM75mo7ixa/pCeQ=="],
 

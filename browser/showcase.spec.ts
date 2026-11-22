@@ -1,4 +1,4 @@
-import { category } from './helpers';
+import { category, chooseTheme, themeMenu } from './helpers';
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
@@ -9,8 +9,7 @@ for (const width of [320, 1440]) test('shared kit works independently at ' + wid
   await expect(page.locator('astro-island[ssr]')).toHaveCount(0, { timeout: 15000 });
   await page.evaluate(() => document.fonts.ready);
   for (const theme of ['light', 'dark']) {
-    const toggle = page.getByRole('switch', { name: 'Dark theme' });
-    if ((await toggle.isChecked()) !== (theme === 'dark')) await toggle.click();
+    await chooseTheme(page, theme);
     await expect(page.locator('html')).toHaveAttribute('data-theme', theme);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     const axe = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze();
@@ -54,7 +53,7 @@ test('system theme follows preferences until a visitor makes a choice', async ({
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
   await page.emulateMedia({ colorScheme: 'dark' });
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
-  await page.getByRole('switch', { name: 'Dark theme' }).click();
+  await chooseTheme(page, 'light');
   await page.emulateMedia({ colorScheme: 'light' }); await page.emulateMedia({ colorScheme: 'dark' });
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
 });
@@ -62,8 +61,9 @@ test('system theme follows preferences until a visitor makes a choice', async ({
 test('keyboard focus retains a visible outline in both themes', async ({ page }) => {
   await page.goto('/react/'); await expect(page.locator('astro-island[ssr]')).toHaveCount(0);
   for (const checked of [false, true]) {
-    const theme = page.getByRole('switch', { name: 'Dark theme' });
-    if (await theme.isChecked() !== checked) await theme.click();
+    await chooseTheme(page, checked ? 'dark' : 'light');
+    const theme = themeMenu(page);
+    await expect(theme).toBeFocused();
     await page.getByRole('banner').getByRole('link', { name: 'Want Allure', exact: true }).focus();
     await page.keyboard.press('Tab');
     const overview = page.getByRole('navigation', { name: 'Main navigation' }).getByRole('link', { name: 'Overview' });

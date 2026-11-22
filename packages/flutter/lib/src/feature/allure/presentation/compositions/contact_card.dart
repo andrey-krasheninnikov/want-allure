@@ -18,11 +18,15 @@ class WantContactAction {
 
 class WantContactCard extends StatelessWidget {
   final String name;
+  final Widget? avatar;
+  final String? initials;
   final String? subtitle;
   final List<WantContactAction> actions;
   const WantContactCard({
     super.key,
     required this.name,
+    this.avatar,
+    this.initials,
     required this.actions,
     this.subtitle,
   });
@@ -45,16 +49,20 @@ class WantContactCard extends StatelessWidget {
                   color: WantTheme.of(context).color('secondary'),
                   shape: BoxShape.circle,
                 ),
-                child: Text(
-                  name
-                      .trim()
-                      .split(RegExp(r'\s+'))
-                      .where((part) => part.isNotEmpty)
-                      .take(2)
-                      .map((part) => String.fromCharCode(part.runes.first))
-                      .join()
-                      .toUpperCase(),
-                ),
+                clipBehavior: Clip.antiAlias,
+                child:
+                    avatar ??
+                    Text(
+                      initials ??
+                          name
+                              .trim()
+                              .split(RegExp(r'\s+'))
+                              .where((part) => part.isNotEmpty)
+                              .take(2)
+                              .map((part) => part.characters.first)
+                              .join()
+                              .toUpperCase(),
+                    ),
               ),
             ),
             Expanded(

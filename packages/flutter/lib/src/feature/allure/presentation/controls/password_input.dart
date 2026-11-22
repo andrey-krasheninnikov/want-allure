@@ -1,6 +1,7 @@
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:forui/forui.dart';
+import 'package:material_ui/material_ui.dart' show OutlineInputBorder;
 
 import 'package:want_allure/src/feature/allure/presentation/_barrel.dart';
 
@@ -15,7 +16,10 @@ class WantPasswordInput extends StatefulWidget {
   final String showPasswordLabel, hidePasswordLabel;
   final ValueChanged<String>? onChanged, onSubmitted;
   final FocusNode? focusNode;
-  final bool enabled, readOnly, autofocus;
+  final bool enabled, readOnly, autofocus, invalid, showVisibilityToggle;
+  final bool? obscured;
+  final ValueChanged<bool>? onObscuredChanged;
+  final List<Widget> actions;
   final TextInputType keyboardType;
   final TextInputAction? textInputAction;
   final List<TextInputFormatter>? inputFormatters;
@@ -46,6 +50,11 @@ class WantPasswordInput extends StatefulWidget {
     this.enabled = true,
     this.readOnly = false,
     this.autofocus = false,
+    this.obscured,
+    this.onObscuredChanged,
+    this.actions = const [],
+    this.invalid = false,
+    this.showVisibilityToggle = true,
     this.keyboardType = TextInputType.visiblePassword,
     this.textInputAction,
     this.inputFormatters,
@@ -66,7 +75,8 @@ class WantPasswordInput extends StatefulWidget {
 }
 
 class _WantPasswordInputState extends State<WantPasswordInput> {
-  bool _obscured = true;
+  bool _hidden = true;
+  bool get _obscured => widget.obscured ?? _hidden;
   late String _lastText;
 
   @override
@@ -90,50 +100,79 @@ class _WantPasswordInputState extends State<WantPasswordInput> {
   }
 
   @override
-  Widget build(BuildContext context) => FTextField(
-    control: FTextFieldControl.managed(
-      controller: widget.controller,
-      initial: widget.controller == null && widget.initialValue != null
-          ? TextEditingValue(text: widget.initialValue!)
-          : null,
-      onChange: _changed,
-    ),
-    hint: widget.hint,
-    label: widget.label,
-    description: widget.description,
-    error: widget.error,
-    focusNode: widget.focusNode,
-    enabled: widget.enabled,
-    readOnly: widget.readOnly,
-    autofocus: widget.autofocus,
-    obscureText: _obscured,
-    keyboardType: widget.keyboardType,
-    textInputAction: widget.textInputAction,
-    inputFormatters: widget.inputFormatters,
-    onSubmit: widget.onSubmitted,
-    textDirection: widget.textDirection,
-    autocorrect: widget.autocorrect,
-    enableSuggestions: widget.enableSuggestions,
-    enableIMEPersonalizedLearning: widget.enableIMEPersonalizedLearning,
-    stylusHandwritingEnabled: widget.stylusHandwritingEnabled,
-    smartDashesType: widget.smartDashesType,
-    smartQuotesType: widget.smartQuotesType,
-    autofillHints: widget.autofillHints,
-    enableInteractiveSelection: widget.enableInteractiveSelection,
-    contextMenuBuilder: widget.contextMenuBuilder,
-    suffixBuilder: (context, style, variants) => TextFieldTapRegion(
-      child: WantButton(
-        variant: WantButtonVariant.ghost,
-        size: WantButtonSize.icon,
-        pill: false,
-        semanticsLabel: _obscured
-            ? widget.showPasswordLabel
-            : widget.hidePasswordLabel,
-        onPressed: widget.enabled
-            ? () => setState(() => _obscured = !_obscured)
+  Widget build(BuildContext context) {
+    final theme = WantTheme.maybeOf(context);
+    final errorColor = theme?.color('error-text') ?? const Color(0xffb00020);
+    return FTextField(
+      style: widget.invalid
+          ? FTextFieldStyleDelta.delta(
+              border: FVariants.from(
+                OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: BorderSide(color: errorColor, width: 2),
+                ),
+                variants: const {},
+              ),
+            )
+          : const FTextFieldStyleDelta.context(),
+      control: FTextFieldControl.managed(
+        controller: widget.controller,
+        initial: widget.controller == null && widget.initialValue != null
+            ? TextEditingValue(text: widget.initialValue!)
             : null,
-        child: WantIcon(_obscured ? WantIcons.eye : WantIcons.eyeClosed),
+        onChange: _changed,
       ),
-    ),
-  );
+      hint: widget.hint,
+      label: widget.label,
+      description: widget.description,
+      error: widget.error,
+      focusNode: widget.focusNode,
+      enabled: widget.enabled,
+      readOnly: widget.readOnly,
+      autofocus: widget.autofocus,
+      obscureText: _obscured,
+      keyboardType: widget.keyboardType,
+      textInputAction: widget.textInputAction,
+      inputFormatters: widget.inputFormatters,
+      onSubmit: widget.onSubmitted,
+      textDirection: widget.textDirection,
+      autocorrect: widget.autocorrect,
+      enableSuggestions: widget.enableSuggestions,
+      enableIMEPersonalizedLearning: widget.enableIMEPersonalizedLearning,
+      stylusHandwritingEnabled: widget.stylusHandwritingEnabled,
+      smartDashesType: widget.smartDashesType,
+      smartQuotesType: widget.smartQuotesType,
+      autofillHints: widget.autofillHints,
+      enableInteractiveSelection: widget.enableInteractiveSelection,
+      contextMenuBuilder: widget.contextMenuBuilder,
+      suffixBuilder: !widget.showVisibilityToggle && widget.actions.isEmpty
+          ? null
+          : (context, style, variants) => TextFieldTapRegion(
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  ...widget.actions,
+                  if (widget.showVisibilityToggle)
+                    WantIconButton(
+                      label: _obscured
+                          ? widget.showPasswordLabel
+                          : widget.hidePasswordLabel,
+                      onPressed: !widget.enabled
+                          ? null
+                          : () {
+                              final next = !_obscured;
+                              if (widget.obscured == null) {
+                                setState(() => _hidden = next);
+                              }
+                              widget.onObscuredChanged?.call(next);
+                            },
+                      child: WantIcon(
+                        _obscured ? WantIcons.eye : WantIcons.eyeClosed,
+                      ),
+                    ),
+                ],
+              ),
+            ),
+    );
+  }
 }

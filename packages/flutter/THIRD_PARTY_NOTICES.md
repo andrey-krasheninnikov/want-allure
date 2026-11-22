@@ -13,3 +13,5 @@ Sprung 3.0.1 is resolved as a dependency under its MIT license. The complete ups
 Noto Sans SC, Noto Sans Devanagari and Noto Sans Hebrew retain the SIL Open Font License 1.1. Their complete notices are in `licenses/`. These additional font files come from Google Fonts commit `2fe1e8c6b137fb13041a7cfca6fdcd8a910ea4dc`.
 
 DiTreDi and path_parsing retain their MIT licenses. dart_earcut retains its ISC and MIT notices. These dependencies are resolved through pub.
+
+Unbounded, Literata, IBM Plex Mono, IBM Plex Sans, Atkinson Hyperlegible Next, Pixelify Sans, DotGothic16, ZCOOL XiaoWei, Noto Kufi Arabic use the SIL Open Font License 1.1. The TTF files come from Google Fonts commit `869789e84da92782c144d83d69b64cec54905b5f`. The complete notices are in `licenses/`.

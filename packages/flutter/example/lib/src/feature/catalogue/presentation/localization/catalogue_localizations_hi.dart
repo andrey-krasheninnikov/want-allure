@@ -657,4 +657,278 @@ class CatalogueLocalizationsHi extends CatalogueLocalizations {
 
   @override
   String get changeLanguage => 'भाषा';
+
+  @override
+  String get passAllItems => 'सभी आइटम';
+
+  @override
+  String get passWork => 'काम';
+
+  @override
+  String get passPinned => 'पिन किए गए';
+
+  @override
+  String get passDesignNotes => 'डिज़ाइन नोट्स';
+
+  @override
+  String get passReadingList => 'पठन सूची';
+
+  @override
+  String get passReleaseChecklist => 'रिलीज़ जाँच सूची';
+
+  @override
+  String get passGroups => 'समूह';
+
+  @override
+  String get passItems => 'आइटम';
+
+  @override
+  String get passPreview => 'पूर्वावलोकन';
+
+  @override
+  String get passCopyItemName => 'आइटम का नाम कॉपी करें';
+
+  @override
+  String get passCopied => 'नकल की गई';
+
+  @override
+  String get passCopyFailed => 'कॉपी नहीं हो सकी';
+
+  @override
+  String get passWorkspace => 'कार्यस्थान';
+
+  @override
+  String get passToggleMenu => 'मेन्यू खोलें या बंद करें';
+
+  @override
+  String get passCloseMenu => 'मेन्यू बंद करें';
+
+  @override
+  String get passSearchItems => 'आइटम खोजें';
+
+  @override
+  String get passRemovePinnedFilter => 'पिन का फ़िल्टर हटाएँ';
+
+  @override
+  String get passFilter => 'फ़िल्टर';
+
+  @override
+  String get passResizeGroups => 'समूह पैनल की चौड़ाई बदलें';
+
+  @override
+  String get passResizeItems => 'सूची की चौड़ाई बदलें';
+
+  @override
+  String get passResizePreview => 'पूर्वावलोकन की चौड़ाई बदलें';
+
+  @override
+  String get passBack => 'वापस';
+
+  @override
+  String get passSensitiveField => 'संवेदनशील डेटा फ़ील्ड';
+
+  @override
+  String get passExamplePassword => 'उदाहरण पासवर्ड';
+
+  @override
+  String get passShowPassword => 'पासवर्ड दिखाएँ';
+
+  @override
+  String get passHidePassword => 'पासवर्ड छिपाएँ';
+
+  @override
+  String get passShowHint => 'संकेत दिखाएँ';
+
+  @override
+  String get passCopyHint => 'संकेत कॉपी करें';
+
+  @override
+  String get passVerify => 'जाँचें';
+
+  @override
+  String get passExampleAccepted => 'उदाहरण स्वीकार हुआ';
+
+  @override
+  String get passNameAndIcon => 'नाम और आइकन';
+
+  @override
+  String get passRequirements => 'आवश्यकताएँ';
+
+  @override
+  String get passChooseAndExport => 'चुनें और निर्यात करें';
+
+  @override
+  String get passAtLeastEightCharacters => 'कम से कम आठ अक्षर';
+
+  @override
+  String get passIncludesANumber => 'एक अंक शामिल है';
+
+  @override
+  String get passValuesMatch => 'मान मेल खाते हैं';
+
+  @override
+  String get passUploadedImage => 'अपलोड की गई छवि';
+
+  @override
+  String get passPrimary => 'प्राथमिक';
+
+  @override
+  String get passGreen => 'हरा';
+
+  @override
+  String get passBlue => 'नीला';
+
+  @override
+  String get passAmber => 'अंबर';
+
+  @override
+  String get passRose => 'गुलाबी';
+
+  @override
+  String get passInk => 'स्याही';
+
+  @override
+  String get passMuted => 'मद्धम';
+
+  @override
+  String get passGuidedSetup => 'चरणबद्ध सेटअप';
+
+  @override
+  String get passChooseIconAndColor => 'आइकन और रंग चुनें';
+
+  @override
+  String get passIcons => 'आइकन';
+
+  @override
+  String get passColors => 'रंग';
+
+  @override
+  String get passUploadImage => 'छवि अपलोड करें';
+
+  @override
+  String get passName => 'नाम';
+
+  @override
+  String get passPassword => 'पासवर्ड';
+
+  @override
+  String get passShowBothPasswords => 'दोनों पासवर्ड दिखाएँ';
+
+  @override
+  String get passHideBothPasswords => 'दोनों पासवर्ड छिपाएँ';
+
+  @override
+  String get passRepeatPassword => 'पासवर्ड दोहराएँ';
+
+  @override
+  String get passChoice => 'विकल्प';
+
+  @override
+  String get passCopyJSON => 'JSON कॉपी करें';
+
+  @override
+  String get passDownloadJSON => 'JSON डाउनलोड करें';
+
+  @override
+  String get passShowQR => 'QR दिखाएँ';
+
+  @override
+  String get passNext => 'आगे';
+
+  @override
+  String get passResetExample => 'उदाहरण रीसेट करें';
+
+  @override
+  String get passClose => 'बंद करें';
+
+  @override
+  String get passSampleQR => 'उदाहरण QR';
+
+  @override
+  String get passISavedIt => 'मैंने सहेज लिया';
+
+  @override
+  String get passDeleteLocalSampleData => 'स्थानीय उदाहरण डेटा हटाएँ';
+
+  @override
+  String get passThisClearsTheNameAndChoicesEnteredInThisExample =>
+      'इस उदाहरण में दर्ज नाम और चयन मिट जाएँगे।';
+
+  @override
+  String get passEnterDELETEToConfirm => 'पुष्टि के लिए DELETE लिखें';
+
+  @override
+  String get passEnterDELETEExactly => 'ठीक DELETE लिखें।';
+
+  @override
+  String get passCancel => 'रद्द करें';
+
+  @override
+  String get passDeleteLocalData => 'स्थानीय डेटा हटाएँ';
+
+  @override
+  String get passSavingFile => 'फ़ाइल सहेजी जा रही है…';
+
+  @override
+  String get passFileSaved => 'फ़ाइल सहेजी गई';
+
+  @override
+  String get passDownloadStarted => 'डाउनलोड शुरू हुआ';
+
+  @override
+  String get passSaveFailed => 'सहेजना विफल रहा';
+
+  @override
+  String get passExport => 'निर्यात';
+
+  @override
+  String get passInteractiveScenes => 'इंटरैक्टिव दृश्य';
+
+  @override
+  String get passActivateFeather => 'पंख सक्रिय करें';
+
+  @override
+  String get passToggleLock => 'लॉक खोलें या बंद करें';
+
+  @override
+  String get passResume => 'बायोडाटा';
+
+  @override
+  String get passPause => 'विराम';
+
+  @override
+  String get passSphereAndLightning => 'गोला और बिजली';
+
+  @override
+  String get passLightThreads => 'प्रकाश के धागे';
+
+  @override
+  String get passPreviewTheIntro => 'परिचय का पूर्वावलोकन देखें';
+
+  @override
+  String get passReady => 'तैयार';
+
+  @override
+  String get passFile => 'फ़ाइल';
+
+  @override
+  String get passLink => 'लिंक';
+
+  @override
+  String get passSearch => 'खोज';
+
+  @override
+  String get passImage => 'चित्र';
+
+  @override
+  String get passCheck => 'जाँच';
+
+  @override
+  String get passInfo => 'जानकारी';
+
+  @override
+  String get sortAscending => 'आरोही';
+
+  @override
+  String get sortDescending => 'अवरोही';
 }

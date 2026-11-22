@@ -23,7 +23,13 @@ try {
   assert.ok((await readFile(resolve(archive, 'assets/fonts/Manrope.ttf'))).length > 100000);
   await run(['flutter', 'create', '--no-pub', '--platforms=web', '--project-name=want_package_consumer', app], root);
   await cp(resolve(root, '.fvmrc'), resolve(app, '.fvmrc'));
-  await writeFile(resolve(app, 'pubspec.yaml'), `name: want_package_consumer\npublish_to: none\nenvironment:\n  sdk: ^3.13.5\ndependencies:\n  flutter:\n    sdk: flutter\n  flutter_localizations:\n    sdk: flutter\n  forui: ^0.27.7\n  material_ui: ^1.9.0\n  intl: ^0.20.3\n  web: ^1.1.1\n  want_allure:${hosted ? ' ' + version : '\n    path: ' + archive}\nflutter:\n  uses-material-design: true\n  generate: true\n`);
+  const exampleSpec = await readFile(resolve(root, 'packages/flutter/example/pubspec.yaml'), 'utf8');
+  const sourcePath = '  want_allure:\n    path: ../';
+  assert(exampleSpec.includes(sourcePath));
+  const consumerSpec = exampleSpec
+    .replace('name: want_allure_example', 'name: want_package_consumer')
+    .replace(sourcePath, hosted ? '  want_allure: ' + version : '  want_allure:\n    path: ' + JSON.stringify(archive));
+  await writeFile(resolve(app, 'pubspec.yaml'), consumerSpec);
   await cp(resolve(root, 'packages/flutter/example/lib'), resolve(app, 'lib'), { recursive: true });
   await cp(resolve(root, 'packages/flutter/example/l10n.yaml'), resolve(app, 'l10n.yaml'));
   for(const file of await readdir(resolve(app,'lib'),{recursive:true})) {
@@ -32,14 +38,21 @@ try {
     await writeFile(target,(await readFile(target,'utf8')).replaceAll('package:want_allure_example/','package:want_package_consumer/'));
   }
   await run(['flutter', 'pub', 'get'], app);
+  const matrix = JSON.parse(await readFile(resolve(root, 'docs/flutter-parity.json'), 'utf8')) as { flutter: string[] }[];
+  const names = [...new Set(matrix.flatMap(entry => entry.flutter))];
+  await writeFile(resolve(app, 'lib/public_contract.dart'),
+    "import 'package:want_allure/want_allure.dart' as kit;\nfinal publicTypes = <Type>[\n" + names.map(name => '  kit.' + name + ',').join('\n') + '\n];\n');
+  await run(['dart', 'analyze', 'lib/public_contract.dart'], app);
   await run(['flutter', 'build', 'web', '--release', '--no-pub'], app);
-  for (const name of ['shimmer', 'sphere', 'lightning']) {
+  for (const name of ['shimmer', 'sphere', 'lightning', 'threads']) {
     assert((await readFile(resolve(app, `build/web/assets/packages/want_allure/shaders/${name}.frag`))).length > 0);
   }
   for (const theme of ['light', 'dark']) assert((await readFile(resolve(app, `build/web/assets/packages/want_allure/assets/brand/allure/logos/${theme}/transparent.svg`))).length > 0);
   const manifest = await readFile(resolve(app, 'build/web/assets/FontManifest.json'), 'utf8');
   assert.match(manifest, /packages\/want_allure\/Manrope/);
   assert.match(manifest, /packages\/want_allure\/Days One/);
+  assert.match(manifest, /packages\/want_allure\/Pixelify Sans/);
+  assert.match(manifest, /packages\/want_allure\/ZCOOL XiaoWei/);
   assert.match(manifest, /packages\/phosphoricons_flutter\/PhosphorRegular/);
   console.log(`Flutter consumer passed using ${hosted ? 'pub.dev ' + version : 'isolated distribution files'}.`);
 } finally {

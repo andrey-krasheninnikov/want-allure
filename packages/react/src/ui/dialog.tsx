@@ -1,6 +1,8 @@
+import { usePortalHost } from '../brand-profile.js';
 import * as React from "react"
 import { cn } from "../utils.js"
 import { XIcon } from "lucide-react"
+import { ThemeIcon } from '../theme-icon.js';
 import { Dialog as DialogPrimitive } from "radix-ui"
 
 import { Button } from "./button.js"
@@ -20,7 +22,8 @@ function DialogTrigger({
 function DialogPortal({
   ...props
 }: React.ComponentProps<typeof DialogPrimitive.Portal>) {
-  return <DialogPrimitive.Portal data-slot="dialog-portal" {...props} />
+  const portalHost = usePortalHost();
+  return <DialogPrimitive.Portal container={portalHost} data-slot="dialog-portal" {...props} />
 }
 
 function DialogClose({
@@ -72,7 +75,7 @@ function DialogContent({
             data-slot="dialog-close"
             className="absolute top-2 end-2 flex size-11 items-center justify-center rounded-md opacity-70 ring-offset-background hover:opacity-100 focus:outline-hidden disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4"
           >
-            <XIcon />
+            <ThemeIcon iconRole="close" icon={XIcon} />
             <span className="sr-only">{closeLabel}</span>
           </DialogPrimitive.Close>
         )}

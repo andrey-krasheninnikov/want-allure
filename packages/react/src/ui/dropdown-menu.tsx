@@ -1,3 +1,4 @@
+import { usePortalHost } from '../brand-profile.js';
 import type { ComponentProps } from 'react';
 import { DropdownMenu as MenuPrimitive } from 'radix-ui';
 import { cn } from '../utils.js';
@@ -7,7 +8,8 @@ export const DropdownMenuTrigger = MenuPrimitive.Trigger;
 export const DropdownMenuGroup = MenuPrimitive.Group;
 
 export function DropdownMenuContent({ className, sideOffset = 6, ...props }: ComponentProps<typeof MenuPrimitive.Content>) {
-  return <MenuPrimitive.Portal><MenuPrimitive.Content data-slot="dropdown-menu-content" sideOffset={sideOffset} collisionPadding={8} className={cn('ui-dropdown-menu', className)} {...props} /></MenuPrimitive.Portal>;
+  const portalHost = usePortalHost();
+  return <MenuPrimitive.Portal container={portalHost}><MenuPrimitive.Content data-slot="dropdown-menu-content" sideOffset={sideOffset} collisionPadding={8} className={cn('ui-dropdown-menu', className)} {...props} /></MenuPrimitive.Portal>;
 }
 
 export function DropdownMenuItem({ className, ...props }: ComponentProps<typeof MenuPrimitive.Item>) {

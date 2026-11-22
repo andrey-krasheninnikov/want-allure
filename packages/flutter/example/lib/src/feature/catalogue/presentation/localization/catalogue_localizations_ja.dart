@@ -650,4 +650,278 @@ class CatalogueLocalizationsJa extends CatalogueLocalizations {
 
   @override
   String get changeLanguage => '言語';
+
+  @override
+  String get passAllItems => 'すべての項目';
+
+  @override
+  String get passWork => '仕事';
+
+  @override
+  String get passPinned => '固定済み';
+
+  @override
+  String get passDesignNotes => 'デザインノート';
+
+  @override
+  String get passReadingList => '読書リスト';
+
+  @override
+  String get passReleaseChecklist => 'リリース確認表';
+
+  @override
+  String get passGroups => 'グループ';
+
+  @override
+  String get passItems => '項目';
+
+  @override
+  String get passPreview => 'プレビュー';
+
+  @override
+  String get passCopyItemName => '項目名をコピー';
+
+  @override
+  String get passCopied => 'コピーされました';
+
+  @override
+  String get passCopyFailed => 'コピーできませんでした';
+
+  @override
+  String get passWorkspace => 'ワークスペース';
+
+  @override
+  String get passToggleMenu => 'メニューを切り替え';
+
+  @override
+  String get passCloseMenu => 'メニューを閉じる';
+
+  @override
+  String get passSearchItems => '項目を検索';
+
+  @override
+  String get passRemovePinnedFilter => '固定フィルターを解除';
+
+  @override
+  String get passFilter => '絞り込み';
+
+  @override
+  String get passResizeGroups => 'グループの幅を変更';
+
+  @override
+  String get passResizeItems => 'リストの幅を変更';
+
+  @override
+  String get passResizePreview => 'プレビューの幅を変更';
+
+  @override
+  String get passBack => '戻る';
+
+  @override
+  String get passSensitiveField => '機密情報の入力欄';
+
+  @override
+  String get passExamplePassword => 'パスワードの例';
+
+  @override
+  String get passShowPassword => 'パスワードを表示';
+
+  @override
+  String get passHidePassword => 'パスワードを隠す';
+
+  @override
+  String get passShowHint => 'ヒントを表示';
+
+  @override
+  String get passCopyHint => 'ヒントをコピー';
+
+  @override
+  String get passVerify => '確認';
+
+  @override
+  String get passExampleAccepted => '確認できました';
+
+  @override
+  String get passNameAndIcon => '名前とアイコン';
+
+  @override
+  String get passRequirements => '要件';
+
+  @override
+  String get passChooseAndExport => '選択と書き出し';
+
+  @override
+  String get passAtLeastEightCharacters => '8文字以上';
+
+  @override
+  String get passIncludesANumber => '数字を含む';
+
+  @override
+  String get passValuesMatch => '入力が一致';
+
+  @override
+  String get passUploadedImage => 'アップロードした画像';
+
+  @override
+  String get passPrimary => 'プライマリー';
+
+  @override
+  String get passGreen => '緑';
+
+  @override
+  String get passBlue => '青';
+
+  @override
+  String get passAmber => '琥珀色';
+
+  @override
+  String get passRose => 'ローズ';
+
+  @override
+  String get passInk => '墨色';
+
+  @override
+  String get passMuted => '淡色';
+
+  @override
+  String get passGuidedSetup => '初期設定ガイド';
+
+  @override
+  String get passChooseIconAndColor => 'アイコンと色を選択';
+
+  @override
+  String get passIcons => 'アイコン';
+
+  @override
+  String get passColors => '色';
+
+  @override
+  String get passUploadImage => '画像をアップロード';
+
+  @override
+  String get passName => '名前';
+
+  @override
+  String get passPassword => 'パスワード';
+
+  @override
+  String get passShowBothPasswords => '両方のパスワードを表示';
+
+  @override
+  String get passHideBothPasswords => '両方のパスワードを隠す';
+
+  @override
+  String get passRepeatPassword => 'パスワードを再入力';
+
+  @override
+  String get passChoice => '選択肢';
+
+  @override
+  String get passCopyJSON => 'JSONをコピー';
+
+  @override
+  String get passDownloadJSON => 'JSONをダウンロード';
+
+  @override
+  String get passShowQR => 'QRコードを表示';
+
+  @override
+  String get passNext => '次へ';
+
+  @override
+  String get passResetExample => '例をリセット';
+
+  @override
+  String get passClose => '閉じる';
+
+  @override
+  String get passSampleQR => 'QRコードの例';
+
+  @override
+  String get passISavedIt => '保存しました';
+
+  @override
+  String get passDeleteLocalSampleData => 'ローカルのサンプルデータを削除';
+
+  @override
+  String get passThisClearsTheNameAndChoicesEnteredInThisExample =>
+      'この例で入力した名前と選択内容を消去します。';
+
+  @override
+  String get passEnterDELETEToConfirm => '確認のためDELETEと入力';
+
+  @override
+  String get passEnterDELETEExactly => 'DELETEと正確に入力してください。';
+
+  @override
+  String get passCancel => 'キャンセル';
+
+  @override
+  String get passDeleteLocalData => 'ローカルデータを削除';
+
+  @override
+  String get passSavingFile => 'ファイルを保存中…';
+
+  @override
+  String get passFileSaved => 'ファイルを保存しました';
+
+  @override
+  String get passDownloadStarted => 'ダウンロードを開始しました';
+
+  @override
+  String get passSaveFailed => '保存できませんでした';
+
+  @override
+  String get passExport => '書き出し';
+
+  @override
+  String get passInteractiveScenes => 'インタラクティブなシーン';
+
+  @override
+  String get passActivateFeather => '羽根を動かす';
+
+  @override
+  String get passToggleLock => '錠を切り替え';
+
+  @override
+  String get passResume => '再開';
+
+  @override
+  String get passPause => '一時停止';
+
+  @override
+  String get passSphereAndLightning => '球体と稲妻';
+
+  @override
+  String get passLightThreads => '光の糸';
+
+  @override
+  String get passPreviewTheIntro => 'イントロをプレビュー';
+
+  @override
+  String get passReady => '準備完了';
+
+  @override
+  String get passFile => 'ファイル';
+
+  @override
+  String get passLink => 'リンク';
+
+  @override
+  String get passSearch => '検索';
+
+  @override
+  String get passImage => '画像';
+
+  @override
+  String get passCheck => 'チェック';
+
+  @override
+  String get passInfo => '情報';
+
+  @override
+  String get sortAscending => '昇順';
+
+  @override
+  String get sortDescending => '降順';
 }

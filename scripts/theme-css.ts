@@ -21,12 +21,32 @@ export function themeCss(): string {
     return selectors + '{font-family:var(' + family + ');font-size:var(--type-' + name + '-size);font-weight:var(--type-' + name +
       '-weight);line-height:var(--type-' + name + '-leading);letter-spacing:var(--type-' + name + '-tracking);}';
   }).join('');
-  const shared = '--radius:' + tokens.geometry.fieldRadiusPx + 'px;--panel-radius:' + tokens.geometry.panelRadiusPx + 'px;--media-radius:' + tokens.geometry.mediaRadiusPx + 'px;' +
+  const material = Object.entries(tokens.material).map(([name, value]) => '--material-' + name.replace(/[A-Z]/g, letter => '-' + letter.toLowerCase()) + ':' + value + 'px;').join('');
+  const shared = material + '--radius:' + tokens.geometry.fieldRadiusPx + 'px;--panel-radius:' + tokens.geometry.panelRadiusPx + 'px;--media-radius:' + tokens.geometry.mediaRadiusPx + 'px;' +
     '--glass-opacity:' + tokens.glass.opacityPercent + '%;--glass-blur:' + tokens.glass.blurPx + 'px;--glass-saturation:' + tokens.glass.saturationPercent + '%;' +
     '--motion-fast:' + tokens.motion.feedbackMs + 'ms;--motion-transition:' + tokens.motion.transitionMs + 'ms;--motion-glow:' + tokens.motion.glowMs + 'ms;--motion-ease:cubic-bezier(' + tokens.motion.easing.join(',') + ');' +
     '--want-font-chinese:' + fonts(tokens.typography.chinese) + ';--want-font-devanagari:' + fonts(tokens.typography.devanagari) + ';--want-font-hebrew:' + fonts(tokens.typography.hebrew) + ';--want-font-japanese:' + fonts(tokens.typography.japanese) + ';--want-font-arabic:' + fonts(tokens.typography.arabic) + ';--want-font-display:' + fonts(tokens.typography.display) + ';--want-font-sans:' + fonts(tokens.typography.body) + ';--want-font-mono:' + fonts(tokens.typography.mono) + ';';
+  const variableFamilies = new Set(['Manrope', 'Unbounded', 'Literata', 'IBM Plex Sans', 'Atkinson Hyperlegible Next', 'Pixelify Sans', 'Noto Kufi Arabic']);
+  const family = (name: string) => JSON.stringify(name + (variableFamilies.has(name) ? ' Variable' : ''));
+  const scriptFonts = {
+    ja: 'japanese', zh: 'chinese', ar: 'arabic', hi: 'devanagari', he: 'hebrew',
+  } as const;
+  const presetRules = Object.entries(tokens.typography.presets).filter(([name]) => name !== 'brand').map(([name, preset]) => {
+    const selector = '[data-typography="' + name + '"]';
+    const localDisplay: Record<string, string> = preset.localDisplay;
+    const localized = Object.entries(scriptFonts).map(([language, script]) => {
+      const scriptFont = 'var(--want-font-' + script + ')';
+      const display = localDisplay[language] ? family(localDisplay[language]) + ',' + scriptFont : scriptFont;
+      return selector + ':lang(' + language + '),' + selector + ' :lang(' + language + '){--font-display:' + display + ';--font-sans:' + scriptFont + ';}';
+    }).join('\n');
+    const ru = localDisplay.ru ? selector + ':lang(ru),' + selector + ' :lang(ru){--font-display:' + family(localDisplay.ru) +
+      ',var(--want-font-display);' + (name === 'humanist' ? '--font-sans:var(--want-font-sans);' : '') + '}' : '';
+    return selector + '{--font-display:' + family(preset.display) + ',var(--want-font-display);--font-sans:' + family(preset.body) +
+      ',var(--want-font-sans);--want-heading-weight:' + preset.weight + ';}\n' + localized + '\n' + ru;
+  }).join('\n') + '\n' +
+    '[data-typography]:not([data-typography="brand"]) :is(h1,h2,h3,h4,h5,h6,[data-slot="card-title"],.ui-typography[data-variant="display"],.ui-typography[data-variant^="h"]){font-family:var(--font-display);font-weight:var(--want-heading-weight);}';
   return ':root{' + values('light') + shared + typeStyles + '}\n' +
     '@media(prefers-color-scheme:dark){:root:not([data-theme]){' + values('dark') + '}}\n' +
     ':root[data-theme="dark"],:root.dark{' + values('dark') + '}\n' +
-    ':root[data-theme="light"]{' + values('light') + '}\n' + '@layer components{' + typeRules + '}\n';
+    ':root[data-theme="light"]{' + values('light') + '}\n' + '@layer components{' + typeRules + '}\n' + presetRules + '\n';
 }

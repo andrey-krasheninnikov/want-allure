@@ -1,5 +1,10 @@
 import tokens from '../tokens.json';
-export function initInteractionEffects() {
+export function initInteractionEffects(root: HTMLElement | Document = document) {
+  const parent = root instanceof Document ? root.body : root;
+  const disabledFor = (node: Element) => {
+    const scope = node.closest<HTMLElement>('[data-allure-scope]');
+    return scope && (scope !== root || ['quiet', 'off'].includes(scope.dataset.motion ?? ''));
+  };
   const motion = matchMedia('(prefers-reduced-motion: reduce)');
   const pointer = matchMedia('(hover: hover) and (pointer: fine)');
   const colors = matchMedia('(forced-colors: active)');
@@ -16,22 +21,22 @@ export function initInteractionEffects() {
     if (!allowed() || event.buttons || event.pointerType === 'touch') return;
     const target = event.target instanceof Element ? event.target : null;
     const control = target?.closest('a[href], button');
-    if (!control || target?.closest('input, textarea, select, [contenteditable]:not([contenteditable="false"]), img, picture, video, audio, canvas, iframe, model-viewer, [inert], [aria-disabled="true"], :disabled') || window.getSelection()?.toString() || sparks >= 3 || performance.now() - lastSpark < 160) return;
+    if (!control || !root.contains(control) || disabledFor(control) || target?.closest('input, textarea, select, [contenteditable]:not([contenteditable="false"]), img, picture, video, audio, canvas, iframe, model-viewer, [inert], [aria-disabled="true"], :disabled') || window.getSelection()?.toString() || sparks >= 3 || performance.now() - lastSpark < 160) return;
     lastSpark = performance.now(); sparks++;
     const spark = document.createElement('span'); spark.className = 'wand-spark'; spark.setAttribute('aria-hidden', 'true');
     spark.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 20 15 9m-1-3 4 4M18 2v4m-2-2h4M6 5v4M4 7h4"/></svg>';
     spark.style.left = `${event.clientX + 8}px`; spark.style.top = `${event.clientY - 16}px`;
-    document.body.append(spark);
+    parent.append(spark);
     const animation = spark.animate([{ opacity: .45, transform: 'translateY(0) rotate(-8deg)' }, { opacity: 0, transform: 'translateY(-10px) rotate(8deg)' }], { duration: 450 });
     animations.set(spark, animation);
     void animation.finished.catch(() => {}).finally(() => { spark.remove(); animations.delete(spark); sparks--; });
   };
-  document.addEventListener('pointermove', move, { passive: true });
+  root.addEventListener('pointermove', move as EventListener, { passive: true });
   motion.addEventListener('change', preferencesChanged);
   pointer.addEventListener('change', preferencesChanged);
   colors.addEventListener('change', preferencesChanged);
   return () => {
-    document.removeEventListener('pointermove', move);
+    root.removeEventListener('pointermove', move as EventListener);
     motion.removeEventListener('change', preferencesChanged);
     pointer.removeEventListener('change', preferencesChanged);
     colors.removeEventListener('change', preferencesChanged);
@@ -43,7 +48,8 @@ export function burstConfetti(anchor: HTMLElement): () => void {
   const motion = matchMedia('(prefers-reduced-motion: reduce)');
   const pointer = matchMedia('(hover: hover) and (pointer: fine)');
   const colors = matchMedia('(forced-colors: active)');
-  if (motion.matches || !pointer.matches || colors.matches) return () => {};
+  const host = anchor.closest<HTMLElement>('[data-allure-scope]') ?? anchor.ownerDocument.body;
+  if (['quiet', 'off'].includes(host.dataset.motion ?? '') || motion.matches || !pointer.matches || colors.matches) return () => {};
   const particles = new Map<HTMLElement, Animation>();
   const cleanup = () => {
     for (const [particle, animation] of particles) { animation.cancel(); particle.remove(); }
@@ -60,7 +66,7 @@ export function burstConfetti(anchor: HTMLElement): () => void {
     particle.style.left = (rect.left + rect.width / 2) + 'px';
     particle.style.top = (rect.top + rect.height / 2) + 'px';
     if (index % 3 === 0) particle.style.background = 'var(--foreground)';
-    document.body.append(particle);
+    host.append(particle);
     const angle = index * Math.PI * 2 / 18, distance = 45 + Math.random() * 45;
     const animation = particle.animate([
       { transform: 'translate(0, 0) rotate(0)', opacity: 1 },

@@ -1,6 +1,8 @@
+import { usePortalHost } from '../brand-profile.js';
 import * as React from "react"
 import { cn } from "../utils.js"
 import { XIcon } from "lucide-react"
+import { ThemeIcon } from '../theme-icon.js';
 import { Dialog as SheetPrimitive } from "radix-ui"
 
 function Sheet({ ...props }: React.ComponentProps<typeof SheetPrimitive.Root>) {
@@ -22,7 +24,8 @@ function SheetClose({
 function SheetPortal({
   ...props
 }: React.ComponentProps<typeof SheetPrimitive.Portal>) {
-  return <SheetPrimitive.Portal data-slot="sheet-portal" {...props} />
+  const portalHost = usePortalHost();
+  return <SheetPrimitive.Portal container={portalHost} data-slot="sheet-portal" {...props} />
 }
 
 function SheetOverlay({
@@ -76,7 +79,7 @@ function SheetContent({
         {children}
         {showCloseButton && (
           <SheetPrimitive.Close className="absolute top-2 end-2 flex size-11 items-center justify-center rounded-md opacity-70 ring-offset-background hover:opacity-100 focus:outline-hidden disabled:pointer-events-none data-[state=open]:bg-secondary">
-            <XIcon className="size-4" />
+            <ThemeIcon iconRole="close" icon={XIcon} className="size-4" />
             <span className="sr-only">{closeLabel}</span>
           </SheetPrimitive.Close>
         )}

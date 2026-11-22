@@ -36,6 +36,8 @@ class _WantMotionBuilderState extends State<WantMotionBuilder>
   bool get _allowed =>
       _active &&
       !widget.paused &&
+      !(widget.repeat &&
+          WantTheme.maybeOf(context)?.profile.motion == WantMotion.quiet) &&
       TickerMode.valuesOf(context).enabled &&
       !WantTheme.reducedMotionOf(context);
   void _sync() {

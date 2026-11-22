@@ -24,10 +24,10 @@ void main() {
     () {
       const expected = {
         'primary': Color(0xFF5962F0),
-        'success': Color(0xFF7DF04A),
-        'info': Color(0xFF28D7F5),
-        'warning': Color(0xFFFFD43B),
-        'error': Color(0xFFFF526D),
+        'success': Color(0xFF39B986),
+        'info': Color(0xFF48A6D9),
+        'warning': Color(0xFFF0AF43),
+        'error': Color(0xFFE66A78),
       };
       final light = WantThemeData.light(), dark = WantThemeData.dark();
       for (final entry in expected.entries) {
@@ -78,6 +78,10 @@ void main() {
         overrides: {'primary': const Color(0xFF3248AA)},
       );
       expect(custom.forui.colors.primary, const Color(0xFF3248AA));
+      expect(
+        custom.forui.style.focusedOutlineStyle.color,
+        custom.color('primary'),
+      );
       expect(WantTokens.light['primary'], const Color(0xFF5962F0));
       expect(
         () => custom.colors['primary'] = const Color(0x00000000),
@@ -85,6 +89,18 @@ void main() {
       );
     },
   );
+
+  test('dark focus uses the ring token and honors a separate override', () {
+    final dark = WantThemeData.dark();
+    expect(dark.forui.style.focusedOutlineStyle.color, const Color(0xFFA3A8FF));
+
+    const customRing = Color(0xFFE8B46F);
+    final custom = WantThemeData.dark(
+      overrides: {'primary': const Color(0xFF3248AA), 'ring': customRing},
+    );
+    expect(custom.forui.style.focusedOutlineStyle.color, customRing);
+    expect(custom.color('ring'), customRing);
+  });
 
   test('URL controls accept only complete HTTP(S) URLs', () {
     for (final value in [

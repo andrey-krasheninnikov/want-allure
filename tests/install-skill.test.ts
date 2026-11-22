@@ -66,6 +66,26 @@ test('invalid bundles fail before creating a destination', async () => {
   expect(await lstat(join(input.cwd, '.agents')).catch(() => null)).toBeNull();
 });
 
+test('check is read-only and a verified update preserves local additions and edits', async () => {
+  const input = await fixture();
+  const missing = await installSkill({ ...input, check: true });
+  expect(missing.alreadyInstalled).toBe(false);
+  expect(await lstat(missing.target).catch(() => null)).toBeNull();
+  const { target } = await installSkill(input);
+  await writeFile(join(target, 'local.md'), 'Keep');
+  await symlink('local.md', join(target, 'note-link'));
+  await writeFile(join(input.source, 'SKILL.md'), 'Version two');
+  await rm(join(input.source, 'references/tokens.json'));
+  expect((await installSkill({ ...input, check: true })).differences).toEqual(['SKILL.md', 'references/tokens.json']);
+  expect((await installSkill({ ...input, update: true })).updated).toBe(true);
+  expect(await readFile(join(target, 'local.md'), 'utf8')).toBe('Keep');
+  expect((await lstat(join(target, 'note-link'))).isSymbolicLink()).toBe(true);
+  expect(await lstat(join(target, 'references/tokens.json')).catch(() => null)).toBeNull();
+  await writeFile(join(target, 'SKILL.md'), 'Local instructions');
+  await expect(installSkill({ ...input, update: true })).rejects.toThrow('Local modification');
+  expect(await readFile(join(target, 'SKILL.md'), 'utf8')).toBe('Local instructions');
+});
+
 test('arguments reject conflicting and incomplete options', () => {
   expect(parseArgs(['--global']).global).toBe(true);
   expect(parseArgs(['--', '--dest', 'path with spaces']).dest).toBe('path with spaces');

@@ -42,10 +42,14 @@ function Button({
   variant = "default",
   size = "default",
   asChild = false,
+  busy = false,
+  disabled,
+  onClickCapture,
   ...props
 }: React.ComponentProps<"button"> &
   VariantProps<typeof buttonVariants> & {
     asChild?: boolean
+    busy?: boolean
   }) {
   const Comp = asChild ? Slot.Root : "button"
 
@@ -54,6 +58,14 @@ function Button({
       data-slot="button"
       data-variant={variant}
       data-size={size}
+      data-busy={busy || undefined}
+      aria-busy={busy || undefined}
+      disabled={asChild ? disabled : (disabled || busy)}
+      aria-disabled={(asChild && (disabled || busy)) || props["aria-disabled"]}
+      onClickCapture={event => {
+        if (asChild && (disabled || busy)) { event.preventDefault(); event.stopPropagation(); return }
+        onClickCapture?.(event)
+      }}
       className={cn(buttonVariants({ variant, size, className }))}
       {...props}
     />

@@ -1,3 +1,4 @@
+import { chooseTheme } from './helpers';
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
@@ -13,7 +14,7 @@ for (const locale of ['en', 'ru']) for (const width of [320, 1440]) {
     await expect(page.locator('html')).toHaveAttribute('lang', locale);
     await expect(page.locator('h1')).toContainText(locale === 'ru' ? 'Один язык.' : 'One language.');
     for (const theme of ['light', 'dark']) {
-      await page.getByRole('switch', {name:/^(Dark theme|Тёмная тема)$/}).setChecked(theme === 'dark');
+      await chooseTheme(page, theme);
       await expect(page.locator('html')).toHaveAttribute('data-theme', theme);
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
       const result = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze();
@@ -30,15 +31,15 @@ for (const locale of ['en', 'ru']) for (const width of [320, 1440]) {
 
 test('locale select preserves category and saved theme',async({page})=>{
   await page.goto('/react/?section=navigation');await expect(page.locator('astro-island[ssr]')).toHaveCount(0);
-  await page.getByRole('switch',{name:'Dark theme',exact:true}).check();
-  await page.getByRole('combobox',{name:'Language',exact:true}).click();await page.getByRole('option',{name:'Русский'}).click();
+  await chooseTheme(page, 'dark');
+  await page.getByRole('button',{name:'Language',exact:true}).click();await page.getByRole('menuitem',{name:'Русский'}).click();
   await expect(page).toHaveURL(/\/ru\/react\/\?section=navigation$/);
   await expect(page.getByRole('heading',{name:'Компоненты в действии',exact:true})).toBeVisible();
   await expect(page.locator('html')).toHaveAttribute('data-theme','dark');
   await page.getByRole('button',{name:'Открыть диалог',exact:true}).click();await page.getByRole('dialog').getByRole('button',{name:'Закрыть',exact:true}).click();
   await page.getByRole('tablist',{name:'Разделы каталога'}).getByRole('tab',{name:'Основа',exact:true}).click();
   await page.getByRole('switch',{name:'Тема компонента',exact:true}).uncheck();await expect(page.locator('html')).toHaveAttribute('data-theme','light');
-  await page.getByRole('combobox',{name:'Язык',exact:true}).click();await page.getByRole('option',{name:'English'}).click();
+  await page.getByRole('button',{name:'Язык',exact:true}).click();await page.getByRole('menuitem',{name:'English'}).click();
   await expect(page).toHaveURL(/\/react\/$/);await expect(page.getByRole('heading',{name:'Brand and theme',exact:true})).toBeVisible();
 });
 
@@ -54,7 +55,7 @@ test('Flutter synchronizes theme without restarting and rejects unrelated messag
   await expect.poll(() => frame.evaluate(() => document.documentElement.lang)).toBe('ru');
   await frame.evaluate(() => { (window as Window & { catalogueIdentity?: string }).catalogueIdentity = 'preserved'; });
   for (const theme of ['light', 'dark']) {
-    await page.getByRole('switch', {name:/^(Dark theme|Тёмная тема)$/}).setChecked(theme === 'dark');
+    await chooseTheme(page, theme);
     await expect.poll(() => frame.evaluate(() => document.documentElement.dataset.theme)).toBe(theme);
     expect(await frame.evaluate(() => (window as Window & { catalogueIdentity?: string }).catalogueIdentity)).toBe('preserved');
     await page.screenshot({ path: testInfo.outputPath(`flutter-ru-${theme}.png`) });
@@ -67,7 +68,7 @@ test('Flutter synchronizes theme without restarting and rejects unrelated messag
   });
   await expect.poll(() => frame.evaluate(() => document.documentElement.dataset.theme)).toBe('light');
   await frame.evaluate(() => parent.postMessage({ type: 'want-allure:choose-theme', theme: 'dark' }, location.origin));
-  await expect(page.getByRole('switch', {name:/^(Dark theme|Тёмная тема)$/})).toBeChecked();
+  await expect(page.locator('html')).toHaveAttribute('data-theme-mode', 'dark');
   await expect.poll(() => frame.evaluate(() => document.documentElement.dataset.theme)).toBe('dark');
   expect(await frame.evaluate(() => (window as Window & { catalogueIdentity?: string }).catalogueIdentity)).toBe('preserved');
   await page.setViewportSize({ width: 320, height: 900 });

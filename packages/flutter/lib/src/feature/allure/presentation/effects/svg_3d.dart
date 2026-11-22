@@ -16,7 +16,10 @@ class WantSvg3D extends StatefulWidget {
   final FutureOr<String> Function(BuildContext) svgBuilder;
   final String semanticsLabel;
   final double depth;
-  final bool autoRotate, paused, glow;
+  final EdgeInsetsGeometry contentPadding;
+  final bool autoRotate, paused, glow, active;
+  final String? movingPart;
+  final VoidCallback? onPressed;
   final WidgetBuilder? placeholderBuilder;
   final Widget Function(BuildContext, Object)? errorBuilder;
   WantSvg3D.asset(
@@ -30,6 +33,10 @@ class WantSvg3D extends StatefulWidget {
     this.glow = true,
     this.placeholderBuilder,
     this.errorBuilder,
+    this.movingPart,
+    this.active = false,
+    this.onPressed,
+    this.contentPadding = EdgeInsets.zero,
   }) : svgBuilder = ((context) => DefaultAssetBundle.of(context)
            .loadString(package == null ? asset : 'packages/$package/$asset'));
   WantSvg3D.string(
@@ -42,6 +49,10 @@ class WantSvg3D extends StatefulWidget {
     this.glow = true,
     this.placeholderBuilder,
     this.errorBuilder,
+    this.movingPart,
+    this.active = false,
+    this.onPressed,
+    this.contentPadding = EdgeInsets.zero,
   }) : svgBuilder = ((context) => svg);
   const WantSvg3D.builder({
     super.key,
@@ -53,6 +64,10 @@ class WantSvg3D extends StatefulWidget {
     this.glow = true,
     this.placeholderBuilder,
     this.errorBuilder,
+    this.movingPart,
+    this.active = false,
+    this.onPressed,
+    this.contentPadding = EdgeInsets.zero,
   });
   @override
   State<WantSvg3D> createState() => _WantSvg3DState();
@@ -65,7 +80,8 @@ class _WantSvg3DState extends State<WantSvg3D> {
     lightStrength: .7,
     ambientLightStrength: .65,
   );
-  List<Face3D>? _faces;
+  List<Face3D>? _faces, _movingFaces;
+  String? _partSource;
   Widget? _scene;
   double? _angle;
   String? _source;
@@ -73,7 +89,7 @@ class _WantSvg3DState extends State<WantSvg3D> {
   Object? _error;
   int _load = 0;
   double _manual = 0;
-  bool _dragging = false;
+  bool _dragging = false, _focused = false;
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -83,7 +99,9 @@ class _WantSvg3DState extends State<WantSvg3D> {
   @override
   void didUpdateWidget(WantSvg3D old) {
     super.didUpdateWidget(old);
-    if (old.svgBuilder != widget.svgBuilder || old.depth != widget.depth) {
+    if (old.svgBuilder != widget.svgBuilder ||
+        old.depth != widget.depth ||
+        old.movingPart != widget.movingPart) {
       _read();
     }
   }
@@ -93,11 +111,20 @@ class _WantSvg3DState extends State<WantSvg3D> {
     try {
       final source = await widget.svgBuilder(context);
       if (!mounted || load != _load) return;
-      if (source == _source && _depth == widget.depth && _faces != null) return;
+      if (source == _source &&
+          _depth == widget.depth &&
+          _partSource == widget.movingPart &&
+          _faces != null) {
+        return;
+      }
       _source = source;
       final faces = _extrude(source, widget.depth);
+      final part = widget.movingPart;
+      final moving = part == null ? null : _extrude(part, widget.depth);
       setState(() {
         _faces = faces;
+        _movingFaces = moving;
+        _partSource = part;
         _scene = ExcludeSemantics(
           child: DiTreDi(figures: faces, controller: _controller),
         );
@@ -123,27 +150,73 @@ class _WantSvg3DState extends State<WantSvg3D> {
     super.dispose();
   }
 
+  Widget _picture(BuildContext context, Widget child) => DecoratedBox(
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(12),
+      border: _focused
+          ? Border.all(
+              color:
+                  WantTheme.maybeOf(context)?.color('ring') ??
+                  const Color(0xff5962f0),
+              width: 2,
+            )
+          : null,
+    ),
+    child: Padding(padding: widget.contentPadding, child: child),
+  );
+
+  Widget _fallback(Widget child) => widget.onPressed == null
+      ? child
+      : Semantics(
+          button: true,
+          label: widget.semanticsLabel,
+          onTap: widget.onPressed,
+          child: Focus(
+            onFocusChange: (focused) => setState(() => _focused = focused),
+            onKeyEvent: (_, event) {
+              if (event is! KeyDownEvent ||
+                  (event.logicalKey != LogicalKeyboardKey.enter &&
+                      event.logicalKey != LogicalKeyboardKey.space)) {
+                return KeyEventResult.ignored;
+              }
+              widget.onPressed?.call();
+              return KeyEventResult.handled;
+            },
+            child: GestureDetector(
+              behavior: HitTestBehavior.opaque,
+              onTap: widget.onPressed,
+              child: _picture(context, child),
+            ),
+          ),
+        );
+
   @override
   Widget build(BuildContext context) {
     if (_error != null) {
-      return widget.errorBuilder?.call(context, _error!) ??
-          (_source == null
-              ? const SizedBox.shrink()
-              : SvgPicture.string(
-                  _source!,
-                  semanticsLabel: widget.semanticsLabel,
-                  errorBuilder: (_, error, stackTrace) =>
-                      const SizedBox.shrink(),
-                ));
+      return _fallback(
+        widget.errorBuilder?.call(context, _error!) ??
+            widget.placeholderBuilder?.call(context) ??
+            (_source == null
+                ? const SizedBox.shrink()
+                : SvgPicture.string(
+                    _source!,
+                    semanticsLabel: widget.semanticsLabel,
+                    errorBuilder: (_, error, stackTrace) =>
+                        const SizedBox.shrink(),
+                  )),
+      );
     }
     if (_faces == null) {
-      return widget.placeholderBuilder?.call(context) ??
-          const SizedBox.shrink();
+      return _fallback(
+        widget.placeholderBuilder?.call(context) ?? const SizedBox.shrink(),
+      );
     }
     final reduced = WantTheme.reducedMotionOf(context);
     return Semantics(
       label: widget.semanticsLabel,
-      image: true,
+      image: widget.onPressed == null,
+      button: widget.onPressed != null,
+      onTap: widget.onPressed,
       child: WantViewportMotion(
         child: RepaintBoundary(
           child: Stack(
@@ -173,8 +246,15 @@ class _WantSvg3DState extends State<WantSvg3D> {
                   ),
                 ),
               Focus(
+                onFocusChange: (focused) => setState(() => _focused = focused),
                 onKeyEvent: (node, event) {
                   if (event is! KeyDownEvent) return KeyEventResult.ignored;
+                  if (widget.onPressed != null &&
+                      (event.logicalKey == LogicalKeyboardKey.enter ||
+                          event.logicalKey == LogicalKeyboardKey.space)) {
+                    widget.onPressed!();
+                    return KeyEventResult.handled;
+                  }
                   if (event.logicalKey != LogicalKeyboardKey.arrowLeft &&
                       event.logicalKey != LogicalKeyboardKey.arrowRight) {
                     return KeyEventResult.ignored;
@@ -190,6 +270,9 @@ class _WantSvg3DState extends State<WantSvg3D> {
                 child: MouseRegion(
                   cursor: SystemMouseCursors.grab,
                   child: GestureDetector(
+                    behavior: HitTestBehavior.opaque,
+                    excludeFromSemantics: true,
+                    onTap: widget.onPressed,
                     onHorizontalDragStart: (_) =>
                         setState(() => _dragging = true),
                     onHorizontalDragUpdate: (event) =>
@@ -198,24 +281,58 @@ class _WantSvg3DState extends State<WantSvg3D> {
                         setState(() => _dragging = false),
                     onHorizontalDragCancel: () =>
                         setState(() => _dragging = false),
-                    child: WantMotionBuilder(
-                      duration: const Duration(seconds: 24),
-                      paused: widget.paused || !widget.autoRotate || _dragging,
-                      builder: (context, t) {
-                        final phase = (t * 720).floor() / 720;
-                        final angle =
-                            _manual -
-                            20 +
-                            (reduced
-                                ? 0
-                                : phase * 360 +
-                                      14 * math.sin(phase * math.pi * 2));
-                        if (_angle != angle) {
-                          _angle = angle;
-                          _controller.update(rotationY: angle);
-                        }
-                        return _scene!;
-                      },
+                    child: _picture(
+                      context,
+                      WantMotionBuilder(
+                        duration: const Duration(seconds: 24),
+                        paused:
+                            widget.paused || !widget.autoRotate || _dragging,
+                        builder: (context, t) {
+                          final phase = (t * 720).floor() / 720;
+                          final angle =
+                              _manual -
+                              20 +
+                              (reduced
+                                  ? 0
+                                  : phase * 360 +
+                                        14 * math.sin(phase * math.pi * 2));
+                          if (_angle != angle) {
+                            _angle = angle;
+                            _controller.update(rotationY: angle);
+                          }
+                          final moving = _movingFaces;
+                          if (moving == null) return _scene!;
+                          return TweenAnimationBuilder<double>(
+                            tween: Tween<double>(end: widget.active ? 1 : 0),
+                            duration: reduced || widget.paused
+                                ? Duration.zero
+                                : const Duration(milliseconds: 180),
+                            builder: (context, opening, child) {
+                              vector.Vector3 lift(vector.Vector3 point) =>
+                                  vector.Vector3(
+                                    point.x + opening * .08,
+                                    point.y + opening * .24,
+                                    point.z,
+                                  );
+                              return ExcludeSemantics(
+                                child: DiTreDi(
+                                  controller: _controller,
+                                  figures: [
+                                    ..._faces!,
+                                    for (final face in moving)
+                                      Face3D.fromVertices(
+                                        lift(face.triangle.point0),
+                                        lift(face.triangle.point1),
+                                        lift(face.triangle.point2),
+                                        color: face.color,
+                                      ),
+                                  ],
+                                ),
+                              );
+                            },
+                          );
+                        },
+                      ),
                     ),
                   ),
                 ),

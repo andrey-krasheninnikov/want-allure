@@ -44,9 +44,16 @@ Future<T?> showWantDialog<T>({
   required WidgetBuilder builder,
   bool dismissible = true,
   String? barrierLabel,
-}) => showFDialog<T>(
-  context: context,
-  barrierDismissible: dismissible,
-  barrierLabel: barrierLabel,
-  builder: (context, style, animation) => builder(context),
-);
+}) {
+  final environment = captureWantOverlayEnvironment(
+    context,
+    Navigator.of(context, rootNavigator: true).context,
+  );
+  return showFDialog<T>(
+    context: context,
+    barrierDismissible: dismissible,
+    barrierLabel: barrierLabel,
+    builder: (context, style, animation) =>
+        environment(Builder(builder: builder)),
+  );
+}

@@ -19,6 +19,7 @@ export * from './ui/tabs.js';
 export * from './ui/textarea.js';
 
 export * from './brand.js';
+export { AllureProvider, useAllureBrand, type AllureProviderProps, type AllureResources } from './brand-profile.js';
 export * from './media-card.js';
 export * from './contact-card.js';
 export * from './theme-toggle.js';
@@ -45,3 +46,9 @@ export * from './glow.js';
 export * from './snackbar.js';
 export * from './lightning-background.js';
 export * from './ui/slider.js';
+export * from './appearance-picker.js';
+export * from './theme-icon.js';
+export * from './workspace.js';
+export * from './field-actions.js';
+export * from './setup.js';
+export * from './scene.js';

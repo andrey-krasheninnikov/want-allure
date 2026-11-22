@@ -1,5 +1,6 @@
 import { useId, type ReactNode } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ThemeIcon } from './theme-icon.js';
 import { Button } from './ui/button.js';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select.js';
 import { cn } from './utils.js';
@@ -26,9 +27,9 @@ export function Pagination({ page, pageSize, totalItems, onChange, pageSizeOptio
   return <nav data-slot="pagination" aria-label={labels.navigation} className={cn('ui-pagination', className)}>
     <p className="ui-pagination-results" dir="auto" aria-live="polite">{labels.results(total ? (current - 1) * size + 1 : 0, Math.min(current * size, total), total)}</p>
     <div className="ui-pagination-pages">
-      <Button type="button" variant="secondary" size="icon" aria-label={labels.previous} disabled={current === 1} onClick={() => onChange(current - 1, size)}><ChevronLeft aria-hidden="true" /></Button>
-      {pages.map(value => <Button type="button" key={value} variant={value === current ? 'default' : 'ghost'} aria-label={labels.page(value)} aria-current={value === current ? 'page' : undefined} onClick={() => { if (value !== current) onChange(value, size); }}>{value}</Button>)}
-      <Button type="button" variant="secondary" size="icon" aria-label={labels.next} disabled={current === count} onClick={() => onChange(current + 1, size)}><ChevronRight aria-hidden="true" /></Button>
+      <Button type="button" variant="secondary" size="icon" aria-label={labels.previous} disabled={current === 1} onClick={() => onChange(current - 1, size)}><ThemeIcon iconRole="previous" icon={ChevronLeft} aria-hidden="true" /></Button>
+      {pages.map(value => <Button type="button" key={value} data-page-number="" variant={value === current ? 'default' : 'ghost'} aria-label={labels.page(value)} aria-current={value === current ? 'page' : undefined} onClick={() => { if (value !== current) onChange(value, size); }}>{value}</Button>)}
+      <Button type="button" variant="secondary" size="icon" aria-label={labels.next} disabled={current === count} onClick={() => onChange(current + 1, size)}><ThemeIcon iconRole="next" icon={ChevronRight} aria-hidden="true" /></Button>
     </div>
     <div className="ui-pagination-size"><label htmlFor={sizeId}>{labels.pageSize}</label>
       <Select value={String(size)} onValueChange={value => onChange(1, Number(value))}><SelectTrigger id={sizeId}><SelectValue /></SelectTrigger><SelectContent>{sizes.map(value => <SelectItem key={value} value={String(value)}>{value}</SelectItem>)}</SelectContent></Select>

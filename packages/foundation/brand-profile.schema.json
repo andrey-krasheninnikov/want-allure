@@ -1,0 +1,303 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Allure brand profile v1",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "brandColor": {
+      "$ref": "#/$defs/color"
+    },
+    "paletteStyle": {
+      "enum": [
+        "smooth",
+        "contrast",
+        "neon",
+        "acid"
+      ]
+    },
+    "typographyPreset": {
+      "enum": [
+        "brand",
+        "geometric",
+        "editorial",
+        "technical",
+        "humanist",
+        "pixel"
+      ]
+    },
+    "colors": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "light": {
+          "$ref": "#/$defs/roles"
+        },
+        "dark": {
+          "$ref": "#/$defs/roles"
+        }
+      }
+    },
+    "radii": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "field": {
+          "$ref": "#/$defs/radius"
+        },
+        "panel": {
+          "$ref": "#/$defs/radius"
+        },
+        "media": {
+          "$ref": "#/$defs/radius"
+        },
+        "action": {
+          "$ref": "#/$defs/radius"
+        }
+      }
+    },
+    "density": {
+      "enum": [
+        "comfortable",
+        "compact"
+      ]
+    },
+    "surface": {
+      "enum": [
+        "flat",
+        "soft",
+        "glass"
+      ]
+    },
+    "motion": {
+      "enum": [
+        "standard",
+        "quiet",
+        "off"
+      ]
+    },
+    "fonts": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "display": {
+          "$ref": "#/$defs/resource"
+        },
+        "body": {
+          "$ref": "#/$defs/resource"
+        },
+        "mono": {
+          "$ref": "#/$defs/resource"
+        },
+        "ja": {
+          "$ref": "#/$defs/resource"
+        },
+        "zh": {
+          "$ref": "#/$defs/resource"
+        },
+        "ar": {
+          "$ref": "#/$defs/resource"
+        },
+        "hi": {
+          "$ref": "#/$defs/resource"
+        },
+        "he": {
+          "$ref": "#/$defs/resource"
+        }
+      }
+    },
+    "icons": {
+      "type": "object",
+      "propertyNames": {
+        "$ref": "#/$defs/resource"
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/resource"
+      }
+    },
+    "logos": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "light": {
+          "$ref": "#/$defs/resource"
+        },
+        "dark": {
+          "$ref": "#/$defs/resource"
+        },
+        "mark": {
+          "$ref": "#/$defs/resource"
+        }
+      }
+    }
+  },
+  "required": [
+    "schemaVersion"
+  ],
+  "$defs": {
+    "roles": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "background": {
+          "$ref": "#/$defs/color"
+        },
+        "foreground": {
+          "$ref": "#/$defs/color"
+        },
+        "card": {
+          "$ref": "#/$defs/color"
+        },
+        "card-foreground": {
+          "$ref": "#/$defs/color"
+        },
+        "popover": {
+          "$ref": "#/$defs/color"
+        },
+        "popover-foreground": {
+          "$ref": "#/$defs/color"
+        },
+        "primary": {
+          "$ref": "#/$defs/color"
+        },
+        "primary-edge": {
+          "$ref": "#/$defs/color"
+        },
+        "primary-foreground": {
+          "$ref": "#/$defs/color"
+        },
+        "secondary": {
+          "$ref": "#/$defs/color"
+        },
+        "secondary-foreground": {
+          "$ref": "#/$defs/color"
+        },
+        "muted": {
+          "$ref": "#/$defs/color"
+        },
+        "muted-foreground": {
+          "$ref": "#/$defs/color"
+        },
+        "accent": {
+          "$ref": "#/$defs/color"
+        },
+        "accent-foreground": {
+          "$ref": "#/$defs/color"
+        },
+        "destructive": {
+          "$ref": "#/$defs/color"
+        },
+        "border": {
+          "$ref": "#/$defs/color"
+        },
+        "input": {
+          "$ref": "#/$defs/color"
+        },
+        "ring": {
+          "$ref": "#/$defs/color"
+        },
+        "link": {
+          "$ref": "#/$defs/color"
+        },
+        "primary-hover": {
+          "$ref": "#/$defs/color"
+        },
+        "primary-active": {
+          "$ref": "#/$defs/color"
+        },
+        "media-ground": {
+          "$ref": "#/$defs/color"
+        },
+        "glass-highlight": {
+          "$ref": "#/$defs/color"
+        },
+        "error": {
+          "$ref": "#/$defs/color"
+        },
+        "error-surface": {
+          "$ref": "#/$defs/color"
+        },
+        "error-foreground": {
+          "$ref": "#/$defs/color"
+        },
+        "warning": {
+          "$ref": "#/$defs/color"
+        },
+        "warning-surface": {
+          "$ref": "#/$defs/color"
+        },
+        "warning-foreground": {
+          "$ref": "#/$defs/color"
+        },
+        "info": {
+          "$ref": "#/$defs/color"
+        },
+        "info-surface": {
+          "$ref": "#/$defs/color"
+        },
+        "info-foreground": {
+          "$ref": "#/$defs/color"
+        },
+        "success": {
+          "$ref": "#/$defs/color"
+        },
+        "success-surface": {
+          "$ref": "#/$defs/color"
+        },
+        "success-foreground": {
+          "$ref": "#/$defs/color"
+        },
+        "shimmer-highlight": {
+          "$ref": "#/$defs/color"
+        },
+        "error-text": {
+          "$ref": "#/$defs/color"
+        },
+        "warning-text": {
+          "$ref": "#/$defs/color"
+        },
+        "info-text": {
+          "$ref": "#/$defs/color"
+        },
+        "success-text": {
+          "$ref": "#/$defs/color"
+        },
+        "destructive-foreground": {
+          "$ref": "#/$defs/color"
+        },
+        "destructive-text": {
+          "$ref": "#/$defs/color"
+        },
+        "primary-text": {
+          "$ref": "#/$defs/color"
+        },
+        "primary-soft": {
+          "$ref": "#/$defs/color"
+        },
+        "surface-highlight": {
+          "$ref": "#/$defs/color"
+        },
+        "surface-shadow": {
+          "$ref": "#/$defs/color"
+        }
+      }
+    },
+    "color": {
+      "type": "string",
+      "pattern": "^#[0-9A-Fa-f]{6}$"
+    },
+    "resource": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128,
+      "pattern": "^\\S(?:[\\s\\S]*\\S)?$"
+    },
+    "radius": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 999
+    }
+  }
+}

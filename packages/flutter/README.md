@@ -9,7 +9,7 @@ ForUI-based Want components for Android, iOS, web, macOS, Windows and Linux. The
 Requires Flutter 3.47.7 and Dart 3.13.5 or newer.
 
 ```sh
-flutter pub add want_allure:^1.3.0
+flutter pub add want_allure:^1.4.0
 ```
 
 Use your existing application shell and localization setup. Apply WantTheme in the application builder so routes and overlays inherit the theme:
@@ -39,15 +39,34 @@ class ContinueAction extends StatelessWidget {
 
 Add `FLocalizations.localizationsDelegates` and `FLocalizations.supportedLocales` to the application's localization configuration. These setup helpers and `FLucideIcons` are available from the public import. The example shows a complete application.
 
+## Appearance
+
+Pass optional `primaryColor`, `paletteStyle` and `typographyPreset` to either theme factory. With these options omitted, the theme uses the original accent and fonts.
+
+```dart
+final theme = WantThemeData.dark(
+  locale: const Locale('ja'),
+  primaryColor: const Color(0xFF29C38F),
+  paletteStyle: WantPaletteStyle.neon,
+  typographyPreset: WantTypographyPreset.pixel,
+);
+```
+
+Custom primary uses opaque sRGB with HSL saturation from 45% to 90% and lightness from 40% to 70%, inclusive. Validate user input with `isSupportedWantPrimaryColor` before creating theme data. The resolved accent may adjust in each mode to retain contrast. Explicit `overrides` take precedence. Palette style and primary hue affect the status fills, and each mode resolves readable status text.
+
+Locale-specific display faces cover Japanese, simplified Chinese and Arabic when the selected preset has a match. The body keeps its Noto fallback for those scripts, Devanagari and Hebrew. `WantIcon` uses preset variants for shared `WantIcons` glyphs. Fonts are bundled.
+
+Pass the chosen `WantThemeMode` and resolved `brightness` to `WantThemePicker`. Supply localized labels for system, light and dark. `WantLanguagePicker<T>` takes `WantLanguageOption<T>` records with `value`, `name`, `code` and `flag`. The app owns `onChanged`, persistence and locale changes.
+
 ## Components
 
-The public API covers all 44 web families: forms, navigation, cards, overlays, tables, pagination, file selection, date/time and URL fields, brand/media/contact/comment compositions, typography, loaders, shimmer, animated text, Glow and semantic snackbars. Native builders and slots replace React-only trigger and portal parts.
+The public API covers the web component families: forms, navigation, cards, overlays, tables, pagination, file selection, date/time and URL fields, brand/media/contact/comment compositions, typography, loaders, shimmer, animated text, Glow and semantic snackbars. Native builders and slots replace React-only trigger and portal parts.
 
 See the [component parity table](https://github.com/andrey-krasheninnikov/want-allure/blob/v1.0.0/docs/flutter-parity.md) and [interactive example source](https://github.com/andrey-krasheninnikov/want-allure/tree/v1.0.0/packages/flutter/example).
 
 Components receive values, labels and callbacks. A null button callback disables interaction. WantCheckbox supports a controlled mixed state through indeterminate. Applications own routes, URLs launched by `onOpen`, data, persistence, time-zone conversion and uploads. The package adds no state-management framework or product services.
 
-WantThemeData.light/dark provide the same primary #5962F0, success #7DF04A, info #28D7F5, warning #FFD43B and error #FF526D accents. Separate text roles preserve contrast. Override semantic values intentionally through the theme's overrides map. The source of truth remains the shared foundation JSON.
+WantThemeData.light/dark provide the same primary #5962F0, success #39B986, info #48A6D9, warning #F0AF43 and error #E66A78 accents. Separate text roles preserve contrast. Override semantic values intentionally through the theme's overrides map. The source of truth remains the shared foundation JSON.
 
 WantTypography provides display, h1–h6, lead, body, small, caption, label, overline, mono, code, codeBlock and quote. TTF fonts and their licenses are bundled; no font download occurs at runtime. The Wallpapers SVG remains available at `assets/brand/wallpapers.svg` in package `want_allure`; products supply their own logo when appropriate.
 
@@ -198,3 +217,34 @@ The initial SVG contract supports paths with solid hex fills, plain rectangles, 
 ## Table transitions
 
 Pass a stable `rowKey` and a `transitionKey` representing the current page or sort state to animate incoming rows in sequence. Without `transitionKey`, rows render immediately. Reduced motion removes transitions. Header and body cells share alignment and padding; pagination stays mounted while rows change.
+
+## Portable brand profile
+
+Use a version 1 profile when an application supplies its own brand. The optional resource registry maps profile IDs to fonts declared in the application’s pubspec, icon data and logo builders. A missing resource falls back to the selected typography preset or the supplied logo widget.
+
+```dart
+final profile = WantBrandProfileV1.fromJson({
+  'schemaVersion': 1,
+  'brandColor': '#FFFFBB',
+  'density': 'compact',
+  'radii': {'field': 8, 'panel': 18},
+  'fonts': {'body': 'product-body'},
+  'icons': {'confirm': 'approved'},
+  'logos': {'mark': 'product'},
+});
+final data = WantThemeData.fromProfile(
+  profile,
+  brightness: Brightness.dark,
+  resources: WantBrandResources(
+    fonts: const {'product-body': 'Product Sans'},
+    icons: const {'approved': WantIcons.success},
+    logos: {'product': (_) => Image.asset('assets/brand/mark.png')},
+  ),
+);
+```
+
+Save the normalized profile using `jsonEncode(profile.toJson())`.
+
+Wrap a subtree in `WantTheme(data: data, child: ...)` to scope a profile. `WantBrandLogo.fromTheme` takes a fallback and chooses the asset for the active brightness or the mark. Use `WantIcon(WantIcons.success, role: 'confirm')` for an application-defined icon role. Quiet motion pauses repeating decoration. Off also removes transitions. System accessibility settings take precedence.
+
+Use `busy` and a localized `busyLabel` on a pending button, `status` on a badge or alert, and `operationKey` on a toast or snackbar to replace an earlier notification in the same host. `WantContentState` presents an empty, loading or failed region and accepts an action widget. A combobox accepts a query controller and change callback, `filterLocally: false`, loading content and an inline error for application-owned search. Date fields accept inclusive `minDate`, `maxDate` and ISO `firstDayOfWeek` (Monday = 1).

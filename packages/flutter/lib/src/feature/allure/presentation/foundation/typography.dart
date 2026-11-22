@@ -1,6 +1,15 @@
 import 'package:want_allure/src/feature/allure/presentation/_barrel.dart';
 import 'package:flutter/widgets.dart';
 
+enum WantTypographyPreset {
+  brand,
+  geometric,
+  editorial,
+  technical,
+  humanist,
+  pixel,
+}
+
 enum WantTypographyVariant {
   display,
   h1,
@@ -50,23 +59,25 @@ class WantTypography extends StatelessWidget {
     );
     final size = token.min + (token.max - token.min) * progress;
     final technical = token.font == 'mono';
+    final theme = WantTheme.of(context);
+    final display = token.font == 'display';
+    final typeface = display
+        ? theme.forui.typography.display.lg
+        : theme.forui.typography.body.lg;
+    final weight = display
+        ? WantTokens.typographyPresets[theme.typographyPreset.name]!.weight
+        : token.weight;
     final style = TextStyle(
       fontFamily: technical
-          ? 'monospace'
-          : 'packages/want_allure/${token.font == 'display' ? 'Days One' : 'Manrope'}',
-      fontFamilyFallback: WantTheme.of(context)
-          .forui
-          .typography
-          .body
-          .lg
-          .fontFamilyFallback,
+          ? (theme.font('mono') ?? 'monospace')
+          : typeface.fontFamily,
+      fontFamilyFallback: typeface.fontFamilyFallback,
       fontSize: size,
-      fontVariations: [FontVariation('wght', token.weight)],
-      fontWeight:
-          FontWeight.values[((token.weight / 100).round() - 1).clamp(0, 8)],
+      fontVariations: [FontVariation('wght', weight)],
+      fontWeight: FontWeight.values[((weight / 100).round() - 1).clamp(0, 8)],
       height: token.lineHeight,
       letterSpacing: token.tracking * size,
-      color: WantTheme.of(context).color(colorRole ?? 'foreground'),
+      color: theme.color(colorRole ?? 'foreground'),
     );
     final level =
         headingLevel ??
