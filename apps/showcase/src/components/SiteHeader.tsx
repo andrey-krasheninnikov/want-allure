@@ -17,6 +17,7 @@ export default function SiteHeader({locale, section, notFound=false}:{locale:Loc
   useEffect(()=>{
     const update=()=>{setRtl(document.documentElement.dir==='rtl');const params=new URLSearchParams(location.search);const filtered=new URLSearchParams();for(const key of ['section','component','studio']) if(params.has(key)) filtered.set(key,params.get(key)!);setSelection(filtered.toString());};
     update(); for(const event of ['want:theme','want:direction','want:section']) addEventListener(event,update);
+    dispatchEvent(new Event('want:header-ready'));
     return()=>{for(const event of ['want:theme','want:direction','want:section']) removeEventListener(event,update);};
   },[]);
   const href=(target:Section,language=locale)=>route(language,target)+(target!=='home'&&selection?'?'+selection:'');

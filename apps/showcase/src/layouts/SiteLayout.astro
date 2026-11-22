@@ -37,6 +37,28 @@ const schema = [{ '@context': 'https://schema.org', '@type': 'WebSite', name: 'W
       document.documentElement.classList.toggle('dark', theme === 'dark');
       for (const icon of document.querySelectorAll('link[data-theme-icon]')) icon.href = `/favicon/${theme}/${icon.dataset.themeIcon}`;
     </script>
+    <script is:inline>
+      // A visible menu trigger can receive its first click before React attaches.
+      (() => {
+        let pending;
+        const listeners = new AbortController();
+        const remember = event => {
+          if (event.type === 'keydown' && !['Enter', ' ', 'ArrowDown', 'Escape', 'Tab'].includes(event.key)) return;
+          const trigger = event.target.closest?.('.site-header button[aria-haspopup="menu"]');
+          pending = event.ctrlKey || event.button > 0 || event.key === 'Escape' || event.key === 'Tab' ? null : trigger;
+        };
+        for (const type of ['pointerdown', 'click', 'keydown']) {
+          document.addEventListener(type, remember, { capture: true, signal: listeners.signal });
+        }
+        window.addEventListener('want:header-ready', () => {
+          listeners.abort();
+          if (pending?.isConnected && pending.getAttribute('aria-expanded') === 'false') {
+            pending.focus({ preventScroll: true });
+            pending.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true, cancelable: true }));
+          }
+        }, { once: true });
+      })();
+    </script>
   </head>
   <body class:list={['site-shell', { 'flutter-page': frame }]}>
     <a href="#main" class="skip-link">{c.skip}</a>
